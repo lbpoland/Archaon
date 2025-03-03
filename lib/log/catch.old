@@ -1,0 +1,1199 @@
+--------------------
+Mon Mar 26 04:18:36 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Mar 26 04:18:36 2018:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/error_tracker at line 19
+(4) 'create' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 82
+(5) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(6) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Mon Mar 26 04:18:36 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar 26 04:18:36 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar 26 04:32:01 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Mar 26 04:32:01 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar 26 04:32:01 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar 26 04:53:34 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Mar 26 04:53:34 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar 26 04:53:34 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar 26 04:59:41 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Mar 26 04:59:41 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar 26 04:59:41 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar 26 06:17:53 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Mar 26 06:17:53 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar 26 06:17:53 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar 26 06:43:30 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Mon Mar 26 07:00:36 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Mar 26 07:00:36 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar 26 07:00:36 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar 26 08:06:39 2018:  *Error in loading object '/net/intermud3/services'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 589
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 615
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 591
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Tue Mar 27 06:47:25 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Tue Mar 27 08:48:54 2018:  *Undefined function called: query_property
+Object: /global/events at line 377
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 589
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 615
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 591
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/exe_c at line 58
+(11) 'do_exec' in /secure/cmds/creator/exe_c at line 46
+(12) 'CATCH' in /secure/cmds/creator/exe_c at line 46
+(13) 'do_call' in /w/quixadhal/exec_tmp at line 3
+(14) 'fix_string' in /global/events at line 377
+--------------------
+Tue Mar 27 22:36:49 2018:  *Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/simul_efun (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 362
+(5) 'CATCH' in /secure/master at line 362
+(6) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+--------------------
+Tue Mar 27 23:54:23 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Tue Mar 27 23:54:23 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Tue Mar 27 23:54:23 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Wed Mar 28 06:48:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Thu Mar 29 06:50:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Fri Mar 30 06:52:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Sat Mar 31 06:54:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Sun Apr  1 06:56:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Mon Apr  2 05:11:07 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#355 at line 85
+(2) 'process_input' in /global/lord#355 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#355 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#355 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#355 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#355 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#355 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#355 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#355 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Mon Apr  2 05:38:01 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#355 at line 85
+(2) 'process_input' in /global/lord#355 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#355 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#355 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#355 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#355 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#355 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#355 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#355 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Mon Apr  2 06:58:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Sun Apr 22 20:56:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Mon Apr 23 20:58:02 2018:  *Trying to put array in string
+Object: /obj/handlers/autodoc/autodoc_html at line 256
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 322
+(3) 'create_index' in /obj/handlers/autodoc/autodoc_handler at line 472
+(4) 'CATCH' in /obj/handlers/autodoc/autodoc_handler at line 472
+(5) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(6) '(: <code>($1, $2) :)' in /obj/handlers/autodoc/autodoc_handler at line 189
+(7) 'create_html_file' in /obj/handlers/autodoc/autodoc_handler at line 262
+(8) 'create_html_index_file' in /obj/handlers/autodoc/autodoc_html at line 256
+--------------------
+Wed Apr 25 11:56:31 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Wed Apr 25 11:56:31 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Wed Apr 25 11:56:31 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Wed May  2 21:13:55 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Wed May  2 21:13:55 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Wed May  2 21:13:55 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Sun May 20 04:22:22 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Sun May 20 04:22:22 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Sun May 20 04:22:22 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Sun May 20 13:29:59 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Sun May 20 13:30:15 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Sun May 20 13:30:51 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Sun May 20 13:33:08 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Sun May 20 13:34:54 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Sun May 20 13:35:51 2018:  *Error in loading object '/secure/cmds/creator/urlrep'
+Object: /secure/cmds/creator/upd_ate at line 158
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 158
+(11) 'CATCH' in /secure/cmds/creator/upd_ate at line 158
+--------------------
+Mon May 21 01:56:12 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon May 21 01:56:12 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon May 21 01:56:12 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon May 21 13:26:24 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon May 21 13:26:24 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon May 21 13:26:24 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Tue Jun  5 21:19:40 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Tue Jun  5 21:19:40 2018:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/error_tracker at line 19
+(4) 'create' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 82
+(5) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(6) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Tue Jun  5 21:19:40 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Tue Jun  5 21:19:40 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Tue Jun 19 20:09:08 2018:  *Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/simul_efun (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 362
+(5) 'CATCH' in /secure/master at line 362
+(6) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+--------------------
+Tue Jun 19 20:32:25 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Tue Jun 19 20:32:25 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Tue Jun 19 20:32:25 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Sun Jul 15 22:14:50 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Sun Jul 15 22:14:50 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Sun Jul 15 22:14:50 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Wed Jul 18 18:31:37 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Wed Jul 18 18:31:37 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Wed Jul 18 18:31:37 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Wed Aug  1 12:50:07 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Wed Aug  1 12:50:07 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Wed Aug  1 12:50:07 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Aug 13 12:28:02 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Mon Aug 13 12:28:02 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Aug 13 12:28:02 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Fri Aug 17 18:19:11 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Fri Aug 17 18:19:11 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Fri Aug 17 18:19:11 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Sat Aug 18 10:43:36 2018:  *Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/simul_efun (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 362
+(5) 'CATCH' in /secure/master at line 362
+(6) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+--------------------
+Sat Aug 18 11:00:53 2018:  *Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/simul_efun (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 362
+(5) 'CATCH' in /secure/master at line 362
+(6) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+--------------------
+Sat Aug 18 11:01:45 2018:  *Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/simul_efun (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 362
+(5) 'CATCH' in /secure/master at line 362
+(6) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+--------------------
+Sat Aug 18 11:05:01 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Sat Aug 18 11:05:01 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Sat Aug 18 11:05:01 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Sat Aug 18 11:06:36 2018:  *Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/simul_efun (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 362
+(5) 'CATCH' in /secure/master at line 362
+(6) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+--------------------
+Sat Aug 18 11:28:13 2018:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151
+--------------------
+Sat Aug 18 11:28:13 2018:  **Denied read permission in restore_object().
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Sat Aug 18 11:28:13 2018:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52

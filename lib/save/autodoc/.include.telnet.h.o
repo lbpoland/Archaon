@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["TELOPT_NAWS":([]),"SE":([]),"TELQUAL_IS":([]),"DO":([]),"TELQUAL_SEND":([]),"TELOPT_TTYPE":([]),"SB":([]),"IAC":([]),"TELOPT_MXP":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/telnet.h"
+last_changed 1522061544

@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["STD_COST":([]),"TIME_DIV":([]),"COST_DIV":([]),"MAX_AL":([]),"LEVEL_DIV":([]),"MIN_TIME":([]),"SHOUT_DISTANCE":([]),"DEFAULT_COST":([]),"TIME_BETWEEN_HEAL":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/tune.h"
+last_changed 1522061544

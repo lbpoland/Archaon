@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["ELEMENTALS":([]),"MOVING_SHOP_EFFECTS":([]),"DEATH":([]),"MOVING_SHOP_CHARS":([]),"DOPPLES":([]),"DEATH_CHARS":([]),"AWFFICE":([]),"DEATH_INSIDE":([]),"DEMONS":([]),"DEATH_LIFE":([]),"UNDERWORLD":([]),"IMPS":([]),"MOVING_SHOP_SHADOWS":([]),"DEATH_NEW":([]),"MOVING_SHOP_INHERITS":([]),"MOVING_SHOP_ROOMS":([]),"MOVING_SHOP_ITEMS":([]),"MOVING_SHOP":([]),"DOPPLES_SAVE":([]),"PLANES":([]),"MOVING_SHOP_SPELLS":([]),"DEATH_ITEMS":([]),"DEATH_OUTSIDE":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/underworld.h"
+last_changed 1522061544

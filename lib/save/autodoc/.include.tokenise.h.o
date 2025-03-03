@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["TOK_EARRAY":([]),"TOK_CBRAC":([]),"TOK_GREATOREQ":([]),"TOK_PLUS":([]),"TOK_CALL":([]),"TOK_GREATOR":([]),"TOK_MULT":([]),"TOK_LESSEQ":([]),"TOK_DIV":([]),"TOK_DOTDOT":([]),"TOK_COMMA":([]),"TOK_COLON":([]),"TOK_DOT":([]),"TOK_LESS":([]),"TOK_ASSIGN":([]),"TOK_EMAPPING":([]),"TOK_TAB":([]),"TOK_OBRAC":([]),"TOK_EQUAL":([]),"TOK_SARRAY":([]),"TOK_MINUS":([]),"TOK_SMAPPING":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/tokenise.h"
+last_changed 1522061544

@@ -1,0 +1,315 @@
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/obj/handlers/playtesters.c line 622: Warning: <TAB> before           if (query_
+/obj/handlers/playtesters.c line 623: Warning: <TAB> before             
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before           }        	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 		
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before the end of line
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/net/daemon/http.c line 110: Warning: Redeclaration of global variable 'Sockets'. before the end of line
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/obj/handlers/playtesters.c line 622: Warning: <TAB> before           if (query_
+/obj/handlers/playtesters.c line 623: Warning: <TAB> before             
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before           }        	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 		
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before the end of line
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/net/intermud3/services/channel.c line 727: Warning: Expression has no side effects, and the value is unused before the end of line
+/net/intermud3/services/channel.c line 726: Warning: Expression has no side effects, and the value is unused before the end of line
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/obj/handlers/playtesters.c line 622: Warning: <TAB> before           if (query_
+/obj/handlers/playtesters.c line 623: Warning: <TAB> before             
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before           }        	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 		
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before the end of line
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/obj/handlers/playtesters.c line 622: Warning: <TAB> before           if (query_
+/obj/handlers/playtesters.c line 623: Warning: <TAB> before             
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before           }        	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 		
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before the end of line
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/obj/handlers/playtesters.c line 622: Warning: <TAB> before           if (query_
+/obj/handlers/playtesters.c line 623: Warning: <TAB> before             
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before           }        	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 		
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before the end of line
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/obj/handlers/playtesters.c line 622: Warning: <TAB> before           if (query_
+/obj/handlers/playtesters.c line 623: Warning: <TAB> before             
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before           }        	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 		
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before 	
+/obj/handlers/playtesters.c line 624: Warning: <TAB> before the end of line
+/secure/command.c line 118: Warning: Unused local variable 'bits' before  /* HandleCommandLin
+/obj/handlers/board_handler.c line 535: Warning: Unused local variable 'rname' before  /* get_message() */
+/net/daemon/mysql.c line 110: Warning: <TAB> before the end of line
+/global/cloner.c line 259: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/misc/torch.c line 272: Warning: Number of arguments disagrees with previous definition. before  {
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo
+/std/basic/read_desc.c line 264: Warning: Unused local variable 'pos' before  /* query_readable_m
+/obj/container.c line 1599: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/container.c line 1711: Warning: Number of arguments disagrees with previous definition. before  { return !query_clo
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'data2' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 's1' before  /* prop_to_fun() */
+/global/virtual/setup_compiler/SetupCompiler.c line 83: Warning: Unused local variable 'i' before  /* prop_to_fun() */
+/global/psoul.c line 613: Warning: Unused local variable 'i' before  /* _process_input()
+/global/psoul.c line 613: Warning: Unused local variable 'bits' before  /* _process_input()
+/obj/handlers/inherit/club_elected.c line 533: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_elected.c line 572: Warning: Number of arguments disagrees with previous definition. before  {
+/obj/handlers/inherit/club_discuss.c line 18: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/inherit/club_inherit.c line 12: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 9: Warning: Redeclaration of global variable '_discussion_items'. before the end of line
+/obj/handlers/club_handler.c line 15: Warning: <TAB> before  // No, lets not, le
+/obj/handlers/club_handler.c line 16: Warning: <TAB> before  // a bit and our lo

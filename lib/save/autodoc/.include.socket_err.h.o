@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["EETYPENOTSUPP	-26	/*":([]),"EEINTR		-18	/*":([]),"EENOTCONN	-25	/*":([]),"EENOSOCKS	":([]),"EELISTEN	-15	/*":([]),"EENONBLOCK	":([]),"EESENDTO	-27	/*":([]),"EESUCCESS	":([]),"EEALREADY	-22	/*":([]),"EESETSOCKOPT	":([]),"EEADDRINUSE	":([]),"EECONNREFUSED	-23	/*":([]),"EENOADDR	-13	/*":([]),"EENOTLISTN	-16	/*":([]),"EEBADADDR	-21	/*":([]),"EEMODENOTSUPP	-12	/*":([]),"EESECURITY	":([]),"EESOCKRLSD	-30	/*":([]),"EECONNECT	-24	/*":([]),"EEISCONN	-14	/*":([]),"EEISLISTEN	-20	/*":([]),"EEGETSOCKNAME	-11	/*":([]),"EEBADF		":([]),"EESOCKET	":([]),"EECALLBACK	-29	/*":([]),"EESOCKNOTRLSD":([]),"EEACCEPT	-19	/*":([]),"EEWOULDBLOCK	-17	/*":([]),"EEBADDATA":([]),"EESEND		-28	/*":([]),"EEISBOUND	":([]),"EEFDRANGE	":([]),"EEBIND		-10	/*":([]),"ERROR_STRINGS	":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/socket_err.h"
+last_changed 1522061544

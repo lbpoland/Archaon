@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["NEW_HALL":([]),"TURNWISE_COURT":([]),"WIDDERSHINS_COURT":([]),"UNIVERSITY":([]),"ANCIENT_ASSEMBLY":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/unseen.h"
+last_changed 1522061544

@@ -1,0 +1,863 @@
+--------------------
+Thu Nov 29 14:31:18 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:364
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:789
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:459
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:364
+--------------------
+Sat Dec  1 07:19:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#884 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#884 at line 798
+--------------------
+Sat Dec  1 07:33:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#886 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#886 at line 798
+--------------------
+Sat Dec  1 07:40:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#887 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#887 at line 798
+--------------------
+Sat Dec  1 09:25:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#902 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#902 at line 798
+--------------------
+Sat Dec  1 10:14:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#909 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#909 at line 798
+--------------------
+Sat Dec  1 12:27:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#928 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#928 at line 798
+--------------------
+Sat Dec  1 13:16:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#935 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#935 at line 798
+--------------------
+Sun Dec  2 07:49:50 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:364
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:789
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:459
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:364
+--------------------
+Sun Dec  2 16:11:56 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:364
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:789
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:459
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:364
+--------------------
+Sun Dec  2 16:12:12 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:364
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:789
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:459
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:364
+--------------------
+Mon Dec  3 11:27:30 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:364
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:789
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:459
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:364
+--------------------
+Tue Dec  4 14:25:19 2018:  *Value being indexed is zero.
+Object: /secure/cmds/creator/urlrep at line 72
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/urlrep at line 72
+--------------------
+Tue Dec  4 14:26:37 2018:  *(s)printf(): More arguments specified than passed. (arg: 5)
+Object: /secure/cmds/creator/urlrep at line 116
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/urlrep at line 116
+--------------------
+Tue Dec  4 14:49:51 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:377
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:805
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:472
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:377
+--------------------
+Tue Dec  4 14:50:48 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:377
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:805
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:472
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:377
+--------------------
+Tue Dec  4 20:19:40 2018:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(2) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Wed Dec  5 15:44:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1779 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1779 at line 798
+--------------------
+Wed Dec  5 15:58:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1781 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1781 at line 798
+--------------------
+Wed Dec  5 16:05:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1782 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1782 at line 798
+--------------------
+Wed Dec  5 17:50:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1797 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1797 at line 798
+--------------------
+Wed Dec  5 18:39:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1804 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1804 at line 798
+--------------------
+Wed Dec  5 20:52:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1823 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1823 at line 798
+--------------------
+Wed Dec  5 21:41:35 2018:  *Trying to put string in int
+Object: /obj/handlers/autodoc/autodoc_file#1830 at line 798
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/autodoc/autodoc_handler (/<driver>) in /(fake):0
+(2) '(: <code>() :)' in /obj/handlers/autodoc/autodoc_handler at line 328
+(3) 'do_parse_next_file' in /obj/handlers/autodoc/autodoc_handler at line 311
+(4) 'parse_file' in /obj/handlers/autodoc/autodoc_file#1830 at line 798
+--------------------
+Thu Dec  6 19:08:22 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Dec  6 19:08:27 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Fri Dec  7 19:34:04 2018:  *Array index out of bounds
+Object: /secure/cmds/creator/urlrep at line 37
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/urlrep at line 37
+--------------------
+Fri Dec  7 19:46:44 2018:  *Error in loading object '/net/intermud3/services'
+Object: /cmds/creator/dupd_ate at line 41
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /cmds/creator/dupd_ate at line 64
+(11) 'do_it' in /cmds/creator/dupd_ate at line 41
+--------------------
+Sat Dec  8 02:28:45 2018:  *Error in loading object '/net/intermud3/services'
+Object: /cmds/creator/dupd_ate at line 41
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /cmds/creator/dupd_ate at line 64
+(11) 'do_it' in /cmds/creator/dupd_ate at line 41
+--------------------
+Sat Dec  8 04:22:38 2018:  *Error in loading object '/net/intermud3/services'
+Object: /cmds/creator/dupd_ate at line 41
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /cmds/creator/dupd_ate at line 64
+(11) 'do_it' in /cmds/creator/dupd_ate at line 41
+--------------------
+Sat Dec  8 04:38:32 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sat Dec  8 04:38:37 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sat Dec  8 04:42:38 2018:  **Wrong permissions for opening file /log/errors/intermud for append.
+"No such file or directory"
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) 'flush_log_files' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 302
+(3) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 41
+(4) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Sat Dec  8 04:49:22 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sat Dec  8 04:49:27 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sat Dec  8 05:05:35 2018:  *Error in loading object '/net/intermud3/services'
+Object: /secure/cmds/creator/upd_ate at line 61
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'process_input' in /global/lord#3 at line 85
+(2) 'process_input' in /global/lord#3 (/global/wiz_file_comm.c) at line 510
+(3) 'process_input' in /global/lord#3 (/global/psoul.c) at line 519
+(4) '_process_input' in /global/lord#3 (/global/psoul.c) at line 592
+(5) 'drunk_check' in /global/lord#3 (/global/psoul.c) at line 491
+(6) 'command' in /global/lord#3 (/global/wiz_file_comm.c) at line 514
+(7) 'command' in /global/lord#3 (/global/psoul.c) at line 618
+(8) '_process_input' in /global/lord#3 (/global/psoul.c) at line 594
+(9) 'cmdAll' in /global/lord#3 (/global/command.c) at line 65
+(10) 'cmd' in /secure/cmds/creator/upd_ate at line 174
+(11) 'do_update' in /secure/cmds/creator/upd_ate at line 61
+--------------------
+Sat Dec  8 05:57:36 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Sat Dec  8 19:31:56 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Mon Dec 10 18:46:26 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Tue Dec 11 15:17:08 2018:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Tue Dec 11 20:19:40 2018:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(2) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Tue Dec 11 23:26:16 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Tue Dec 11 23:26:21 2018:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Tue Dec 18 20:19:40 2018:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(2) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Tue Dec 25 20:19:40 2018:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(2) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Tue Jan  1 20:19:40 2019:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(2) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Wed Jan  9 06:20:49 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Wed Jan  9 06:20:54 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Wed Jan  9 07:17:59 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Wed Jan  9 08:04:00 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Wed Jan  9 08:11:00 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Thu Jan 10 06:39:34 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Thu Jan 10 23:02:59 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Fri Jan 11 09:06:22 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Fri Jan 11 09:11:54 2019:  *Array index out of bounds.
+Object: /net/intermud3/services in /net/intermud3/services/channel.c:380
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'eventReadCallback' in /net/intermud3/intermud (/net/inherit/client.c) at line 74
+(2) 'eventRead' in /net/intermud3/intermud at line 122
+(3) 'eventReceiveChannelEmote' in /net/intermud3/services in /net/intermud3/services/channel.c:876
+(4) 'event_intermud_tell' in /global/lord#3 (/global/events.c) at line 2442
+(5) 'getColorSpeakerName' in /net/intermud3/services in /net/intermud3/services/channel.c:475
+(6) 'getSpeakerColor' in /net/intermud3/services in /net/intermud3/services/channel.c:380
+--------------------
+Sat Jan 12 05:54:37 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sat Jan 12 05:54:42 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sun Jan 13 00:40:58 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Sun Jan 13 00:41:03 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Wed Jan 16 06:20:44 2019:  *Error in loading object '/obj/handlers/finderror_helper'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(2) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Thu Jan 17 04:05:04 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 04:05:09 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 04:21:28 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 04:21:33 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 04:47:22 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 04:47:27 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 05:22:05 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 05:22:10 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 05:48:04 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 05:48:09 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 13:53:28 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Thu Jan 17 13:53:33 2019:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541

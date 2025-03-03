@@ -1,0 +1,9 @@
+#/obj/handlers/autodoc/autodoc_file.c
+public_functions ([])
+protected_functions ([])
+inherits ([])
+define_docs (["ENV_ME_HERE":([]),"STRING":([]),"ENV_DIRECT_OBS":([]),"PATTERN_WEIGHT":([]),"INDIRECT_OBJECT":([]),"DISTANT_LIVING":([]),"FRACTION":([]),"FIND_NONE":([]),"OPTIONAL_SPACES":([]),"OPTIONAL":([]),"WIZ_PRESENT_TARGET":([]),"ANY_LIVING":([]),"WORD_LIST":([]),"PATTERN_OB":([]),"ANY_OBJECT":([]),"OLD_PATTERN_STRING":([]),"ENV_HERE_ME":([]),"WORD_LIST_SPACES":([]),"FIND_FIRST":([]),"PATTERN_STRING":([]),"TARGET_PLAYER":([]),"OBJS":([]),"MASTER":([]),"QUOTED_STRING":([]),"SINGLE_WORD":([]),"FIND_LAST":([]),"ENV_ME":([]),"PATTERN":([]),"SHORT_STRING":([]),"LIVING":([]),"NUMBER":([]),"DIRECT_OBJECT":([]),"ENV_HERE":([]),])
+includes ([])
+class_docs ([])
+file_name "/include/user_parser.h"
+last_changed 1522061544
