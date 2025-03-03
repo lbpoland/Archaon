@@ -909,3 +909,78 @@ Locals were: none.
 (5) 'enter_state' in /secure/login#1 at line 280
 (6) 'check_new_access' in /secure/login#1 at line 564
 (7) 'check_allowed' in /obj/handlers/multiplayer at line 69
+--------------------
+Mon Mar  3 18:14:23 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 18:14:28 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 18:18:10 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 18:18:14 2025:  *Error in loading object '/secure/login'
+Object: /secure/simul_efun (/secure/simul_efun/virtual.c) at line 25
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'connect' in /secure/master at line 75
+(2) 'clone_object' in /secure/simul_efun (/secure/simul_efun/virtual.c) at line 25
+--------------------
+Mon Mar  3 18:18:15 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 18:20:17 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 18:20:22 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541

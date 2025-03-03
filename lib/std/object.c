@@ -22,12 +22,7 @@ inherit "/std/basic/effects";
 
 #define AUTO_LOAD_TAG "basic.object";
 
-//nosave int do_setup;
-void do_setup() {
-    // Placeholder implementation
-    if (!clonep(this_object())) return;
-    // Add setup logic here (e.g., initialize object)
-}
+nosave int do_setup = 0;
 nosave string create_me;
 nosave string colour;
 private string* _materials;
@@ -42,8 +37,7 @@ void create() {
   read_desc::create();
   effects::create();
 
-  seteuid( (string)"/secure/master"->
-      creator_file( file_name( this_object() ) ) );
+  seteuid( (string)"/secure/master"->creator_file( file_name( this_object() ) ) );
   if ( this_player() ) {
     create_me = (string)this_player()->query_name();
   } else {
@@ -51,8 +45,10 @@ void create() {
   }
   if ( !do_setup ) {
     this_object()->setup();
+    do_setup = 1; // Set flag after setup
   }
-} /* create() */
+}
+ /* create() */
 
 /**
  * Gives the object a name.  Sets the name to the word and makes it the
