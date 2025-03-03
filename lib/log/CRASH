@@ -153,3 +153,7 @@ Thu Jan 17 13:12:57 2019:
 command given: 
 crash reason: Process terminated
 []
+
+Mon Mar  3 18:03:33 2025:
+crash reason: SIGINT: Process interrupted
+[]

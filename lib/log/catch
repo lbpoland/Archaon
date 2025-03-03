@@ -805,3 +805,167 @@ Locals were: none.
 (4) 'do_check_changes' in /obj/handlers/twiki at line 169
 (5) 'find_changes' in /obj/handlers/twiki at line 109
 (6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/simul_efun (/secure/simul_efun/virtual.c) at line 25
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /room/void (/std/room/basic_room.c) at line 97
+(4) 'reset' in /room/void at line 32
+(5) 'clone_object' in /secure/simul_efun (/secure/simul_efun/virtual.c) at line 25
+--------------------
+Mon Mar  3 17:58:50 2025:  *Inherited file '/std/basic/prlong long_object' does not exist!
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /secure/master in /secure/master/preload.c:28
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+--------------------
+Mon Mar  3 17:58:50 2025:  *Error in loading object '/std/object'
+Object: /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/error_tracker at line 19
+(4) 'create' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 82
+(5) 'do_the_work' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 297
+(6) 'iterate' in /obj/handlers/error_tracker (/std/dom/error_tracker_master.c) at line 272
+--------------------
+Mon Mar  3 17:58:50 2025:  **restore_object: read permission denied: /save/inv_check.o.
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /d/admin/obj/inv_check at line 30
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar  3 17:58:50 2025:  *Bad argument 1 to explode()
+Expected: string Got: 0.
+Object: /obj/handlers/twiki at line 52
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /obj/handlers/twiki at line 28
+(4) 'do_check_changes' in /obj/handlers/twiki at line 169
+(5) 'find_changes' in /obj/handlers/twiki at line 109
+(6) 'find_changed_pages' in /obj/handlers/twiki at line 52
+--------------------
+Mon Mar  3 17:58:53 2025:  *restore_object(): Invalid utf8 string while restoring urls.
+Object: /net/intermud3/services (/<driver>) in /(fake):0
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /net/intermud3/intermud (/<driver>) in /(fake):0
+(2) 'Setup' in /net/intermud3/intermud at line 125
+(3) 'create' in /net/intermud3/services at line 40
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 362
+(6) 'CATCH' in /secure/master at line 362
+(7) '<fake>' in /net/intermud3/services (/<driver>) in /(fake):0

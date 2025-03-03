@@ -16,7 +16,7 @@ inherit "/secure/simul_efun/dump_socket_status";
 inherit "/secure/simul_efun/find_match";
 inherit "/secure/simul_efun/find_member";
 inherit "/secure/simul_efun/find_other_call_out";
-//inherit "/secure/simul_efun/get_function_polong longer";
+inherit "/secure/simul_efun/get_function_pointer";
 inherit "/secure/simul_efun/inside_shorts";
 inherit "/secure/simul_efun/mapping";
 /*

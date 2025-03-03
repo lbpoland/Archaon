@@ -262,3 +262,42 @@
 /std/races/dog.c line 46: End of array not found before ,
 /std/races/dog.c line 46: End of array not found before ,
 /std/races/dog.c line 46: End of array not found before ,
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^
+/std/object.c line 24: syntax error, unexpected L_DEFINED_NAME, expecting L_ASSIGN or ';' or '(' or ','
+  nosave long long do_setup
+                  ^

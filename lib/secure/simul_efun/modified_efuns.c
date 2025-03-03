@@ -703,7 +703,7 @@ void reset_eval_cost() {
 
       reset_eval_message =
         sprintf("%s uses reset_eval_cost to last %d seconds\n%s",
-                query_multiple_short(map(previous_object(-1),
+                sprintf(map(previous_object(-1),
                                          (: file_name($1) :))),
                 real_time() - eval_cost_real_time,
                 stack);

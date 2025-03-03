@@ -861,3 +861,51 @@ Locals were: none.
 (1) 'rehash' in /obj/handlers/armoury at line 364
 (2) 'make_list' in /obj/handlers/armoury at line 154
 (3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 17:58:53 2025:  **restore_object(): Invalid utf8 string while restoring urls.
+Object: /secure/master at line 365
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /net/intermud3/intermud (/<driver>) in /(fake):0
+(2) 'Setup' in /net/intermud3/intermud at line 125
+(3) 'create' in /net/intermud3/services at line 40
+(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
+(5) 'apply_unguarded' in /secure/master at line 365
+--------------------
+Mon Mar  3 17:58:56 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 361
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 17:59:01 2025:  *Bad argument 2 to foreach
+Expected: array Got: 0.
+Object: /obj/handlers/armoury at line 541
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'rehash' in /obj/handlers/armoury at line 364
+(2) 'make_list' in /obj/handlers/armoury at line 154
+(3) 'walk_directory' in /obj/handlers/armoury at line 541
+--------------------
+Mon Mar  3 17:59:29 2025:  *Error in loading object '/std/object'
+Object: /obj/handlers/multiplayer at line 69
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /secure/simul_efun (/<driver>) in /(fake):0
+(2) '(: <code>($1, $2, $3, $4) :)' in /secure/simul_efun (/secure/simul_efun/modified_efuns.c) at line 900
+(3) '<fake>' in /secure/login#1 (/<driver>) in /(fake):0
+(4) 'process_event' in /secure/login#1 at line 223
+(5) 'enter_state' in /secure/login#1 at line 280
+(6) 'check_new_access' in /secure/login#1 at line 564
+(7) 'check_allowed' in /obj/handlers/multiplayer at line 69
