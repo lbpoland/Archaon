@@ -21,7 +21,7 @@ inherit "/secure/simul_efun/inside_shorts";
 inherit "/secure/simul_efun/mapping";
 /*
  * NB: Because of the fact this file uses it, base_name is
- * inherited long longo modified_efuns.
+ * inherited into modified_efuns.
  */
 inherit "/secure/simul_efun/modified_efuns";
 // THis in now inherited through the parser.

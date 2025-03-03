@@ -1,22 +1,22 @@
 /* this is to be inherited by effect shadows -*- LPC -*- */
 
 object player;
-long long id;
+int id;
 
-object attach_to_player(object p, long long i) {
+object attach_to_player(object p, int i) {
   player = p;
   id = i;
   return shadow( player, 1 );
 }
 
-void remove_effect_shadow(long long i) {
+void remove_effect_shadow(int i) {
   if (i == id) { if( this_object() ) destruct( this_object() ); return; }
   player->remove_effect_shadow(i);
 }
 
 protected mixed arg() {
-   long long enum;
-   enum = (long long)player->sid_to_enum( id );
+   int enum;
+   enum = (int)player->sid_to_enum( id );
    if ( enum == -1 ) {
 #ifdef DEBUG
      log_file( "EFFECTS", time() +": no effect for "+
@@ -34,5 +34,5 @@ protected void set_arg(mixed newarg) {
 }
 
 protected void remove_this_effect() {
-  player->delete_effect( (long long)player->sid_to_enum( id ) );
+  player->delete_effect( (int)player->sid_to_enum( id ) );
 } /* remove_this_effect() */

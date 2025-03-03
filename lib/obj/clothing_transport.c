@@ -26,7 +26,7 @@
  *
  * Revision 1.2  1998/02/27 04:56:32  pinkfish
  * CHanged to stop people being able to pick up
- * pigns and stuff and put them long longo
+ * pigns and stuff and put them into
  * containers.
  *
  * Revision 1.1  1998/01/06 04:58:17  ceres
@@ -41,8 +41,8 @@
  */
 inherit "/obj/clothing";
 
-private long long _mount_difficulty_modifier;
-private long long _direction_difficulty_modifier;
+private int _mount_difficulty_modifier;
+private int _direction_difficulty_modifier;
 private string _race;
 
 void create() {
@@ -70,7 +70,7 @@ string query_worn_by_race() {
  * This method set the mount difficulty modifier.
  * @param diff the mount difficulty modifier
  */
-void set_mount_difficulty_modifier(long long diff) {
+void set_mount_difficulty_modifier(int diff) {
    _mount_difficulty_modifier = diff;
 } /* set_moun_difficult_modifier() */
 
@@ -78,7 +78,7 @@ void set_mount_difficulty_modifier(long long diff) {
  * This method queries the mount difficulty modifier.
  * @return the mount difficulty modifier
  */
-long long query_mount_difficulty_modifier() {
+int query_mount_difficulty_modifier() {
    return _mount_difficulty_modifier;
 } /* query_mount_difficulty_modifier() */
 
@@ -86,7 +86,7 @@ long long query_mount_difficulty_modifier() {
  * This method sets the direction difficulty modifier.
  * @param diff the direction difficulty modifier
  */
-void set_direction_difficulty_modifier(long long diff) {
+void set_direction_difficulty_modifier(int diff) {
    _direction_difficulty_modifier = diff;
 } /* set_direction_difficulty_modifier() */
 
@@ -94,14 +94,14 @@ void set_direction_difficulty_modifier(long long diff) {
  * This method queries the direction difficulty modifier.
  * @return the direction difficulty modifier
  */
-long long query_direction_difficulty_modifier() {
+int query_direction_difficulty_modifier() {
    return _direction_difficulty_modifier;
 } /* query_direction_difficulty_modifier() */
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : clothing::long long_query_static_auto_load(),
+      "::" : clothing::int_query_static_auto_load(),
       "worn by race" : _race,
       "mount difficulty" : _mount_difficulty_modifier,
       "direction difficulty" : _direction_difficulty_modifier
@@ -113,7 +113,7 @@ mapping query_static_auto_load() {
    if ( base_name(this_object()) != __FILE__[0..<3]) {
       return ([ ]);
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /** @ignore yes */

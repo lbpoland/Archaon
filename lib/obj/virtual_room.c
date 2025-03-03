@@ -22,7 +22,7 @@
  *   put here(mainly for unique npc's with their own file).
  * delay is the delay in seconds between reset being called and the cloning  
  * clone_info can be a string, in which case it's considered to be the
- *   filename of the thing to put here, or a function polong longer meaning
+ *   filename of the thing to put here, or a function pointer meaning
  *   it's a function returning the thing.
  * entry_mess is the parameter given to move when moving the item to this 
  *   room.
@@ -35,7 +35,7 @@ inherit "/std/room";
 nosave mixed  *reset_definitions;
 nosave object *reset_objects;
 
-void add_cloned_object( long long flag, long long delay, mixed clone_info, 
+void add_cloned_object( int flag, int delay, mixed clone_info, 
                        string entry_mess ) {
    if ( functionp( clone_info ) )
       clone_info = bind( clone_info, this_object() );
@@ -62,7 +62,7 @@ private object make_clone( mixed func ) {
       return 0;
 } /* make_clone() */
 
-protected void make_object( long long i ) {
+protected void make_object( int i ) {
    switch ( reset_definitions[ i ][ FLAG ] ) {
     case REMOVABLE:
     case FIXED:
@@ -80,7 +80,7 @@ protected void make_object( long long i ) {
 } /* make_object() */
 
 void reset() {
-   long long i;
+   int i;
    
    if ( !sizeof( reset_definitions ) )
       return;

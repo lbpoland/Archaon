@@ -7,7 +7,7 @@
 
 inherit "/obj/food";
 
-long long delay, large_weight, stage;
+int delay, large_weight, stage;
 string adjs, extra, type, *messages;
 void next_stage();
 
@@ -27,7 +27,7 @@ void create() {
     "A small $type$ pushes up through the soil.\n",
     "The $type$ seems to be a bit larger now.\n",
     "The $type$ looks nice and large now.\n",
-    "The $type$ silently releases a grey dust long longo the air.\n",
+    "The $type$ silently releases a grey dust into the air.\n",
     "The $type$ collapses in on itself and falls apart.\n"
   });
   if ( !do_setup )
@@ -36,11 +36,11 @@ void create() {
       call_out( "next_stage", delay / 2 + random( delay ) );
 } /* create() */
 
-long long query_growing() { return 1; }
+int query_growing() { return 1; }
 
-long long query_delay() { return delay; }
+int query_delay() { return delay; }
 
-void set_delay( long long number ) {
+void set_delay( int number ) {
   if ( number < 60 )
     number = 60;
   delay = number;
@@ -48,18 +48,18 @@ void set_delay( long long number ) {
     call_out( "next_stage", delay / 2 + random( delay ) );
 } /* set_delay() */
 
-long long query_large_weight() { return large_weight; }
+int query_large_weight() { return large_weight; }
 
-long long query_stage() { return stage; }
+int query_stage() { return stage; }
 
-void set_stage( long long number ) { 
+void set_stage( int number ) { 
   if(number > 0) {
     stage = number - 1;
   }
   this_object()->next_stage();
 }
 
-void set_large_weight( long long number ) { large_weight = number; }
+void set_large_weight( int number ) { large_weight = number; }
 
 string query_adjs() { return adjs; }
 
@@ -89,8 +89,8 @@ void init() {
       this_player()->add_command( "pick", this_object() );
 } /* init() */
 
-long long test_non_spore( object thing ) {
-  return ( (long long)thing->query_stage() > 5 );
+int test_non_spore( object thing ) {
+  return ( (int)thing->query_stage() > 5 );
 } /* test_non_spore() */
 
 void setup_spore() {
@@ -124,7 +124,7 @@ object make_spore( object place ) {
 } /* make_spore() */
 
 void next_stage() {
-  long long i, number;
+  int i, number;
   string words;
   object *things;
   if ( !environment() )
@@ -142,7 +142,7 @@ void next_stage() {
                                             ({ environment() }) );
       things = filter_array( things, "test_non_spore", this_object() );
       if ( sizeof( things ) >=
-          (long long)environment()->query_property( words +" capacity" ) ) {
+          (int)environment()->query_property( words +" capacity" ) ) {
         move( "/room/rubbish" );
         return;
       }
@@ -207,7 +207,7 @@ void next_stage() {
   call_out( "next_stage", delay / 2 + random( delay ) );
 } /* next_stage() */
 
-long long do_get() {
+int do_get() {
   if ( stage != -1 ) {
     write( the_short() +" is currently growing.  You could \"pick\" "+
         "it, though.\n" );
@@ -218,9 +218,9 @@ long long do_get() {
   return 0;
 } /* do_get() */
 
-long long do_take() { return do_get(); }
+int do_take() { return do_get(); }
 
-long long do_pick() {
+int do_pick() {
   if ( stage < 6 )
     return 0;
   stage = -1;
@@ -242,7 +242,7 @@ string query_medium_short() {
   return type;
 } /* query_medium_short() */
 
-mapping query_static_auto_load() { return long long_query_static_auto_load(); }
+mapping query_static_auto_load() { return int_query_static_auto_load(); }
 
 void init_dynamic_arg( mapping args, object) {
   ::init_dynamic_arg( args );

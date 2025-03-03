@@ -4,14 +4,14 @@ inherit "/std/object";
 
 #define WORLD_MAP TERRAIN_MAP_WORLD_MAP
 
-private nosave long long *_area;
-private nosave long long _detail;
+private nosave int *_area;
+private nosave int _detail;
 private nosave string *_features;
 private nosave mapping _locations;
 
 private nosave object _env, _pl;
-private nosave long long *_co_ords;
-private nosave long long _fudge;
+private nosave int *_co_ords;
+private nosave int _fudge;
 
 /** @ignore yes */
 void create() {
@@ -32,7 +32,7 @@ void create() {
 /** @ignore yes */
 string extra_look() {
   return "Marked on the map are " +
-    query_multiple_short(_features->query_base_description() +
+    sprintf("%O", (_features->query_base_description() +
                          keys(_locations)) + ".";
 }
 
@@ -40,9 +40,9 @@ string extra_look() {
  * Function to remove features that should not be shown on maps with
  * this level of detail.
  */
-long long filter_features(string feature) {
+int filter_features(string feature) {
 #ifdef DEBUG
-  debug_prlong longf("%s %d %d", feature,
+  debug_printf("%s %d %d", feature,
                feature->query_max_range() / TERRAIN_MAP_ONE_MILE,
                _detail / TERRAIN_MAP_ONE_MILE);
 #endif
@@ -64,7 +64,7 @@ long long filter_features(string feature) {
  * @param x2 x part of the lower right corner
  * @param y2 y part of the lower right corner
  */
-void setup_map(long long x1, long long y1, long long x2, long long y2, long long detail) {
+void setup_map(int x1, int y1, int x2, int y2, int detail) {
   _area = ({ x1, y1, x2, y2 });
   _detail = detail;
   _features = WORLD_MAP->query_features_in_region(x1, y1, x2, y2);
@@ -78,7 +78,7 @@ void setup_map(long long x1, long long y1, long long x2, long long y2, long long
  * @param area the area of Discworld the map should cover.
  */
 void set_map(string area) {
-  long long width, height, detail, x1, y1, x2, y2;
+  int width, height, detail, x1, y1, x2, y2;
   
   switch(area) {
   case "sur":
@@ -107,7 +107,7 @@ void set_map(string area) {
  * Recalc our current position.
  */
 void recalc_coords() {
-  long long accuracy;
+  int accuracy;
   
   if(!_co_ords || this_player() != _pl || environment(this_player()) != _env) {
     _pl = this_player();
@@ -128,7 +128,7 @@ void recalc_coords() {
 }
 
 /** @ignore yes */
-long long do_consult(string find) {
+int do_consult(string find) {
   string feature, *res;
   object ob;
   mapping direcs;
@@ -148,7 +148,7 @@ long long do_consult(string find) {
     ob = feature->query_region_ob();
     if(ob) {
 #ifdef DEBUG
-      debug_prlong longf("%O max range %d", feature,
+      debug_printf("%O max range %d", feature,
                    feature->query_max_range()/TERRAIN_MAP_ONE_MILE);
 #endif
       direcs = ob->query_feature_desc_from(_co_ords[0], _co_ords[1],
@@ -169,13 +169,13 @@ long long do_consult(string find) {
       return notify_fail("You cannot find anything on your map.\n");
   }
   write("You consult your map and estimate that " +
-        query_multiple_short(res) + "\n");
+        sprintf("%O", (res) + "\n");
   this_player()->add_succeeded_mess(this_object(), "");
   return 1;
 }
 
 /** @ignore yes */
-long long do_add(string location) {
+int do_add(string location) {
   if(member_array(lower_case(location), keys(_locations)) != -1)
     return notify_fail("A location with the name " + location +
                        " already exists on this map.\n");
@@ -198,9 +198,9 @@ void init() {
 }
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   return ([
-    "::": ::long long_query_static_auto_load(),
+    "::": ::int_query_static_auto_load(),
     "features": _features,
     "detail": _detail,
     "area": _area,
@@ -211,7 +211,7 @@ mapping long long_query_static_auto_load() {
 mixed query_static_auto_load() {
   if((file_name(this_object()))[0..7] != "/std/map" )
     return 0;
-  return long long_query_static_auto_load();
+  return int_query_static_auto_load();
 }
 
 /** @ignore yes */

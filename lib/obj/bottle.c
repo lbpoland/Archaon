@@ -25,7 +25,7 @@ inherit "/obj/vessel";
 
 nosave string glass;
 
-void make_bottle( string word, long long number ) {
+void make_bottle( string word, int number ) {
    float mass;
    string adjective, noun;
    glass = word;
@@ -34,10 +34,10 @@ void make_bottle( string word, long long number ) {
    mass = number / 100.0;
    if ( !mass ) mass = 1;
    set_leak_rate( 0 );
-   set_value( to_long long(mass * 25 + random( mass * 10 )) );
-   set_weight( to_long long(mass + random( mass * 10 ) / 10 ));
-   set_max_weight( to_long long(mass * 2 ));
-   add_property( "fragile", to_long long(mass * 20 + random( mass * 5 )) );
+   set_value( to_int(mass * 25 + random( mass * 10 )) );
+   set_weight( to_int(mass + random( mass * 10 ) / 10 ));
+   set_max_weight( to_int(mass * 2 ));
+   add_property( "fragile", to_int(mass * 20 + random( mass * 5 )) );
    switch( number ) {
       case 0..PHIAL:
          adjective = "small";
@@ -80,7 +80,7 @@ void make_bottle( string word, long long number ) {
 } /* make_bottle() */
 
 string query_glass() { return glass; }
-long long query_number() { return (long long)query_property( "number" ); }
+int query_number() { return (int)query_property( "number" ); }
 
 mixed *stats() {
    return ::stats() + ({
@@ -88,12 +88,12 @@ mixed *stats() {
    });
 } /* stats() */
 
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : ::long long_query_static_auto_load(),
+      "::" : ::int_query_static_auto_load(),
       "glass" : glass,
    ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 void init_static_arg( mapping map ) {
    if ( map["::"] )
@@ -104,6 +104,6 @@ void init_static_arg( mapping map ) {
 
 mixed query_static_auto_load() {
    if ( explode( file_name( this_object() ), "#" )[ 0 ] == "/obj/bottle" )
-      return long long_query_static_auto_load();
+      return int_query_static_auto_load();
    return ([ ]);
 } /* query_static_auto_load() */

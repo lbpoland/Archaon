@@ -12,7 +12,7 @@ inherit "/std/basic/wearable";
 
 string sheath;
 string * types;
-long long _no_types_in_long;
+int _no_types_in_long;
 
 /** @ignore yes */
 void create() {
@@ -35,7 +35,7 @@ void create() {
  * This method determines if the object is a scabbard or not.
  * @return always returns 1 for a scabbard
  */
-long long query_scabbard() { return 1; }
+int query_scabbard() { return 1; }
 
 /**
  * This method returns the types of weapons that can be sheathed in the
@@ -69,7 +69,7 @@ void set_types( string *words ) {
    }
 } /* set_types() */
 
-long long test_type_ok( object thing, long long flag ) {
+int test_type_ok( object thing, int flag ) {
   foreach( string word in types ) {
     if( thing->full_id( word ) )
       return ::test_add( thing, flag );
@@ -78,8 +78,8 @@ long long test_type_ok( object thing, long long flag ) {
 } /* test_type_ok() */
 
 /** @ignore yes */
-varargs long long test_add( object thing, long long flag, long long noprlong long ) {
-   long long foo;
+varargs int test_add( object thing, int flag, int noprint ) {
+   int foo;
 
    if(flag)
       return 0;
@@ -87,7 +87,7 @@ varargs long long test_add( object thing, long long flag, long long noprlong lon
    if( !environment( thing ) )
       return ::test_add( thing, flag );
    if( first_inventory( this_object() ) ) {
-      if( !noprlong long )
+      if( !noprint )
          write( the_short() + " already holds " +
            first_inventory( this_object() )->a_short() + ".\n" );
       return 0;
@@ -96,14 +96,14 @@ varargs long long test_add( object thing, long long flag, long long noprlong lon
    foo = test_type_ok( thing, flag );
    if(foo)
       return foo;
-   if( !noprlong long )
+   if( !noprint )
       write( thing->the_short() + " doesn't fit very well in "
         + the_short() + ".  " + sheath );
    return 0;
 } /* test_add() */
 
 /** @ignore yes */
-string long( string word, long long dark ) {
+string long( string word, int dark ) {
    string foo = _no_types_in_long ? "" : sheath;
 
    if ( dark == 2 || dark == -2) {
@@ -115,7 +115,7 @@ string long( string word, long long dark ) {
 } /* long() */
 
 /** @ignore yes */
-long long query_ac( string type, long long amount ) {
+int query_ac( string type, int amount ) {
    do_damage( type, amount );
 } /* query_ac() */
 
@@ -123,22 +123,22 @@ long long query_ac( string type, long long amount ) {
  * This method sets up the scabbards current condition.
  * @param number the current condition fo the scabbard
  */
-void setup_scabbard( long long number ) {
+void setup_scabbard( int number ) {
    set_max_cond( number );
    set_cond( number );
    set_lowest_cond( number );
 } /* setup_scabbard() */
 
 /** @ignore yes */
-long long query_value() {
+int query_value() {
    return modify_value( container::query_value() );
 } /* query_value() */
 
 /** @ignore yes */
-long long query_full_value() { return container::query_value(); }
+int query_full_value() { return container::query_value(); }
 
 /** @ignore yes */
-long long drop(mixed dest) {
+int drop(mixed dest) {
    if ( worn_by )
       if ( living( worn_by ) )
          return 1;
@@ -146,8 +146,8 @@ long long drop(mixed dest) {
 } /* drop() */
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long flag;
+varargs int move( mixed dest, string messin, string messout ) {
+   int flag;
    flag = container::move( dest, messin, messout );
    if ( ( flag == MOVE_OK ) && worn_by )
       set_worn_by( 0 );
@@ -181,7 +181,7 @@ mapping query_static_auto_load() {
    if ( explode( file_name( this_object() ), "#" )[ 0 ] != "/obj/scabbard" )
       return ([ ]);
    return ([
-      "::" : container::long long_query_static_auto_load(),
+      "::" : container::int_query_static_auto_load(),
       "wear" : wearable::query_static_auto_load(),
       "types" : types,
       "_no_types_in_long" : _no_types_in_long,
@@ -204,7 +204,7 @@ void init_static_arg( mapping map ) {
       container::init_static_arg( map[ "::" ] );
    if ( map[ "wear" ] )
       wearable::init_static_arg( map[ "wear" ] );
-   if ( polong longerp( map[ "types" ] ) )
+   if ( pointerp( map[ "types" ] ) )
       set_types( map[ "types" ] );
    if ( map[ "_no_types_in_long" ] )
       _no_types_in_long = map[ "_no_types_in_long" ];
@@ -245,11 +245,11 @@ void init_dynamic_arg( mapping map, object ob ) {
    }
 } /* init_dynamic_arg() */
 
-long long no_types_in_long() {
+int no_types_in_long() {
    return _no_types_in_long;
 } /* no_types_in_long() */
 
-long long set_no_types_in_long( long long val ) {
+int set_no_types_in_long( int val ) {
    _no_types_in_long = val ? 1 : 0;
    return _no_types_in_long;
 } /* set_no_types_in_long() */

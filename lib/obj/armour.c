@@ -29,14 +29,14 @@ void create() {
       this_object()->setup();
 } /* create() */
 
-long long query_armour() { return 1; }
+int query_armour() { return 1; }
 
-string long( string word, long long dark ) {
+string long( string word, int dark ) {
    return object::long( word, dark ) + wearable::long( word, dark );
 } /* long() */
 
-varargs long long query_ac( string type, long long amount, string zone ) {
-   long long a_class, tmp;
+varargs int query_ac( string type, int amount, string zone ) {
+   int a_class, tmp;
 
 #ifdef INFORM
    string message;
@@ -81,17 +81,17 @@ varargs long long query_ac( string type, long long amount, string zone ) {
    }
 } /* query_ac() */
 
-void setup_armour( long long number ) {
+void setup_armour( int number ) {
    set_max_cond( number );
    set_cond( number );
    set_lowest_cond( number );
 } /* setup_armour() */
 
-long long query_value() {
+int query_value() {
    return modify_value( object::query_value() );
 } /* query_value() */
 
-long long query_full_value() { return object::query_value(); }
+int query_full_value() { return object::query_value(); }
 
 /**
  * This function is called on an object and causes it to be worn
@@ -106,7 +106,7 @@ void player_wear() {
 /**
  * @ignore yes
  */
-long long drop(mixed dest) {
+int drop(mixed dest) {
    if ( worn_by && living(worn_by))
       return 1;
    return object::drop(dest);
@@ -115,8 +115,8 @@ long long drop(mixed dest) {
 /**
  * @ignore yes
  */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long flag;
+varargs int move( mixed dest, string messin, string messout ) {
+   int flag;
    flag = object::move( dest, messin, messout );
    if ( ( flag == MOVE_OK ) && worn_by )
       set_worn_by( 0 );
@@ -142,9 +142,9 @@ mixed *stats() {
 /**
  * @ignore yes
  */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : object::long long_query_static_auto_load(),
+      "::" : object::int_query_static_auto_load(),
       "ac" : ac,
       "armour types" : armour_types,
    ]) + wearable::query_static_auto_load();
@@ -157,7 +157,7 @@ mapping query_static_auto_load() {
    if ( base_name(this_object()) != __FILE__[0..<3]) {
       return ([ ]);
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /**
@@ -183,8 +183,8 @@ void init_static_arg( mapping map ) {
    if ( map[ "ac" ] )
       ac = map[ "ac" ];
 
-   if (polong longerp(ac)) {
-     long long i;
+   if (pointerp(ac)) {
+     int i;
      mixed *tmp;
 
      /* Change them to the new system */

@@ -32,25 +32,25 @@ private mixed *_pages;
 private string _default_page_object;
 private object _def_p_obj;
 /* Open_page set to 0 means closed. */
-private long long _open_page;
-private long long _book_num;
+private int _open_page;
+private int _book_num;
 /*
- * If this is set, we ignore the flag and only prlong long the real
+ * If this is set, we ignore the flag and only print the real
  * short of the book.
  */
-private long long _ignore_open_page;
+private int _ignore_open_page;
 /*
  * This should be used in conjuction with created books
  * that yuou wish the contents to update when changed.
  */
-private long long _ignore_saved_pages;
+private int _ignore_saved_pages;
 private nosave object _player;
-private nosave long long _num_torn_out = -1;
+private nosave int _num_torn_out = -1;
 
-protected long long do_open(long long page);
-protected long long do_tear(long long number);
-protected long long do_turn(long long number);
-protected long long do_close();
+protected int do_open(int page);
+protected int do_tear(int number);
+protected int do_turn(int number);
+protected int do_close();
 object create_default_page_object();
 
 void create() {
@@ -66,13 +66,13 @@ void create() {
  * Tells us if this is a book object.
  * @return always returns 1
  */
-long long query_book() { return 1; }
+int query_book() { return 1; }
 
 /**
  * @ignore yes
- * Mess with the weight to make the pages taken long longo account as well.
+ * Mess with the weight to make the pages taken into account as well.
  */
-long long query_weight() {
+int query_weight() {
    if (!_def_p_obj) {
       load_object(_default_page_object);
       _def_p_obj = find_object(_default_page_object);
@@ -111,7 +111,7 @@ void init() {
 /**
  * @ignore yes
  */
-long long add_weight( long long number ) {
+int add_weight( int number ) {
    adjust_weight( number );
    return 1;
 } /* add_weight() */
@@ -125,7 +125,7 @@ long long add_weight( long long number ) {
  * @return 1 if it can be added, 0 if it cannot
  * @ignore
  */
-long long test_add(object ob, long long flag) {
+int test_add(object ob, int flag) {
   return (object)ob->query_property("my book") == this_object();
   // This is a kludge to keep people from putting things in the book.
   // It's not foolproof, but it should do until I think of a better way.
@@ -145,7 +145,7 @@ long long test_add(object ob, long long flag) {
  * @return 1 if it can be removed, 0 if it cannot
  * @ignore
  */
-long long test_remove( object ob, long long flag, mixed dest ) {
+int test_remove( object ob, int flag, mixed dest ) {
   return ob->query_property("my book") != this_object();
   //return 1;
 } /* test_remove() */
@@ -159,9 +159,9 @@ long long test_remove( object ob, long long flag, mixed dest ) {
  * @see query_pages()
  * @see query_num_pages()
  */
-void set_no_pages(long long no) {
-  long long i;
-  long long siz;
+void set_no_pages(int no) {
+  int i;
+  int siz;
 
   siz = sizeof(_pages);
   if (no < siz) { /* removeing pages?  Oh well, if you insist. */
@@ -194,7 +194,7 @@ mixed *query_pages() { return _pages; }
  * @see query_open_page()
  * @see query_current_page()
  */
-void set_open_page(long long i) {
+void set_open_page(int i) {
   /* Valid page or already there. */
   if (i < 0 || i == _open_page) {
      return ;
@@ -224,7 +224,7 @@ void set_open_page(long long i) {
  * @see set_open_page()
  * @see query_current_page()
  */
-long long query_open_page() {
+int query_open_page() {
    return _open_page;
 } /* query_open_page() */
 
@@ -235,7 +235,7 @@ long long query_open_page() {
  * @see query_open_page()
  * @see is_page_torn_out()
  */
-long long is_current_page_torn_out() {
+int is_current_page_torn_out() {
    if (!_open_page) {
       /* The cover cannot be torn out. */
       return 0;
@@ -256,7 +256,7 @@ long long is_current_page_torn_out() {
  * @return 1 if it is torn out, - if not
  * @see is_current_page_torn_out()
  */
-long long is_page_torn_out(long long page) {
+int is_page_torn_out(int page) {
    if (page < 1 || page > sizeof(_pages)) {
       return 0;
    }
@@ -280,7 +280,7 @@ long long is_page_torn_out(long long page) {
  * @see query_current_page_clone()
  */
 object query_current_page() {
-   long long i;
+   int i;
 
    if (!_open_page) {
       return this_object(); /* The book itself... */
@@ -315,7 +315,7 @@ object query_current_page_clone() {
  * or if it is something else altogether.
  * @return 1 if it is the default page object, 0 if not
  */
-long long is_default_page(long long num) {
+int is_default_page(int num) {
    if (num > 0 && num <= sizeof(_pages)) {
       if (_pages[num - 1] &&
           !objectp(_pages[num - 1])) {
@@ -335,8 +335,8 @@ long long is_default_page(long long num) {
  * @param num the page to return
  * @return 0 on failure or if the page is torn out, the object on success
  */
-object query_selected_page(long long num) {
-   if (!long longp(num) || num <= 0 || num > sizeof(_pages)) {
+object query_selected_page(int num) {
+   if (!intp(num) || num <= 0 || num > sizeof(_pages)) {
       return 0;
    }
 
@@ -360,13 +360,13 @@ object query_selected_page(long long num) {
  * @param num the page to return
  * @return 0 on failure or if the page is torn out, the object on success
  */
-object query_selected_page_clone(long long num) {
+object query_selected_page_clone(int num) {
   return this_object();
 } /* query_selected_page_clone() */
 
 /**
  * This method tears the current page out of the book and returns it
- * to us.  This object will be moved long longo the destination so that it is
+ * to us.  This object will be moved into the destination so that it is
  * no longer inside us.  If it cannot be moved of the page has already
  * been remove then the function will return 0.
  * @param dest the destination to move the page to
@@ -406,9 +406,9 @@ object tear_current_page_out(object dest) {
  * @see query_current_page()
  * @see query_num_pages()
  */
-long long add_page_after(object page, long long after) {
+int add_page_after(object page, int after) {
    if (after < 0 || after > sizeof(_pages) + 1 ||
-       !objectp(page) || !long longp(after)) {
+       !objectp(page) || !intp(after)) {
       return 0;
    }
    _pages = _pages[0..after - 1] + page->query_read_mess() + _pages[after..];
@@ -424,9 +424,9 @@ long long add_page_after(object page, long long after) {
  * @return 1 on success, 0 on failure
  * @see add_page_after()
  */
-long long replace_page_with(object page, long long num) {
+int replace_page_with(object page, int num) {
    if (num < 1 || num > sizeof(_pages) ||
-       !objectp(page) || !long longp(num)) {
+       !objectp(page) || !intp(num)) {
       return 0;
    }
    _pages[num-1] = page->query_read_mess();
@@ -441,8 +441,8 @@ long long replace_page_with(object page, long long num) {
  * @see add_page_after()
  * @see add_blank_page_after()
  */
-long long make_page_blank(long long num) {
-   if (num < 1 || num > sizeof(_pages) || !long longp(num)) {
+int make_page_blank(int num) {
+   if (num < 1 || num > sizeof(_pages) || !intp(num)) {
       return 0;
    }
    _pages[num-1] = 1;
@@ -451,7 +451,7 @@ long long make_page_blank(long long num) {
 /**
  * @ignore yes
  */
-string short(long long flags) {
+string short(int flags) {
   if (!flags || _ignore_open_page) {
     return ::short(flags);
   }
@@ -476,9 +476,9 @@ string *parse_command_adjectiv_id_list() {
 /**
  * @ignore yes
  */
-string long(string str, long long dark) {
+string long(string str, int dark) {
   string ret;
-  long long i;
+  int i;
 
   if (!_open_page) {
     return ::long(str, dark)+"It is closed.\n";
@@ -515,7 +515,7 @@ string long(string str, long long dark) {
  * @return 1 if it succeeded, 0 if it failed
  * @ignore yes
  */
-protected long long do_open(long long page) {
+protected int do_open(int page) {
   if (page <= 0)  {
      write("Oddly enough, the first page is page 1.\n");
      page = 1;
@@ -546,8 +546,8 @@ protected long long do_open(long long page) {
  * @return always returns 1
  * @ignore yes
  */
-protected long long do_turn(long long number) {
-  long long tmp;
+protected int do_turn(int number) {
+  int tmp;
 
   tmp = query_open_page();
   if (tmp+number > sizeof(_pages)) {
@@ -575,7 +575,7 @@ protected long long do_turn(long long number) {
  * @return 0 if it failed, 1 if it succeeded
  * @ignore yes
  */
-protected long long do_close() {
+protected int do_close() {
   if (!query_open_page()) {
     this_player()->add_failed_mess(this_object(), "$D is already closed.\n",
                                    ({}));
@@ -592,8 +592,8 @@ protected long long do_close() {
  * @return 0 if it failed, 1 if it succeded
  * @ignore yes
  */
-long long do_tear(long long number) {
-  long long i;
+int do_tear(int number) {
+  int i;
  
   if (_ignore_saved_pages) {
     add_failed_mess("For some reason you cannot seem to tear any pages "
@@ -638,10 +638,10 @@ long long do_tear(long long number) {
 /**
  * @ignore yes 
  */
-varargs void set_read_mess(string str, string lang, long long size) {
+varargs void set_read_mess(string str, string lang, int size) {
 
   if (_open_page) {
-    if(polong longerp(str)) {
+    if(pointerp(str)) {
       _pages[_open_page-1] = str;
       return;
     }
@@ -657,7 +657,7 @@ varargs void set_read_mess(string str, string lang, long long size) {
 /**
  * @ignore yes 
  */
-void add_read_mess(mixed str, string type, string lang, long long size) {
+void add_read_mess(mixed str, string type, string lang, int size) {
   if(_open_page) {
     if(!arrayp(_pages[_open_page-1]))
       _pages[_open_page-1] = ({ });
@@ -694,7 +694,7 @@ mixed *stats() {
  * @ignore yes 
  */
 void dest_me() {
-  long long i;
+  int i;
 
   for (i=0;i<sizeof(_pages);i++) {
     if (objectp(_pages[i])) {
@@ -709,7 +709,7 @@ void dest_me() {
  */
 mixed query_static_auto_load() {
   if (file_name(this_object())[0..8] == "/std/book") {
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   }
 } /* query_static_auto_load() */
 
@@ -735,7 +735,7 @@ mapping query_dynamic_auto_load() {
  * @ignore yes 
  */
 void init_dynamic_arg(mapping map, object player) {
-  long long i;
+  int i;
   object *tmp;
 
   if (!player) {
@@ -804,7 +804,7 @@ object create_default_page_object() {
  * @return the number of pages in the book
  * @see set_no_pages()
  */
-long long query_num_pages() {
+int query_num_pages() {
   return sizeof(_pages);
 } /* query_num_pages() */
 
@@ -812,10 +812,10 @@ long long query_num_pages() {
  * This method returns the current number of the book.  This is assigned
  * and used in conjunction with the book handler.
  * @see /obj/handlers/book_handler.c
- * @see /std/prlong long_shop.c
+ * @see /std/print_shop.c
  * @return the current book number
  */
-long long query_book_num() {
+int query_book_num() {
    return _book_num;
 } /* query_book_num() */
 
@@ -823,10 +823,10 @@ long long query_book_num() {
  * This method sets the current number of the book.  This is assigned
  * and used in conjunction with the book handler.
  * @see /obj/handlers/book_handler.c
- * @see /std/prlong long_shop.c
+ * @see /std/print_shop.c
  * @param num the new book number
  */
-void set_book_num(long long num) {
+void set_book_num(int num) {
    _book_num = num;
 } /* set_book_num() */
 
@@ -839,7 +839,7 @@ void set_book_num(long long num) {
  * @see set_ignore_saved_pages()
  * @return the current ignore saved page attribute
  */
-long long query_ignore_saved_pages() {
+int query_ignore_saved_pages() {
    return _ignore_saved_pages;
 } /* query_ignore_saved_pages() */
 
@@ -853,7 +853,7 @@ long long query_ignore_saved_pages() {
  * @param saved the new value of the saved attribute
  * @see query_ignore_saved_pages()
  */
-protected void set_ignore_saved_pages(long long saved) {
+protected void set_ignore_saved_pages(int saved) {
    _ignore_saved_pages = saved;
 } /* set_ignore_saved_pages() */
 
@@ -882,7 +882,7 @@ object query_player() {
  * This will determine the books read short, which is different to a
  * normal short because it says wild stuff about the cover and things.
  */
-string query_read_short(object player, long long ignore_labels) {
+string query_read_short(object player, int ignore_labels) {
   if(!::query_read_short(player, 0))
     return 0;
   if (!_open_page) {
@@ -898,6 +898,6 @@ string query_read_short(object player, long long ignore_labels) {
  * This is overridden specifically to stop labels appearing on anything
  * but the cover.
  */
-string query_readable_message(object player, long long ignore_labels) {
+string query_readable_message(object player, int ignore_labels) {
    return ::query_readable_message(player, _open_page != 0);
 } /* query_readable_message() */

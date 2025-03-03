@@ -4,7 +4,7 @@
  * $Id: salve.c,v 1.4 2001/07/07 16:40:40 tannah Exp $
  * $Log: salve.c,v $
  * Revision 1.4  2001/07/07 16:40:40  tannah
- * removed the ([]) argument passed to long long_query_static_auto_load() in
+ * removed the ([]) argument passed to int_query_static_auto_load() in
  * query_static_auto_load() so that it would compile.
  *
  * Revision 1.3  2001/03/18 17:40:02  tannah
@@ -39,7 +39,7 @@ void init() {
 mapping query_apply_effects() { return apply_effects; }
 void set_apply_effects( mapping map ) { apply_effects = map; }
 
-long long add_apply_effect( string word, long long number ) {
+int add_apply_effect( string word, int number ) {
   if ( apply_effects[ word ] )
     apply_effects[ word ] += number;
   else
@@ -53,10 +53,10 @@ void remove_apply_effect( string word ) {
 } /* remove_apply_effect() */
 
 void being_joined_by( object thing ) {
-  long long i, that, this;
+  int i, that, this;
   string *words;
   mapping new_effects;
-  that = (long long)thing->query_amount();
+  that = (int)thing->query_amount();
   this = query_amount();
   if ( !( this + that ) )
     return;
@@ -78,9 +78,9 @@ void being_joined_by( object thing ) {
   apply_effects = new_effects;
 } /* being_joined_by() */
 
-long long do_apply(object *indir, string dir_s, string indir_s, mixed *args) {
+int do_apply(object *indir, string dir_s, string indir_s, mixed *args) {
     string *words;
-    long long i;
+    int i;
 
     if (environment(this_object()) != this_player()) {
         write("You aren't holding the " + dir_s + ".\n");
@@ -106,7 +106,7 @@ mapping query_static_auto_load() {
   if ( ( explode( file_name( this_object() ), "#" )[ 0 ] != "/obj/salve" )
       && !query_continuous() )
     return 0;
-return long long_query_static_auto_load();
+return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 mapping query_dynamic_auto_load() {
@@ -123,7 +123,7 @@ void init_dynamic_arg( mapping map ) {
 } /* init_dynamic_arg() */
 
 mixed *stats() {
-  long long i;
+  int i;
   string *words;
   mixed *args;
   args = ::stats();

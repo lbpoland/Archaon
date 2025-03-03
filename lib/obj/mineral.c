@@ -45,7 +45,7 @@ void create() {
    add_help_file("mineral");
 } /* create() */
 
-varargs void make_mineral( string word, long long number, string *inputs ) {
+varargs void make_mineral( string word, int number, string *inputs ) {
    string adjective, material_adjective, noun, *args;
 
    mineral = word;
@@ -69,7 +69,7 @@ varargs void make_mineral( string word, long long number, string *inputs ) {
          adjective = "huge";
          noun = "boulder";
    }
-   if ( !polong longerp( inputs ) )
+   if ( !pointerp( inputs ) )
       args = allocate( 10 );
    else
       args = inputs + ({ 0, 0, 0, 0, 0 });
@@ -100,7 +100,7 @@ varargs void make_mineral( string word, long long number, string *inputs ) {
    add_adjective( ({ adjective }) + explode( material_adjective, " " ) );
 } /* make_mineral() */
 
-string long( string words, long long dark ) {
+string long( string words, int dark ) {
    return replace( ::long( words, dark ), "$mineral$",
          (string)HANDLER->identify_material( mineral, this_player(), 1 ) );
 } /* long() */
@@ -128,7 +128,7 @@ void init() {
          "<direct:object:me>" );
 } /* init() */
 
-long long do_eat() {
+int do_eat() {
    if ( (string)this_player()->query_race_ob() != "/std/races/troll" ) {
       this_player()->add_failed_mess( this_object(),
             "What do you think you are, a troll?\n", ({ }) );
@@ -137,7 +137,7 @@ long long do_eat() {
    return ::do_eat();
 } /* do_eat() */
 
-long long check_tool( object *tools, string *needed ) {
+int check_tool( object *tools, string *needed ) {
    string word;
 
    if ( sizeof( tools ) > 1 ) {
@@ -161,7 +161,7 @@ long long check_tool( object *tools, string *needed ) {
    return 0;
 } /* check_tool() */
 
-long long do_pulverise( object *tools ) {
+int do_pulverise( object *tools ) {
    string material_adjective;
 
    if ( !check_tool( tools, ({ "hammer" }) ) )
@@ -200,7 +200,7 @@ long long do_pulverise( object *tools ) {
    return 1;
 } /* do_pulverise() */
 
-long long do_chip( object *tools ) {
+int do_chip( object *tools ) {
    object chip;
 
    if ( query_continuous() )
@@ -220,8 +220,8 @@ long long do_chip( object *tools ) {
    return 1;
 } /* do_chip() */
 
-long long do_smash( object *tools ) {
-   long long i, j, largest, number, size;
+int do_smash( object *tools ) {
+   int i, j, largest, number, size;
    object debris, remains;
 
    if ( query_continuous() )
@@ -259,7 +259,7 @@ long long do_smash( object *tools ) {
    return 1;
 } /* do_smash */
 
-long long do_sprinkle(object *obs) {
+int do_sprinkle(object *obs) {
     if (!query_continuous())
       return notify_fail(
         "You should pulverise the stuff before you sprinkle it.\n");
@@ -286,12 +286,12 @@ mixed *stats() {
    });
 } /* stats() */
 
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : ::long long_query_static_auto_load(),
+      "::" : ::int_query_static_auto_load(),
       "mineral" : mineral,
    ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 void init_static_arg( mapping map ) {
    if ( map[ "::" ] )
@@ -304,7 +304,7 @@ void init_static_arg( mapping map ) {
 mapping query_static_auto_load() {
    if ( ( explode( file_name( this_object() ), "#" )[ 0 ] == "/obj/mineral" )
          || query_continuous() )
-      return long long_query_static_auto_load();
+      return int_query_static_auto_load();
    return ([ ]);
 } /* query_static_auto_load() */
 
@@ -312,7 +312,7 @@ mapping query_static_auto_load() {
 /*
  * This stops the decay level being set - just in case
 */
-void set_decay_level( long long level ) {
+void set_decay_level( int level ) {
    ::set_decay_level( 0 );
    return;
 } /* set_decay_level */

@@ -17,11 +17,11 @@
 
 inherit "/obj/weapon";
 
-long long max_fuel, fuel, lit, brightness, time, hold;
+int max_fuel, fuel, lit, brightness, time, hold;
 string empty_mess;
 mixed fuel_messages;
 
-long long set_lit(long long);
+int set_lit(int);
 /**
  * @ignore
  */
@@ -42,7 +42,7 @@ void init() {
 /**
  * @ignore
  */
-varargs string short( long long dark ) {
+varargs string short( int dark ) {
    if( lit )
       return "lit "+ ::short( dark );
    else
@@ -84,7 +84,7 @@ void delayed_light() {
 /**
  * @ignore
  */
-long long hold_thing() {
+int hold_thing() {
 
    if( !query_wielded() )
       return HOLD_COMMAND->cmd( ({ this_object() }) );
@@ -100,7 +100,7 @@ long long hold_thing() {
  * @param i 1 for lit and 0 for unlit
  * @return The current state, 1 for lit, 0 for unlit
  */
-long long set_lit( long long i ) {
+int set_lit( int i ) {
 
    if( !i ) {
       if( !query_property( "unextinguishable" ) ) {
@@ -128,7 +128,7 @@ long long set_lit( long long i ) {
 /**
  * @ignore
  */
-mixed set_holder( object ob, long long pos ) {
+mixed set_holder( object ob, int pos ) {
    /* no one is holding it and it requires holding when lit; dowse it */
    if( lit && hold && !ob && environment( this_player() )
        && file_name( environment( this_player() ) ) != DEPARTURES )
@@ -143,14 +143,14 @@ mixed set_holder( object ob, long long pos ) {
 /**
  * @return 1 if lit, 0 if unlit
  */
-long long query_lit() {
+int query_lit() {
    return lit;
 } /* query_lit() */
 
 /**
  * @ignore
  */
-long long do_light() {
+int do_light() {
    if( lit )
       return notify_fail( the_short() +" is already lit.\n" );
    if( !fuel )
@@ -164,7 +164,7 @@ long long do_light() {
 /**
  * @ignore
  */
-long long do_dowse() {
+int do_dowse() {
    if( !lit )
       return notify_fail( the_short() +" is not lit.\n" );
    if( set_lit( 0 ) ) 
@@ -176,7 +176,7 @@ long long do_dowse() {
 /**
  * @ignore
  */
-long long do_extinguish() {
+int do_extinguish() {
    return do_dowse();
 }
 
@@ -186,13 +186,13 @@ long long do_extinguish() {
  * The fuel messages should be on a form suitable to be
  * appended to the_short() +" is lit/not lit.  "
  * The argument msgs can either be an array of strings or an
- * array of string, long long pairs.  In the first case, the fuel
+ * array of string, int pairs.  In the first case, the fuel
  * messages will be evenly spaced.  In the second case, the
- * long long is a percentage (fuel_left*100/max_fuel) below which
+ * int is a percentage (fuel_left*100/max_fuel) below which
  * the string will be used.  If no message for 100 is given,
  * it will default to the last string element in the array.
  *
- * @param msgs A mixed array of either strings or string, long long pairs
+ * @param msgs A mixed array of either strings or string, int pairs
  * @example
  *     set_fuel_messages( ({ "There is almost no fuel left.", 10
  *                           "It is more than halfway empty.", 50,
@@ -214,14 +214,14 @@ mixed query_fuel_messages() {
  * Sets the maximum amount of fuel.
  * One fuel unit equals one second of burning time.
  */
-void set_max_fuel( long long i ) {
+void set_max_fuel( int i ) {
    max_fuel = i;
 } /* set_max_fuel() */
 
 /**
  * @return The max amount of fuel the object can contain.
  */
-long long query_max_fuel() {
+int query_max_fuel() {
    return max_fuel;
 } /* query_max_fuel() */
 
@@ -231,7 +231,7 @@ long long query_max_fuel() {
  * fuel = max_fuel, so it is important to set max_fuel
  * before fuel.
  */
-void set_fuel( long long i ) {
+void set_fuel( int i ) {
    fuel = i;
    if( fuel > max_fuel )
       fuel = max_fuel;
@@ -240,7 +240,7 @@ void set_fuel( long long i ) {
 /**
  * @return The current amount of fuel.
  */
-long long query_fuel() {
+int query_fuel() {
    return fuel;
 } /* query_fuel() */
 
@@ -249,7 +249,7 @@ long long query_fuel() {
  */
 string current_fuel_message() {
    mixed messages;  /* ooo, isn't that a nice variable declaration? :D */
-   long long fuel_percent, size, i;
+   int fuel_percent, size, i;
    string fuel_string = "";
 
    if( fuel < 1 )
@@ -267,7 +267,7 @@ string current_fuel_message() {
    /* Multiplying by 99 guarantees <= index */
    fuel_percent = fuel * 99 / max_fuel;
 
-   if( long longp( messages[1] ) ) { // Percenatges given
+   if( intp( messages[1] ) ) { // Percenatges given
       for( i = 1; i < size; i += 2 ) {
          if( messages[i] > fuel_percent ) {
             fuel_string = messages[i-1];
@@ -303,14 +303,14 @@ string query_empty_mess() {
  * The brightness is the number used in set_light(),
  * ie how brightly the lightable shines when lit.
  */
-void set_brightness( long long i ) {
+void set_brightness( int i ) {
    brightness = i;
 } /* set_brightness() */
 
 /**
  * @return How brightly the object shines when lit
  */
-long long query_brightness() {
+int query_brightness() {
    return brightness;
 } /* query_brightness() */
 
@@ -321,18 +321,18 @@ long long query_brightness() {
  * I guess what I'm really trying to say is that a 0 will not require
  * the object to be held and any other value will.
  *
- * In wlong longer darkness<br>
+ * In winter darkness<br>
  * Gruper lights a cheerful flame<br>
  * It smells like honey<br>
  */
-void set_hold_required( long long hands ) {
+void set_hold_required( int hands ) {
    hold = hands;
 }
 
 /**
  * @return number of hands required to hold object when lit
  */
-long long query_hold_required() {
+int query_hold_required() {
    return hold;
 }
 
@@ -390,14 +390,14 @@ void consume_fuel() {
 /**
  * @ignore
  */
-long long query_value() {
-   return (long long)( ::query_value() * fuel / max_fuel );
+int query_value() {
+   return (int)( ::query_value() * fuel / max_fuel );
 }
 
 /**
  * @ignore
  */
-varargs long long move( mixed dest, string messin, string messout ) {
+varargs int move( mixed dest, string messin, string messout ) {
 
    object destination;
 

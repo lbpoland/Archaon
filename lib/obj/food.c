@@ -41,7 +41,7 @@
  * <BR>
  *   - An eat message can be set with set_eat_mess().
  * <BR>
- *   - Food can be cut up long longo pieces with sharp weapons.
+ *   - Food can be cut up into pieces with sharp weapons.
  * <BR>
  *   - The description of the new 'pieces' can be set using
  * set_piece_description(), set_piece_short(), set_piece_plural(),
@@ -66,16 +66,16 @@ inherit "/std/basic/virtual_update";
 #define DEFAULT_DECAY 7200      // Two hours for something to decay.
 #define STATE_CHANGE ("/obj/handlers/state_change")
 
-private long long _liquid;
-private long long _dried, _cured;
-private long long _bites_gone;
-private long long _weight_per_bite;
-private long long _in_pieces;
-private long long _decay_level;
-private long long _decay_speed;
-private long long _splashable;
-private long long _applicable;
-private long long _external_pk_check;
+private int _liquid;
+private int _dried, _cured;
+private int _bites_gone;
+private int _weight_per_bite;
+private int _in_pieces;
+private int _decay_level;
+private int _decay_speed;
+private int _splashable;
+private int _applicable;
+private int _external_pk_check;
 
 private float _divisor = to_float(DEFAULT_DECAY) / to_float(6 * TIME_OUT);
 // TIME_OUT is defined in /include/bits_controller.h
@@ -100,12 +100,12 @@ private mapping _eat_effects = ([ ]);
 private mapping _external_effects = ([ ]);
 
 
-varargs long long do_cut(long long num);
-varargs long long do_eat(long long no_mess);
+varargs int do_cut(int num);
+varargs int do_eat(int no_mess);
 
-long long do_mince();
-void set_decay_speed(long long decay);
-long long check_for_container();
+int do_mince();
+void set_decay_speed(int decay);
+int check_for_container();
 
 void create()
 {
@@ -127,7 +127,7 @@ void create()
  *
  * @return Return 1 if the food is a liquid, and return 0 if it is not.
  */
-long long query_liquid()
+int query_liquid()
 {
    return _liquid;
 }                               /* query_liquid() */
@@ -142,13 +142,13 @@ long long query_liquid()
  * @see set_liquid()
  * @see query_liquid()
  */
-long long query_edible()
+int query_edible()
 {
    return !_liquid;
 }                               /* query_edible() */
 
 /**
- * This changes the food object long longo a liquid.  Liquids are
+ * This changes the food object into a liquid.  Liquids are
  * automatically a 'continuous' medium, which means it will
  * combine with other liquids of the same type.
  * <p>
@@ -170,7 +170,7 @@ void set_liquid()
 }                               /* set_liquid() */
 
 /**
- * This changes the food object long longo a solid.  Solids are not
+ * This changes the food object into a solid.  Solids are not
  * 'continuous' and the decay speed will be set back to the
  * default.
  *
@@ -191,7 +191,7 @@ void reset_liquid()
  * This method returns 1 if the item is a food object.
  * @return 1 when it is a food object
  */
-long long query_food_object()
+int query_food_object()
 {
    return 1;
 }                               /* query_food_object() */
@@ -213,7 +213,7 @@ void init()
    } else {
       add_command("eat", "<direct:object>", (: do_eat(0) :));
       add_command("cut",
-                  "<direct:object> long longo <number'number, eg: 3'> pieces",
+                  "<direct:object> into <number'number, eg: 3'> pieces",
                   (: do_cut($4[1]) :));
       add_command("cut", "<direct:object>", (: do_cut() :));
       add_command("slice", "<direct:object>", (: do_cut() :));
@@ -228,7 +228,7 @@ void init()
  * @return Return 1 if the object decays.
  * @see set_decay_speed()
  */
-long long query_decays()
+int query_decays()
 {
    return _decay_speed != 0;
 }                               /* query_decays() */
@@ -242,7 +242,7 @@ long long query_decays()
  * @see set_bites_gone()
  * @see set_weight_per_bite()
  */
-long long query_bites_gone()
+int query_bites_gone()
 {
    return _bites_gone;
 }                               /* query_bits_gone() */
@@ -257,7 +257,7 @@ long long query_bites_gone()
  * @see weight
  * @return The weight of each bite.
  */
-long long query_weight_per_bite()
+int query_weight_per_bite()
 {
    return _weight_per_bite;
 }                               /* query_weight_per_bite() */
@@ -305,7 +305,7 @@ string query_eat_mess()
 
 /**
  * This returns the long description of the food object when
- * it is cut up long longo pieces.
+ * it is cut up into pieces.
  *
  * @see set_piece_description()
  * @see query_in_pieces()
@@ -323,7 +323,7 @@ string query_piece_description()
  * @see do_cut()
  * @return Return 1 if it is in pieces, and return 0 otherwise.
  */
-long long query_in_pieces()
+int query_in_pieces()
 {
    return _in_pieces;
 }                               /* query_in_pieces() */
@@ -336,7 +336,7 @@ long long query_in_pieces()
  * @see set_decay_speed()
  * @return The decay speed.
  */
-long long query_decay_speed()
+int query_decay_speed()
 {
    return _decay_speed;
 }                               /* query_decay_speed() */
@@ -348,7 +348,7 @@ long long query_decay_speed()
  * @see set_decay_speed()
  * @return The level of decay, which is between 1 and 6.
  */
-long long query_decay_level() {
+int query_decay_level() {
    return _decay_level;
 }                               /* query_decay_level() */
 
@@ -359,7 +359,7 @@ long long query_decay_level() {
  * @see set_weight_per_bite()
  * @param number The number of bites gone.
  */
-void set_bites_gone(long long number)
+void set_bites_gone(int number)
 {
    _bites_gone = number;
 }                               /* set_bites_gone() */
@@ -373,7 +373,7 @@ void set_bites_gone(long long number)
  * @see weight
  * @param number The weight each bite should be.
  */
-void set_weight_per_bite(long long number)
+void set_weight_per_bite(int number)
 {
    _weight_per_bite = number;
 }                               /* set_weight_per_bite() */
@@ -458,7 +458,7 @@ void set_eat_mess(mixed word)
  * @param piece the eat piece message. This can be either a string or an
  * array, it is passed to add_succeeded_mess().
  * @param amt the amount messages
- * @param last the message to prlong long out when the last bit gets eaten
+ * @param last the message to print out when the last bit gets eaten
  */
 void setup_eat_piece_messages(mixed piece,
                               mixed amt,
@@ -470,13 +470,13 @@ void setup_eat_piece_messages(mixed piece,
 
 /**
  * This sets the long description of the food when it is has
- * 'cut' long longo pieces.
+ * 'cut' into pieces.
  * <p>
  * If this is set then the short of the object is changed
  * to 'piece of cake'.  If the piece description is not
  * set the short description of the object is not changed.
  *
- * @param word The long description to use when cut long longo pieces.
+ * @param word The long description to use when cut into pieces.
  * @see query_in_pieces()
  * @see set_piece_short()
  * @see set_piece_plural()
@@ -498,7 +498,7 @@ void set_piece_description(string word) {
  * short has not been set it is set to the default which is
  * simply "piece".
  *
- * @param word The short to use for the 'piece' when cut long longo
+ * @param word The short to use for the 'piece' when cut into
  * pieces.
  * @see query_in_pieces()
  * @see set_piece_description()
@@ -518,7 +518,7 @@ void set_piece_short(string short) {
  * the pice short has been set to with an "s" stuck on the
  * end, for example, slice to slices.
  *
- * @param word The plural used for the 'pieces' when cut long longo
+ * @param word The plural used for the 'pieces' when cut into
  * pieces.
  * @see query_in_pieces()
  * @see set_piece_description()
@@ -554,7 +554,7 @@ void set_piece_substance(string substance) {
 
 /**
  * This sets the in_pieces flag.  This allows you to make the
- * food seem as though it has already been cut long longo pieces.
+ * food seem as though it has already been cut into pieces.
  *
  * @param number The number of pieces.
  * @see query_in_pieces()
@@ -563,8 +563,8 @@ void set_piece_substance(string substance) {
  * @see set_piece_plural()
  * @see set_piece_substance()
  */
-void set_in_pieces(long long number) {
-   long long p;
+void set_in_pieces(int number) {
+   int p;
    _in_pieces = p;
 }                               /* set_in_pieces() */
 
@@ -577,7 +577,7 @@ void set_in_pieces(long long number) {
  * @see set_decay_speed()
  * @param level The new decay level.
  */
-void set_decay_level(long long level) {
+void set_decay_level(int level) {
    _decay_level = level;
 }                               /* set_decay_level() */
 
@@ -598,7 +598,7 @@ void set_decay_level(long long level) {
  * /\* This will stop the object from ever decsaying *\/
  * set_decay_speed(0);
  */
-void set_decay_speed(long long decay) {
+void set_decay_speed(int decay) {
    float tmp;
 
    if(decay != _decay_speed && !_dried && !_cured) {
@@ -607,7 +607,7 @@ void set_decay_speed(long long decay) {
       if (decay && !_dried && !_cured) {
          tmp = _divisor;
          _divisor = to_float(decay) / to_float(6 * TIME_OUT);
-         _decay_level = to_long long(_decay_level * _divisor / tmp);
+         _decay_level = to_int(_decay_level * _divisor / tmp);
          BITS_CONTROLLER->add_bit(this_object());
       }
    }
@@ -642,7 +642,7 @@ void do_decay() {
 /**
  * @ignore yes
  */
-long long query_weight() {
+int query_weight() {
   if (query_liquid())
     return 0;
 
@@ -659,7 +659,7 @@ string query_short_rotten_adjective() {
 
     ret = "";
 
-    switch (to_long long(_decay_level / _divisor)) {
+    switch (to_int(_decay_level / _divisor)) {
     case 2:
       ret = "slightly rotten ";
       break;
@@ -683,7 +683,7 @@ string query_short_rotten_adjective() {
 /**
  * @ignore yes
  */
-string short(long long dark) {
+string short(int dark) {
   string ret;
 
   ret = ::short(dark);
@@ -700,7 +700,7 @@ string short(long long dark) {
  * @return a string used in long().
  */ 
 string query_long_eat_level() { 
-   long long twelfths;
+   int twelfths;
    string ret; 
 
     twelfths = (_bites_gone * _weight_per_bite * 12) / ::query_weight();
@@ -767,7 +767,7 @@ string query_long_decay_level() {
 
     ret = "";
 
-    switch (to_long long(_decay_level / _divisor)) {
+    switch (to_int(_decay_level / _divisor)) {
     case 0..1:
       if(query_collective() && query_amount() > 1)
         ret += "They look nice and fresh.\n";
@@ -813,7 +813,7 @@ string query_long_decay_level() {
 /**
  * @ignore yes
  */
-string long(string words, long long dark) {
+string long(string words, int dark) {
    string ret;
 
    ret =::long(words, dark);
@@ -907,7 +907,7 @@ void set_eat_effects(mapping map) {
  * eff_num = (amount * number * weight_unit[0]) / weight_unit[1]
  * </code>
  * <p>
- * ...where the number is passed long longo the add_eat_effect() function.
+ * ...where the number is passed into the add_eat_effect() function.
  * If the effect already exists, then the number is added onto
  * the existing number.
  *
@@ -917,15 +917,15 @@ void set_eat_effects(mapping map) {
  * @param number The number to set to the effect to.
  * @return The current value of the effect in the mapping
  */
-long long add_eat_effect(mixed word,
-                   long long number)
+int add_eat_effect(mixed word,
+                   int number)
 {
    if (undefinedp(_eat_effects)) {
       _eat_effects = ([ ]);
    }
 
    if (mapp(word)) {
-      long long num;
+      int num;
       string name;
 
       foreach(name, number in word) {
@@ -1017,7 +1017,7 @@ void set_external_effects(mapping map)
  * eff_num = (amount * number * weight_unit[0]) / weight_unit[1]
  * </code>
  * <p>
- * ...where the number is passed long longo the add_external_effect() function.
+ * ...where the number is passed into the add_external_effect() function.
  * If the effect already exists, then the number is added onto
  * the existing number.
  *
@@ -1032,8 +1032,8 @@ void set_external_effects(mapping map)
  * @param number The number to set to the effect to.
  * @return The current value of the effect in the mapping
  */
-long long add_external_effect(string word,
-                        long long number)
+int add_external_effect(string word,
+                        int number)
 {
    if (undefinedp(_external_effects))
       _external_effects = ([ ]);
@@ -1089,7 +1089,7 @@ void unset_splashable()
  * @see set_splashable(), unset_splashable(), set_liquid(),
  * set_external_pk_check()
  */
-long long query_splashable(object splasher,
+int query_splashable(object splasher,
                      object splashee)
 {
    if (splasher == splashee || !_external_pk_check) {
@@ -1128,7 +1128,7 @@ void unset_applicable()
  * @return 1 if it can be applied, 0 if it can't
  * @see set_applicable(), unset_applicable(), set_external_pk_check()
  */
-long long query_applicable(object applier,
+int query_applicable(object applier,
                      object appliee)
 {
    if (applier == appliee || !_external_pk_check) {
@@ -1145,12 +1145,12 @@ long long query_applicable(object applier,
  */
 void being_joined_by(object thing)
 {
-   long long i,
+   int i,
      that,
      this;
    string *words;
    mapping new_effects;
-   that = (long long) thing->query_amount();
+   that = (int) thing->query_amount();
    this = query_amount();
    if (!(this + that))
       return;
@@ -1209,8 +1209,8 @@ void being_joined_by(object thing)
  *  effects, anything else for eat effects.
  *
  */
-varargs void consume(object consumer, long long amount, string type) {
-  long long i, denominator, numerator, wholes;
+varargs void consume(object consumer, int amount, string type) {
+  int i, denominator, numerator, wholes;
   string *words;
   
   switch (type) {
@@ -1331,8 +1331,8 @@ varargs void consume(object consumer, long long amount, string type) {
  * @see /global/new_parse->add_succeeded_mess()
  * @see set_eat_mess()
  */
-varargs long long do_eat(long long no_mess) {
-   long long ret;
+varargs int do_eat(int no_mess) {
+   int ret;
 
    
    if ((weight <= 0) && !query_continuous()) {
@@ -1388,10 +1388,10 @@ varargs long long do_eat(long long no_mess) {
  * @param weapon The weapon to check to see if it is sharp.
  * @return Return 1 if it is sharp, or 0 otherwise.
  */
-long long check_sharp(object weapon)
+int check_sharp(object weapon)
 {
    mixed *data;
-   long long i;
+   int i;
    if (!weapon) {
       return 0;
    }
@@ -1405,8 +1405,8 @@ long long check_sharp(object weapon)
 }                               /* check_sharp() */
 
 /**
- * This cuts the food up long longo bits.  This is the command called
- * with add_command() and does the actual cutting up long longo bits.  If
+ * This cuts the food up into bits.  This is the command called
+ * with add_command() and does the actual cutting up into bits.  If
  * the num_pieces parameter is undefined, the food is cut in half.
  * If the food is continuous, the cutting is handled by
  * the state_change handler (all continuous objects must be cut this
@@ -1417,15 +1417,15 @@ long long check_sharp(object weapon)
  * @see query_piece_short()
  * @see query_piece_plural()
  * @see query_piece_substance()
- * @param num_pieces The number of pieces to cut the food long longo.
+ * @param num_pieces The number of pieces to cut the food into.
  * @return 1 if it succeeded, 0 if not.
  */
-varargs long long do_cut(long long num_pieces) {
+varargs int do_cut(int num_pieces) {
   object bing, *obs, with;
   string name, *exploded_short;
-  long long i, j, k, size_of_each, gone;
-  long long portion_of_whole;
-  long long portion_of_parent;
+  int i, j, k, size_of_each, gone;
+  int portion_of_whole;
+  int portion_of_parent;
   string temp_short, temp_plural;
   mixed rabbit;
   
@@ -1465,7 +1465,7 @@ varargs long long do_cut(long long num_pieces) {
                             _bites_gone) < 2) {
       add_failed_mess("$D cannot be cut up.\n");
     } else
-      add_failed_mess("You can't $V $D long longo that many pieces.\n");
+      add_failed_mess("You can't $V $D into that many pieces.\n");
     return -1;
   }
 
@@ -1557,24 +1557,24 @@ varargs long long do_cut(long long num_pieces) {
   // Use the default message.
   
   if (with->query_weight() < 20) {
-    add_succeeded_mess(({ sprlong longf("$N $V $D long longo %s pieces with %s%s.\n",
+    add_succeeded_mess(({ sprintf("$N $V $D into %s pieces with %s%s.\n",
                                   query_num(num_pieces), with->poss_short(),
                                   (num_pieces * size_of_each) <
                                   query_weight()?
                                   ", carelessly dribbling a bit while you do "
                                   "so" : ""),
-                            sprlong longf("$N $V $D long longo %s pieces with %s.\n",
+                            sprintf("$N $V $D into %s pieces with %s.\n",
                                     query_num(num_pieces),
                                     with->poss_short()) }));
     
   } else {
-    add_succeeded_mess(({sprlong longf("$N stand back and hack $D long longo %s pieces "
+    add_succeeded_mess(({sprintf("$N stand back and hack $D into %s pieces "
                                  "with %s%s.\n", query_num(num_pieces),
                                  with->poss_short(),
                                  (num_pieces * size_of_each) < query_weight()?
                                  ", carelessly obliterating a bit when you do "
                                  "so" : ""),
-                           sprlong longf("$N stands back and hacks $D long longo %s "
+                           sprintf("$N stands back and hacks $D into %s "
                                    "pieces with %s.\n",
                                    query_num(num_pieces),
                                    with->poss_short()) }));
@@ -1583,12 +1583,12 @@ varargs long long do_cut(long long num_pieces) {
   return 1;
 }
 
-varargs long long do_mince()
+varargs int do_mince()
 {
    object *obs,
      with,
      transformed;
-   long long i,
+   int i,
      rem_pieces;
 
    if (query_liquid()) {
@@ -1611,7 +1611,7 @@ varargs long long do_mince()
 
    transformed = STATE_CHANGE->transform(this_object(), "slice");
 
-   // if it doesn't mince, cut long longo the remaining number of pieces
+   // if it doesn't mince, cut into the remaining number of pieces
 
    if (!objectp(transformed)) {
       if (query_continuous()) {
@@ -1636,7 +1636,7 @@ varargs long long do_mince()
       transformed->move(environment(this_player()));
    }
    add_succeeded_mess("$N $V $D with " + with->the_short() +
-                      " long longo $I.\n", ({ transformed }));
+                      " into $I.\n", ({ transformed }));
    return 1;
 }
 
@@ -1648,7 +1648,7 @@ varargs long long do_mince()
  * @see set_liquid()
  * @return Return 1 if it succeeded, or return 0 if it failed.
  */
-long long do_drink()
+int do_drink()
 {
 
    if (!check_for_container()) {
@@ -1674,7 +1674,7 @@ long long do_drink()
  * @see set_liquid()
  * @return Return 1 if it succeeded, or return 0 if it failed.
  */
-long long do_quaff()
+int do_quaff()
 {
 
    if (!check_for_container()) {
@@ -1703,7 +1703,7 @@ long long do_quaff()
  * @see consume(*)
  * @return Return 1 if it succeeded, or return 0 if it failed.
  */
-long long do_apply(object * things)
+int do_apply(object * things)
 {
    if (sizeof(things) > 1) {
       add_failed_mess("You must $V $D to one person alone.\n", ({ }));
@@ -1728,7 +1728,7 @@ long long do_apply(object * things)
 /**
  * @ignore yes
  */
-long long do_rub(object * things)
+int do_rub(object * things)
 {
    /*identical to do_apply, except for one little syntax thing =) */
    if (sizeof(things) > 1) {
@@ -1752,7 +1752,7 @@ long long do_rub(object * things)
    return 1;
 }                               /* do_rub() */
 
-long long do_splash(object * things)
+int do_splash(object * things)
 {
    if (sizeof(things) > 1) {
       add_failed_mess("You must $V $D on one person alone.\n", ({ }));
@@ -1778,8 +1778,8 @@ long long do_splash(object * things)
 /**
  * @ignore yes
  */
-mapping long long_query_static_auto_load() {
-   return ([ "::" : ::long long_query_static_auto_load(),
+mapping int_query_static_auto_load() {
+   return ([ "::" : ::int_query_static_auto_load(),
              "liquid" : _liquid,
              "weight_per_bite" : _weight_per_bite,
              "eat_object" : _eat_object,
@@ -1788,7 +1788,7 @@ mapping long long_query_static_auto_load() {
              "splashable" : _splashable,
              "applicable" : _applicable,
              "external_pk_check" : _external_pk_check ]);
-}                               /* long long_query_static_auto_load() */
+}                               /* int_query_static_auto_load() */
 
 /**
  * @ignore yes
@@ -1799,7 +1799,7 @@ mapping query_static_auto_load()
        && !query_continuous()) {
       return 0;
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 }                               /* query_static_auto_load() */
 
 /**
@@ -1891,7 +1891,7 @@ void init_dynamic_arg(mapping map, object)
  */
 mixed *stats()
 {
-   long long i;
+   int i;
    string *words;
    mixed *args;
    args =::stats() + ({ ({ "liquid", _liquid }),
@@ -1930,7 +1930,7 @@ mixed *stats()
  * This checks the outside of us for a container and then destroys ourselves
  * if it is not a container.
  */
-long long check_for_container()
+int check_for_container()
 {
    if (query_liquid()) {
       if (!environment()->query_max_volume() || living(environment())) {
@@ -1948,9 +1948,9 @@ private void move_check_for_container()
       //
       tell_room(environment(),
                 the_short() + " dribbles all over the place and disappears "
-                "long longo the dust.\n");
+                "into the dust.\n");
       if(move("/room/rubbish") != MOVE_OK) {
-        debug_prlong longf("Oops, failed to move us to the rubbish room.\n");
+        debug_printf("Oops, failed to move us to the rubbish room.\n");
       }
    }
 }                               /* check_for_container() */
@@ -1958,8 +1958,8 @@ private void move_check_for_container()
 /** Check to see if the thing outside us can handle liquids...
  * @ignore yes
  */
-varargs long long move(mixed dest, string mess1, string mess2) {
-   long long ret;
+varargs int move(mixed dest, string mess1, string mess2) {
+   int ret;
 
    ret =::move(dest, mess1, mess2);
    if (ret == MOVE_OK && dest != "/room/rubbish" && query_liquid()) {
@@ -1978,9 +1978,9 @@ varargs long long move(mixed dest, string mess1, string mess2) {
  * @see query_decay_level()
  * @see query_decay_divisor()
  */ 
-long long query_rotten() { 
+int query_rotten() { 
     if ( _divisor ) { 
-        return to_long long( _decay_level / _divisor ) > 1; 
+        return to_int( _decay_level / _divisor ) > 1; 
     }
 
     return 0; 
@@ -2016,7 +2016,7 @@ float query_decay_divisor() { return _divisor; }
  * @see set_decay_speed()
  * @return returns 1 for suceess and 0 for failure.
  */
-long long do_cure() {
+int do_cure() {
   if(_dried || _liquid || _cured)
     return 0;
 
@@ -2041,7 +2041,7 @@ long long do_cure() {
  *
  * @return 1 if it is cured, 0 if not
  */
-long long query_cured() { return _cured; }
+int query_cured() { return _cured; }
 
 /**
  * This method dries the food.  Dried food no longer decays.
@@ -2049,8 +2049,8 @@ long long query_cured() { return _cured; }
  * @see set_decay_speed()
  * @return returns 1 for suceess and 0 for failure.
  */
-long long do_dry() {
-  long long new_weight;
+int do_dry() {
+  int new_weight;
 
   if(_dried || _liquid || _cured)
     return 0;
@@ -2085,18 +2085,18 @@ long long do_dry() {
  *
  * @return 1 if it is dried, 0 if not
  */
-long long query_dried() { return _dried; }
+int query_dried() { return _dried; }
 
 /** @ignore yes.
  *
  * Define some food-specific merge criteria for collective food objects.
  */
-long long merge_criteria(object ob) {
+int merge_criteria(object ob) {
   return ::merge_criteria(ob) &&
     _decay_speed == ob->query_decay_speed() &&
     _bites_gone == ob->query_bites_gone() &&
-    ((to_long long(_decay_level / _divisor) < 2 &&
-     to_long long(ob->query_decay_level() / ob->query_decay_divisor()) < 2) ||
-     to_long long(_decay_level / _divisor) ==
-     to_long long(ob->query_decay_level() / ob->query_decay_divisor()));
+    ((to_int(_decay_level / _divisor) < 2 &&
+     to_int(ob->query_decay_level() / ob->query_decay_divisor()) < 2) ||
+     to_int(_decay_level / _divisor) ==
+     to_int(ob->query_decay_level() / ob->query_decay_divisor()));
 }

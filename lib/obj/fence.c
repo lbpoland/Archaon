@@ -20,14 +20,14 @@ inherit "/obj/monster";
 
 class hist_offer {
   object ob;
-  long long old_offer;
-  long long value;
+  int old_offer;
+  int value;
 }
 
 class offer {
   object who;
-  long long amount;
-  long long offer_time;
+  int amount;
+  int offer_time;
   object *objects;
 }
 
@@ -107,8 +107,8 @@ void set_fence_type( string str ) {
   fence_type = str;
 }
 
-long long query_cost( object thing, object buyer ) {
-   return (long long)thing->query_value_at( this_object() );
+int query_cost( object thing, object buyer ) {
+   return (int)thing->query_value_at( this_object() );
 }
 
 string cost_string( object thing, string place, object buyer ) {
@@ -134,8 +134,8 @@ string query_item_type( object ob ) {
 }
 
 // Judge the value of an item
-long long judge_value( object ob, string type ) {
-  long long value, variance, skill;
+int judge_value( object ob, string type ) {
+  int value, variance, skill;
   value = query_cost( ob, this_object() );
   if( type != "" )
     skill = query_skill_bonus( SKILL + "." + type );
@@ -163,14 +163,14 @@ string calc_place() {
 }
 
 // Return an amount of money as a nice string
-string cost_str( long long amt ) {
+string cost_str( int amt ) {
   return MONEY_HAND->money_string( MONEY_HAND->create_money_array( amt,
                                    calc_place() ) );
 }
 
 // From /std/shop.
-long long scaled_value( long long n ) {
-  long long *fish, i, tot;
+int scaled_value( int n ) {
+  int *fish, i, tot;
 
   fish = PAY_RATES;
   if( n < fish[0] ) {
@@ -200,9 +200,9 @@ long long scaled_value( long long n ) {
   return tot;
 } /* scaled_value() */
 
-long long do_fence( object *in_dir, string direct, string indirect, mixed args,
+int do_fence( object *in_dir, string direct, string indirect, mixed args,
   string format ) {
-  long long offer, their_skill, returned, burdened, light;
+  int offer, their_skill, returned, burdened, light;
   string type, skill, zone;
   object ob, *offered, *not_speciality, customer, thing;
 
@@ -242,7 +242,7 @@ long long do_fence( object *in_dir, string direct, string indirect, mixed args,
       returned = 0;
     
       foreach( thing in this_offer->objects ) {
-        // Sometimes the items turn long longo 0s.
+        // Sometimes the items turn into 0s.
         if( !thing ) {
           whisper( customer, "Seems there is a hole in my sack!" );
           continue;
@@ -306,7 +306,7 @@ long long do_fence( object *in_dir, string direct, string indirect, mixed args,
   }    
 
   tell_room( environment( this_object() ), this_object()->query_short() +
-            " studies " + query_multiple_short( in_dir ) + ".\n" );
+            " studies " + sprintf("%O", ( in_dir ) + ".\n" );
   
   foreach( ob in in_dir ) {
     // Player doesn't have item.
@@ -380,7 +380,7 @@ long long do_fence( object *in_dir, string direct, string indirect, mixed args,
     }
     
     // Now do the profit (just like a shop)
-    offer = (long long)scaled_value( offer );
+    offer = (int)scaled_value( offer );
     // Remember our previous offers.
     if( !undefinedp( old_offers[ob] ) ) {
       if( !undefinedp( old_offers[ob][ob->query_value()] ) ) {
@@ -430,12 +430,12 @@ long long do_fence( object *in_dir, string direct, string indirect, mixed args,
 
   if( sizeof( not_speciality ) == 1 )
     whisper( this_player(), "Well, " +
-      strip_colours( query_multiple_short( not_speciality ) ) + " isn't really "
+      strip_colours( sprintf("%O", ( not_speciality ) ) + " isn't really "
       "my speciality." );
   else
     if( sizeof( not_speciality ) > 1 )
       whisper( this_player(), "Well, " +
-        strip_colours( query_multiple_short( not_speciality ) ) + " aren't "
+        strip_colours( sprintf("%O", ( not_speciality ) ) + " aren't "
         "really my speciality." );
   
   this_player()->add_succeeded_mess( this_object(), "", offered );
@@ -448,7 +448,7 @@ long long do_fence( object *in_dir, string direct, string indirect, mixed args,
 
   // Tell em how much and wait for their response
   whisper( this_player(), "I'll give you " + cost_str( this_offer->amount ) +
-          " for " + strip_colours( query_multiple_short( this_offer->
+          " for " + strip_colours( sprintf("%O", ( this_offer->
           objects ) ) + ", what do you think?" );
   return 1;
 }
@@ -475,7 +475,7 @@ void do_yes( object person ) {
   money = clone_object( MONEY_OBJECT );
   money->set_money_array( m_array );
 
-  if( (long long)money->move( person ) != MOVE_OK) {
+  if( (int)money->move( person ) != MOVE_OK) {
     money->move( environment( this_object() ) );
     whisper( person, "You're too heavily burdened to accept all "
       "that money, so I'll just put it on the floor." );
@@ -499,7 +499,7 @@ void do_yes( object person ) {
 void do_no( object player ) {
   string zone;
   object customer, thing;
-  long long returned, burdened;
+  int returned, burdened;
     
   if( !this_offer || player != this_offer->who )
     return;
@@ -549,7 +549,7 @@ void whisper( object ob, string message ) {
   do_command( "whisper " + message + " to " + ob->query_name() );
 }
 
-long long busy() {
+int busy() {
   if( this_offer )
     return 1;
   return 0;
@@ -557,7 +557,7 @@ long long busy() {
 
 void event_exit( object ob, string message, object to ) {
   object customer, thing;
-  long long returned, burdened;
+  int returned, burdened;
 
   if( this_offer &&
       ob == this_offer->who ) {
@@ -595,8 +595,8 @@ void event_exit( object ob, string message, object to ) {
   }
 }
 
-long long attack_by( object ob ) {
-  long long burdened, returned;
+int attack_by( object ob ) {
+  int burdened, returned;
   object customer, thing;
   
   if( this_offer &&
@@ -648,7 +648,7 @@ long long attack_by( object ob ) {
 
 // Called when time's up, being attacked, said no or is leaving.
 void give_back() {
-  long long burdened, returned;
+  int burdened, returned;
   object customer, thing;
 
   customer = this_offer->who;
@@ -689,6 +689,6 @@ string query_current_offer() {
   str = "\nCustomer: " + ( this_offer->who )->short()  + "\n";
   str += "Amount: " + this_offer->amount + "\n";
   str += "Offer time: " + this_offer->offer_time + "\n";
-  str += "Objects: " + query_multiple_short( this_offer->objects );
+  str += "Objects: " + sprintf("%O", ( this_offer->objects );
   return str;
 }

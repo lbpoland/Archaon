@@ -27,7 +27,7 @@
  *
  * Revision 1.6  1999/05/27 23:46:11  pinkfish
  * Fix up to work propertly with the private variables in /std/basic/close_lock.c
- * These people that assume things about object long longernals.  Sheeze :)
+ * These people that assume things about object internals.  Sheeze :)
  *
  * Revision 1.5  1998/10/30 08:34:49  pinkfish
  * Fix up the name references.
@@ -66,28 +66,28 @@ inherit "/std/basic/close_lock_container";
 
 #define MAX_INVENT 40
 
-nosave long long full_weight, leak_rate, hb_count;
+nosave int full_weight, leak_rate, hb_count;
 
 /* liquid/potion stuff */
 mixed *misc_attrs;   /* purely physical attributes ... all the 'inactive' parts */
 nosave mixed *all_attrs;    /* misc_attrs merged with active_attrs */
 nosave mixed *active_attrs; /* this is the attrs due to the position in the potion space */
 
-long long volume, max_volume;  /* total volume, and max volume for this container */
-long long water;    /* the 'water' part of the volume ... the volume that is used in */
+int volume, max_volume;  /* total volume, and max volume for this container */
+int water;    /* the 'water' part of the volume ... the volume that is used in */
               /* potion space activities.  The volume that is not 'water' is */
               /* considered 'inactive' in any potion reactions */
 
-long long *ps_coord; /* coordinate in the potion_space */
-long long ps_quantity; /* magic number describing quantity of active junk in this potion */
+int *ps_coord; /* coordinate in the potion_space */
+int ps_quantity; /* magic number describing quantity of active junk in this potion */
 
 nosave mixed *potion_id, *potion_adjective;
-nosave long long volume_to_womble;  /* kludge for the fraction stuff */
+nosave int volume_to_womble;  /* kludge for the fraction stuff */
 
 /** @ignore yes */
-void set_volume_to_womble(long long n) { volume_to_womble = n; }
+void set_volume_to_womble(int n) { volume_to_womble = n; }
 /** @ignore yes */
-long long query_volume_to_womble() { return volume_to_womble; }
+int query_volume_to_womble() { return volume_to_womble; }
 
 /**
  * This method sets the weight of the container when it is full.
@@ -95,31 +95,31 @@ long long query_volume_to_womble() { return volume_to_womble; }
  * @see query_full_weight()
  * @see set_weight()
  */
-void set_full_weight(long long i) { full_weight = i; }
+void set_full_weight(int i) { full_weight = i; }
 /**
  * This method sets the leak rate of the container.  The leak rate is how
  * fast stuff leaks out of the container.
  * @param i the new leak rate of the container
  * @see query_leak_rate()
  */
-void set_leak_rate(long long i) { leak_rate = i; }
+void set_leak_rate(int i) { leak_rate = i; }
 /**
  * This method returns the full weight of the container.
  * @see set_full_weight()
  * @see query_weight()
  */
-long long query_full_weight() { return full_weight; }
+int query_full_weight() { return full_weight; }
 /**
  * This method returns the leak rate of the container
  * @see set_leak_rate()
  */
-long long query_leak_rate() { return leak_rate; }
+int query_leak_rate() { return leak_rate; }
 
 /**
  * This method returns the current amount of liquid in the container.
  * @return the current amount of liquid in the container
  */
-long long query_volume() { return volume; }
+int query_volume() { return volume; }
 /**
  * This method sets the current amount of liquid in the container.  If
  * the container has a leak rate, it starts to leak.
@@ -127,7 +127,7 @@ long long query_volume() { return volume; }
  * @see query_volume()
  * @see set_leak_rate()
  */
-void set_volume(long long i) {
+void set_volume(int i) {
    volume = i;
    if (leak_rate) {
       set_heart_beat(1);
@@ -139,9 +139,9 @@ void set_volume(long long i) {
  * container.
  * @return the current maximum volume
  */
-long long query_max_volume() { return max_volume; }
+int query_max_volume() { return max_volume; }
 /*
-void set_max_volume(long long i) { max_volume = i; }
+void set_max_volume(int i) { max_volume = i; }
  */
 
 /**
@@ -149,31 +149,31 @@ void set_max_volume(long long i) { max_volume = i; }
  * @return the potion space co-ordinates
  * @see query_ps_quantity()
  */
-long long *query_ps_coord() { return ps_coord; }
+int *query_ps_coord() { return ps_coord; }
 /**
  * This method returns the quantity of liquid at the potion space.
  * @return the quantity of liquid
  * @see query_ps_coord()
  * @see set_ps_quantity()
  */
-long long query_ps_quantity() { return ps_quantity; }
+int query_ps_quantity() { return ps_quantity; }
 
-void set_ps_quantity(long long n) { ps_quantity = n; }
+void set_ps_quantity(int n) { ps_quantity = n; }
 
-long long *query_all_attrs() { return all_attrs; }
-long long *query_misc_attrs() { return misc_attrs; }
-long long *query_active_attrs() { return active_attrs; }
+int *query_all_attrs() { return all_attrs; }
+int *query_misc_attrs() { return misc_attrs; }
+int *query_active_attrs() { return active_attrs; }
 
 /**
  * This method sets the volume of water in the container.
  * @param n the new volume of water
  */
-void set_water_volume(long long n) { water = n; if (leak_rate) set_heart_beat(1); }
+void set_water_volume(int n) { water = n; if (leak_rate) set_heart_beat(1); }
 /**
  * This method returns the volume of water in the container.
  * @see set_water_volume()
  */
-long long query_water_volume() { return water; }
+int query_water_volume() { return water; }
 
 /**
  * This method sets the maximum weight of the container.  This also sets
@@ -183,7 +183,7 @@ long long query_water_volume() { return water; }
  * @see set_max_volume()
  * @see add_weight()
  */
-void set_max_weight(long long i) {
+void set_max_weight(int i) {
   if (!max_volume && i) {
     max_volume = i*10;
   }
@@ -198,7 +198,7 @@ void set_max_weight(long long i) {
  * @see set_max_weight()
  * @see add_volume()
  */
-void set_max_volume(long long i) {
+void set_max_volume(int i) {
   if (!query_max_weight() && i) {
     ::set_max_weight(i/10);
   }
@@ -210,9 +210,9 @@ void set_max_volume(long long i) {
  * from a container.
  * @return the amount of liquid that can be emptied
  */
-long long empty_formula() {
+int empty_formula() {
 /* formula to work out how close to empty someone can get casually */
-   long long vol_lost;
+   int vol_lost;
 
    vol_lost = 2 + volume * 95 / 100;
    if (vol_lost > volume) vol_lost = volume;
@@ -220,7 +220,7 @@ long long empty_formula() {
 } /* empty_formula() */
 
 /** @ignore yes */
-long long cull_neutral_obs( mixed ob ) {
+int cull_neutral_obs( mixed ob ) {
    if ( ob->query_vect() ) {
      return 1;
    }
@@ -232,10 +232,10 @@ long long cull_neutral_obs( mixed ob ) {
  * This is based on the vectors of all the liquid with a vector set
  * on them.
  */
-long long *contents_vect() {
+int *contents_vect() {
    object *inv;
-   long long *v;
-   long long ang, str, tot, i;
+   int *v;
+   int ang, str, tot, i;
  
    inv = all_inventory(this_object());
    inv = filter_array(inv, "cull_neutral_obs", this_object());
@@ -258,9 +258,9 @@ long long *contents_vect() {
  * This method will destroy all the liquid contents of the object.
  * @return the number of object destroyed
  */ 
-long long dest_active_contents() {
+int dest_active_contents() {
    object *inv;
-   long long i;
+   int i;
  
    inv = all_inventory(this_object());
    inv = filter_array(inv, "cull_neutral_obs", this_object());
@@ -272,9 +272,9 @@ long long dest_active_contents() {
 } /* dest_active_contents() */
 
 /** @ignore yes */ 
-long long *squidge_vector(long long *v, long long meth_ang, long long meth_mult) {
-   long long ca, cb;
-   long long da, cx, cy;
+int *squidge_vector(int *v, int meth_ang, int meth_mult) {
+   int ca, cb;
+   int da, cx, cy;
    object trig;
    
    "/obj/handlers/trig"->wibble_wobble();
@@ -292,7 +292,7 @@ long long *squidge_vector(long long *v, long long meth_ang, long long meth_mult)
    return ({ cx / 1000000, cy / 1000000 });
 }
 
-void set_ps_coord_quantity(long long *coord, long long quantity);
+void set_ps_coord_quantity(int *coord, int quantity);
 
 /**
  * This method adds a potion space vector with a particular
@@ -300,17 +300,17 @@ void set_ps_coord_quantity(long long *coord, long long quantity);
  * @param v the vector to add
  * @param quant the quantity to add
  */
-void add_ps_vect(long long *v, long long quant) {
+void add_ps_vect(int *v, int quant) {
    object trig;
-   long long ca, cb;
+   int ca, cb;
    
    if (quant <= 0) return;
    trig = find_object("/obj/handlers/trig");
 /*   ca = v[1] * trig->cos(v[0]) / 1000000;
    cb = v[1] * trig->sin(v[0]) / 1000000; */
    ca = v[0];  cb = v[1];
-    ca = (long long)trig->pow1_5(ps_coord[0] * 10 * ps_quantity /(ca * quant)) * ca / 1000000;
-   cb = (long long)trig->pow1_5(ps_coord[1] * 10 * ps_quantity /(cb * quant)) * cb / 1000000;
+    ca = (int)trig->pow1_5(ps_coord[0] * 10 * ps_quantity /(ca * quant)) * ca / 1000000;
+   cb = (int)trig->pow1_5(ps_coord[1] * 10 * ps_quantity /(cb * quant)) * cb / 1000000;
    
    set_ps_coord_quantity( ({ ps_coord[0] + ca, ps_coord[1] + cb }),
                           quant + ps_quantity);
@@ -323,7 +323,7 @@ void add_ps_vect(long long *v, long long quant) {
  * @return the transparency string()
  * @param trans the transparency value
  */
-string transparency_string(long long trans)
+string transparency_string(int trans)
 /* return string describing transparency 'trans' */
 {
    switch (trans) {
@@ -345,7 +345,7 @@ string transparency_string(long long trans)
  * @return the consistency string()
  * @param cons the consistency value
  */
-string consistency_string(long long cons)
+string consistency_string(int cons)
 /* return string describing consistency 'cons' */
 {
    switch (cons) {
@@ -368,7 +368,7 @@ string consistency_string(long long cons)
  */
 void update_potion_parse()
 {
-   long long i;
+   int i;
    string *exploded;
 
    potion_adjective = query_adjectives() +
@@ -404,7 +404,7 @@ void void_liquid()
    misc_attrs[POTION_SMELLS] = ({ });
    misc_attrs[POTION_FLAVOURS] = ({ });
    
-   ps_coord = (long long *)POTION_SPACE_HANDLER->neutral_coordinate();
+   ps_coord = (int *)POTION_SPACE_HANDLER->neutral_coordinate();
    ps_quantity = 0;
    
 /* Hmmm.  I wonder if having these all the same array will cause problems */
@@ -446,7 +446,7 @@ void init() {
 } /* init() */
 
 /* This may be stuffing up other containers...
-long long query_weight() {
+int query_weight() {
   if (!full_weight)
     return ::query_weight();
   return ::query_weight() + ((query_loc_weight()+(query_max_weight()*volume)/max_volume)
@@ -454,7 +454,7 @@ long long query_weight() {
 } query_weight() */
 
 /** @ignore yes */
-long long query_complete_weight() {
+int query_complete_weight() {
   return ::query_complete_weight() + ( query_max_weight() * volume ) /
       ( max_volume + 1 );
 } /* query_complete_weight() */
@@ -464,7 +464,7 @@ long long query_complete_weight() {
  * be filled on the container.
  * @return the current amount of weight left
  */
-long long query_weight_left() {
+int query_weight_left() {
   if (!max_volume)
     return query_max_weight() - query_loc_weight();
   return query_max_weight() - query_loc_weight() - (query_max_weight()*volume)/max_volume;
@@ -472,19 +472,19 @@ long long query_weight_left() {
 
 /**
  * This method returns the amount of volume left for liquids to be
- * added long longo.
+ * added into.
  * @return the amount of volume left
  * @see add_volume()
  * @see transfer_liquid_to()
  */
-long long query_volume_left() {
+int query_volume_left() {
   if (!query_max_weight())
     return max_volume - volume;
   return max_volume - volume - (max_volume*query_loc_weight())/query_max_weight();
 } /* query_volume_left() */
 
 /** @ignore yes */
-long long add_weight( long long n ) {
+int add_weight( int n ) {
   if ( query_weight_left() < n ) return 0;
   if ( !( ::add_weight( n ) ) ) return 0;
   if ( n >= 0 ) {
@@ -506,9 +506,9 @@ long long add_weight( long long n ) {
   if (sizeof(obs)) {
     say(this_player()->one_short()+" breaks "+
           (sizeof(obs)>1?"some things":"one thing")+" in "+
-          query_multiple_short(({ this_object() }))+".\n");
-    write("You break "+query_multiple_short(obs)+" in "+
-          query_multiple_short(({ this_object() }))+".\n");
+          sprintf("%O", (({ this_object() }))+".\n");
+    write("You break "+sprintf("%O", (obs)+" in "+
+          sprintf("%O", (({ this_object() }))+".\n");
     obs->dest_me();
   }
   return 1;
@@ -526,7 +526,7 @@ void check_breakages() {
  *   the chance of breakage.
  */
   object *obs, carrier;
-  long long i, amt, wt;
+  int i, amt, wt;
 
   // See if it's being carried by a living object
   carrier = environment(this_object());
@@ -536,7 +536,7 @@ void check_breakages() {
   if (!carrier)
     return;
   obs = all_inventory();
-  wt = query_loc_weight() - (long long)query_property("padded");
+  wt = query_loc_weight() - (int)query_property("padded");
   for (i=0;i<sizeof(obs);i++) {
     if ((amt = obs[i]->query_property("fragile"))) {
       if (wt <= amt || ((wt - amt)*100)/amt <= random(100)) {
@@ -551,9 +551,9 @@ void check_breakages() {
   if (sizeof(obs) && environment(carrier)) {
     tell_room(environment(carrier), carrier->the_short()+" breaks "+
           (sizeof(obs)>1?"some things":"one thing")+" in "+
-          query_multiple_short(({ this_object() }))+".\n", ({ carrier }));
-    tell_object(carrier, "You break "+query_multiple_short(obs)+" in "+
-          query_multiple_short(({ this_object() }))+".\n");
+          sprintf("%O", (({ this_object() }))+".\n", ({ carrier }));
+    tell_object(carrier, "You break "+sprintf("%O", (obs)+" in "+
+          sprintf("%O", (({ this_object() }))+".\n");
     obs->dest_me();
   }
 } /* check_breakages() */
@@ -576,8 +576,8 @@ string liquid_name()
 {
    string liq_name;
    mixed *names, *colours;
-   string *med, *lo;   /* groups of strings with hi/med/lo long longensities */
-   long long no_names, no_colours, i;
+   string *med, *lo;   /* groups of strings with hi/med/lo intensities */
+   int no_names, no_colours, i;
    
    names = all_attrs[POTION_NAMES];
    colours = all_attrs[POTION_COLOURS];
@@ -591,7 +591,7 @@ string liquid_name()
          consistency_string(all_attrs[POTION_CONSISTENCY]);
    } else if (no_names) {
       if (colours[0][1] < SMALL_AMOUNT) {
-         liq_name = "a falong long " + colours[0][0];
+         liq_name = "a faint " + colours[0][0];
       } else {
          liq_name = add_a(colours[0][0]);
       }
@@ -607,12 +607,12 @@ string liquid_name()
          lo += ({ colours[i++][0] });
       
       if (sizeof(med)) {
-         liq_name += " with swirls of " + query_multiple_short(med);
+         liq_name += " with swirls of " + sprintf("%O", (med);
       }
       
       if (sizeof(lo)) {
-         if (sizeof(med)) liq_name += " and falong long streaks of " + query_multiple_short(lo);
-         else liq_name += " with falong long streaks of " + query_multiple_short(lo);
+         if (sizeof(med)) liq_name += " and faint streaks of " + sprintf("%O", (lo);
+         else liq_name += " with faint streaks of " + sprintf("%O", (lo);
       }
    } else if (no_colours) {
       i = 0;
@@ -623,15 +623,15 @@ string liquid_name()
       while (i < sizeof(names) && names[i][1] >= VERY_SMALL_AMOUNT)
          lo += ({ names[i++][0] });
       
-      if (sizeof(med) > 1) liq_name = "a mixture of " + query_multiple_short(med);
+      if (sizeof(med) > 1) liq_name = "a mixture of " + sprintf("%O", (med);
       else if (sizeof(med) == 1) liq_name = med[0];
       
       if (!sizeof(med) && sizeof(lo) > 1) 
-         liq_name = "a diluted mixture of " + query_multiple_short(lo);
+         liq_name = "a diluted mixture of " + sprintf("%O", (lo);
       else if (!sizeof(med) && sizeof(lo) == 1)
          liq_name = "diluted " + lo[0];
       else if (sizeof(med) && sizeof(lo))
-         liq_name += "and small quantities of " + query_multiple_short(lo);
+         liq_name += "and small quantities of " + sprintf("%O", (lo);
    } else {
       if (names[0][1] > colours[0][1] / 2) 
       /* arbitrary relationship ... names are 'twice' as visible as colours */
@@ -652,19 +652,19 @@ string liquid_name()
          while (i < sizeof(names) && names[i][1] >= VERY_SMALL_AMOUNT)
             lo += ({ names[i++][0] });
       
-         if (sizeof(med) > 1) liq_name = "a mixture of " + query_multiple_short(med);
+         if (sizeof(med) > 1) liq_name = "a mixture of " + sprintf("%O", (med);
          else if (sizeof(med) == 1) liq_name = med[0];
       
          if (!sizeof(med) && sizeof(lo) > 1) 
-            liq_name = "a diluted mixture of " + query_multiple_short(lo);
+            liq_name = "a diluted mixture of " + sprintf("%O", (lo);
          else if (!sizeof(med) && sizeof(lo) == 1)
             liq_name = "diluted " + lo[0];
          else if (sizeof(med) && sizeof(lo))
-            liq_name += "and small quantities of " + query_multiple_short(lo);
+            liq_name += "and small quantities of " + sprintf("%O", (lo);
          
          /* this little fragment copied directly from 'no_names' above */
          
-         if (colours[0][1] < SMALL_AMOUNT) liq_name += " (a falong long " + colours[0][0];
+         if (colours[0][1] < SMALL_AMOUNT) liq_name += " (a faint " + colours[0][0];
          else liq_name += " (" + add_a(colours[0][0]);
          liq_name += " " + transparency_string(all_attrs[POTION_TRANSPARENCY]) +
                         " " + consistency_string(all_attrs[POTION_CONSISTENCY]);
@@ -678,17 +678,17 @@ string liquid_name()
             lo += ({ colours[i++][0] });
          
          if (sizeof(med)) {
-            liq_name += " with swirls of " + query_multiple_short(med);
+            liq_name += " with swirls of " + sprintf("%O", (med);
          }
          
          if (sizeof(lo)) {
-            if (sizeof(med)) liq_name += " and falong long streaks of " + query_multiple_short(lo);
-            else liq_name += " with falong long streaks of " + query_multiple_short(lo);
+            if (sizeof(med)) liq_name += " and faint streaks of " + sprintf("%O", (lo);
+            else liq_name += " with faint streaks of " + sprintf("%O", (lo);
          }
          liq_name += ")";
       } else {   /* phew, coloured liquid containing names now */
          /* this little fragment _almost_ directly copied from no_names above */
-         if (colours[0][1] < SMALL_AMOUNT) liq_name = "a falong long " + colours[0][0];
+         if (colours[0][1] < SMALL_AMOUNT) liq_name = "a faint " + colours[0][0];
          else liq_name = add_a(colours[0][0]);
          liq_name += " " + transparency_string(all_attrs[POTION_TRANSPARENCY]) +
                         " " + consistency_string(all_attrs[POTION_CONSISTENCY]);
@@ -698,7 +698,7 @@ string liquid_name()
          while (i < sizeof(names) && names[i][1] >= VERY_SMALL_AMOUNT)
             med += ({ names[i++][0] });
          
-         liq_name += " containing " + query_multiple_short(med);
+         liq_name += " containing " + sprintf("%O", (med);
          
          med = ({ });
          i = 1;
@@ -710,12 +710,12 @@ string liquid_name()
             lo += ({ colours[i++][0] });
          
          if (sizeof(med)) {
-            liq_name += " with swirls of " + query_multiple_short(med);
+            liq_name += " with swirls of " + sprintf("%O", (med);
          }
          
          if (sizeof(lo)) {
-            if (sizeof(med)) liq_name += " and falong long streaks of " + query_multiple_short(lo);
-            else liq_name += " with falong long streaks of " + query_multiple_short(lo);
+            if (sizeof(med)) liq_name += " and faint streaks of " + sprintf("%O", (lo);
+            else liq_name += " with faint streaks of " + sprintf("%O", (lo);
          }
       } /* yayayayaya.  done! */
    }
@@ -746,9 +746,9 @@ string query_liquid_short()
 /* Ok, Ok.  Sulk */
 /* Please ignore the above comments.  They are wholely unjustified. */
 /** @ignore yes */
-string long(string str, long long dark) {
+string long(string str, int dark) {
   string ret;
-  long long bing;
+  int bing;
 
   ret = ::long(str, dark);
   /*   ret += calc_extra_look(); */
@@ -820,16 +820,16 @@ string *parse_command_adjectiv_id_list() {
 } /* parse_command_adjectiv_id_list() */
 
 /** @@ignore yes */
-long long sort_func(long long *x, long long *y)
+int sort_func(int *x, int *y)
 {
    if (x[1] < y[1]) return 1;
    else return 0;
 }
 
 /** @@ignore yes */
-mixed *mix_liq(mixed *arr1, mixed *arr2, long long vol1, long long vol2, long long tot_vol)
+mixed *mix_liq(mixed *arr1, mixed *arr2, int vol1, int vol2, int tot_vol)
 {
-   long long i, j;   /* general indexes long longo arrays */
+   int i, j;   /* general indexes into arrays */
    mixed *arr3;
    
    arr3 = allocate(sizeof(arr1));
@@ -869,7 +869,7 @@ mixed *mix_liq(mixed *arr1, mixed *arr2, long long vol1, long long vol2, long lo
 }
  
 /** @@ignore yes */
-mixed *merge_potions(mixed *potion1, mixed *potion2, long long vol1, long long vol2, long long tot_vol)
+mixed *merge_potions(mixed *potion1, mixed *potion2, int vol1, int vol2, int tot_vol)
 {
    mixed *result;
 
@@ -892,7 +892,7 @@ mixed *merge_potions(mixed *potion1, mixed *potion2, long long vol1, long long v
    return result;
 }
 
-void set_misc_attrs(mixed *new_misc_attrs, long long misc_vol)
+void set_misc_attrs(mixed *new_misc_attrs, int misc_vol)
 {
    misc_attrs = new_misc_attrs + ({ });
    volume = water + misc_vol;
@@ -907,10 +907,10 @@ void set_misc_attrs(mixed *new_misc_attrs, long long misc_vol)
  * @param potion the potion to change the concentration of
  * @param new_conc the new concentration of the liquid
  */
-mixed *change_concentration(mixed *potion, long long new_conc)
+mixed *change_concentration(mixed *potion, int new_conc)
 {
    mixed *newpotion;
-   long long i;
+   int i;
    
    newpotion = potion + ({ });
    newpotion[POTION_CONSISTENCY] = newpotion[POTION_CONSISTENCY] * new_conc / 100;
@@ -937,7 +937,7 @@ mixed *change_concentration(mixed *potion, long long new_conc)
  * @param new_coord the new co-ordinate of the liquid
  * @param new_quantity the new quantity of the liquid
  */
-void set_ps_coord_quantity(long long *new_coord, long long new_quantity)
+void set_ps_coord_quantity(int *new_coord, int new_quantity)
 {
    mixed *ps_attrs;
    
@@ -956,7 +956,7 @@ void begin_config()
    ps_coord = allocate(9);
 }
 
-void config(long long vari, mixed cont)
+void config(int vari, mixed cont)
 {
    potion_id[vari] = cont;
    ps_coord[vari] = 1;
@@ -995,9 +995,9 @@ void end_config()
 mixed stats() {
   return container::stats() + close_lock_container::stats() + ({
     ({ "ps_quantity", query_ps_quantity() }),
-   ({ "ps_coord", (polong longerp(ps_coord) && sizeof(ps_coord) == 2) ?
+   ({ "ps_coord", (pointerp(ps_coord) && sizeof(ps_coord) == 2) ?
       "({ " + ps_coord[0] + ", " + ps_coord[1] + " })" :
-      sprlong longf("%O", ps_coord) }),
+      sprintf("%O", ps_coord) }),
     ({ "volume", query_volume() + "" }),
     ({ "max volume", query_max_volume() }),
     ({ "water vol", query_water_volume() }),
@@ -1016,7 +1016,7 @@ object query_parse_id(mixed *arr) {
 
 /** @@ignore yes */
 object query_frac_parse_id(mixed *arr) {
-  long long i;
+  int i;
 
   volume_to_womble = 0;
   if (arr[P_THING] < 0) {
@@ -1056,9 +1056,9 @@ object query_frac_parse_id(mixed *arr) {
  * @see add_volume()
  * @see query_volume()
  */
-long long remove_volume(long long vol_lost)
+int remove_volume(int vol_lost)
 {
-   long long q_lost;
+   int q_lost;
    
    if (!volume) {
       q_lost = ps_quantity;
@@ -1075,7 +1075,7 @@ long long remove_volume(long long vol_lost)
 
 /** @ignore yes */
 void heart_beat() {
-  long long lost, off;
+  int lost, off;
 
    if (leak_rate == 0 || volume <= 0) {
       set_heart_beat(0);
@@ -1120,17 +1120,17 @@ void heart_beat() {
  * @param coord the co-ordinate of the liquid
  * @param quantity the quantity of the potion space liquid
  */
-void transfer_liquid_to(object dest, long long vol_misc, mixed *misc, 
-                                     long long vol_water, long long *coord, long long quantity) 
+void transfer_liquid_to(object dest, int vol_misc, mixed *misc, 
+                                     int vol_water, int *coord, int quantity) 
 {
    mixed *their_attrs;
-   long long their_vol, their_water, their_quantity, new_quantity, new_misc_vol;
-   long long *new_coord, *old_coord;
+   int their_vol, their_water, their_quantity, new_quantity, new_misc_vol;
+   int *new_coord, *old_coord;
 
    their_attrs = (mixed *)dest->query_misc_attrs();
-   their_vol = (long long)dest->query_volume();
-   their_water = (long long)dest->query_water_volume();
-   their_quantity = (long long)dest->query_ps_quantity();
+   their_vol = (int)dest->query_volume();
+   their_water = (int)dest->query_water_volume();
+   their_quantity = (int)dest->query_ps_quantity();
    new_quantity = quantity + their_quantity;
 
    if (!their_attrs)  /* can't be a potion ... give up */
@@ -1149,10 +1149,10 @@ void transfer_liquid_to(object dest, long long vol_misc, mixed *misc,
       (void)dest->set_volume(their_water + vol_water);
    
    
-   old_coord = (long long *)dest->query_ps_coord();
+   old_coord = (int *)dest->query_ps_coord();
    new_coord = allocate(2);
 /* simple averaging ... */
-   if (polong longerp(ps_coord) && new_quantity) {
+   if (pointerp(ps_coord) && new_quantity) {
       new_coord[0] = (ps_coord[0] * quantity + old_coord[0] * their_quantity) / 
                      new_quantity;
       new_coord[1] = (ps_coord[1] * quantity + old_coord[1] * their_quantity) / 
@@ -1163,11 +1163,11 @@ void transfer_liquid_to(object dest, long long vol_misc, mixed *misc,
 } /* transfer_liquid_to() */
 
 /**
- * This method returns true if the object is open and prlong longs a message
+ * This method returns true if the object is open and prints a message
  * about the open status of the object.
  * @return 1 if it is open, 0 if not
  */
-long long ensure_open()
+int ensure_open()
 {
    if (query_locked()) {
       write("The " + short(1) + " is locked.\n");
@@ -1186,13 +1186,13 @@ long long ensure_open()
 } /* ensure_open() */
 
 /** @ignore yes */
-long long do_pour(object *dest, string me, string him, string prep)
+int do_pour(object *dest, string me, string him, string prep)
 {
-   long long amount_poured, volume_transferred, old_water, old_volume;
+   int amount_poured, volume_transferred, old_water, old_volume;
    string liquid_desc;
 
    if (sizeof(dest) > 1) {
-      write("Currently you can only pour long longo one object\n");
+      write("Currently you can only pour into one object\n");
       return 0;
    }
    
@@ -1217,14 +1217,14 @@ long long do_pour(object *dest, string me, string him, string prep)
    
    if (volume_transferred > dest[0]->query_volume_left()) {
       say(this_player()->short(0) + " attempts to pour from " + add_a(short(0))
-         + " long longo " + add_a(dest[0]->short(0)) + " but ends up spilling "
+         + " into " + add_a(dest[0]->short(0)) + " but ends up spilling "
          + liquid_desc + " all over the ground.\n");
       write(capitalize(liquid_desc) + " spills on the floor as you try to pour "
-         + "from the " + short(0) + " long longo the " + dest[0]->short(0) + ".\n");
+         + "from the " + short(0) + " into the " + dest[0]->short(0) + ".\n");
 
-      amount_poured = (amount_poured * ((long long)dest[0]->query_volume_left())) /
+      amount_poured = (amount_poured * ((int)dest[0]->query_volume_left())) /
                          volume_transferred;
-      volume_transferred = (long long)dest[0]->query_volume_left();
+      volume_transferred = (int)dest[0]->query_volume_left();
    }
    
    transfer_liquid_to(dest[0], volume_transferred * (old_volume - old_water) / old_volume,
@@ -1235,11 +1235,11 @@ long long do_pour(object *dest, string me, string him, string prep)
 }
 
 /** @ignore yes */
-long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
-   long long m, n, i, run_out, volume_needed, their_volume, their_max,
+int do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
+   int m, n, i, run_out, volume_needed, their_volume, their_max,
        amount_poured, ok;
 
-   if (long longp(args[1]) && long longp(args[2])) {
+   if (intp(args[1]) && intp(args[2])) {
       m = args[0];
       n = args[1];
       if (m > n || m < 0 || n <= 0) {
@@ -1272,8 +1272,8 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
    
    run_out = 0;
    for (i = 0; i < sizeof(to) && !run_out; i++) {
-      their_volume = (long long)to[i]->query_volume();
-      their_max = (long long)to[i]->query_max_volume();
+      their_volume = (int)to[i]->query_volume();
+      their_max = (int)to[i]->query_max_volume();
 
       if (their_max <= 0) {
          write("The " + to[i]->short(0) + 
@@ -1297,7 +1297,7 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
       volume_needed -= their_volume;
    
       if (volume_needed > empty_formula()) {
-         write("You drain the " + short(0) + " long longo the " + to[i]->short(0) + 
+         write("You drain the " + short(0) + " into the " + to[i]->short(0) + 
             " but it is not enough.\n");
          volume_needed = empty_formula();
          run_out = 1;
@@ -1305,13 +1305,13 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
       } else {
          this_player()->add_succeeded(to[i]);
 /*
-         write("You pour from the " + short(0) + " long longo the " + 
+         write("You pour from the " + short(0) + " into the " + 
                 to[i]->short(0) + ".\n");
  */
       }
   /* 
       say(this_player()->one_short() + " pours " + query_liquid_short() + 
-         " from the " + short(0) + " long longo the " + to[i]->short(0) + ".\n");
+         " from the " + short(0) + " into the " + to[i]->short(0) + ".\n");
    */ 
       amount_poured = volume_needed * ps_quantity / volume;
       transfer_liquid_to(to[i], volume_needed * (volume - water) / volume,
@@ -1322,9 +1322,9 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
 } /* do_fill() */
 
 /** @ignore yes */
-long long do_drink(object *dest, string me, string him, string prep)
+int do_drink(object *dest, string me, string him, string prep)
 {
-   long long amount_drunk, amount_can_be_drunk;
+   int amount_drunk, amount_can_be_drunk;
 
    if (sizeof(dest)) {
       write("Drinking is a very simple operation - please don't complicate matters.\n");
@@ -1338,8 +1338,8 @@ long long do_drink(object *dest, string me, string him, string prep)
       return 0;
    }
    
-   amount_can_be_drunk = (2000 - (long long)this_player()->query_volume(2)) * 
-      (long long)this_player()->query_con() / 12;
+   amount_can_be_drunk = (2000 - (int)this_player()->query_volume(2)) * 
+      (int)this_player()->query_con() / 12;
   /* should do some fudging to add +/- 5 mls or something */
   /* possibly skill/stat dependant */
    
@@ -1353,7 +1353,7 @@ long long do_drink(object *dest, string me, string him, string prep)
   
    (void)POTION_SPACE_HANDLER->potion_drunk(this_player(), ps_coord, amount_drunk);
    this_player()->adjust_volume(2, volume_to_womble * 12 / 
-      (long long)this_player()->query_con());
+      (int)this_player()->query_con());
    switch ((this_player()->query_volume(2) + 100) / 200) {
    case 5:
       write("You feel mildly full of liquid.\n");
@@ -1378,7 +1378,7 @@ long long do_drink(object *dest, string me, string him, string prep)
 }
 
 /** @ignore yes */
-long long do_empty(object *dest, string me, string him, string prep)
+int do_empty(object *dest, string me, string him, string prep)
 {
    if (sizeof(dest)) {
       write("Passing on to pour ... bad move.\n");
@@ -1386,7 +1386,7 @@ long long do_empty(object *dest, string me, string him, string prep)
    }
 /* this completely fails to work :( ^^^ */
    
-   if (!ensure_open()) { write("It along long open!\n"); return 0; }
+   if (!ensure_open()) { write("It aint open!\n"); return 0; }
 
    if (volume == 0) {
       write("The " + short(0) + " is already empty.\n");
@@ -1403,10 +1403,10 @@ long long do_empty(object *dest, string me, string him, string prep)
 }
 
 /** @ignore yes */
-long long do_splash(object *dest, string me, string him, string prep) {
+int do_splash(object *dest, string me, string him, string prep) {
 /* note that spashing needs to be changed to make the amount that 
    actually gets to the targe be related to some skill ... */
-   long long amount_splashed;
+   int amount_splashed;
 
    if (sizeof(dest) > 1) {
       write("You can only splash one object at a time.\n");
@@ -1429,8 +1429,8 @@ long long do_splash(object *dest, string me, string him, string prep) {
 }
 
 /** @ignore yes */
-long long do_rub(object *dest, string me, string him, string prep) {
-   long long amount_rubbed;
+int do_rub(object *dest, string me, string him, string prep) {
+   int amount_rubbed;
 
    if (sizeof(dest) > 1) {
       write("You can only "+query_verb()+" on to one object at a time.\n");
@@ -1464,11 +1464,11 @@ void do_apply(object *dest, string me, string him, string prep ) {
 
 #define TASTE_AMOUNT 5
 /** @ignore yes */
-long long do_taste() {
-   long long amount_tasted;
+int do_taste() {
+   int amount_tasted;
    string desc;
    mixed *group;
-   long long i;
+   int i;
    /* be kind to tasters! */
  
    if (!ensure_open()) return 0;
@@ -1489,18 +1489,18 @@ long long do_taste() {
          group += all_attrs[POTION_FLAVOURS][i][0..0];
       
       if (sizeof(group)) {
-         desc += " tastes of " + query_multiple_short(group);
+         desc += " tastes of " + sprintf("%O", (group);
          if (i < sizeof(all_attrs[POTION_FLAVOURS]) && 
              all_attrs[POTION_FLAVOURS][i][1] >= VERY_SMALL_AMOUNT)
-            desc += " with a falong long hlong long of ";
-      } else desc += " tastes falong longly of ";
+            desc += " with a faint hint of ";
+      } else desc += " tastes faintly of ";
       
       group = ({ });
       for (; i < sizeof(all_attrs[POTION_FLAVOURS]) && 
            all_attrs[POTION_FLAVOURS][i][1] >= VERY_SMALL_AMOUNT; i++)
          group += all_attrs[POTION_FLAVOURS][i][0..0];
       
-      if (sizeof(group)) desc += query_multiple_short(group);
+      if (sizeof(group)) desc += sprintf("%O", (group);
    }
    write(desc + ".\n");
    say(this_player()->one_short() + " takes a small sip from the " +
@@ -1512,11 +1512,11 @@ long long do_taste() {
 }
  
 /** @ignore yes */
-long long do_smell()
+int do_smell()
 {
    string desc;
    string *group;
-   long long i;
+   int i;
    /* be kind to smellers! */
    
    if (!ensure_open()) return 0;
@@ -1537,18 +1537,18 @@ long long do_smell()
          group += all_attrs[POTION_SMELLS][i][0..0];
       
       if (sizeof(group)) {
-         desc += " smells of " + query_multiple_short(group);
+         desc += " smells of " + sprintf("%O", (group);
          if (i < sizeof(all_attrs[POTION_SMELLS]) && 
              all_attrs[POTION_SMELLS][i][1] >= VERY_SMALL_AMOUNT)
-            desc += " with a falong long hlong long of ";
-      } else desc += " smells falong longly of ";
+            desc += " with a faint hint of ";
+      } else desc += " smells faintly of ";
       
       group = ({ });
       for (; i < sizeof(all_attrs[POTION_SMELLS]) && 
            all_attrs[POTION_SMELLS][i][1] >= VERY_SMALL_AMOUNT; i++)
          group += all_attrs[POTION_SMELLS][i][0..0];
       
-      if (sizeof(group)) desc += query_multiple_short(group);
+      if (sizeof(group)) desc += sprintf("%O", (group);
    }
    write(desc + ".\n");
    say(this_player()->one_short() + " takes a whiff of the " +
@@ -1559,10 +1559,10 @@ long long do_smell()
 }
  
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   mapping tmp;
 
-  tmp = ::long long_query_static_auto_load();
+  tmp = ::int_query_static_auto_load();
   return ([ "::" : tmp,
             "leak rate" : leak_rate,
             "full weight" : full_weight,
@@ -1575,7 +1575,7 @@ mapping long long_query_static_auto_load() {
             "trap lock ob" : query_lock_trap_ob(),
             "max volume" : max_volume,
           ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 /** @ignore yes */
 mapping query_dynamic_auto_load() {
@@ -1681,7 +1681,7 @@ void init_static_arg(mapping args) {
 mixed query_static_auto_load() {
   if (!query_name() || query_name() == "object") return 0;
   if (file_name(this_object())[0..13] == "/obj/container")
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   return ([ ]);
 } /* query_static_auto_load() */
 
@@ -1695,24 +1695,24 @@ mixed query_static_auto_load() {
  * @param flag the addition flag
  * @see /std/basic/move.c
  */
-long long test_add(object ob, long long flag) {
+int test_add(object ob, int flag) {
   return !query_closed() && !flag;
 } /* test_addd() */
 
 /** @ignore yes */
-long long can_find_match_recurse_long longo(object looker) {
+int can_find_match_recurse_into(object looker) {
    if (query_closed()) {
       return 0;
    }
-   return ::can_find_match_recurse_long longo(looker);
-} /* can_find_match_recurse_long longo() */
+   return ::can_find_match_recurse_into(looker);
+} /* can_find_match_recurse_into() */
 
 /** @ignore yes */
-long long test_remove(object ob, long long flag) { return !query_closed(); }
+int test_remove(object ob, int flag) { return !query_closed(); }
 
 /** @ignore yes */
-varargs long long move(mixed dest, string messin, string messout) {
-   long long result;
+varargs int move(mixed dest, string messin, string messout) {
+   int result;
    object from;
    object to;
 

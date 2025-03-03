@@ -12,9 +12,9 @@ inherit "std/object";
 
 mixed *bit_data, *bits;
 mixed race_ob;
-long long corpse_weight;
+int corpse_weight;
 string race_name, *bits_gone = ({ });
-long long decay, cured;
+int decay, cured;
 
 void set_bits();
 object make_bit(string which_bit);
@@ -43,7 +43,7 @@ void init() {
  * This method checks to see if the bit is edible or not.
  * @return 1 if it is edible, 0 if not
  */
-long long query_edible() {
+int query_edible() {
   string bit;
   
   if(!race_ob->query_eat(bit_data[BIT_NAME])) {
@@ -59,10 +59,10 @@ long long query_edible() {
 } /* query_edible() */
 
 /** 
- * The main eat entry polong long.
+ * The main eat entry point.
  * @return 1 on success, 0 on failure
  */
-long long do_eat() {
+int do_eat() {
   if(!query_edible())
     return 0;
   move( "/room/rubbish" );
@@ -74,7 +74,7 @@ long long do_eat() {
  * Like trolls teeth and other such things.
  * @return 1 if it cannot decay, 0 if it can
  */
-long long no_decay() {
+int no_decay() {
   if( race_ob && bit_data ) {
     return race_ob->query_unrottable(bit_data[BIT_NAME]);
   }
@@ -177,7 +177,7 @@ void setup_long() {
 
 string extra_look() {
   if(sizeof(bits_gone))
-    return "It appears to be missing the " + query_multiple_short(bits_gone) + ".\n";
+    return "It appears to be missing the " + sprintf("%O", (bits_gone) + ".\n";
   return "";
 }
 
@@ -185,15 +185,15 @@ string extra_look() {
  * This method sets the weight of the bit.
  * @param i the weight of the bit
  */
-void set_corpse_weight(long long i) { corpse_weight = i; }
+void set_corpse_weight(int i) { corpse_weight = i; }
 
 /**
  * This method sets the bit that this actually is.
  * @param s the name of the bit
  * @param dec the current decay numbe
  */
-void set_bit(string s, long long dec) {
-  long long temp;
+void set_bit(string s, int dec) {
+  int temp;
 
   bit_data = (mixed *)race_ob->query_bit(s);
   if (!bit_data || !sizeof(bit_data)) {
@@ -205,7 +205,7 @@ void set_bit(string s, long long dec) {
     add_adjective("unknown");
   }
   add_adjective( explode( s, " " ) );
-  if ( polong longerp( bit_data[ BIT_EXTRA ][ EXTRA_VALUE ] ) &&
+  if ( pointerp( bit_data[ BIT_EXTRA ][ EXTRA_VALUE ] ) &&
        ( sizeof( bit_data[ BIT_EXTRA ][ EXTRA_VALUE ] ) > 3 ) ) {
     set_value(bit_data[BIT_EXTRA][EXTRA_VALUE][3]);
   }
@@ -239,15 +239,15 @@ void set_bit(string s, long long dec) {
  * decaying of the object.
  * @return 1 if it still exists, 0 if it has finished decaying
  */
-long long do_decay() {
-  long long rate;
+int do_decay() {
+  int rate;
 
   if (!environment()) {
     move( "/room/rubbish" );
     return 0;
   }
 
-  rate = 5 + (long long)environment()->query_property( "decay rate" );
+  rate = 5 + (int)environment()->query_property( "decay rate" );
   if ( rate > 0 ) {
     decay -= rate;
   }
@@ -288,7 +288,7 @@ mixed query_bit_data() { return bit_data; }
  * This method returns the current decay level of the corpse
  * @return the current decay level
  */
-long long query_decay() { return decay; }
+int query_decay() { return decay; }
 
 /** @ignore yes */
 void dest_me() {
@@ -298,7 +298,7 @@ void dest_me() {
 
 /** @ignore yes */
 mixed query_static_auto_load() {
-  return long long_query_static_auto_load();
+  return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /** @ignore yes */
@@ -349,14 +349,14 @@ void do_cure() {
  * This returns the cured state of the bit.
  * @return 1 if it is cured, 0 if not
  */
-long long query_cured() { return cured; }
+int query_cured() { return cured; }
 
 /**
  * This method returns the vector used with the potion space.  I 
  * think this call is now obsolete and not used.
  * @return the vectorof the bit
  */
-long long *query_vect() { return bit_data[BIT_EXTRA][EXTRA_VALUE]; }
+int *query_vect() { return bit_data[BIT_EXTRA][EXTRA_VALUE]; }
 
 /**
  * This method returns the possible bits that can be removed
@@ -366,7 +366,7 @@ long long *query_vect() { return bit_data[BIT_EXTRA][EXTRA_VALUE]; }
  * @return the list of possible bits
  */
 string *query_possible_bits( string word ) {
-  long long i, j;
+  int i, j;
   string *possibles;
 
   possibles = ({ });
@@ -394,7 +394,7 @@ string *query_possible_bits( string word ) {
  * @return the array of possible bit names
  */
 string *query_possible_plural_bits( string word ) {
-  long long i, j;
+  int i, j;
   string *possibles;
 
   possibles = ({ });
@@ -461,7 +461,7 @@ string *query_bit_left_pl(string s) {
 object *find_inv_match( string s, object looker ) {
   string bit, *bit_pl;
   object *weap, wep, tmp;
-  long long cut;
+  int cut;
 
   bit = query_bit_left(s);
   bit_pl = query_bit_left_pl(s);
@@ -529,7 +529,7 @@ object *find_inv_match( string s, object looker ) {
 object make_bit(string which_bit) {
   mixed *bit;
   object bitobj;
-  long long i,j;
+  int i,j;
 
   bit = race_ob->query_bit(which_bit);
   if ((sizeof(bit[2][2]) > 1) && stringp(bit[2][2][1])) {
@@ -587,14 +587,14 @@ string *query_bits_gone() { return bits_gone; }
 mixed *add_bit_gone( string bit ) {
   string *poss_bits, tempbit;
   mixed *bit_details;
-  long long i;
+  int i;
 
   poss_bits = query_possible_bits( bit ) - bits_gone;
   if ( !sizeof( poss_bits ) ) return 0;
   bit_details = (mixed *)race_ob->query_bit( poss_bits[ 0 ] );
   bits_gone += ({ bit_details[ BIT_NAME ] });
   foreach (tempbit in bit_details[ BIT_EXTRA ][ 3 .. sizeof(bit_details[BIT_EXTRA]) ]) {
-    if (arrayp(race_ob->query_bit( tempbit )[2][2]) && long longp(race_ob->query_bit( tempbit )[2][2][1])) {
+    if (arrayp(race_ob->query_bit( tempbit )[2][2]) && intp(race_ob->query_bit( tempbit )[2][2][1])) {
       for (i = 0; i < race_ob->query_bit( tempbit )[2][2][1]; i++) {
         bits_gone += ({ tempbit });
       }
@@ -608,7 +608,7 @@ mixed *add_bit_gone( string bit ) {
  * @param bits the set of bits gone to set
  */
 void set_bits_gone( string *bits ) {
-  long long i;
+  int i;
 
   bits_gone = ({ });
   for ( i = 0; i < sizeof( bits ); i++ ) {
@@ -621,7 +621,7 @@ void set_bits_gone( string *bits ) {
  * @return the array of bits left
  */
 string *query_bits_left() {
-  long long i, j;
+  int i, j;
   string *all_bits;
   mixed *bit_pl;
 
@@ -643,7 +643,7 @@ string *query_bits_left() {
  * This method sets all the basic bits for the bit when it is first created.
  */
 void set_bits() {
-  long long i, j;
+  int i, j;
   mixed *these_bits, *all_bits;
 
   bits = ({ });
@@ -682,7 +682,7 @@ string query_medium_alias() {
     return temp + "Of" + capitalize( race_ob->query_name() ) ;
 }
 
-long long query_collective() {
+int query_collective() {
   if(query_verb() == "get" || query_verb() == "take")
     return 1;
 }

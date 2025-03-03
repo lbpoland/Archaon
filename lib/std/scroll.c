@@ -1,6 +1,6 @@
 inherit "/std/object";
 
-long long num_pages, open_page;
+int num_pages, open_page;
 mixed *pages;
 
 void create() {
@@ -14,7 +14,7 @@ void init() {
   add_command("scroll", "<word'forward|backward'>", (:this_object()->do_scroll($4[0]):));
 } /* init() */
 
-void set_read_mess( string mess, string lang, long long size ) {
+void set_read_mess( string mess, string lang, int size ) {
   pages[ open_page ] = ({ mess, lang, size });
   ::set_read_mess( mess, lang, size );
 } /* set_read_mess() */
@@ -24,14 +24,14 @@ void add_read_mess( string mess, string type, string lang, string size ) {
   ::set_read_mess( mess, lang, size );
 } /* add_read_mess( mess, type, lang, size ) */
 
-long long query_num_pages() { return num_pages; }
+int query_num_pages() { return num_pages; }
 
-void set_num_pages( long long number ) { num_pages = number; }
+void set_num_pages( int number ) { num_pages = number; }
 
-long long query_open_page() { return open_page; }
+int query_open_page() { return open_page; }
 
-void set_open_page( long long number ) {
-  long long size;
+void set_open_page( int number ) {
+  int size;
   string mess, lang;
   mixed *text;
   if ( ( number < 0 ) || ( number > num_pages ) )
@@ -47,7 +47,7 @@ void set_open_page( long long number ) {
   ::set_read_mess( mess, lang, size );
 } /* set_num_pages() */
 
-long long do_scroll( string word ) {
+int do_scroll( string word ) {
   if ( ( word != "forward" ) && ( word != "backward" ) ) {
     notify_fail( "Syntax: scroll forward|backward\n" );
     return 0;
@@ -89,18 +89,18 @@ mapping query_auto_dynamic_load() {
   ]);
 } /* query_auto_dynamic_load() */
 
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   return ([
-    "::": ::long long_query_static_auto_load(),
+    "::": ::int_query_static_auto_load(),
     "num_pages": num_pages,
     "pages": pages
   ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 mixed query_static_auto_load() {
   if ( ( file_name( this_object() ) )[ 0 .. 10 ] != "/std/scroll" )
     return 0;
-  return long long_query_static_auto_load();
+  return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 void init_dynamic_arg( mapping args ) {

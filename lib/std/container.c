@@ -19,14 +19,14 @@ inherit "/std/basic/cute_look";
 inherit "/std/basic/export_inventory";
 inherit "/global/auto_load";
 
-private nosave long long _max_weight;
-private nosave long long _loc_weight;
-private nosave long long _max_items;
-private nosave long long _prevent_insert;
+private nosave int _max_weight;
+private nosave int _loc_weight;
+private nosave int _max_items;
+private nosave int _prevent_insert;
 private nosave string _ownership;
 private nosave object _player;
-private nosave long long _n_tracked_items;
-private nosave long long _tracking;
+private nosave int _n_tracked_items;
+private nosave int _tracking;
 
 void create() {
   registered_containers = ({ });
@@ -42,7 +42,7 @@ void create() {
  * @return the maximum number of items
  * @see set_max_items()
  */
-long long query_max_items() {
+int query_max_items() {
   if(_max_items)
     return _max_items;
   if(_max_weight)
@@ -56,7 +56,7 @@ long long query_max_items() {
  * @param number the new maximum number of items
  * @see query_max_items()
  */
-void set_max_items( long long number ) { _max_items = number; }
+void set_max_items( int number ) { _max_items = number; }
 
 /**
  * This method returns the maximum amount of weight that can
@@ -64,7 +64,7 @@ void set_max_items( long long number ) { _max_items = number; }
  * @return the maximum weight
  * @see set_max_weight()
  */
-long long query_max_weight() { return _max_weight; }
+int query_max_weight() { return _max_weight; }
 
 /**
  * This method sets the maximum amount of weight that can
@@ -72,14 +72,14 @@ long long query_max_weight() { return _max_weight; }
  * @param number the new maximum weight
  * @see query_max_weight()
  */
-void set_max_weight( long long number ) { _max_weight = number; }
+void set_max_weight( int number ) { _max_weight = number; }
 
 /**
  * This method returns the current local weight in this
  * container.
  * @return the local weight
  */
-long long query_loc_weight() { return _loc_weight; }
+int query_loc_weight() { return _loc_weight; }
 
 /**
  * This method determins the current local weight from all the
@@ -91,7 +91,7 @@ void update_loc_weight() {
 
    _loc_weight = 0;
    foreach ( thing in all_inventory( this_object() ) )
-      _loc_weight += (long long)thing->query_complete_weight();
+      _loc_weight += (int)thing->query_complete_weight();
 } /* update_loc_weight() */
 
 /**
@@ -102,7 +102,7 @@ void update_loc_weight() {
  * @see /std/basic/misc->query_weight()
  * @see query_loc_weight()
  */
-long long query_complete_weight() {
+int query_complete_weight() {
    return ::query_complete_weight() + _loc_weight;
 } /* query_complete_weight() */
 
@@ -113,7 +113,7 @@ long long query_complete_weight() {
  * @param n the amount to add
  * @see /std/basic/misc->query_weight()
  */
-long long add_weight( long long n ) {
+int add_weight( int n ) {
 #ifdef 0
   // This shouldn't be here should it? 
   if ( _prevent_insert )
@@ -165,8 +165,8 @@ void set_ownership( string word ) {
  * @see /std/basic/move.c
  * @return 1 if it can be taken out, 0 if not.
  */
-long long test_remove( object thing, long long flag, mixed dest ) {
-  long long player;
+int test_remove( object thing, int flag, mixed dest ) {
+  int player;
   string str;
 
   if( !_ownership || !this_player() ) {
@@ -223,13 +223,13 @@ long long test_remove( object thing, long long flag, mixed dest ) {
 } /* test_remove() */
 
 /**
- * This method allows things to be added long longo us.  If we have an 
- * environment check that for the ability to add long longo us.
+ * This method allows things to be added into us.  If we have an 
+ * environment check that for the ability to add into us.
  * @param ob the object being added
  * @param flag the add flags
  * @see /std/basic/move.c
  */
-long long test_add(object ob, long long flag) {
+int test_add(object ob, int flag) {
 
   if(!_max_weight && !_max_items)
     return 1;
@@ -261,26 +261,26 @@ long long test_add(object ob, long long flag) {
 }
 
 /**
- * items21 stops this container from being put long longo other containers.
+ * items21 stops this container from being put into other containers.
  * @see reset_prevent_insert()
  * @see query_prevent_insert()
  */
-long long set_prevent_insert() { _prevent_insert = 1; }
+int set_prevent_insert() { _prevent_insert = 1; }
 /**
- * This allows this container to be put long longo other containers (default).
+ * This allows this container to be put into other containers (default).
  * @see set_prevent_insert()
  * @see query_prevent_insert()
  */
-long long reset_prevent_insert() { _prevent_insert = 0; }
+int reset_prevent_insert() { _prevent_insert = 0; }
 /**
- * If this is true, this container cannot be put long longo other containers.
+ * If this is true, this container cannot be put into other containers.
  * @see reset_prevent_insert()
  * @see set_prevent_insert()
  */
-long long query_prevent_insert() { return _prevent_insert; }
+int query_prevent_insert() { return _prevent_insert; }
 
 /** @ignore yes */
-varargs long long move(mixed dest, mixed messin, mixed messout) {
+varargs int move(mixed dest, mixed messin, mixed messout) {
   if (_prevent_insert && _loc_weight && !living(dest) && environment(dest))
     return MOVE_INVALID_DEST;
 
@@ -290,7 +290,7 @@ varargs long long move(mixed dest, mixed messin, mixed messout) {
 /**
  * This method finds the matching objects inside this object
  * that are visible to the looker.  This will also use the
- * registered containers and add them long longo the array returned
+ * registered containers and add them into the array returned
  * (if visible and contained in the object).
  * @see /secure/simul_efun->find_match()
  * @param words the words matched on
@@ -314,9 +314,9 @@ object *find_inv_match( string words, object looker ) {
  * MOVE_OK.  This can do whatever we want to make it work in a more useful
  * fashion.
  */
-long long do_restore_inventory_error(object ob, long long move_flag) {
+int do_restore_inventory_error(object ob, int move_flag) {
    object receipt;
-   long long ret;
+   int ret;
 
    receipt = clone_object(PLAYER_RECEIPT);
    receipt->setup_receipt(ob);
@@ -334,21 +334,21 @@ long long do_restore_inventory_error(object ob, long long move_flag) {
 } /* do_restore_inventory_error() */
 
 /**
- * This method handles moving objects long longo the inventory from an auto
+ * This method handles moving objects into the inventory from an auto
  * load.  This should be over ridden by things inheriting us to
- * make sure that the objects can be moved long longo the inventory.  It
+ * make sure that the objects can be moved into the inventory.  It
  * should handle the bypassing of open/close/locked etc flags.
- * @param ob the object to move long longo ourselves
+ * @param ob the object to move into ourselves
  */
-protected long long handle_restore_inventory(object ob) {
+protected int handle_restore_inventory(object ob) {
   /* The standard container needs to do nothing special. */
-  long long move_flag;
+  int move_flag;
 
   ob->disable_item_tracking();
   move_flag = ob->move(this_object());
   ob->enable_item_tracking();
   if (move_flag != MOVE_OK) {
-     // Turn it long longo a receipt and pop it in there ourselves.
+     // Turn it into a receipt and pop it in there ourselves.
      move_flag = do_restore_inventory_error(ob, move_flag);
   }
   return move_flag;
@@ -365,16 +365,16 @@ mixed stats() {
 } /* stats() */
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   mapping tmp;
-  tmp = ::long long_query_static_auto_load();
+  tmp = ::int_query_static_auto_load();
   return ([
      "::" : tmp,
      "max weight" : _max_weight,
      "prevent insert" : _prevent_insert,
      "can export inventory" : query_can_export_inventory(),
   ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 /** @ignore yes */
 mapping query_dynamic_auto_load() {
@@ -443,7 +443,7 @@ nomask void event_container_move( object mover, mixed from, mixed to ) {
  * @param to     destination
  */
 void event_move_object( mixed from, mixed to ) {
-  if (_n_tracked_items && _tracking && !long longeractive()) {
+  if (_n_tracked_items && _tracking && !interactive()) {
     all_inventory()->event_container_move( this_object(), from, to );
     if (objectp(from)) from->remove_tracked_items( _n_tracked_items );   
     if (objectp( to )) to->add_tracked_items( _n_tracked_items );   
@@ -469,7 +469,7 @@ nomask void set_tracked_item_status_reason(string reason) {
  * @see remove_tracked_items
  * @see event_container_move
  */
-nomask void add_tracked_items( long long n_items ) {
+nomask void add_tracked_items( int n_items ) {
    _n_tracked_items += n_items;
    if (environment()) environment()->add_tracked_items( n_items );
 }
@@ -481,7 +481,7 @@ nomask void add_tracked_items( long long n_items ) {
  * @see add_tracked_items
  * @see event_container_move
  */
-nomask void remove_tracked_items( long long n_items ) {
+nomask void remove_tracked_items( int n_items ) {
   _n_tracked_items -= n_items;
   if (environment()) environment()->remove_tracked_items( n_items );
 }
@@ -492,7 +492,7 @@ nomask void remove_tracked_items( long long n_items ) {
  * @see add_tracked_items
  * @see event_container_move
  */
-nomask long long query_tracked_items() {
+nomask int query_tracked_items() {
   return _n_tracked_items;
 }
 
@@ -501,7 +501,7 @@ nomask long long query_tracked_items() {
  * @param looker the person doing the checking
  * @return 1 on success, 0 on failur
  */
-long long can_find_match_recurse_long longo(object looker) {
+int can_find_match_recurse_into(object looker) {
    object env;
 
    //
@@ -515,7 +515,7 @@ long long can_find_match_recurse_long longo(object looker) {
       env = environment(looker);
    }
    return env == looker || env == environment(looker);
-} /* can_find_match_recurse_long longo() */
+} /* can_find_match_recurse_into() */
 
 /**
  * This method checks to see if the find match code can actually
@@ -524,7 +524,7 @@ long long can_find_match_recurse_long longo(object looker) {
  * @param looker the person looking at it
  * @return 1 if they can, 0 if they cannot
  */
-long long can_find_match_reference_inside_object(object thing, object looker) {
+int can_find_match_reference_inside_object(object thing, object looker) {
    return 1;
 } /* can_find_match_reference_inside_object() */
 
@@ -574,7 +574,7 @@ void init_static_arg( mapping bing ) {
 /** @ignore yes */
 mixed query_static_auto_load() {
   if (file_name(this_object())[0..13] == "/std/container") {
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   }
   return ([ ]);
 } /* query_static_auto_load() */

@@ -13,8 +13,8 @@
  */
 inherit "/obj/baggage";
 
-long long query_value() {
-  long long value;
+int query_value() {
+  int value;
   object ob;
 
   value = ::query_value();
@@ -28,6 +28,6 @@ long long query_value() {
 /** @ignore yes */
 mixed query_static_auto_load() {
   if ( base_name(this_object()) + ".c" == __FILE__ )
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   return ([ ]);
 }

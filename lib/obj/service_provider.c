@@ -23,16 +23,16 @@ inherit "/obj/monster";
 #define COST     3
 #define ALIASES  4
 
-private long long parsing_function( mixed *array , string words );
+private int parsing_function( mixed *array , string words );
 
-long long _busy;
+int _busy;
 mixed *_service_array = ({ });
 
 void set_busy()   { _busy = 1; }
 
 void reset_busy() { _busy = 0; }
 
-varargs long long check_busy( object player )
+varargs int check_busy( object player )
 {
     if( _busy || sizeof( query_queued_commands() ) )
     {
@@ -76,8 +76,8 @@ void init()
  * @param *aliases an array of aliases for this service.
  * @return 1 on success, 0 on failure
  */
-varargs long long add_service( string service , string browse_info ,
-    string func, long long cost, string *aliases )
+varargs int add_service( string service , string browse_info ,
+    string func, int cost, string *aliases )
 {
     string *alias_array;
 
@@ -99,7 +99,7 @@ varargs long long add_service( string service , string browse_info ,
  * @param string service to be removed
  * @return 1 on successful removal, 0 on failure
  **/
-long long remove_service( string service )
+int remove_service( string service )
 {
     mixed *things;
     things = filter( _service_array, (: $1[SERVICE]==$(service) :) );
@@ -114,7 +114,7 @@ long long remove_service( string service )
  * The main entrance to the browse for things command.
  * @return 1 on success, 0 on failure
  **/
-long long do_browse( mixed indirect_obs, string dir_match, string indir_match,
+int do_browse( mixed indirect_obs, string dir_match, string indir_match,
     string *words )
 {
     string place;
@@ -151,12 +151,12 @@ long long do_browse( mixed indirect_obs, string dir_match, string indir_match,
  * The main entrance to the buy things command.
  * @return 1 on success, 0 on failure
  **/
-long long do_request( mixed indirect_obs, string dir_match, string indir_match,
+int do_request( mixed indirect_obs, string dir_match, string indir_match,
       string *words )
 {
     mixed *things;
     object player;
-    long long value;
+    int value;
     string place;
 
     player = this_player();
@@ -197,10 +197,10 @@ long long do_request( mixed indirect_obs, string dir_match, string indir_match,
  * The main entrance to the list stuff command.
  * @return 1 on success, 0 on failure
  **/
-long long do_list()
+int do_list()
 {
     string place, list;
-    long long i,number;
+    int i,number;
 
     number = sizeof( _service_array );
 
@@ -241,7 +241,7 @@ long long do_list()
  * This function is used in matching strings to elements of the service
  * array.
  **/
-private long long parsing_function( mixed *array , string word )
+private int parsing_function( mixed *array , string word )
 {
     /* Does it match the service name? */
     if ( array[SERVICE] == word ) return 1;

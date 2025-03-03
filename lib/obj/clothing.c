@@ -15,8 +15,8 @@ inherit "/std/basic/close_lock";
 
 string pocket_mess;
 mixed *pockets;
-nosave long long biggest;
-long long _is_pair = 0;
+nosave int biggest;
+int _is_pair = 0;
 
 /** @ignore yes */
 void create() {
@@ -47,7 +47,7 @@ void create() {
  * This method will return true if the item is an item of clothing.
  * @return always returns true
  */
-long long query_clothing() { return 1; }
+int query_clothing() { return 1; }
 
 string query_pronoun()  {
    if (!_is_pair)
@@ -63,17 +63,17 @@ string query_objective()  {
 }
 
 
-void set_is_pair(long long comes_in_pairs)  {
+void set_is_pair(int comes_in_pairs)  {
    _is_pair = comes_in_pairs;
    if (_is_pair)
       add_adjective(({ "pair", "of" }));
 }
 
-long long query_is_pair() { return _is_pair; }
+int query_is_pair() { return _is_pair; }
 
 /** @ignore yes */
-string long( string word, long long dark ) {
-   long long i;
+string long( string word, int dark ) {
+   int i;
    string ret, *sizes;
    mapping types;
 
@@ -88,7 +88,7 @@ string long( string word, long long dark ) {
          sizes[ i ] = query_num( types[ sizes[ i ] ] ) +" "+ sizes[ i ] +
                " pocket"+ ( types[ sizes[ i ] ] > 1 ? "s" : "" );
       }
-      ret += "$C$"+ the_short() +" has "+ query_multiple_short( sizes ) +".\n"+
+      ret += "$C$"+ the_short() +" has "+ sprintf("%O", ( sizes ) +".\n"+
             query_contents( "It contains: " );
       ret += close_lock::long_status();
    }
@@ -101,7 +101,7 @@ varargs string pretty_short( object thing ) {
    string short_stat = close_lock::short_status();
 
    if( arrayp( pshort ) ) {
-      for( long long i = 0; i < sizeof( pshort ); ++i ) {
+      for( int i = 0; i < sizeof( pshort ); ++i ) {
          pshort[i] = short_stat + pshort[i];
       }
    } else {
@@ -117,7 +117,7 @@ varargs string pretty_plural( object thing ) {
    string short_stat = close_lock::short_status();
 
    if( arrayp( plural ) ) {
-      for( long long i = 0; i < sizeof( plural ); ++i ) {
+      for( int i = 0; i < sizeof( plural ); ++i ) {
          plural[i] = short_stat + plural[i];
       }
    } else {
@@ -160,7 +160,7 @@ mixed *query_pockets() { return pockets; }
  * @see query_pockets()
  */
 void remove_pockets() {
-  for( long long i = 0; i < sizeof( pockets ); i+=2 ) {
+  for( int i = 0; i < sizeof( pockets ); i+=2 ) {
     set_max_weight( query_max_weight() - pockets[ i+1 ] );
   }
 
@@ -212,7 +212,7 @@ void remove_pockets() {
  * @see set_pocket_mess()
  * @see query_pocket_mess()
  */
-void add_pocket( string type, long long amount ) {
+void add_pocket( string type, int amount ) {
    if ( !type || ( type == "" ) || ( amount < 1 ) ) {
       return;
    }
@@ -224,8 +224,8 @@ void add_pocket( string type, long long amount ) {
 } /* add_pocket() */
 
 /** @ignore yes */
-long long test_add( object thing, long long flag ) {
-   long long i;
+int test_add( object thing, int flag ) {
+   int i;
 
    if ( !sizeof( pockets )  || flag ) {
       return 0;
@@ -240,7 +240,7 @@ long long test_add( object thing, long long flag ) {
          }
       }
    }
-   if ( (long long)thing->query_complete_weight() > biggest ) {
+   if ( (int)thing->query_complete_weight() > biggest ) {
       return write( (string)thing->the_short() +" is too big "+
             "to fit in any of "+ the_short() +"'s pockets.\n" );
    }
@@ -248,15 +248,15 @@ long long test_add( object thing, long long flag ) {
 } /* test_add() */
 
 /** @ignore yes */
-long long can_find_match_recurse_long longo(object looker) {
+int can_find_match_recurse_into(object looker) {
    if (query_closed()) {
       return 0;
    }
-   return ::can_find_match_recurse_long longo(looker);
-} /* can_find_match_recurse_long longo() */
+   return ::can_find_match_recurse_into(looker);
+} /* can_find_match_recurse_into() */
 
 /** @ignore yes */
-long long query_ac( string type, long long amount ) {
+int query_ac( string type, int amount ) {
    do_damage( type, amount );
    return 0;
 } /* query_ac() */
@@ -265,22 +265,22 @@ long long query_ac( string type, long long amount ) {
  * This method sets up the condition for the clothing.
  * @param number the maximum condition for the clothing
  */
-void setup_clothing( long long number ) {
+void setup_clothing( int number ) {
    set_max_cond( number );
    set_cond( number );
    set_lowest_cond( number );
 } /* setup_clothing() */
 
 /** @ignore yes */
-long long query_value() {
+int query_value() {
    return modify_value( container::query_value() );
 } /* query_value() */
 
 /** @ignore yes */
-long long query_full_value() { return container::query_value(); }
+int query_full_value() { return container::query_value(); }
 
 /** @ignore yes */
-long long drop(mixed stuff) {
+int drop(mixed stuff) {
    if ( worn_by ) {
       if ( living( worn_by ) ) {
          return 1;
@@ -290,8 +290,8 @@ long long drop(mixed stuff) {
 } /* drop() */
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long flag;
+varargs int move( mixed dest, string messin, string messout ) {
+   int flag;
    object from;
 
    from = environment();
@@ -339,7 +339,7 @@ void break_me() {
 
 /** @ignore yes */
 mixed *stats() {
-   long long i;
+   int i;
    mixed *ret;
    ret = container::stats() + wearable::stats();
    for ( i = 0; i < sizeof( pockets ); i += 2 ) {
@@ -349,9 +349,9 @@ mixed *stats() {
 } /* stats() */
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : container::long long_query_static_auto_load(),
+      "::" : container::int_query_static_auto_load(),
       "wear" : wearable::query_static_auto_load(),
       "pocket mess" : pocket_mess,
       "pockets" : pockets,
@@ -372,7 +372,7 @@ mapping query_static_auto_load() {
    if ( base_name(this_object()) != __FILE__[0..<3]) {
       return ([ ]);
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /** @ignore yes */

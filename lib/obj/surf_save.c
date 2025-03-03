@@ -31,13 +31,13 @@ void create() {
    ::create();
 } /* create() */
 
-long long test_remove( object ob, long long flag) {
+int test_remove( object ob, int flag) {
    if ( find_call_out( "do_save" ) == -1 )
       call_out( "do_save", 0 );
    return 1;
 } /* test_remove() */
 
-long long test_add( object ob, long long flag) {
+int test_add( object ob, int flag) {
    if ( find_call_out( "do_save" ) == -1 )
       call_out( "do_save", 0 );
    return 1;

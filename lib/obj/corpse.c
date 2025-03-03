@@ -12,8 +12,8 @@ inherit "/std/container";
 inherit "/std/living/carrying";
 inherit "/std/basic/virtual_quit_control";
 
-private long long _decay;
-private long long _corpse_id;
+private int _decay;
+private int _corpse_id;
 private string _owner;
 private string _race_ob;
 private string _race_name;
@@ -30,7 +30,7 @@ void set_decay_messages();
 void remove_creator_corpse( object ob );
 
 void set_race_ob(string _race_ob);
-long long query_corpse() {
+int query_corpse() {
   return 1;
 }
 
@@ -38,14 +38,14 @@ long long query_corpse() {
  * This method returns the id associated with the corpse.
  * @return the corpse id
  */
-long long query_corpse_id() {
+int query_corpse_id() {
    return _corpse_id;
 }
 
-long long query_decay() {
+int query_decay() {
   return _decay;
 }
-void set_decay(long long dec) {
+void set_decay(int dec) {
   _decay = dec;
 }
 
@@ -76,7 +76,7 @@ string query_name() {
 
 string *remove_array_parts(string *a1,
                            string *a2) {
-  long long i;
+  int i;
   string a;
 
   if (sizeof(a2))
@@ -116,7 +116,7 @@ void setup() {
 /** @ignore yes */
 string extra_look() {
   if(sizeof(_removed))
-    return "It appears to be missing its " + query_multiple_short(_removed) +
+    return "It appears to be missing its " + sprintf("%O", (_removed) +
       ".\n";
   return "";
 }
@@ -126,7 +126,7 @@ void give_permission(string words) {
 }
 
 
-long long get(mixed dest) {
+int get(mixed dest) {
   if (query_property("player") && dest) {
     if (!this_player())
       return::get(dest);
@@ -147,10 +147,10 @@ long long get(mixed dest) {
  * they're both PK and record a theft event.
  *
  */
-long long test_remove(object thing,
-                long long flag,
+int test_remove(object thing,
+                int flag,
                 mixed dest) {
-  long long i;
+  int i;
 
   if (base_name(environment()) == "/room/rubbish") {
     return 1;
@@ -193,7 +193,7 @@ long long test_remove(object thing,
 }                               /* test_remove() */
 
 string long(string words,
-            long long dark) {
+            int dark) {
   if (dark == 2 || dark == -2) {
     if (query_living_contents(0) != "") {
       return::long(words, dark) + "Carrying, wearing or holding some "
@@ -258,7 +258,7 @@ void set_owner(string words, object thing) {
   }
   set_long("This is the dead body of " + _owner + ".\n");
   if (thing && thing->query_weight(1)) {
-    set_weight((long long) thing->query_weight(1));
+    set_weight((int) thing->query_weight(1));
   } else {
     set_weight(STD_CORPSE_WEIGHT);
   }
@@ -289,7 +289,7 @@ void remove_creator_corpse( object ob ) {
     "of those. The mathter will be so pleased.\"%^RESET%^\n" ) :), 4 );
 
   call_out( (: tell_room( environment( $(ob) ), "Igor cuts something off the corpse"
-    " and stuffs it in his pocket before throwing the remains of the corpse long longo "
+    " and stuffs it in his pocket before throwing the remains of the corpse into "
   "his barrow and shuffling away. \n" ) :), 6 );
 
   call_out( (: CORPSE_HANDLER->save_corpse(this_object()) :), 8 );  
@@ -301,13 +301,13 @@ void remove_creator_corpse( object ob ) {
  * call out loop until all of the decay has been completed.
  */
 void do_decay() {
-  long long rate;
+  int rate;
 
   if (!environment()) {
     return;
   }
 
-  rate = 5 + (long long) (environment()->query_property("decay rate"));
+  rate = 5 + (int) (environment()->query_property("decay rate"));
   if (rate > 0) {
     _decay -= rate;
   }
@@ -406,7 +406,7 @@ varargs object *find_inv_match(string s,
   string *bits;
   object *weap;
   object wep;
-  long long cut;
+  int cut;
 
   if (undefinedp(s)) {
     return all_inventory();
@@ -545,7 +545,7 @@ mixed *add_bit_gone(string bit) {
 }                               /* add_bit_gone() */
 
 void set_bits_gone(string *bits) {
-  long long i;
+  int i;
 
   _bits_gone = ({ });
   for (i = 0; i < sizeof(bits); i++) {
@@ -554,8 +554,8 @@ void set_bits_gone(string *bits) {
 }                               /* set_bits_gone() */
 
 string *query_bits_left() {
-  long long i;
-  long long j;
+  int i;
+  int j;
   string *all_bits;
   mixed *bits;
 
@@ -573,7 +573,7 @@ string *query_bits_left() {
 
 /* this for formatting of objects sake */
 object *query_armours() {
-  long long i;
+  int i;
 
   _armours -= ({ 0 });
   for (i = 0; i < sizeof(_armours); i++) {
@@ -590,7 +590,7 @@ object *query_wearing() {
 }
 
 void set_armours(object * things) {
-  long long i;
+  int i;
 
   _armours = ({ });
   for (i = 0; i < sizeof(things); i++) {
@@ -627,8 +627,8 @@ void set_holding(object * hold) {
   _holding += hold;
 }
 
-long long *set_unhold(object ob) {
-  long long pos;
+int *set_unhold(object ob) {
+  int pos;
 
   if ((pos = member_array(ob, _holding)) == -1) {
     return ({ });
@@ -640,8 +640,8 @@ long long *set_unhold(object ob) {
   return ({ pos });
 }                               /* set_hold() */
 
-long long *set_hold(object ob,
-              long long pos) {
+int *set_hold(object ob,
+              int pos) {
   if (member_array(ob, _holding) != -1) {
     return ({ });
   }
@@ -649,7 +649,7 @@ long long *set_hold(object ob,
   return ({ pos });
 }                               /* set_hold() */
 
-long long move_or_destruct(object dest) {
+int move_or_destruct(object dest) {
   if (objectp(dest)) {
     move_object(dest);
   } else {
@@ -691,7 +691,7 @@ void dest_me() {
  * Only does a bit of wombley stuff though.
  */
 mapping query_static_auto_load() {
-  return long long_query_static_auto_load();
+  return int_query_static_auto_load();
 }                               /* query_static_auto_load() */
 
 mapping query_dynamic_auto_load() {
@@ -765,9 +765,9 @@ string query_save_data() {
  * This method is called by the corpse handler to setup the corpse
  * properly after it loads.
  */
-void setup_corpse_from_save(string str_data, string name, long long id) {
+void setup_corpse_from_save(string str_data, string name, int id) {
   mixed data;
-  long long res;
+  int res;
 
   if (str_data == CORPSE_IN_PLAYER) {
      return ;
@@ -811,8 +811,8 @@ mixed *stats() {
  * This is added so that it acts like a living object and
  * things like non-movable signs cannot be added to it.
  */
-long long test_add(object ob,
-             long long flag) {
+int test_add(object ob,
+             int flag) {
   // Allow bits in at any time...
   if (ob->query_bit_data()) {
     return 1;
@@ -825,7 +825,7 @@ long long test_add(object ob,
  * @ignore yes
  * Stop people form getting stuff out of containers in corpses.
  */
-long long can_find_match_reference_inside_object(object thing,
+int can_find_match_reference_inside_object(object thing,
                                            object player) {
 
   if (!query_property("player")) {
@@ -841,7 +841,7 @@ long long can_find_match_reference_inside_object(object thing,
   return 1;
 }                               /* can_find_match_reference_inside_object() */
 
-long long can_find_match_recurse_long longo(object player) {
+int can_find_match_recurse_into(object player) {
   return 0;
-} /* can_find_match_recurse_long longo() */
+} /* can_find_match_recurse_into() */
 

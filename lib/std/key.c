@@ -32,7 +32,7 @@ void create() {
  */
 void set_key( string str, string prop ) {
   string *bits;
-  long long i;
+  int i;
   set_short( str + " key" );
   set_main_plural( str + " keys" );
   set_name( "key" );
@@ -50,7 +50,7 @@ void set_key( string str, string prop ) {
 /** @ignore yes */
 mixed query_static_auto_load() {
   if ( base_name(this_object()) + ".c" == __FILE__ )
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   return ([ ]);
 }
 

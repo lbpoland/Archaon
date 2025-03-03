@@ -11,12 +11,12 @@
 
 inherit "/std/object";
 
-private nosave long long no_join;
-private nosave long long _already_joined;
+private nosave int no_join;
+private nosave int _already_joined;
 private mixed *money_array;
 private nosave string _long;
 
-long long query_value_in(string where);
+int query_value_in(string where);
 
 void create() {
    ::create();
@@ -33,7 +33,7 @@ void create() {
 /** @ignore yes
  * Money is a collective object.
  */
-long long query_collective() { return 1; }
+int query_collective() { return 1; }
 
 mapping query_dynamic_auto_load() {
    if (!_already_joined) {
@@ -55,11 +55,11 @@ void init_dynamic_arg( mapping map, object ) {
    }
 } /* init_dynamic_arg() */
 
-long long query_merger() { return 1; }
+int query_merger() { return 1; }
 
-long long query_no_join() { return no_join; }
+int query_no_join() { return no_join; }
 
-long long query_already_joined() { return _already_joined; }
+int query_already_joined() { return _already_joined; }
 void reset_already_joined() { _already_joined = 0; }
 void set_already_joined() { _already_joined = 1; }
 
@@ -81,9 +81,9 @@ void reset_no_join() { no_join = 0; }
  * This method returns the number of coins in the object.
  * @return the number of coins
  */
-long long query_number_coins() {
-   long long i;
-   long long tot;
+int query_number_coins() {
+   int i;
+   int tot;
 
    if (_already_joined) {
       return 0;
@@ -103,14 +103,14 @@ void fixup_money_weight() {
 } /* fixup_money_weight() */
    
 
-long long group_object() { return ( query_number_coins() > 1 ); }
+int group_object() { return ( query_number_coins() > 1 ); }
 
 /**
  * This method goes through the coins and sets up all the adjectives
  * and plurals it needs to.
  */
 void check_adjectives() {
-   long long i;
+   int i;
    string* bits;
 
    set_adjectives( ({ }) );
@@ -157,18 +157,18 @@ mixed *query_money_array() {
    return ({ });
 } /* query_money_array() */
 
-varargs long long adjust_money( mixed amount, string type ) {
-   long long i;
-   long long ret;
+varargs int adjust_money( mixed amount, string type ) {
+   int i;
+   int ret;
 
-   if ( polong longerp( amount ) ) {
+   if ( pointerp( amount ) ) {
       for ( i = 0; i < sizeof( amount ); i += 2 ) {
          adjust_money( amount[ i + 1 ], amount[ i ] );
       }
       fixup_money_weight();
       return 1;
    }
-   if ( !stringp( type ) || !long longp( amount ) || _already_joined) {
+   if ( !stringp( type ) || !intp( amount ) || _already_joined) {
       return 0;
    }
    short_d = _long = 0;
@@ -206,8 +206,8 @@ void set_money_array( mixed *new_array ) {
 
 /** @ignore yes */
 string *half_symbol_short()  {
-   long long i;
-   long long value;
+   int i;
+   int value;
    string *retval;
    string *zones = ({ });
 
@@ -224,8 +224,8 @@ string *half_symbol_short()  {
 
 
 /** @ignore yes */
-string *half_short( long long full ) {
-   long long i;
+string *half_short( int full ) {
+   int i;
    string *retval;
 
    retval = ({ });
@@ -250,7 +250,7 @@ string *half_short( long long full ) {
 } /* half_short() */
 
 /** @ignore yes */
-string short( long long dark ) {
+string short( int dark ) {
    string *retval;
 
    if ( short_d ) {
@@ -263,14 +263,14 @@ string short( long long dark ) {
    if ( sizeof( retval ) == 1 ) {
       short_d = retval[ 0 ];
    } else {
-      short_d = query_multiple_short( retval );
+      short_d = sprintf("%O", ( retval );
    }
    return short_d;
 } /* short() */
 
 /** @ignore yes */
-string long( string word, long long dark ) {
-   long long i;
+string long( string word, int dark ) {
+   int i;
    mixed *details;
 
    if (dark < -1 || dark > 1) {
@@ -300,7 +300,7 @@ string long( string word, long long dark ) {
 } /* long() */
 
 /** @ignore yes */
-string query_long_details( string word, long long dark, object looker) {
+string query_long_details( string word, int dark, object looker) {
    if (dark < -1 || dark > 1) {
       return "It is too dark to see anything about the coins.\n";
    }
@@ -316,7 +316,7 @@ string query_long_details( string word, long long dark, object looker) {
  * @return the new money object
  */
 object new_money_object(mixed number, string type) {
-   long long i;
+   int i;
    object money;
    object env;
    object per;
@@ -330,7 +330,7 @@ object new_money_object(mixed number, string type) {
       return 0;
    }
 
-   if (polong longerp(number))  {
+   if (pointerp(number))  {
 #ifdef USE_VAULT
       money = MONEY_VAULT->get_money_ob();
 #else
@@ -427,13 +427,13 @@ object merge_coins() {
 } /* merge_coins() */
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long i;
+varargs int move( mixed dest, string messin, string messout ) {
+   int i;
    
    if (_already_joined)
      return MOVE_INVALID_DEST;
 
-   // Prevent people putting money long longo containers.
+   // Prevent people putting money into containers.
    if(objectp(dest) && environment(dest) && !living(dest) &&
       !dest->query_corpse() && !dest->query_accept_money())
      return MOVE_INVALID_DEST;
@@ -455,11 +455,11 @@ varargs long long move( mixed dest, string messin, string messout ) {
    return MOVE_OK;
 } /* move() */
 
-public long long find_best_fit( mixed word ) {
-   long long i;
-   long long best;
-   long long best_rating;
-   long long rating;
+public int find_best_fit( mixed word ) {
+   int i;
+   int best;
+   int best_rating;
+   int rating;
    string against;
    string *words;
 
@@ -492,12 +492,12 @@ public long long find_best_fit( mixed word ) {
 
 /** @ignore yes */
 object query_parse_id( mixed *arr ) {
-   long long i;
+   int i;
    string *bits;
    object money;
 
 #ifdef DEBUG
-   debug_prlong longf("%O", arr );
+   debug_printf("%O", arr );
 #endif
    if ( ( arr[ 0 ] < 0 ) || !sizeof( money_array ) ) {
       return 0;
@@ -534,12 +534,12 @@ object query_parse_id( mixed *arr ) {
 /** @ignore yes */
 mixed* parse_match_object(string* input, object viewer,
                           class obj_match_context context) {
-   long long ret;
-   long long found;
-   long long num;
-   long long i;
-   long long j;
-   long long success;
+   int ret;
+   int found;
+   int num;
+   int i;
+   int j;
+   int success;
    object money;
    mixed *matched;
    string where;
@@ -614,7 +614,7 @@ mixed* parse_match_object(string* input, object viewer,
    }
 
    found = find_best_fit(input);
-//prlong longf("CHecking %O found %O\n", input, found);
+//printf("CHecking %O found %O\n", input, found);
    if (found == -1) {
       return 0;
    }
@@ -624,7 +624,7 @@ mixed* parse_match_object(string* input, object viewer,
    //
    num = money_array[found + 1];
 //if (this_player()->query_name() == "pinkfish") {
-//prlong longf("%O %O\n", num, ret);
+//printf("%O %O\n", num, ret);
 //}
    num = update_parse_match_context(context, num, ret);
    if (!num) {
@@ -639,14 +639,14 @@ mixed* parse_match_object(string* input, object viewer,
 } /* parse_match_object() */
 
 /** @ignore yes */
-long long do_not_sell() { return 1; }
+int do_not_sell() { return 1; }
 
 /** @ignore yes */
-long long query_value() { return 0; }
+int query_value() { return 0; }
 
 /** @ignore yes */
-long long query_value_in( string where ) {
-   return (long long)MONEY_HAND->query_total_value( money_array, where );
+int query_value_in( string where ) {
+   return (int)MONEY_HAND->query_total_value( money_array, where );
 } /* query_value_in() */
 
 /**
@@ -654,8 +654,8 @@ long long query_value_in( string where ) {
  * @param type the type of money to check
  * @return the number of coins of that type
  */
-long long query_money( string type ){
-   long long i;
+int query_money( string type ){
+   int i;
 
    i = member_array( type, money_array );
    if (i == -1 ) {
@@ -666,5 +666,5 @@ long long query_money( string type ){
 
 mixed *stats() {
   return ::stats() +
-    ({ ({ "value" , query_multiple_short(half_short(1)) }) });
+    ({ ({ "value" , sprintf("%O", (half_short(1)) }) });
 }

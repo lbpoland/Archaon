@@ -1,9 +1,9 @@
 inherit "/std/object";
 
-private long long page;
+private int page;
 private mixed *pages;
 
-long long do_open(long long page_no);
+int do_open(int page_no);
 
 void create() {
    do_setup++;
@@ -15,9 +15,9 @@ void create() {
   add_help_file("leaflet");
 } /* create() */
 
-long long query_leaflet() { return 1; }
+int query_leaflet() { return 1; }
 
-long long query_page() { return page; }
+int query_page() { return page; }
 mixed *query_pages() { return copy( pages ); }
 
 void init() {
@@ -26,8 +26,8 @@ void init() {
                 (: do_open($4[1]) :));
 } /* init() */
 
-void set_no_pages( long long number ) {
-   long long i;
+void set_no_pages( int number ) {
+   int i;
 
    if ( number < 1 ) {
       number = 1;
@@ -38,12 +38,12 @@ void set_no_pages( long long number ) {
    }
 } /* set_no_pages() */
 
-varargs void set_read_mess( mixed mess, string lang, long long size ) {
+varargs void set_read_mess( mixed mess, string lang, int size ) {
    ::set_read_mess( mess, lang, size );
    pages[ page ] = query_read_mess();
 } /* set_read_mess() */
 
-mixed add_read_mess( mixed mess, string type, string lang, long long size ) {
+mixed add_read_mess( mixed mess, string type, string lang, int size ) {
    mixed ret;
 
    ret = ::add_read_mess( mess, type, lang, size );
@@ -51,9 +51,9 @@ mixed add_read_mess( mixed mess, string type, string lang, long long size ) {
    return ret;
 } /* add_read_mess() */
 
-long long query_open_page() { return page + 1; }
+int query_open_page() { return page + 1; }
 
-void set_open_page( long long number ) {
+void set_open_page( int number ) {
    if ( ( number < 1 ) || ( number > sizeof( pages ) ) ) {
       number = 1;
    }
@@ -61,12 +61,12 @@ void set_open_page( long long number ) {
    ::set_read_mess( pages[ page ] );
 } /* set_open_page() */
 
-long long do_turn() {
+int do_turn() {
    set_open_page( page + 2 );
    return 1;
 } /* do_turn() */
 
-long long do_open(long long page_no) {
+int do_open(int page_no) {
    if ( ( page_no < 1 ) || ( page_no > sizeof( pages ) ) ) {
       add_failed_mess("The page no " + page_no + " does not exist.\n");
       return 0;
@@ -79,7 +79,7 @@ mapping query_static_auto_load() {
    if ( explode( file_name( this_object() ), "#" )[ 0 ] != "/std/leaflet" ) {
       return ([ ]);
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 mapping query_dynamic_auto_load() {
@@ -98,14 +98,14 @@ void init_dynamic_arg( mapping map ) {
       ::init_dynamic_arg( map[ "::" ] );
    }
    page = map[ "page" ];
-   if ( polong longerp( map[ "pages" ] ) ) {
+   if ( pointerp( map[ "pages" ] ) ) {
       pages = map[ "pages" ];
       set_open_page( page + 1 );
    }
 } /* init_dynamic_arg() */
 
 /** @ignore yes */
-string query_read_short(object player, long long ignore_labels) {
+string query_read_short(object player, int ignore_labels) {
    string ret;
 
    if (page == 0) {

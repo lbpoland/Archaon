@@ -11,7 +11,7 @@
 /* Define this to use the new SQL based errors system */
 #define NEW_SYSTEM
 
-//long long db_fd;
+//int db_fd;
 
 void create() {
    //catch(db_fd = db_connect("localhost", "errors", CONFIG_DB_USER));
@@ -19,14 +19,14 @@ void create() {
 
 void smart_log(string full_type, string reporter, string text,
                       string trace, string file) {
-   long long i;
+   int i;
    string type, temp1, *j, *person, dir;
 #ifdef OLD_SYSTEM
    string temp2, report;
 #endif
 #ifdef NEW_SYSTEM
    string query, name, category;
-   long long rtime;
+   int rtime;
 #endif
     
    seteuid("Root");
@@ -45,7 +45,7 @@ void smart_log(string full_type, string reporter, string text,
    }
    rtime = time();
    if (sizeof(person) > 0) {
-      query = sprlong longf("INSERT INTO errors (EntryDate, DirEntryDate, "
+      query = sprintf("INSERT INTO errors (EntryDate, DirEntryDate, "
                            "Directory, Filename, Category, Type, Name, Reporter, "
                            "Report, Runtime, AssignedTo) VALUES(%d, %d, '%s', '/%s', '%s', '%s', "
                            "'%s', '%s', '%s', '%s', '%s');", rtime, rtime, dir,
@@ -53,7 +53,7 @@ void smart_log(string full_type, string reporter, string text,
                            db_escape(text), (trace ? db_escape(trace) : ""),
                            db_escape(person[0]));
    } else {
-      query = sprlong longf("INSERT INTO errors (EntryDate, DirEntryDate, "
+      query = sprintf("INSERT INTO errors (EntryDate, DirEntryDate, "
                            "Directory, Filename, Category, Type, Name, Reporter, "
                            "Report, Runtime) VALUES(%d, %d, '%s', '/%s', '%s', '%s', "
                            "'%s', '%s', '%s', '%s');", rtime, rtime, dir,

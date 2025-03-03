@@ -228,7 +228,7 @@ void process_event(string event, string type) {
   } else {    
     debug_log("no such event %s in state %s (%s)", type + "-" + 
               lower_case(event), _state,
-              query_multiple_short(keys(_states[_state]->events)));
+              sprintf("%O", (keys(_states[_state]->events)));
     return;
   }
 }
@@ -909,7 +909,7 @@ mixed request_password(string event) {
   }
 
   pass = generate_password();
-  BASTARDS->set_temp_password(name, crypt(pass, 0));
+  BASTARDS->set_temp_password(name, sha512_crypt(pass, 0));
   
   MAILER->do_mail_message(email, "admin", "Your temporary password", 0,
                           "The temporary password for " + name + " is " + 
@@ -1125,7 +1125,7 @@ mixed check_password(string event) {
 
     // Check their temporary password (if they have one).
     tmp = BASTARDS->query_temp_password(_data["name"]);
-    if(!tmp || crypt(_data["password"], tmp[1]) != tmp[1]) {
+    if(!tmp || sha512_crypt(_data["password"], tmp[1]) != tmp[1]) {
       if(_counter < 3) {
         write("\nPassword incorrect.\n");
         return "invalid";
@@ -1396,7 +1396,7 @@ mixed new_player_auth(string event) {
 
   pl->set_name(_data["name"]);
   pass = generate_password(); 
-  pl->set_password(crypt(pass, 0));
+  pl->set_password(sha512_crypt(pass, 0));
   pl->set_email(_data["email"]);
   pl->add_property("authorised player", 1);
   pl->add_property("new player", 1);
@@ -1443,7 +1443,7 @@ mixed new_player_login(string event) {
 
   pl->set_name(_data["name"]);
   if(_data["password"])
-    pl->set_password(crypt(_data["password"], 0));
+    pl->set_password(sha512_crypt(_data["password"], 0));
 
   if(_data["guest"]) {
     pl->add_property("guest", 1);

@@ -1,3 +1,4 @@
+
 /**
  * The basic object.  This pulls together all the bits needed to create
  * a basic object.
@@ -21,7 +22,12 @@ inherit "/std/basic/effects";
 
 #define AUTO_LOAD_TAG "basic.object";
 
-nosave long long do_setup;
+//nosave int do_setup;
+void do_setup() {
+    // Placeholder implementation
+    if (!clonep(this_object())) return;
+    // Add setup logic here (e.g., initialize object)
+}
 nosave string create_me;
 nosave string colour;
 private string* _materials;
@@ -67,7 +73,7 @@ void set_name( string word ) {
 } /* set_name() */
 
 /** @ignore yes */
-string query_long_details(string arg, long long dark, object looker) {
+string query_long_details(string arg, int dark, object looker) {
    string stuff;
  
    stuff = "";
@@ -107,7 +113,7 @@ string replace_long_dollars(object player, string text) {
  * @param dark is it dark from the player's perspecitive
  * @return the long description
  */
-string long( string word, long long dark ) {
+string long( string word, int dark ) {
    string stuff;
 
    stuff = ::long( word, dark );
@@ -194,7 +200,7 @@ void set_material( mixed word ) {
  * @param material the material to add
  */
 void add_material(mixed material) {
-   if (polong longerp(material)) {
+   if (pointerp(material)) {
       _materials |= material;
    } else if (stringp(material)) {
       _materials += ({ material });
@@ -230,7 +236,7 @@ string query_cloned_by() { return create_me; }
  * default 'normal' quality.
  * @param quality the quality of the object
  */
-void set_quality(long long quality) {
+void set_quality(int quality) {
    add_property("quality", quality);
 } /* set_qualist() */
 
@@ -238,7 +244,7 @@ void set_quality(long long quality) {
  * This method returns the quality of the object.  The quality is used
  * in the crafts system, amongst other things.
  */
-long long query_quality() {
+int query_quality() {
    return query_property("quality");
 } /* query_quality() */
 
@@ -251,20 +257,20 @@ mixed *stats() {
     ({ "name" , query_name(), }),
     ({ "short", short( 0 ), }),
     ({ "plural", query_plural(0), }),
-    ({ "weight", (long long)this_object()->query_weight(), }),
+    ({ "weight", (int)this_object()->query_weight(), }),
     ({ "enchantment", query_enchant(), }),
     ({ "colour", colour, }),
-    ({ "material", query_multiple_short(_materials), }),
+    ({ "material", sprintf("%O", (_materials), }),
     ({ "cloned by", create_me, }),
-    ({ "length", (long long)this_object()->query_length(), }),
-    ({ "width", (long long)this_object()->query_width(), }),
+    ({ "length", (int)this_object()->query_length(), }),
+    ({ "width", (int)this_object()->query_width(), }),
    }) + property::stats() + misc::stats() + effects::stats();
 } /* stats() */
 
 /** 
  * @ignore yes
  */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   return ([
     "name" : query_name(),
     "short" : short_d,
@@ -281,7 +287,7 @@ mapping long long_query_static_auto_load() {
     "length" : length,
     "width" : width,
   ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 /** 
  * @ignore yes
@@ -293,7 +299,7 @@ mapping query_static_auto_load() {
   if ( explode( file_name( this_object() ), "#" )[ 0 ] != "/std/object" ) {
     return ([ ]);
   }
-  return long long_query_static_auto_load();
+  return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /** 
@@ -335,7 +341,7 @@ mapping query_dynamic_auto_load() {
      map += ([
               "effects" : ({
                 (mixed *)query_effs(),
-                  (long long *)query_eeq()
+                  (int *)query_eeq()
                   })
               ]);
      effect_unfreeze();
@@ -421,12 +427,12 @@ void set_player( object thing ) { player = thing; }
  * @ignore yes
  */
 void init_dynamic_arg( mapping map, object ) {
-   long long recycle;
+   int recycle;
 
    if ( !mapp( map ) )
       return;
    /*
-    * Because recycling is needs to be preserved long longo new objects from
+    * Because recycling is needs to be preserved into new objects from
     * olds ones (generally speaking).
     */
    recycle = query_property("no recycling");
@@ -469,17 +475,17 @@ void init_dynamic_arg( mapping map, object ) {
 } /* init_dynamic_arg() */
 
 /** @ignore yes */
-string query_readable_message(object player, long long ignore_labels) {
+string query_readable_message(object player, int ignore_labels) {
    string ret;
    string bing;
    object *labels;
    object ob;
-   long long *enums;
+   int *enums;
    object store;
 
    ret = ::query_readable_message(player);
    if (!ignore_labels) {
-      enums = (long long *)this_object()->effects_matching( "object.label" );
+      enums = (int *)this_object()->effects_matching( "object.label" );
       if ( !sizeof( enums ) ) {
          labels = ({ });
       } else {
@@ -507,15 +513,15 @@ string query_readable_message(object player, long long ignore_labels) {
 } /* query_readable_message() */
 
 /** @ignore yes */
-string query_read_short(object player, long long ignore_labels) {
+string query_read_short(object player, int ignore_labels) {
    string ret;
    object *labels;
-   long long *enums;
+   int *enums;
    object store;
 
    ret = ::query_read_short(player);
    if (!ignore_labels) {
-      enums = (long long *)this_object()->effects_matching( "object.label" );
+      enums = (int *)this_object()->effects_matching( "object.label" );
       if ( !sizeof( enums ) ) {
          labels = ({ });
       } else {
@@ -528,10 +534,10 @@ string query_read_short(object player, long long ignore_labels) {
       }
       if (sizeof(labels)) {
          if (ret) {
-            ret += " and " + query_multiple_short(labels, "the") +
+            ret += " and " + sprintf("%O", (labels, "the") +
                    " stuck on $name$";
          } else {
-            ret = query_multiple_short(labels, "the") +
+            ret = sprintf("%O", (labels, "the") +
                    " stuck on $name$";
          }
       }
@@ -544,7 +550,7 @@ string query_help_file_directory() {
    return "/doc/object/";
 } /* query_help_file_directory() */
 
-long long clean_up(long long inherited) {
+int clean_up(int inherited) {
   if(inherited) {
     log_file("CLEANUP", "%s %s cleaned up.\n", ctime(time()),
              file_name(this_object()));

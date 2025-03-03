@@ -28,7 +28,7 @@
  * The do_dig() function tries to call a function dig() on this_player()'s
  * environment, which should be defined as
  * <p><code>
- * long long dig( object indir, string indir_s )
+ * int dig( object indir, string indir_s )
  * </code><p>
  * where
  * <ul>
@@ -63,7 +63,7 @@ void init(){
 /**
  * @ignore yes
  */
-long long do_dig( object *things, string dir_match, string
+int do_dig( object *things, string dir_match, string
             indir_match, mixed *args, string pattern) {
   object *obj, indir;
   string indir_s;
@@ -109,6 +109,6 @@ long long do_dig( object *things, string dir_match, string
 /** @ignore yes */
 mapping query_static_auto_load() {
    if ( explode( file_name( this_object() ), "#" )[ 0 ] == "/obj/shovel" )
-      return long long_query_static_auto_load();
+      return int_query_static_auto_load();
    return ([ ]);
 } /* query_static_auto_load() */

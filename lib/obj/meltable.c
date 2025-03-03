@@ -21,7 +21,7 @@
  * - When applied or eaten, it will cause a brief decrease
  * in temperature of the user.
  * <P>
- * It will melt long longo a liquid, which can be set using 
+ * It will melt into a liquid, which can be set using 
  * set_melt_result().  This is default at water, and can be 
  * queried using query_melt_result().
  * <P>
@@ -69,21 +69,21 @@ inherit "/obj/food";
 
 
 /* GLOBAL VARIABLES */
-private long long _melt_level;   /* this represents the amount left to melt */
+private int _melt_level;   /* this represents the amount left to melt */
 
-private long long _original_melt_level;   /* this stores the original melt level 
+private int _original_melt_level;   /* this stores the original melt level 
                                        at setup */
-private long long _melt_rate;    /* this is the number of seconds between the melt
+private int _melt_rate;    /* this is the number of seconds between the melt
                               counter counting up by 1 - it is the number of
                               seconds between liquid being produced by the 
                               melting object
                            */
                            
-private long long _melt_counter; /* this counts up to 10, and decreases the weight
+private int _melt_counter; /* this counts up to 10, and decreases the weight
                               of this object by 1 every time it reaches 10, 
                               whereupon it resets to 0 */
                               
-private long long _callout_id;   /* the id of the melting call out */
+private int _callout_id;   /* the id of the melting call out */
 
 private string _melt_result; /* the path of the liquid result of melting */
 
@@ -92,9 +92,9 @@ private string _melt_result; /* the path of the liquid result of melting */
 void create();
 void set_melt_result( string result );
 string query_melt_result();
-void set_melt_rate( long long rate );
-long long query_melt_rate();
-long long query_melt_level();
+void set_melt_rate( int rate );
+int query_melt_rate();
+int query_melt_level();
 private void setup_callout();
 protected void do_melt();
 
@@ -119,7 +119,7 @@ void create() {
 
 
 /**
- * This function sets the liquid that the melting food melts long longo.
+ * This function sets the liquid that the melting food melts into.
  * The default value for this is water.
  *
  * @param result The path of the liquid generated when this food melts
@@ -132,7 +132,7 @@ void set_melt_result( string result ) {
 
 
 /**
- * This function returns the liquid that the melting food melts long longo.
+ * This function returns the liquid that the melting food melts into.
  * The default value for this is water.
  *
  * @return The path of the liquid generated when this food melts.
@@ -154,7 +154,7 @@ string query_melt_result() {
  * @see query_melt_rate()
  *
  */
-void set_melt_rate( long long rate ) {
+void set_melt_rate( int rate ) {
    _melt_rate = rate;
 } /* set_melt_rate */
 
@@ -167,7 +167,7 @@ void set_melt_rate( long long rate ) {
  * @see set_melt_rate()
  *
  */
-long long query_melt_rate() {
+int query_melt_rate() {
    return _melt_rate;
 } /* query_melt_rate */
 
@@ -179,7 +179,7 @@ long long query_melt_rate() {
  *
  * @return The current melt level of the food.
  */
-long long query_melt_level() {
+int query_melt_level() {
    return _melt_level;
 } /* query_melt_level */
 
@@ -202,7 +202,7 @@ private void setup_callout() {
 protected void do_melt() {
    object liquid;
    object room, ob;
-   long long environment_temp, current_weight;
+   int environment_temp, current_weight;
 
    /* finds the final container of this object - ie
       the room that the object is within, whether it's
@@ -277,7 +277,7 @@ protected void do_melt() {
  */
 string query_short_rotten_adjective() {
    string ret;
-   long long bing;
+   int bing;
    
    bing = 100 - ( ( 100 * _melt_level ) / _original_melt_level );
 
@@ -317,7 +317,7 @@ string query_short_rotten_adjective() {
 */
 string query_long_decay_level() {
    string ret;
-   long long bing;
+   int bing;
    
    bing = 100 - ( ( 100 * _melt_level ) / _original_melt_level );
 
@@ -373,7 +373,7 @@ string query_long_decay_level() {
 /**
  * @ignore yes
  */
-varargs long long do_eat( long long no_mess ) {
+varargs int do_eat( int no_mess ) {
    this_player()->add_property( "warmth", CHILL, CHILL_TIME );
    return( ::do_eat( no_mess ) );
 } /* do_eat() */
@@ -386,8 +386,8 @@ varargs long long do_eat( long long no_mess ) {
 /**
  * @ignore yes
  */
-long long do_apply( object * things ) {
-   long long i;
+int do_apply( object * things ) {
+   int i;
    if( i = ::do_apply( things ) ) {
       things[ 0 ]->add_property( "warmth", CHILL, CHILL_TIME );
    }
@@ -398,8 +398,8 @@ long long do_apply( object * things ) {
 /**
  * @ignore yes
  */
-long long do_rub( object * things ) {
-   long long i;
+int do_rub( object * things ) {
+   int i;
    if( i = ::do_rub( things ) ) {
       things[ 0 ]->add_property( "warmth", CHILL, CHILL_TIME );
    }
@@ -430,15 +430,15 @@ mixed *stats()
 /**
  * @ignore yes
  */
-mapping long long_query_static_auto_load() {
-   return ([ "::" : ::long long_query_static_auto_load(),
+mapping int_query_static_auto_load() {
+   return ([ "::" : ::int_query_static_auto_load(),
              "melt_level" : _melt_level,
              "melt_result" : _melt_result,
              "original melt level" : _original_melt_level,
              "melt rate" : _melt_rate,
              "melt counter" : _melt_counter,
              "callout id" : _callout_id ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 
 /**
@@ -450,7 +450,7 @@ mapping query_static_auto_load()
        && !query_continuous() ) {
       return 0;
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 
@@ -526,7 +526,7 @@ void init_dynamic_arg( mapping map, object )
 /**
  * @ignore yes
  */
-long long query_liquid() {
+int query_liquid() {
    return 0;
 } /* query_liquid() */
 
@@ -555,28 +555,28 @@ void do_decay() {
 /**
  * @ignore yes
  */
-long long query_decays() {
+int query_decays() {
    return 0;
 } /* query_decays() */
 
 /**
  * @ignore yes
  */
-long long query_decay_speed() {
+int query_decay_speed() {
    return 0;
 } /* query_decay_speed() */
 
 /**
  * @ignore yes
  */
-long long query_decay_level() {
+int query_decay_level() {
    return 0;
 } /* query_decay_level() */
 
 /**
  * @ignore yes
  */
-void set_decay_speed( long long decay ) {
+void set_decay_speed( int decay ) {
   return( ::set_decay_speed( 1 ) );
 } /* set_decay_speed() */
 
@@ -587,28 +587,28 @@ void set_decay_speed( long long decay ) {
 /**
  * @ignore yes
  */
-long long do_cure() {
+int do_cure() {
    return 0;
 }
 
 /**
  * @ignore yes
  */
-long long query_cured() { 
+int query_cured() { 
    return 0;
 }
 
 /**
  * @ignore yes
  */
-long long do_dry() {
+int do_dry() {
    return 0;
 }
 
 /**
  * @ignore yes
  */
-long long query_dried() { 
+int query_dried() { 
    return 0; 
 }
 
@@ -619,7 +619,7 @@ long long query_dried() {
 /**
  * @ignore yes
  */
-long long query_rotten() { 
+int query_rotten() { 
    return 0;
 }
 

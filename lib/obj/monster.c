@@ -36,13 +36,13 @@ nosave mixed *achat_string;
 private nosave mixed *_combat_actions;
 nosave mixed _move_after;
 nosave mixed *throw_out;
-nosave long long chat_chance;
-nosave long long achat_chance;
-nosave long long aggressive;
-nosave long long join_fight_type;
-nosave long long follow_speed;
-nosave long long virtual_move;
-nosave long long moves;
+nosave int chat_chance;
+nosave int achat_chance;
+nosave int aggressive;
+nosave int join_fight_type;
+nosave int follow_speed;
+nosave int virtual_move;
+nosave int moves;
 nosave string race;
 nosave string guild;
 nosave string join_fight_mess;
@@ -53,17 +53,17 @@ private nosave mixed *_queued_commands;
 private nosave mixed *doing_story;
 nosave object last_attacked;
 private nosave string *following_route;
-private nosave long long added_language;
+private nosave int added_language;
 private nosave function cmd_func = 0;
 
 // This is used to make sure players cannot change an npc's positon with
 // souls.
-private nosave long long cannot_change_position;
-private nosave long long always_return_to_default_position;
+private nosave int cannot_change_position;
+private nosave int always_return_to_default_position;
 
 private nosave mapping _spell_actions;
 
-void do_move_after(long long running_away);
+void do_move_after(int running_away);
 void do_route_move();
 private void _next_queued_command();
 void start_attack( object who );
@@ -72,7 +72,7 @@ void start_attack( object who );
 protected mixed _process_input(string);
 protected mixed command(string);
 void command_override(function func);
-long long drunk_check(string str);
+int drunk_check(string str);
 #endif
 
 
@@ -116,7 +116,7 @@ void create() {
     */
     set_con( 13 );
     set_dex( 13 );
-    set_long long( 13 );
+    set_int( 13 );
     set_str( 13 );
     set_wis( 13 );
     set_max_hp( 10000 );
@@ -143,10 +143,10 @@ void setup_nationality(string nationality, string region) {
    set_nationality(nationality);
    set_nationality_region(region);
    if (!load_object(nationality)) {
-      debug_prlong longf("Bad nationality, %O\n", nationality);
+      debug_printf("Bad nationality, %O\n", nationality);
    } else {
       if (!nationality->query_region_description(region)) {
-         debug_prlong longf("Bad region %O in nationality, %O\n", region,
+         debug_printf("Bad region %O in nationality, %O\n", region,
                       nationality);
       }
       add_language(nationality->query_language());
@@ -161,18 +161,18 @@ void dest_me() {
 } /* dest_me() */
 
 /** @ignore yes */
-long long soul_commqz(string str) {
+int soul_commqz(string str) {
     string verb, bit;
 
     if (sscanf(str, "%s %s", verb, bit) == 2)
-        return (long long)SOUL_OBJECT->soul_command(verb, bit);
-    return (long long)SOUL_OBJECT->soul_command(str, "");
+        return (int)SOUL_OBJECT->soul_command(verb, bit);
+    return (int)SOUL_OBJECT->soul_command(str, "");
 } /* soul_commqz() */
 
 /** @ignore yes */
-long long query_sp() { return 50; }
+int query_sp() { return 50; }
 /** @ignore yes */
-long long adjust_sp( long long number ) { return 50; }
+int adjust_sp( int number ) { return 50; }
 
 /**
  * This method returns the current capitalized name of the npc.
@@ -191,7 +191,7 @@ string query_cap_name() {
 void set_cap_name(string s) { cap_name = s; }
 
 /** @ignore yes */
-long long soul_com_force(string str) {
+int soul_com_force(string str) {
     //  string str1,str2;
 
     if (file_name(previous_object()) != SOUL_OBJECT)
@@ -213,7 +213,7 @@ void set_name(string n) {
 } /* set_name() */
 
 /** @ignore yes */
-string long(string str, long long dark) {
+string long(string str, int dark) {
     string s;
 
     if (dark < -1) {
@@ -262,7 +262,7 @@ string long(string str, long long dark) {
  * @see set_level()
  * @see basic_setup()
  */
-long long set_race(string str) {
+int set_race(string str) {
     race = str;
     return 1;
 } /* set_race() */
@@ -298,7 +298,7 @@ string query_profession() { return guild; }
  * @ignore yes
  * This method should not be used.  It is 'depreciated'.
  */
-long long set_class(string str) {
+int set_class(string str) {
     guild = str;
 } /* set_guild() */
 
@@ -330,7 +330,7 @@ long long set_class(string str) {
  * @see set_guild()
  * @see set_level()
  */
-long long set_guild(string str) {
+int set_guild(string str) {
     guild = str;
 } /* set_guild() */
 
@@ -338,7 +338,7 @@ long long set_guild(string str) {
  * @ignore yes
  * This method should not be used.  It is 'depreciated'.
  */
-long long set_profession(string str) {
+int set_profession(string str) {
     guild = str;
 } /* set_profession() */
 
@@ -351,7 +351,7 @@ void init_equip() { command("equip"); }
 
 /**
  * This method allows you to control the npc and get it to do
- * actions.  This can be used for npc control and long longeligence.
+ * actions.  This can be used for npc control and inteligence.
  *
  * Be very careful with this command! This does not go through any
  * command queue like players have and so NPCs can end up doing
@@ -368,14 +368,14 @@ void init_equip() { command("equip"); }
  * ob->do_command("'I am a hairy ape!");
  * ob->do_command("emote apes around the room.");
  */
-long long do_command( string words ) {
+int do_command( string words ) {
     if ( this_object()->query_property( PASSED_OUT_PROP ) ) {
         return -1;
     }
     if ( stringp( words ) ) {
         return command( words );
     }
-    prlong longf( "Invalid parameter to do_command: %O for monster %O in %O.\n",
+    printf( "Invalid parameter to do_command: %O for monster %O in %O.\n",
       words, this_object(), environment() );
     return -1;
 } /* do_command() */
@@ -419,7 +419,7 @@ private void _next_queued_command() {
   }
   
   next = _queued_commands[0];
-  if (long longp( next )) {
+  if (intp( next )) {
     _queued_commands = _queued_commands[1..];
     if (!sizeof(_queued_commands)) return;
     next = _queued_commands[0];
@@ -444,7 +444,7 @@ private void _next_queued_command() {
  * unlike queue_command(). This function
  * is 100% compatible with queue_command() and init_command().
  * @param words the action to perform
- * @param long longerval to wait before the command.
+ * @param interval to wait before the command.
  * @see queue_command()
  * @see query_queued_commands()
  * @see init_command()
@@ -460,18 +460,18 @@ private void _next_queued_command() {
  * immediately following that it gets a banana
  * and 3 seconds after that it gets an apple.
  */
-long long delay_command( string words, long long long longerval ) {
+int delay_command( string words, int interval ) {
     if ( this_object()->query_property( PASSED_OUT_PROP ) ) {
         return -1;
     }
     if ( stringp( words ) ) {
       if (!sizeof(_queued_commands)) {
-        call_out( (: _next_queued_command :), long longerval );
+        call_out( (: _next_queued_command :), interval );
       }
-      _queued_commands = _queued_commands + ({ long longerval, words });
+      _queued_commands = _queued_commands + ({ interval, words });
       return 1;
     }
-    prlong longf( "Invalid parameter to delay_command: %O for monster %O in %O.\n",
+    printf( "Invalid parameter to delay_command: %O for monster %O in %O.\n",
       words, this_object(), environment() );
     return -1;
 } /* delay_command() */
@@ -482,7 +482,7 @@ long long delay_command( string words, long long long longerval ) {
  * commands pending the command is executed immediately.  This function
  * is 100% compatible with delay_command() and init_command().
  * @param words the action to perform
- * @param long longerval to wait before processing another command.
+ * @param interval to wait before processing another command.
  * If omitted defaults to 2 seconds as per players
  * @see delay_command()
  * @see query_queued_commands()
@@ -499,21 +499,21 @@ long long delay_command( string words, long long long longerval ) {
  * 5 seconds after that it gets a banana
  * and 13 seconds (10+3) after that it gets an apple.
  */
-varargs long long queue_command( string words, long long long longerval ) {
+varargs int queue_command( string words, int interval ) {
     if ( this_object()->query_property( PASSED_OUT_PROP ) ) {
         return -1;
     }
     if ( stringp( words ) ) {
-      if (undefinedp(long longerval)) long longerval=2;
+      if (undefinedp(interval)) interval=2;
       if (!sizeof(_queued_commands)) {
-        _queued_commands = ({ words, long longerval });
+        _queued_commands = ({ words, interval });
         _next_queued_command();
         return 1;
       }
-      _queued_commands = _queued_commands + ({ words, long longerval });
+      _queued_commands = _queued_commands + ({ words, interval });
       return 1;
     }
-    prlong longf( "Invalid parameter to queue_command: %O for monster %O in %O.\n",
+    printf( "Invalid parameter to queue_command: %O for monster %O in %O.\n",
       words, this_object(), environment() );
     return -1;
 } /* queue_command() */
@@ -525,7 +525,7 @@ varargs long long queue_command( string words, long long long longerval ) {
  * @see queue_command()
  * @see delay_command()
  */
-varargs void init_command(string str, long long tim) {
+varargs void init_command(string str, int tim) {
     call_out("do_command", tim, str);
 } /* init_command() */
 
@@ -558,7 +558,7 @@ void start_attack( object who ) {
        who->query_auto_loading() ||
        file_name(who) == DEATH ||
        who->query_property( "guest" ) ||
-       ( userp( who ) && !long longeractive( who ) ) ||
+       ( userp( who ) && !interactive( who ) ) ||
        who->query_property( "no attack" ) ) {
     return;
   }
@@ -566,20 +566,20 @@ void start_attack( object who ) {
   /*
    * This uses a call_other() just in case there are shadows.
    */
-  if(((aggressive > 1) || long longeractive(who)) &&
-     (!long longeractive(who) || !who->query_auto_loading()))
+  if(((aggressive > 1) || interactive(who)) &&
+     (!interactive(who) || !who->query_auto_loading()))
     this_object()->attack_ob( who );
 }
 
 /** @ignore yes */
-varargs long long adjust_hp( long long number, object attacker, object weapon,
+varargs int adjust_hp( int number, object attacker, object weapon,
                          string attack ) {
     set_heart_beat( 1 );
     return ::adjust_hp( number, attacker, weapon, attack );
 } /* adjust_hp() */
 
 /** @ignore yes */
-long long adjust_gp( long long number ) {
+int adjust_gp( int number ) {
     set_heart_beat( 1 );
     return ::adjust_gp( number );
 } /* adjust_gp() */
@@ -591,7 +591,7 @@ long long adjust_gp( long long number ) {
  * presence of players.
  * @return 1 if there is a player in the room, 0 otherwise
  */
-long long check_anyone_here() {
+int check_anyone_here() {
     object thing;
 
     if ( !environment() ) {
@@ -604,7 +604,7 @@ long long check_anyone_here() {
         return 1;
     }
     foreach( thing in all_inventory( environment() ) ) {
-        if ( long longeractive( thing ) || thing->query_slave() ) {
+        if ( interactive( thing ) || thing->query_slave() ) {
             return 1;
         }
     }
@@ -619,9 +619,9 @@ long long check_anyone_here() {
  * The hps is the level of hps at which the npc will start throwing
  * people out with the chance of it occuring (chance is a percentage).
  * <p>
- * People will be thrown long longo a random room, if the property
+ * People will be thrown into a random room, if the property
  * <pre>"no throw out"</pre> is specified on the room then they
- * will not be thrown long longo that room.
+ * will not be thrown into that room.
  * @param hps the number of hps at which to start throwing people out
  * @param chance the percentage chance of being thrown out
  * @param their_mess the message to show them
@@ -631,7 +631,7 @@ long long check_anyone_here() {
  * @see set_join_fights()
  * @see expand_string()
  */
-void set_throw_out( long long hps, long long chance, string their_mess,
+void set_throw_out( int hps, int chance, string their_mess,
   string everyone_mess ) {
     throw_out = ({ hps, chance, their_mess, everyone_mess });
 } /* set_throw_out() */
@@ -655,10 +655,10 @@ mixed *query_throw_out() { return throw_out; }
 /**
  * This method is used to make the npc run away.  This will be
  * called by the combat code for wimpy when the npc is bellow the
- * number of polong longs used to trigger the wimpy action.
+ * number of points used to trigger the wimpy action.
  * @return 1 if successfuly ran away
  */
-long long run_away() {
+int run_away() {
     if ( query_property( "run away" ) == -1 ) {
         return 0;
     }
@@ -726,7 +726,7 @@ long long run_away() {
  */
 string expand_string(string in_str, object on) {
     string *str, ret;
-    long long i, add_dollar;
+    int i, add_dollar;
     object liv, *obs, ob;
 
     in_str = "/global/events"->convert_message( in_str );
@@ -850,7 +850,7 @@ string expand_string(string in_str, object on) {
  * This method executes the string passed in.  It handles all the
  * stuff which is needed from the chat_string stuff.
  *
- * If the input is a function polong longer then it is evaluated with one
+ * If the input is a function pointer then it is evaluated with one
  * parameter, being the npc.
  *
  * If the input is a string then the first letter determines what will
@@ -925,13 +925,13 @@ void expand_mon_string( mixed str ) {
  * kept on for some reason.
  * @return 1 if the heart beat should go off, 0 if it should stay on
  */
-long long query_ok_turn_off_heart_beat() {
+int query_ok_turn_off_heart_beat() {
    return 1;
 } /* query_ok_turn_off_heart_beat() */
 
 /** @ignore yes */
 void heart_beat() {
-  long long i, j;
+  int i, j;
   
   if(base_name(environment()) == "/room/rubbish") {
     set_heart_beat(0);
@@ -958,7 +958,7 @@ void heart_beat() {
   if ( check_anyone_here() ) {
     if ( this_object()->query_fighting() ) {
       if ( sizeof( doing_story[ 1 ] ) ) {
-        if( !long longp(doing_story[ 1 ][ 0 ] ) ) {
+        if( !intp(doing_story[ 1 ][ 0 ] ) ) {
           expand_mon_string( doing_story[ 1 ][ 0 ] );
           doing_story[ 1 ] = doing_story[ 1 ][ 1 .. ];
         } else if( random( 1000 ) < doing_story[ 1 ] [ 0 ]) {
@@ -975,8 +975,8 @@ void heart_beat() {
         i = random( achat_string[ 0 ] + 1 );
         while ( ( i -= achat_string[ 1 ][ j ] ) > 0 )
           j += 2;
-        if ( polong longerp( achat_string[ 1 ][ j + 1 ] ) ) {
-          if( long longp(achat_string[ 1 ][ j + 1 ][ 0 ]) ) {
+        if ( pointerp( achat_string[ 1 ][ j + 1 ] ) ) {
+          if( intp(achat_string[ 1 ][ j + 1 ][ 0 ]) ) {
             if( random(1000) < achat_string[ 1 ][ j + 1 ][ 0 ] ) {
               expand_mon_string( achat_string[ 1 ][ j + 1 ][ 1 ] );
               doing_story[ 1 ] = ({ achat_string[ 1 ][ j + 1 ][ 0 ] })+
@@ -993,7 +993,7 @@ void heart_beat() {
       }
     } else {
       if ( sizeof( doing_story[ 0 ] ) ) {
-        if( !long longp( doing_story[ 0 ][ 0 ] ) ) {
+        if( !intp( doing_story[ 0 ][ 0 ] ) ) {
           expand_mon_string( doing_story[ 0 ][ 0 ] );
           doing_story[ 0 ] = doing_story[ 0 ][ 1 .. ];
         } else if( random( 1000 ) < doing_story[ 0 ][ 0 ]) {
@@ -1010,8 +1010,8 @@ void heart_beat() {
         i = random( chat_string[ 0 ] + 1 );
         while ( ( i -= chat_string[ 1 ][ j ] ) > 0 )
           j += 2;
-        if ( polong longerp( chat_string[ 1 ][ j + 1 ] ) ) {
-          if( long longp( chat_string[ 1 ][ j + 1 ][ 0 ]) ) {
+        if ( pointerp( chat_string[ 1 ][ j + 1 ] ) ) {
+          if( intp( chat_string[ 1 ][ j + 1 ][ 0 ]) ) {
             if(random( 1000) < chat_string[ 1 ][ j + 1 ][ 0 ]) {
               expand_mon_string( chat_string[ 1 ][ j + 1 ][ 1 ] );
               doing_story[ 0 ] = ({ chat_string[ 1 ][ j + 1 ][ 0 ] }) +
@@ -1031,7 +1031,7 @@ void heart_beat() {
 } /* heart_beat() */
 
 /** @ignore yes */
-long long clean_up( long long parent ) {
+int clean_up( int parent ) {
   if(query_property("unique") || check_anyone_here())
     return 1;
 
@@ -1051,8 +1051,8 @@ long long clean_up( long long parent ) {
  * @see set_random_stats()
  * @return the randomly generate number
  */
-long long rand_num(long long no, long long type) {
-    long long i, val;
+int rand_num(int no, int type) {
+    int i, val;
 
     for (i=0;i<no;i++)
         val = random(type)+1;
@@ -1066,10 +1066,10 @@ long long rand_num(long long no, long long type) {
  * @param type the size of the dice
  * @see rand_num()
  */
-void set_random_stats(long long no, long long type) {
+void set_random_stats(int no, int type) {
     set_str(rand_num(no, type));
     set_dex(rand_num(no, type));
-    set_long long(rand_num(no, type));
+    set_int(rand_num(no, type));
     set_con(rand_num(no, type));
     set_wis(rand_num(no, type));
 } /* set_random_stats() */
@@ -1089,7 +1089,7 @@ void set_random_stats(long long no, long long type) {
  * number is used by the race object to set ability scores, and
  * base skills.
  */
-void basic_setup(string race, string guild, long long level)
+void basic_setup(string race, string guild, int level)
 {
     this_object()->set_race(race);
     this_object()->set_guild(guild);
@@ -1107,7 +1107,7 @@ void basic_setup(string race, string guild, long long level)
  * @see basic_setup()
  * @param i the level to set the npc to
  */
-void set_level( long long i ) { RACE_OB->set_level( i, race, guild ); }
+void set_level( int i ) { RACE_OB->set_level( i, race, guild ); }
 
 /**
  * This method is used to give some startup money to the npc.
@@ -1122,7 +1122,7 @@ void set_level( long long i ) { RACE_OB->set_level( i, race, guild ); }
  * @return the return value of adjust_money()
  * @see /std/living/money.c
  */
-long long give_money(long long base, long long rand, string type) {
+int give_money(int base, int rand, string type) {
     if (!type)
         type = "copper";
     return adjust_money(base+random(rand), type);
@@ -1177,8 +1177,8 @@ long long give_money(long long base, long long rand, string type) {
  * @see query_chat_chance()
  * @see query_chat_string()
  */
-void load_chat(long long chance, mixed *c_s) {
-    long long i;
+void load_chat(int chance, mixed *c_s) {
+    int i;
     chat_string = ({ 0, ({ }) });
     for (i=0;i<sizeof(c_s);i+=2) {
         chat_string[1] += ({ c_s[i], c_s[i+1] });
@@ -1194,7 +1194,7 @@ void load_chat(long long chance, mixed *c_s) {
  * @see load_chat()
  * @see query_chat_chance()
  */
-void set_chat_chance(long long i) { chat_chance = i; }
+void set_chat_chance(int i) { chat_chance = i; }
 /**
  * This method returns the current chat chance for messages on
  * the npc
@@ -1202,7 +1202,7 @@ void set_chat_chance(long long i) { chat_chance = i; }
  * @see set_chat_chance()
  * @see load_chat()
  */
-long long query_chat_chance() { return chat_chance; }
+int query_chat_chance() { return chat_chance; }
 /**
  * This method sets the current chat string for messages on the
  * npc.  See load_chat() for a longer description of how the
@@ -1223,7 +1223,7 @@ void set_chat_string(string *chat) { chat_string = chat; }
 string *query_chat_string() { return chat_string; }
 
 /**
- * This method adds a single chat string long longo the current list of
+ * This method adds a single chat string into the current list of
  * chat strings.  See load_chat() for a longer description of
  * the chat string.
  * @param weight the weight of the chat
@@ -1232,9 +1232,9 @@ string *query_chat_string() { return chat_string; }
  * @see remove_chat_string()
  */
 void add_chat_string(mixed weight, mixed chat) {
-    long long i;
+    int i;
 
-    if (polong longerp(weight)) {
+    if (pointerp(weight)) {
         for (i=0;i<sizeof(weight);i+=2) {
             add_chat_string(weight[i], weight[i+1]);
         }
@@ -1256,9 +1256,9 @@ void add_chat_string(mixed weight, mixed chat) {
  * @see load_chat()
  */
 void remove_chat_string(mixed chat) {
-    long long i;
+    int i;
 
-    if (polong longerp(chat)) {
+    if (pointerp(chat)) {
         for (i=0;i<sizeof(chat);i++) {
             remove_chat_string(chat[i]);
         }
@@ -1278,8 +1278,8 @@ void remove_chat_string(mixed chat) {
  * @see query_achat_chance()
  * @see query_achat_string()
  */
-void load_a_chat(long long chance, mixed *c_s) {
-    long long i;
+void load_a_chat(int chance, mixed *c_s) {
+    int i;
 
     achat_string = ({ 0, ({ }) });
     for (i=0;i<sizeof(c_s);i+=2) {
@@ -1297,7 +1297,7 @@ void load_a_chat(long long chance, mixed *c_s) {
  * @see load_achat()
  * @see query_achat_chance()
  */
-void set_achat_chance(long long i) { achat_chance = i; }
+void set_achat_chance(int i) { achat_chance = i; }
 /**
  * This method returns the current chat chance for attack messages on
  * the npc.
@@ -1306,7 +1306,7 @@ void set_achat_chance(long long i) { achat_chance = i; }
  * @see load_chat()
  * @see load_achat()
  */
-long long query_achat_chance() { return achat_chance; }
+int query_achat_chance() { return achat_chance; }
 /**
  * This method sets the current chat string for attack messages on the
  * npc.  See load_chat() for a longer description of how the
@@ -1328,7 +1328,7 @@ void set_achat_string(string *chat) { achat_string = chat; }
  */
 string *query_achat_string() { return achat_string; }
 /**
- * This method adds a single chat string long longo the current list of
+ * This method adds a single chat string into the current list of
  * attack message chat strings.  See load_chat() for a longer description of
  * the chat string.
  * @param weight the weight of the chat
@@ -1338,9 +1338,9 @@ string *query_achat_string() { return achat_string; }
  * @see remove_achat_string()
  */
 void add_achat_string(mixed weight, mixed chat) {
-    long long i;
+    int i;
 
-    if (polong longerp(weight))
+    if (pointerp(weight))
         for (i=0;i<sizeof(weight);i+=2)
             add_achat_string(weight[i], weight[i+1]);
     else
@@ -1361,9 +1361,9 @@ void add_achat_string(mixed weight, mixed chat) {
  * @see load_achat()
  */
 void remove_achat_string(mixed chat) {
-    long long i;
+    int i;
 
-    if (polong longerp(chat))
+    if (pointerp(chat))
         for (i=0;i<sizeof(chat);i++)
             remove_achat_string(chat[i]);
     else
@@ -1375,7 +1375,7 @@ void remove_achat_string(mixed chat) {
 
 /**
  * This method adds a move zone onto the npc.  The move zones control
- * which areas the npcs will wander long longo, a move zone is set on the
+ * which areas the npcs will wander into, a move zone is set on the
  * room and the npcs will only enter rooms which have a matching
  * move zone.  If there is no move zone, then the npc will enter
  * any room.
@@ -1388,9 +1388,9 @@ void remove_achat_string(mixed chat) {
  * @see set_move_after()
  */
 void add_move_zone(mixed zone) {
-    long long i;
+    int i;
 
-    if (polong longerp(zone))
+    if (pointerp(zone))
         for (i=0;i<sizeof(zone);i++)
             add_move_zone(zone[i]);
     else if (member_array(zone, move_zones) != -1)
@@ -1401,7 +1401,7 @@ void add_move_zone(mixed zone) {
 
 /** @ignore why is this here? */
 void set_move_zones(string *zones) {
-    long long i;
+    int i;
 
     for (i=0;i<sizeof(zones);i++)
         add_move_zone(zones[i]);
@@ -1415,9 +1415,9 @@ void set_move_zones(string *zones) {
  * @see set_move_after()
  */
 void remove_move_zone(mixed zone) {
-    long long i;
+    int i;
 
-    if (polong longerp(zone))
+    if (pointerp(zone))
         for (i=0;i<sizeof(zone);i++)
             remove_move_zone(zone[i]);
     else {
@@ -1443,7 +1443,7 @@ string *query_move_zones() { return move_zones; }
  * </pre>This is called every time the npc sets up for its next move.
  * <p>
  * The move zones control
- * which areas the npcs will wander long longo, a move zone is set on the
+ * which areas the npcs will wander into, a move zone is set on the
  * room and the npcs will only enter rooms which have a matching
  * move zone.  If there is no move zone, then the npc will enter
  * any room.
@@ -1453,7 +1453,7 @@ string *query_move_zones() { return move_zones; }
  * @see query_move_zones()
  * @see add_move_zone()
  */
-void set_move_after(long long after, long long rand) {
+void set_move_after(int after, int rand) {
     _move_after = ({ after, rand });
     if (after != 0 && rand != 0) {
         do_move_after(0);
@@ -1486,10 +1486,10 @@ mixed query_move_after() {
  * @see reset_enter_commands()
  * @see query_enter_commands()
  */
-long long add_enter_commands(mixed str) {
+int add_enter_commands(mixed str) {
     if (stringp(str)) {
         enter_commands += ({ str });
-    } else if (polong longerp(str)) {
+    } else if (pointerp(str)) {
         enter_commands += str;
     } else if (functionp(str)) {
         enter_commands += ({ str });
@@ -1513,8 +1513,8 @@ string *query_enter_commands() { return enter_commands; }
 void reset_enter_commands() { enter_commands = ({ }); }
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-    long long result;
+varargs int move( mixed dest, string messin, string messout ) {
+    int result;
     object before;
     before = environment();
     result = living::move( dest, messin, messout );
@@ -1528,7 +1528,7 @@ varargs long long move( mixed dest, string messin, string messout ) {
 
 /** @ignore yes */
 void room_look() {
-    long long i;
+    int i;
 
     ::room_look();
     for ( i = 0; i < sizeof( enter_commands ); i++ ) {
@@ -1551,7 +1551,7 @@ void room_look() {
  * @param running_away this is 1 if the npc is running away
  * @see set_move_after()
  */
-void do_move_after (long long running_away ) {
+void do_move_after (int running_away ) {
     if (sizeof(following_route)) {
         do_route_move();
     } else {
@@ -1561,14 +1561,14 @@ void do_move_after (long long running_away ) {
 
 /**
  * This event is called when a fight is in progress.  It will
- * be used for things like joining long longo currently running
+ * be used for things like joining into currently running
  * fights and initiating combat with spell casters.
  * @param me the person initiating the attack
  * @param him the person being attacked
  */
 void event_fight_in_progress(object me, object him) {
   mixed action;
-  long long i;
+  int i;
 
   // Run the combat actions.
   if(sizeof(this_object()->query_attacker_list())) {
@@ -1580,9 +1580,9 @@ void event_fight_in_progress(object me, object him) {
           this_object()->do_command(action);
         else if(functionp(action))
           evaluate(action, me, him);
-        else if(polong longerp(action) && sizeof(action) == 1 && stringp(action[0]))
+        else if(pointerp(action) && sizeof(action) == 1 && stringp(action[0]))
           call_other(this_object(), action[0], me, him);
-        else if(polong longerp(action) && sizeof(action) == 2)
+        else if(pointerp(action) && sizeof(action) == 2)
           call_other(action[0], action[1], this_object(), me, him);
       }
     }
@@ -1590,7 +1590,7 @@ void event_fight_in_progress(object me, object him) {
 
   if(him == this_object() && this_object()->query_property("see_caster") &&
      !userp(me) &&
-     (random(him->query_property("see_caster"))) < (him->query_long long()))
+     (random(him->query_property("see_caster"))) < (him->query_int()))
     this_object()->attack_ob(me->query_owner());
   
   if(!join_fight_mess || !me || !him)
@@ -1600,7 +1600,7 @@ void event_fight_in_progress(object me, object him) {
     return;
 
   /* only attack npcs if fight_type is not 0. */
-  if(!join_fight_type && !long longeractive(him))
+  if(!join_fight_type && !interactive(him))
     return;
 
   if(member_array(him, (object *)this_object()->query_attacker_list()) == -1) {
@@ -1613,41 +1613,41 @@ void event_fight_in_progress(object me, object him) {
 } /* event_fight_in_progress() */
 
 /**
- * This method sets the message to use when joining long longo fights.
- * @param str the message to prlong long when joining a fight
+ * This method sets the message to use when joining into fights.
+ * @param str the message to print when joining a fight
  * @see query_join_fights()
  * @see set_join_fight_type()
  */
 void set_join_fights(string str) { join_fight_mess = str; }
 /**
- * This method returns the message to use when joining long longo fights.
- * @return the message to prlong long when joining a fight
+ * This method returns the message to use when joining into fights.
+ * @return the message to print when joining a fight
  * @see set_join_fights()
  * @see set_join_fight_type()
  */
 string query_join_fights() { return join_fight_mess; }
 
 /**
- * This method sets the flag which allows the npc to join long longo fights.
- * If this is set to a non-zero value then the npc will join long longo
+ * This method sets the flag which allows the npc to join into fights.
+ * If this is set to a non-zero value then the npc will join into
  * fights in progress using the fight joining message.
  * @param i 1 if the npc is to join fights, 0 if not
  * @see set_join_fights()
  * @see query_join_fight_type()
  */
-void set_join_fight_type(long long i) { join_fight_type = i; }
+void set_join_fight_type(int i) { join_fight_type = i; }
 /**
- * This method returns the flag which allows the npc to join long longo fights.
+ * This method returns the flag which allows the npc to join into fights.
  * @return 1 if the npc is to join fights, 0 if not
  * @see set_join_fights()
  * @see query_join_fight_type()
  */
-long long query_fight_type() { return join_fight_type; }
+int query_fight_type() { return join_fight_type; }
 
 /** @ignore yes */
 void event_exit( object me, string mess, object to ) {
   mixed *bing;
-  long long i, j, k;
+  int i, j, k;
   string *zones, fname;
   object *attacker_list, ob;
   
@@ -1733,7 +1733,7 @@ void do_follow_move(string dir) {
  * has a chance of occuring during combat.  The name is an identifier
  * which can be used to remove the action with later.  The action
  * itself can be a string, then that command will be executed.  If
- * the action is a function polong longer then it will be evaluated with
+ * the action is a function pointer then it will be evaluated with
  * two arguments, the first being the attacker, the second being the
  * target.
  * <p>
@@ -1745,8 +1745,8 @@ void do_follow_move(string dir) {
  * @see query_combat_actions()
  * @see /std/effects/fighting/combat.c
  */
-void add_combat_action( long long chance, string name, mixed action ) {
-    long long i;
+void add_combat_action( int chance, string name, mixed action ) {
+    int i;
     i = member_array( name, _combat_actions );
     if ( i == -1 ) {
         _combat_actions += ({ chance, name, action });
@@ -1763,8 +1763,8 @@ void add_combat_action( long long chance, string name, mixed action ) {
  * @see query_combat_actions()
  * @see /std/effects/fighting/combat.c
  */
-long long remove_combat_action( string name ) {
-    long long i;
+int remove_combat_action( string name ) {
+    int i;
 
     i = member_array( name, _combat_actions );
     if ( i == -1 )
@@ -1817,11 +1817,11 @@ void do_combat_action( object player,
    if (functionp(action)) {
       evaluate(action, player, target);
    }
-   if ( polong longerp(action) && sizeof(action) == 1 && stringp( action[ 0 ] ) ) {
+   if ( pointerp(action) && sizeof(action) == 1 && stringp( action[ 0 ] ) ) {
       call_other( this_object(), action[ 0 ], player, target );
       return;
    }
-   if (polong longerp(action) && sizeof(action) == 2) {
+   if (pointerp(action) && sizeof(action) == 2) {
       call_other( action[ 0 ], action[ 1 ], this_object(), player, target );
    }
 } /* do_combat_action() */
@@ -1833,7 +1833,7 @@ void do_combat_action( object player,
  * @param target the target
  */
 void combat_actions_call_back( object player, object target ) {
-  long long i;
+  int i;
   object thing;
   object *things;
   mixed *actions;
@@ -1867,7 +1867,7 @@ void combat_actions_call_back( object player, object target ) {
  * The name is an identifier
  * which can be used to remove the action with later.  The action
  * itself can be a string, then that command will be executed.  If
- * the action is a function polong longer then it will be evaluated with
+ * the action is a function pointer then it will be evaluated with
  * two arguments, the first being the caster, the second being the
  * target(s) array and the third being the magic arguments class.
  * <p>
@@ -1881,7 +1881,7 @@ void combat_actions_call_back( object player, object target ) {
  * @param name the name of the thing
  * @param action the action to preform
  */
-void add_spell_action(string spell_object, long long chance,
+void add_spell_action(string spell_object, int chance,
                      string name, mixed action) {
    if (!_spell_actions[spell_object]) {
       _spell_actions[spell_object] = ([ ]);
@@ -1894,10 +1894,10 @@ void add_spell_action(string spell_object, long long chance,
  * @param name the name of the spell to remove
  * @return 1 if successful, 0 if not
  */
-long long remove_spell_action(string name) {
+int remove_spell_action(string name) {
    string spell;
    mapping bits;
-   long long ret;
+   int ret;
 
    foreach (spell, bits in _spell_actions) {
       if (bits[name]) {
@@ -1935,11 +1935,11 @@ void do_spell_action( object caster,
    if (functionp(action)) {
       evaluate(action, caster, targets);
    }
-   if ( polong longerp(action) && sizeof(action) == 1 && stringp( action[ 0 ] ) ) {
+   if ( pointerp(action) && sizeof(action) == 1 && stringp( action[ 0 ] ) ) {
       call_other( this_object(), action[ 0 ], caster, targets, args );
       return;
    }
-   if (polong longerp(action) && sizeof(action) == 2) {
+   if (pointerp(action) && sizeof(action) == 2) {
       call_other( action[ 0 ], action[ 1 ], this_object(), caster, targets,
                   args );
    }
@@ -1992,14 +1992,14 @@ void set_guild_ob(mixed g) { guild_ob = g; }
  * @return the current follow speed
  * @see set_follow_speed()
  */
-long long query_follow_speed() { return follow_speed; }
+int query_follow_speed() { return follow_speed; }
 /**
  * This method sets the speed at which the npc will follow
  * after a player when they leave combat.
  * @return the current follow speed
  * @see set_follow_speed()
  */
-void set_follow_speed(long long f) { follow_speed = f; }
+void set_follow_speed(int f) { follow_speed = f; }
 
 /**
  * This method returns the current aggressive level of the npc.
@@ -2013,7 +2013,7 @@ void set_follow_speed(long long f) { follow_speed = f; }
  * @see set_aggressive()
  * @see start_attack()
  */
-long long query_aggressive() { return aggressive; }
+int query_aggressive() { return aggressive; }
 /**
  * This method sets the current aggressive level of the npc.
  * If the aggressive is set to 1, then the npc will attack all players
@@ -2028,12 +2028,12 @@ long long query_aggressive() { return aggressive; }
  * @see set_throw_out()
  * @param a the new aggressive level
  */
-void set_aggressive(long long a) {
+void set_aggressive(int a) {
     aggressive = a;
 
     // this added to make aggressive npcs join in fights if they arent
     // already set that way. This is needed coz otherwise you can sneak
-    // long longo a room and fight the aggressive npcs one at a time -- Ceres 10/97
+    // into a room and fight the aggressive npcs one at a time -- Ceres 10/97
     if (a && !join_fight_mess) {
         join_fight_mess = this_object()->one_short()+" joins in the fight.\n";
     }
@@ -2046,9 +2046,9 @@ void set_aggressive(long long a) {
  * @return the current guild level of the object
  * @see set_guild()
  */
-long long query_level() {
+int query_level() {
     if (!guild_ob) return 1;
-    return (long long)guild_ob->query_level(this_object());
+    return (int)guild_ob->query_level(this_object());
 } /* query_level() */
 
 /**
@@ -2056,14 +2056,14 @@ long long query_level() {
  * gained by killing the npc.
  * @return the amount of death experience for the npc
  */
-long long query_death_xp() {
-    long long amount;
+int query_death_xp() {
+    int amount;
 
     if ( query_property( "dead" ) || query_property( "unique" ) ) {
         return 0;
     }
-    amount = (long long)TOP_TEN_HANDLER->calculate_rating( this_object() );
-    //amount += (long long)this_object()->query_max_hp();
+    amount = (int)TOP_TEN_HANDLER->calculate_rating( this_object() );
+    //amount += (int)this_object()->query_max_hp();
     //amount *= 120;
     return amount / 2;
 } /* query_death_xp() */
@@ -2071,7 +2071,7 @@ long long query_death_xp() {
 /** @ignore yes */
 mixed *stats() {
     mixed *bing;
-    long long i;
+    int i;
     bing = ({ });
     for (i=0;i<sizeof(move_zones);i++)
         bing += ({ ({ "move zone "+i, move_zones[i] }) });
@@ -2163,9 +2163,9 @@ void real_room( string check_room ) {
  * @see set_virtual_move()
  */
 #if !efun_defined(add_action)
-long long query_virtual_move() { return virtual_move; }
+int query_virtual_move() { return virtual_move; }
 #else
-long long query_virtual_move() { return 0; }
+int query_virtual_move() { return 0; }
 #endif
 /**
  * This method sets the current virual move ability of the npc.
@@ -2174,7 +2174,7 @@ long long query_virtual_move() { return 0; }
  * @param number 1 for virtual moving, 0 for not
  * @see query_virtual_move()
  */
-void set_virtual_move( long long number ) {
+void set_virtual_move( int number ) {
     if(virtual_move && !number && file_name(environment()) == "/room/virtual"){
         object ob = load_object(true_location);
         if(ob)
@@ -2216,7 +2216,7 @@ void set_true_location( string word ) {
     true_location = word;
 }
 
-long long cleaning_room() {
+int cleaning_room() {
     if ( virtual_move ) {
         true_location = file_name( environment() );
         "/room/virtual"->force_load();
@@ -2275,7 +2275,7 @@ string get_next_route_direction() {
  * @see query_following_route()
  * @see do_route_move()
  */
-long long query_last_route_direction() { return ( sizeof(following_route) ? 1 : 0 ); }
+int query_last_route_direction() { return ( sizeof(following_route) ? 1 : 0 ); }
 
 /**
  * This method returns the current array of directions we are following
@@ -2309,7 +2309,7 @@ void do_route_move() {
  * @param dest route destination
  * @see move_me_to()
  */
-protected void got_the_route(string *route, long long delay, string dest) {
+protected void got_the_route(string *route, int delay, string dest) {
     following_route = route;
     if (sizeof(route)) {
         WANDER_HANDLER->move_me_please(delay, dest);
@@ -2336,7 +2336,7 @@ protected void got_the_route(string *route, long long delay, string dest) {
  *    move_me_to(HOME_LOCATION, 2);
  * } /\* go_home() *\/
  *
- * void stopped_route(long long success) {
+ * void stopped_route(int success) {
  *    if (success) {
  *       do_command("emote jumps for joy.");
  *    } else {
@@ -2349,7 +2349,7 @@ protected void got_the_route(string *route, long long delay, string dest) {
  * @see query_following_route()
  * @see do_route_move()
  */
-varargs void move_me_to(string dest, long long delay) {
+varargs void move_me_to(string dest, int delay) {
     string *dest_dir, *start_dir;
 
     if (!environment() || !file_name(environment()))
@@ -2389,17 +2389,17 @@ string identify( object thing, object *places ) {
 } /* identify() */
 
 /** @ignore yes */
-long long query_time_left() { return 1; }
+int query_time_left() { return 1; }
 
 /** @ignore yes */
-long long ignore_identifier() { return 1; }
+int ignore_identifier() { return 1; }
 
 /**
  * This method adds a language to the npc. 
  * <p>
  * After the sun has died away<br>
  * The stars come out and glow<br>
- * Lighting the embers of good long longentions<br>
+ * Lighting the embers of good intentions<br>
  * Ghostly white, unhappily bright<br>
  * Time lost, the day done
  * @param str the language to add
@@ -2416,7 +2416,7 @@ void add_language(string str) {
  * @param flag the unable to change position flag
  * @see /std/living/living->set_default_position()
  */
-void set_cannot_change_position(long long flag) {
+void set_cannot_change_position(int flag) {
     cannot_change_position = flag;
 } /* set_cannot_change_position() */
 
@@ -2426,7 +2426,7 @@ void set_cannot_change_position(long long flag) {
  * @return the unable to change position flag
  * @see /std/living/living->set_default_position()
  */
-long long query_cannot_change_position() {
+int query_cannot_change_position() {
     return cannot_change_position;
 } /* query_cannot_change_position() */
 
@@ -2440,7 +2440,7 @@ void set_position(string new_pos) {
     if (always_return_to_default_position) {
         if (new_pos != query_position() &&
           this_player() != this_object()) {
-          // Please, do NOT use function polong longers unless it's necessary.
+          // Please, do NOT use function pointers unless it's necessary.
           // Took me ages to find this "function" given that all
           // call_stack could tell me was that it was "<function>"
             call_out("return_to_default_position",
@@ -2459,7 +2459,7 @@ void set_position(string new_pos) {
  * @see /std/living/living->return_to_default_position()
  * @see query_always_return_to_default_position()
  */
-void set_always_return_to_default_position(long long tim) {
+void set_always_return_to_default_position(int tim) {
     always_return_to_default_position = tim;
 } /* set_always_return_to_default_position() */
 
@@ -2472,14 +2472,14 @@ void set_always_return_to_default_position(long long tim) {
  * @see /std/living/living->return_to_default_position()
  * @see set_always_return_to_default_position()
  */
-long long query_always_return_to_default_position() {
+int query_always_return_to_default_position() {
     return always_return_to_default_position;
 } /* query_always_return_to_default_position() */
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
     return ([
-      "::" : ::long long_query_static_auto_load(),
+      "::" : ::int_query_static_auto_load(),
       "cap name" : cap_name,
       "race" : race,
       "guild" : guild,
@@ -2489,7 +2489,7 @@ mapping long long_query_static_auto_load() {
 /** @ignore yes */
 mixed query_static_auto_load() {
     if ( base_name(this_object()) + ".c" == __FILE__ )
-        return long long_query_static_auto_load();
+        return int_query_static_auto_load();
     return ([ ]);
 }
 
@@ -2592,11 +2592,11 @@ void init_dynamic_arg( mapping args, object ob ) {
  * @param string Attack type, this will be one of "combat", "theft", or "magic",
  * this lets you give your NPCs different responses for different attacks. As well
  * as make them immune to theft and magic (as an example)
- * @return long long 1 if the action is denied, 0 is it can go through.
+ * @return int 1 if the action is denied, 0 is it can go through.
  * @see efun::allow_attack()
 
  */
-long long attack_permission( object ob1, object ob2, string stringy ) { return 0; }
+int attack_permission( object ob1, object ob2, string stringy ) { return 0; }
 
 #if !efun_defined(add_action)
 /** @ignore yes */
@@ -2618,11 +2618,11 @@ protected mixed _process_input(string str) {
     return "bing";
 } /* _process_input() */
 
-long long drunk_check(string str) {
+int drunk_check(string str) {
    if(cmd_func){
      object owner = function_owner(cmd_func);
      if(owner && owner == environment(this_player())){
-       long long res = evaluate(cmd_func, str);
+       int res = evaluate(cmd_func, str);
        if(res)
          return res;
      } else cmd_func = 0;
@@ -2648,7 +2648,7 @@ void command_override(function func) {
 
 /** @ignore yes */
 protected mixed command(string cmd){
-  long long time = eval_cost();
+  int time = eval_cost();
   if(_process_input(cmd))
     return eval_cost() - time + 1; // on v22.2 eval_cost runs up, reverse for v22.1
   return 0;
@@ -2657,19 +2657,19 @@ protected mixed command(string cmd){
 #endif
 
 /** @ignore yes */
-long long _living(){return 1;}
+int _living(){return 1;}
 
 
 /**
  * This event is triggered when hide_invis is added or removed from an
  * object.  In this case it's used to make the NPC attack if someone
- * sneaks long longo the room and comes out of hiding.
+ * sneaks into the room and comes out of hiding.
  * @param hider The person who's hiding/unhiding.
  * @param adding 1 if the person is hiding, 0 if they are coming out.
  * @param type The type of hide invis.
- * @param quiet The quiet flag that's passed long longo remove_hide_invis.
+ * @param quiet The quiet flag that's passed into remove_hide_invis.
  */
-void event_hide_invis( object hider, long long adding, string type, long long quiet ) {
+void event_hide_invis( object hider, int adding, string type, int quiet ) {
    if ( aggressive &&
         !adding &&
         environment() &&

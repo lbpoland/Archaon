@@ -1,6 +1,6 @@
 /**
  * This class has alkl the stuff for anything which can damage something
- * else, this is included long longo living and weapons.
+ * else, this is included into living and weapons.
  * @author Pinkfish.
  */
 #include <weapon.h>
@@ -86,7 +86,7 @@ mixed *query_attack_message(string name, string type) {
  * @param bogus_2 frog.
  * @see remove_attack()
  */
-varargs long long add_attack( string a_name, long long chance, long long *damage, string type,
+varargs int add_attack( string a_name, int chance, int *damage, string type,
       string skill, mixed func, mixed bogus_1, mixed bogus_2 ) {
    if ( stringp( bogus_1 ) ) {
       write( file_name( this_object() ) +" is using the obselete syntax "+
@@ -107,7 +107,7 @@ varargs long long add_attack( string a_name, long long chance, long long *damage
  * @see add_attack()
  */
 void remove_attack( string a_name ) {
-   long long i;
+   int i;
 
    i = member_array( a_name, attack_names );
    if ( i == -1 )
@@ -117,14 +117,14 @@ void remove_attack( string a_name ) {
    attack_data = delete( attack_data, i * W_ARRAY_SIZE, W_ARRAY_SIZE );
 } /* remove_attack() */
 
-long long modify_damage( long long damage, string attack_name ) { return damage; }
+int modify_damage( int damage, string attack_name ) { return damage; }
 
-long long calc_attack( long long number, long long percent ) {
-   long long damage, *data;
+int calc_attack( int number, int percent ) {
+   int damage, *data;
 
    data = attack_data[ number * W_ARRAY_SIZE + W_DAMAGE ];
    damage = data[ F_FIXED ] + roll_MdN( data[ F_NUM ], data[ F_DIE ] );
-   damage = (long long)this_object()->modify_damage( damage,
+   damage = (int)this_object()->modify_damage( damage,
          attack_names[ number ] );
    damage = ( damage * percent ) / 100;
    return damage;
@@ -142,8 +142,8 @@ long long calc_attack( long long number, long long percent ) {
  *
  * @see combat.h
  */
-mixed *weapon_attacks(long long percent, object target ) {
-   long long i, *order;
+mixed *weapon_attacks(int percent, object target ) {
+   int i, *order;
    mixed *attacks;
    if ( !percent )
       percent = 100;
@@ -164,9 +164,9 @@ mixed *weapon_attacks(long long percent, object target ) {
    return attacks;
 } /* weapon_attacks() */
 
-void attack_function( string a_name, long long damage, object attack_ob,
+void attack_function( string a_name, int damage, object attack_ob,
       object attack_by ) {
-   long long i;
+   int i;
 
    i = member_array( a_name, attack_names );
    if ( i == -1 ) {
@@ -191,7 +191,7 @@ void attack_function( string a_name, long long damage, object attack_ob,
  * @return the weapon type
  */
 string query_weapon_type() {
-   long long i;
+   int i;
    string type;
 
    for ( i = 0; i < sizeof( attack_data ); i += W_ARRAY_SIZE ) {
@@ -207,7 +207,7 @@ string query_weapon_type() {
 
 /** @ignore yes */
 mixed weapon_stats() {
-   long long i, j;
+   int i, j;
    string bit;
    mixed *ret;
    ret = ({ });
@@ -234,7 +234,7 @@ mixed weapon_stats() {
       if ( stringp( attack_data[ i + W_FUNCTION ] ) )
          ret += ({ ({ " function", attack_data[ i + W_FUNCTION ] }) });
       else
-         if ( polong longerp( attack_data[ i + W_FUNCTION ] ) )
+         if ( pointerp( attack_data[ i + W_FUNCTION ] ) )
             ret += ({
                ({ " function", attack_data[ i + W_FUNCTION ][ 0 ] }),
                ({ "called on", attack_data[ i + W_FUNCTION ][ 1 ] })

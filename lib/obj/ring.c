@@ -22,7 +22,7 @@
 inherit "/obj/armour";
 inherit "/std/basic/artifact";
 
-long long query_magic_ring() { return 1; }
+int query_magic_ring() { return 1; }
 
 void create() {
    ::create();
@@ -34,14 +34,14 @@ void create() {
    add_plural("jewellery");
 } /* create() */
 
-void set_weight( long long number ) {
+void set_weight( int number ) {
    armour::set_weight( number );
    setup_armour( 250 * number );
    add_ac( "blunt", "blunt", 5 * weight );
    add_ac( "sharp", "sharp", 2 * weight );
 } /* set_weight() */
 
-string long( long long word, long long dark ) {
+string long( int word, int dark ) {
   return artifact::long( word, dark ) + armour::long( word, dark );
 } /* long() */
 
@@ -49,15 +49,15 @@ void init() {
   this_player()->add_command( "twist", this_object() );
 } /* init() */
 
-long long do_twist() {
-  long long outcome;
+int do_twist() {
+  int outcome;
   if ( query_worn_by() != this_player() ) {
     this_player()->add_failed_mess( this_object(), "You must be "+
         "wearing $D to $V it.\n", ({ }) );
     return 0;
   }
 
-  outcome = (long long)TASKER->perform_task(this_player(), RING_SKILL,
+  outcome = (int)TASKER->perform_task(this_player(), RING_SKILL,
                                       level, TM_FREE);
   if ( outcome == FAIL ) {
     this_player()->add_failed_mess( this_object(), "You failed "+
@@ -103,7 +103,7 @@ mapping query_static_auto_load() {
   if ( explode( file_name( this_object() ), "#" )[ 0 ] != "/obj/ring" )
     return ([ ]);
   return ([
-    "::" : long long_query_static_auto_load(),
+    "::" : int_query_static_auto_load(),
     "artifact" : artifact::query_static_auto_load(),
   ]);
 } /* query_static_auto_load() */

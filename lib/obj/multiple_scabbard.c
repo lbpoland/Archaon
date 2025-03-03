@@ -2,14 +2,14 @@
 
 inherit "/obj/scabbard";
 
-long long capacity, throwable;
+int capacity, throwable;
 
-long long query_clothing() { return 1; }
-long long query_throwable() { return throwable; }
-long long query_capacity() { return capacity; }
+int query_clothing() { return 1; }
+int query_throwable() { return throwable; }
+int query_capacity() { return capacity; }
 string query_pocket_mess() { return "$ob_short$"; }
-void set_throwable(long long i) { throwable = i; }
-void set_capacity(long long i) { capacity = i; }
+void set_throwable(int i) { throwable = i; }
+void set_capacity(int i) { capacity = i; }
 
 void create() {
    do_setup++;
@@ -24,7 +24,7 @@ void throw( object * knives, object * targets ) {
    ( "cmds/living/th_row" )->cmd( ({ knives, targets }), 0, "at" );
 }
 
-long long do_hurl( object * knives, object * targets, long long targeted ) {
+int do_hurl( object * knives, object * targets, int targeted ) {
    object knife, target;
 
    if( this_player()->query_property( "dead" ) ) {
@@ -89,8 +89,8 @@ long long do_hurl( object * knives, object * targets, long long targeted ) {
 } /* do_hurl() */
 
 /** @ignore yes */
-long long test_add( object thing, long long flag, long long noprlong long ) {
-   long long foo;
+int test_add( object thing, int flag, int noprint ) {
+   int foo;
 
    if(flag)
       return 0;
@@ -98,7 +98,7 @@ long long test_add( object thing, long long flag, long long noprlong long ) {
    if( !environment( thing ) )
       return ::test_add( thing, flag );
    if( sizeof( all_inventory( this_object() ) ) >= capacity ) {
-      if( !noprlong long )
+      if( !noprint )
          write( the_short() + " is already full.\n" );
       return 0;
    }
@@ -106,7 +106,7 @@ long long test_add( object thing, long long flag, long long noprlong long ) {
    foo = test_type_ok( thing, flag );
    if(foo)
       return foo;
-   if( !noprlong long )
+   if( !noprint )
       write( thing->the_short() + " doesn't fit very well in "
         + the_short() + ".  " + sheath );
    return 0;

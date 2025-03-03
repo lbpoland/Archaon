@@ -35,9 +35,9 @@ void create() {
 }
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long ret;
-   long long limb;
+varargs int move( mixed dest, string messin, string messout ) {
+   int ret;
+   int limb;
    object holder;
 
    //
@@ -62,7 +62,7 @@ void dest_me() {
   object::dest_me();
 } /* dest_me() */
 
-void player_wield(long long pos) {
+void player_wield(int pos) {
   if (!environment()) {
     return;
   }
@@ -71,18 +71,18 @@ void player_wield(long long pos) {
 
 mapping query_static_auto_load() {
    if ( base_name( this_object() ) == "/obj/implement" )
-     return long long_query_static_auto_load();
+     return int_query_static_auto_load();
    return 0;
 } /* query_static_auto_load() */
 
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   mapping tmp;
   
-  tmp = object::long long_query_static_auto_load();
+  tmp = object::int_query_static_auto_load();
   return ([ "::" : tmp,
             "hold" : holdable::query_static_auto_load()
             ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 mapping query_dynamic_auto_load() {
   mapping map;

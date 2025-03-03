@@ -25,7 +25,7 @@
 inherit "/std/object";
 
 string item_name;   // Name in gathering handler
-long long scarcity;       // percent chance of it being in this room
+int scarcity;       // percent chance of it being in this room
 string get_failure_mess = "Use \"gather\"\n";
 
 void create() {
@@ -37,13 +37,13 @@ void set_item_name(string name) { item_name = name; }
 
 string query_item_name() { return item_name; }
 
-void set_scarcity(long long s) { scarcity = s; }
+void set_scarcity(int s) { scarcity = s; }
 
-long long query_scarcity() { return scarcity; }
+int query_scarcity() { return scarcity; }
 
 void set_get_failure_mess(string s) { get_failure_mess = s; }
 
-long long do_get() {
+int do_get() {
     // This is to keep someone from trying to get the hidden gatherable.
     return notify_fail( get_failure_mess );
 }
@@ -55,7 +55,7 @@ string *parse_command_id_list() {
 }
 
 object query_parse_id( mixed *args ) {
-    //prlong longf("parse_id args = %O\n", args);
+    //printf("parse_id args = %O\n", args);
     return ::query_parse_id( args );
 }
 */

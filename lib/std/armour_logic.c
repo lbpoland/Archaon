@@ -11,8 +11,8 @@ void create() {
 } /* create() */
  
 /* set the ac for the type directly.... */
-long long add_ac(string name, string type, mixed a_c) {
-  long long i;
+int add_ac(string name, string type, mixed a_c) {
+  int i;
  
   if (!stringp(type))
     return 0;
@@ -31,8 +31,8 @@ long long add_ac(string name, string type, mixed a_c) {
   return 1;
 } /* add_ac() */
 
-long long remove_ac(string name) {
-  long long j, k;
+int remove_ac(string name) {
+  int j, k;
 
   if (!ac[name])
     return 0;
@@ -48,11 +48,11 @@ long long remove_ac(string name) {
   return 1;
 } /* remove_ac() */
 
-long long calc_value(mixed arr) {
-  long long i, val;
+int calc_value(mixed arr) {
+  int i, val;
  
-  if (long longp(arr)) {
-    // this means you're more likely to find an armours weak polong long
+  if (intp(arr)) {
+    // this means you're more likely to find an armours weak point
     // the lower its condition. Full condition armour gives a 10%
     // chance and it rises from there.
     //if(random(100) < 140 - ((this_object()->query_cond() /
@@ -62,7 +62,7 @@ long long calc_value(mixed arr) {
     else
       return arr;
   }
-  if (!polong longerp(arr))
+  if (!pointerp(arr))
     return 0;
   if (sizeof(arr) == 1)
     return arr[F_FIXED];
@@ -74,8 +74,8 @@ long long calc_value(mixed arr) {
 } /* calc_value() */
  
 /* ok this gets our ac... ;) */
-varargs long long query_ac( string type, long long dam, string zone ) {
-  long long val, i, j;
+varargs int query_ac( string type, int dam, string zone ) {
+  int val, i, j;
   
   /* No armour types defined. */ 
   if ( !armour_types )
@@ -100,9 +100,9 @@ varargs long long query_ac( string type, long long dam, string zone ) {
 mapping query_armour_class() { return ac; }
 
 string calc_string(mixed b) {
-  if (long longp(b))
+  if (intp(b))
     return "rand("+b+")";
-  if (!polong longerp(b))
+  if (!pointerp(b))
     return "Dead";
   switch (sizeof(b)) {
     case 1 :
@@ -117,7 +117,7 @@ string calc_string(mixed b) {
 } /* calc_string() */
 
 mixed *stats() {
-  long long i;
+  int i;
   mixed *ret;
   mixed *stuff;
 
@@ -132,7 +132,7 @@ mixed *stats() {
 } /* stats() */
 
 void set_ac(mixed *bing) {
-  long long i;
+  int i;
 
   for (i=0;i<sizeof(ac);i+=A_ARRAY_SIZE)
     add_ac(ac[i], ac[i+1][A_TYPE], ac[i+1][A_AC]);

@@ -32,7 +32,7 @@ inherit "/std/basic/artifact";
  * This method will return true for all magic wands.
  * @return 1 for all wands
  */
-long long query_magic_wand() { return 1; }
+int query_magic_wand() { return 1; }
 
 void create() {
   weapon::create();
@@ -40,14 +40,14 @@ void create() {
 } /* create() */
 
 /** @ignore yes */
-void set_weight( long long number ) {
+void set_weight( int number ) {
   weapon::set_weight( number );
   new_weapon( 80 * number );
    add_attack( "prod", 90, ({ 0, 5, weight }), "blunt", "blunt", 0 );
 } /* set_weight() */
 
 /** @ignore yes */
-string long( long long word, long long dark ) {
+string long( int word, int dark ) {
   return artifact::long( word, dark ) + weapon::long( word, dark );
 } /* long() */
 
@@ -57,8 +57,8 @@ void init() {
 } /* init() */
 
 /** @ignore yes */
-long long do_zap( object *things ) {
-  long long outcome;
+int do_zap( object *things ) {
+  int outcome;
   if ( query_wielded() != this_player() ) {
     this_player()->add_failed_mess( this_object(), "You must be holding "+
         "$D to $V it.\n", ({ }) );
@@ -82,7 +82,7 @@ long long do_zap( object *things ) {
  *     skill level determines ability to use it (rather than skill
  *     bonus).
  */
-  outcome = (long long)TASKER->perform_task(this_player(), WAND_SKILL, level,
+  outcome = (int)TASKER->perform_task(this_player(), WAND_SKILL, level,
                                       TM_FREE);
   if ( outcome == FAIL ) {
     this_player()->add_failed_mess( this_object(), "You failed "+
@@ -132,7 +132,7 @@ mapping query_static_auto_load() {
   if ( explode( file_name( this_object() ), "#" )[ 0 ] != "/obj/wand" )
     return ([ ]);
   return ([
-    "::" : long long_query_static_auto_load(),
+    "::" : int_query_static_auto_load(),
     "artifact" : artifact::query_static_auto_load(),
   ]);
 } /* query_static_auto_load() */

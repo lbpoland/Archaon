@@ -6,7 +6,7 @@
 
 inherit "/std/object";
 
-long long check_tool( object *tools );
+int check_tool( object *tools );
 
 nosave string mineral;
 
@@ -24,7 +24,7 @@ void init() {
    this_player()->add_command( "smash", this_object(), "<direct:object> 'using' <indirect:object>" );
 } /* init() */
 
-varargs void make_mineral( string word, long long number, string *inputs ) {
+varargs void make_mineral( string word, int number, string *inputs ) {
    string adjective, material_adjective, colour_code, noun, *args;
    mineral = word;
    material_adjective = (string)HANDLER->query_material_adjective( mineral );
@@ -47,7 +47,7 @@ varargs void make_mineral( string word, long long number, string *inputs ) {
          adjective = "huge";
          noun = "boulder";
    }
-   if ( !polong longerp( inputs ) )
+   if ( !pointerp( inputs ) )
       args = allocate( 10 );
    else
       args = inputs + ({ 0, 0, 0, 0, 0 });
@@ -79,7 +79,7 @@ varargs void make_mineral( string word, long long number, string *inputs ) {
    add_adjective( ({ adjective }) + explode( material_adjective, " " ) );
 } /* make_mineral() */
 
-string long( string str, long long dark ) {
+string long( string str, int dark ) {
    string bit1, bit2, ret;
    sscanf( ::long( str, dark ), "%s$mineral$%s", bit1, bit2 );
    ret = bit1 + (string)HANDLER->identify_material( mineral, this_player(), 1 )
@@ -103,18 +103,18 @@ string query_mineral() { return mineral; }
 
 string query_material() { return mineral; }
 
-long long query_value() {
-  return ( query_weight() * (long long)(PRICE_INDEX)->query_price( mineral,
+int query_value() {
+  return ( query_weight() * (int)(PRICE_INDEX)->query_price( mineral,
             DEFAULT_MARKET ) );
 } /* query_value() */
 
-long long query_value_in( string word ) {
+int query_value_in( string word ) {
   if ( ( !word || ( word == "" ) ) || ( word == "default" ) )
     word = DEFAULT_MARKET;
-  return ( query_weight() * (long long)(PRICE_INDEX)->query_price( mineral, word ) );
+  return ( query_weight() * (int)(PRICE_INDEX)->query_price( mineral, word ) );
 } /* query_value_in() */
 
-long long do_chip( object *tools ) {
+int do_chip( object *tools ) {
    object chip;
    if ( !check_tool( tools ) )
       return 0;
@@ -131,8 +131,8 @@ long long do_chip( object *tools ) {
    return 1;
 } /* do_chip() */
 
-long long do_smash( object *tools ) {
-   long long i, j, largest, number, size;
+int do_smash( object *tools ) {
+   int i, j, largest, number, size;
    object debris, remains;
    if ( !check_tool( tools ) )
       return 0;
@@ -162,7 +162,7 @@ long long do_smash( object *tools ) {
    return 1;
 } /* do_smash */
 
-long long check_tool( object *tools ) {
+int check_tool( object *tools ) {
    string tool;
    object *held;
    if ( sizeof( tools ) > 1 ) {
@@ -192,12 +192,12 @@ mixed *stats() {
    });
 } /* stats() */
 
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : ::long long_query_static_auto_load(),
+      "::" : ::int_query_static_auto_load(),
       "mineral" : mineral,
    ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 void init_static_arg( mapping map ) {
    if ( map["::"] )
@@ -208,6 +208,6 @@ void init_static_arg( mapping map ) {
 
 mixed query_static_auto_load() {
    if ( file_name( this_object() )[ 0 .. 11 ] == "/std/mineral" )
-      return long long_query_static_auto_load();
+      return int_query_static_auto_load();
    return ([ ]);
 } /* query_static_auto_load() */

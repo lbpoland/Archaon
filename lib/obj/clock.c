@@ -33,7 +33,7 @@ inherit "std/object";
                 "seven", "seven plus one", "nine", "ten", "eleven" })
 #define CHIME_HANDLER "/obj/handlers/chime_handler"
 
-long long show_date;
+int show_date;
 
 /** @ignore yes */
 void create() {
@@ -50,7 +50,7 @@ void create() {
 /** @ignore yes */
 string query_time_string() {
   string mess;
-  long long minute, hour, *arr;
+  int minute, hour, *arr;
 
   minute = (AM_TIME_HANDLER->query_am_minute(time()) % 60);
   hour = AM_TIME_HANDLER->query_am_hour(time());
@@ -111,7 +111,7 @@ void set_show_date() { show_date = 1; }
  * @param num 1 = every hour, 2 = every half hour, 3 = every quarter hour.
  * @param mess The message to be displayed when the clock chimes.
  */
-void set_chimes(long long num, string mess) {
+void set_chimes(int num, string mess) {
   CHIME_HANDLER->register_for_chimes(this_object(), num, mess);
 }
 
@@ -122,6 +122,6 @@ void set_chimes(long long num, string mess) {
  * @param chime_message the message set with set_chimes.
  * @see set_chimes
  */
-void chime(string chime_message, long long type) {
+void chime(string chime_message, int type) {
   say(chime_message);
 }

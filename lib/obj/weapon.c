@@ -13,7 +13,7 @@ inherit "/std/basic/holdable";
 #include <virtual.h>
 
 /* ok.... now we start thinking about the strange things...
- *   We have several polong longs we want to implement... 
+ *   We have several points we want to implement... 
  *   1)  A much wider range of damages.
  *   2)  A "To hit" and "damage" rolls being seperate things
  *          But are still related.  ie a good hit will do more damage
@@ -29,7 +29,7 @@ inherit "/std/basic/holdable";
  *    All this is kept in an array, there can be more than one
  *    attack in the array.  They can be connected together in
  *    several ways, 1) follow on after attack one did more that x
- *    polong longs of damage.  2) have a percentage chance of working
+ *    points of damage.  2) have a percentage chance of working
  *    each attack.
  *    A standard set of attacks are defined in /std/weapon_handler
  *    please see that file for more details
@@ -56,7 +56,7 @@ void create() {
 } /* create() */
 
 /** @ignore yes */
-string short(long long dark) {
+string short(int dark) {
    string str;
    
    str = "";
@@ -81,10 +81,10 @@ void set_wield_func(string func, mixed ob) {
  * This method return true if it is a weapon.
  * @return always returns 1
  */
-long long query_weapon() { return 1; }
+int query_weapon() { return 1; }
 
 /** @ignore yes */
-string long(string s, long long dark) {
+string long(string s, int dark) {
    return ::long(s, dark)+cond_string();
 } /* long() */
 
@@ -93,20 +93,20 @@ string long(string s, long long dark) {
  * maximum and lowest conditions to the specified condition.
  * @param new_condition the condition value of the weapon
  */ 
-void new_weapon( long long new_condition ) {
+void new_weapon( int new_condition ) {
    set_cond( new_condition );
    set_max_cond( new_condition );
    set_lowest_cond( new_condition );
 } /* new_weapon() */
 
 /** @ignore yes */
-long long held_this_item(long long held, object holder, mixed arg) {
-  long long weight;
+int held_this_item(int held, object holder, mixed arg) {
+  int weight;
   object weapon;
 
   // Let them know if they aren't dexterous or strong enough to hold
   // this weapon effectively.
-  if(held == 1 && long longeractive(holder)) {
+  if(held == 1 && interactive(holder)) {
     weight = this_object()->query_weight();
 
     foreach(weapon in holder->query_weapons())
@@ -116,13 +116,13 @@ long long held_this_item(long long held, object holder, mixed arg) {
     switch(weight) {
     case 76..10000:
       tell_object(holder, "You struggle to hold " +
-                  query_multiple_short(holder->query_holding() +
+                  sprintf("%O", (holder->query_holding() +
                                        ({ this_object() }) - ({ 0 })) +
                   ".\n");
       break;
     case 50..75:
       tell_object(holder, "You struggle slightly to hold " +
-                  query_multiple_short(holder->query_holding() +
+                  sprintf("%O", (holder->query_holding() +
                                        ({ this_object() }) - ({ 0 })) +
                   ".\n");
       break;
@@ -143,9 +143,9 @@ long long held_this_item(long long held, object holder, mixed arg) {
 }
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long ret;
-   long long limb;
+varargs int move( mixed dest, string messin, string messout ) {
+   int ret;
+   int limb;
    object holder;
 
    //
@@ -170,8 +170,8 @@ void dest_me() {
   object::dest_me();
 } /* dest_me() */
 
-long long modify_damage(long long val, string name) {
-  long long tmp;
+int modify_damage(int val, string name) {
+  int tmp;
   
   tmp = val + (val * query_enchant()) /
     (query_max_enchant() + query_enchant());
@@ -186,41 +186,41 @@ long long modify_damage(long long val, string name) {
   return tmp;
 } /* modify_damage() */
 
-void hit_weapon( long long amount, string type ) {
+void hit_weapon( int amount, string type ) {
    if ( member_array( type, un_modifyable) != -1 )
       return;
    do_damage( type, amount );
 } /* hit_weapon() */
 
 /* immune to condtion loss */
-long long add_immune(string name) {
+int add_immune(string name) {
    if (member_array(name, un_modifyable) != -1)
       return 0;
    un_modifyable += ({ name });
    return 1;
 } /* add_immune() */
 
-long long remove_immune(string name) {
-   long long i;
+int remove_immune(string name) {
+   int i;
    if ((i = member_array(name, un_modifyable)) == -1)
       return 0;
    un_modifyable = delete(un_modifyable, i, 1);
    return 1;
 } /* remove_immune() */
 
-long long query_value() {
+int query_value() {
    return ( ::query_value() * ( 10 + ( 90 * query_cond() ) /
                                query_max_cond() ) ) / 100;
 } /* query_value() */
 
-long long query_full_value() { return ::query_value(); }
+int query_full_value() { return ::query_value(); }
 
 mixed *query_money_array() {
    return (mixed *)MONEY_HAND->create_money_array(query_value());
 } /* query_money_array() */
 
-long long query_money(string type) {
-   long long i;
+int query_money(string type) {
+   int i;
    mixed *m_a;
    
    m_a = (mixed *)MONEY_HAND->create_money_array(query_value());
@@ -246,7 +246,7 @@ void break_me() {
    ::break_me();
 } /* break_me() */
 
-void player_wield(long long pos) {
+void player_wield(int pos) {
   if (!environment()) {
     return;
   }
@@ -255,14 +255,14 @@ void player_wield(long long pos) {
 
 mapping query_static_auto_load() {
    if ( base_name( this_object() ) == "/obj/weapon" )
-      return long long_query_static_auto_load();
+      return int_query_static_auto_load();
    return 0;
 } /* query_static_auto_load() */
 
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    mapping tmp;
 
-   tmp = object::long long_query_static_auto_load();
+   tmp = object::int_query_static_auto_load();
    return ([ "::" : tmp,
       "attack names" : attack_names,
       "attack data" : attack_data,
@@ -270,7 +270,7 @@ mapping long long_query_static_auto_load() {
       "hold" : holdable::query_static_auto_load(),
       "condition" : condition::query_static_auto_load()
           ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 mapping query_dynamic_auto_load() {
    mapping map;

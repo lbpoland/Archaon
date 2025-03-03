@@ -18,7 +18,7 @@ mixed *exits,
       *items;
 string de_long,
        de_short;
-long long de_light;
+int de_light;
 
 void setup() {
   set_name("maker");
@@ -49,7 +49,7 @@ void init() {
  * modify exit
  */
 
-long long do_new(string str) {
+int do_new(string str) {
   if (!str) {
     notify_fail("Syntax: new <name>\n");
     return 0;

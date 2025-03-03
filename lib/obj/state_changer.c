@@ -14,19 +14,19 @@ inherit "/obj/vessel";
 
 object *add_list = ({ }); //List of cloned objects.
 
-long long query_busy();
-long long do_action( object *obs );
+int query_busy();
+int do_action( object *obs );
 string parse_message( string message );
 string query_classification();
 
 string command;
 string process;
 string start_mess;
-string long longerim_mess;
+string interim_mess;
 string end_mess;
 
-long long duration;
-long long base_bonus;
+int duration;
+int base_bonus;
 string skill;
 string fail_process;
 string end_mess_fail;
@@ -36,7 +36,7 @@ string command_mess;
 function start_func;
 function end_func; 
 function fail_func;
-long long gp_cost;
+int gp_cost;
 string gp_type = "other";
 
 string running_inv_mess;
@@ -63,13 +63,13 @@ void set_fail_process( string _process ) { fail_process = _process; }
 
 //Start, Interim and End messages are required! Fail messages are optional.
 void set_start_message( string message ) { start_mess = message; }
-void set_long longerim_message( string message ) { long longerim_mess = message; }
+void set_interim_message( string message ) { interim_mess = message; }
 void set_end_message( string message ) { end_mess = message; }
 void set_fail_message( string message ) { end_mess_fail = message; }
 void set_abort_message( string message ) { end_mess_abort = message; }
 
 //Duration! Required.
-void set_duration( long long _duration ) { duration = _duration; }
+void set_duration( int _duration ) { duration = _duration; }
 
 //Set add_succeeded_mess for command. Optional!
 void set_command_mess( string message ) { command_mess = message; }
@@ -84,12 +84,12 @@ void set_end_func( function f ) { start_func = f; }
 void set_fail_func( function f) { fail_func = f; }
 
 //Set skill and bonus to use! Optional!
-void set_skill( string _skill, long long _base_bonus ) { 
+void set_skill( string _skill, int _base_bonus ) { 
     skill = _skill;
     base_bonus = _base_bonus;
 }
 
-void set_gp_cost( long long gp ) { gp_cost = gp; }
+void set_gp_cost( int gp ) { gp_cost = gp; }
 
 void set_gp_type( string type ) { gp_type = type; }
 
@@ -104,8 +104,8 @@ void init() {
   }
 }
 
-long long do_action( object *obs ) {
-long long *tmp;
+int do_action( object *obs ) {
+int *tmp;
 
   if ( gp_cost ) {
       if ( this_player()->query_specific_gp( gp_type ) < gp_cost ) 
@@ -124,7 +124,7 @@ long long *tmp;
   //on the start func to show a 'fail message' since we can't really get one.
   if ( functionp( start_func ) ) {
     if ( !evaluate( start_func ) ) {
-        debug_prlong longf( "Stopped at start_func\n" );
+        debug_printf( "Stopped at start_func\n" );
         return notify_fail( "" );
     
     }
@@ -139,7 +139,7 @@ long long *tmp;
   if ( stringp( command_mess ) ) {
       this_player()->add_succeeded_mess( this_object(), parse_message( command_mess ), 
           all_inventory( this_object() ) );
-    debug_prlong longf( "Setting asm to %s.\n", parse_message( command_mess ) );
+    debug_printf( "Setting asm to %s.\n", parse_message( command_mess ) );
   }
   else
       this_player()->add_succeeded_mess( this_object(), "$N "+ command +"$s $I "
@@ -150,15 +150,15 @@ long long *tmp;
 /**
  * Some effect stuff to save on call outs.
  */
-object beginning(object apparatus, object tp, long long id) {
+object beginning(object apparatus, object tp, int id) {
     apparatus->submit_ee(0, duration, EE_REMOVE);
     apparatus->submit_ee("show_message", ({ 30, 30 }), EE_CONTINUOUS);
     return tp;
 } /* beginning() */ 
 
-object show_message(object apparatus, object tp, long long id) {    
-  if ( stringp( long longerim_mess ) )
-      tell_room(environment(), parse_message(long longerim_mess) );
+object show_message(object apparatus, object tp, int id) {    
+  if ( stringp( interim_mess ) )
+      tell_room(environment(), parse_message(interim_mess) );
 
   //If we have run out of stuff, END IT NOW.
   if ( !sizeof( all_inventory() ) )
@@ -167,23 +167,23 @@ object show_message(object apparatus, object tp, long long id) {
   return tp;
 } /* merge_effect() */
 
-object end(object apparatus, object tp, long long id) {
+object end(object apparatus, object tp, int id) {
  object ob;
- long long temp;
- long long l_bonus = base_bonus;
+ int temp;
+ int l_bonus = base_bonus;
 
   //If there is a 'start_func' which returns 0, then we stop. We are relying
   //on the start func to show a 'fail message' since we can't really get one.
   if ( functionp( end_func ) ) {
     if ( !evaluate( end_func ) ) {
-        debug_prlong longf( "Stopped at start_func\n" );
+        debug_printf( "Stopped at start_func\n" );
         return tp;
     }
   }
 
   //If we run out of stuff to do, abort!
   if ( !sizeof( all_inventory() ) ) {
-    debug_prlong longf( "Aborted due to lack of inventory!\n" );
+    debug_printf( "Aborted due to lack of inventory!\n" );
     if ( stringp( end_mess_abort ) )
       tell_room( environment(), parse_message(end_mess_abort) );
     return tp;
@@ -192,7 +192,7 @@ object end(object apparatus, object tp, long long id) {
   foreach( object i in all_inventory() ) {
       if ( temp = i->query_property( process + " modifier" ) ) {
           l_bonus += temp;
-          debug_prlong longf( "%s difficulty will be modified by %d (%O).\n", 
+          debug_printf( "%s difficulty will be modified by %d (%O).\n", 
              process, temp, ob );
       }
   }
@@ -208,7 +208,7 @@ object end(object apparatus, object tp, long long id) {
               continue;
         
               ob = STATE_CHANGE->transform( i, process, tp );
-              debug_prlong longf( "Transforming: %O to %O.\n", i, ob );
+              debug_printf( "Transforming: %O to %O.\n", i, ob );
               if ( ob ) {
                 add_list += ({ ob });
                 i->move( "/room/rubbish" );
@@ -228,7 +228,7 @@ object end(object apparatus, object tp, long long id) {
                 continue;
         
               ob = STATE_CHANGE->transform( i, fail_process, tp );
-              debug_prlong longf( "Transforming: %O to %O.\n", i, ob );
+              debug_printf( "Transforming: %O to %O.\n", i, ob );
               if ( ob ) {
                 add_list += ({ ob });
                 i->move( "/room/rubbish" );
@@ -246,7 +246,7 @@ object end(object apparatus, object tp, long long id) {
         continue;
     
       ob = STATE_CHANGE->transform( i, process, tp );
-      debug_prlong longf( "Transforming: %O to %O.\n", i, ob );
+      debug_printf( "Transforming: %O to %O.\n", i, ob );
       if ( ob ) {
         add_list += ({ ob });
         i->move( "/room/rubbish" );
@@ -270,14 +270,14 @@ string extra_look( object ob ) {
 }
 
 string parse_message( string message ) {
-  message = replace( message, "$inventory$", query_multiple_short( all_inventory() ) );
-  debug_prlong longf( "message is: %s.\n" , message );
+  message = replace( message, "$inventory$", sprintf("%O", ( all_inventory() ) );
+  debug_printf( "message is: %s.\n" , message );
   return message;
 }
 
-long long test_add(object ob, long long flag) {
+int test_add(object ob, int flag) {
 
-    debug_prlong longf( "Testing add of: %O (%O) in state changer.\n", ob, environment( ob ) );
+    debug_printf( "Testing add of: %O (%O) in state changer.\n", ob, environment( ob ) );
 
     //If the food has been cloned by this thingy.
     if ( member_array( ob, add_list ) != -1 ) {
@@ -293,12 +293,12 @@ long long test_add(object ob, long long flag) {
 }
 
 
-long long test_remove( object ob, long long flag, mixed dest ) {
+int test_remove( object ob, int flag, mixed dest ) {
 
     if ( dest && base_name( dest ) == "/room/rubbish" )
         ::test_remove( ob, flag, dest );
 
-    debug_prlong longf( "Testing remove of: %O (%O) in state changer.\n", ob, environment( ob ) );
+    debug_printf( "Testing remove of: %O (%O) in state changer.\n", ob, environment( ob ) );
 
     if ( query_busy() ) {
         tell_object( this_player(), "It might not be wise to take anything from "+ 
@@ -309,7 +309,7 @@ long long test_remove( object ob, long long flag, mixed dest ) {
 }
 
 
-string long( string word, long long dark ) {
+string long( string word, int dark ) {
   //If it's running!
   if ( query_busy() ) {
     if ( stringp( running_inv_mess ) )
@@ -320,7 +320,7 @@ string long( string word, long long dark ) {
   return ::long( word, dark );
 }
 
-long long do_empty(object *dest, string me, string him, string prep) {
+int do_empty(object *dest, string me, string him, string prep) {
   if ( query_busy() ) {
     add_failed_mess( "You can't empty "+ this_object()->short() +" while it is being used.\n" );
     return 0;
@@ -328,7 +328,7 @@ long long do_empty(object *dest, string me, string him, string prep) {
   return ::do_empty( dest, me, him, prep );
 }
 
-long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
+int do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
 
   if ( query_busy() ) {
     add_failed_mess( "You can't fill anything from "+ this_object()->short() 
@@ -339,4 +339,4 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
 }
 
 
-long long query_busy() { return !!sizeof( this_object()->effects_matching( query_classification() ) ); }
+int query_busy() { return !!sizeof( this_object()->effects_matching( query_classification() ) ); }

@@ -31,7 +31,7 @@
 
 inherit "/std/container";
 
-long long time_of_crash, time_of_last_shout;
+int time_of_crash, time_of_last_shout;
 
 void setup() {
 /* This stops wizzes from cloning armageddon. He only needs to be loaded */
@@ -56,7 +56,7 @@ void setup() {
 #define ishout(str) user_event("say", "%^BOLD%^%^RED%^Offler the Crocodile God shouts: "+str+"%^RESET%^\n", 0)
 
 void heart_beat() {
-   long long time_to_crash;
+   int time_to_crash;
    if (!time_of_crash) return;
    time_to_crash = time_of_crash - time();
    if (time_to_crash < 1) {
@@ -93,11 +93,11 @@ void heart_beat() {
    }
 } /* heart_beat() */
 
-void shut(long long minutes, string reason) {
+void shut(int minutes, string reason) {
    object *players;
-   long long i;
+   int i;
    string fname;
-   if (!long longp(minutes)) {
+   if (!intp(minutes)) {
       write("Bad argument\n");
       return;
    }
@@ -149,7 +149,7 @@ void shut(long long minutes, string reason) {
 
 } /* shut() */
 
-string long(string str, long long dark) {
+string long(string str, int dark) {
   ::long(str, dark);
   if ( time_of_crash && this_player() && this_player()->query_creator() )
      return ::long(str,dark)+
@@ -159,7 +159,7 @@ string long(string str, long long dark) {
 } /* long() */
 
 void end_it_all() {
-   long long i;
+   int i;
    object *obs;
    
    ishout( "Thutdown now!" );
@@ -207,7 +207,7 @@ void blue() {
   }
 } /* blue() */
 
-long long query_time_to_crash() {
+int query_time_to_crash() {
    if ( !time_of_crash ) {
       call_out( "dest_me", 1 );
       return 9999;
@@ -216,7 +216,7 @@ long long query_time_to_crash() {
    return time_of_crash - time();
 } /* query_time_to_crash() */
 
-long long query_unambushable() { return 1; }
+int query_unambushable() { return 1; }
 
 void do_ambushed() {
    write( "Bad mistake...\n" );
@@ -224,7 +224,7 @@ void do_ambushed() {
 } /* do_ambushed() */
 
 #ifdef AUTO_RESURRECT
-void person_died( string word, long long number ) {
+void person_died( string word, int number ) {
    object thing;
    thing = find_player( word );
    if ( !thing )
@@ -252,7 +252,7 @@ void person_died( string word, long long number ) {
    call_out( "person_died", 3, word, number + 1 );
 } /* person_died() */
 
-void person_dead( object thing, long long number ) {
+void person_dead( object thing, int number ) {
    if ( !thing )
       return;
    if ( thing->query_property( "noregen" ) ) {
@@ -286,7 +286,7 @@ void check_ghosts() {
       if ( !thing->query_property( "dead" ) ) { 
          continue;
       }
-      if ( (long long)thing->query_deaths() > (long long)thing->query_max_deaths() ) {
+      if ( (int)thing->query_deaths() > (int)thing->query_max_deaths() ) {
          continue;
       }
       call_out( "person_dead", 3, thing, 0 );

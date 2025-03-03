@@ -303,7 +303,7 @@ string get_bb_uid() { return "Room"; }
  * @return the list of include directories
  */
 string *define_include_dirs() {
-  return ({ "/include/%s" });
+  return ({ "/path/to/fluffos/include/%s" });
 } /* define_include_dirs() */
 
 /**

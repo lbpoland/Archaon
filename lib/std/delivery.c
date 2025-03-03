@@ -44,23 +44,23 @@ inherit "/global/auto_load";
 class delivery_item {
     object delivery_ob;
     string sent_by;
-    long long submit_time;
-    long long delay_time;
+    int submit_time;
+    int delay_time;
 }
 
-protected void set_delivery_delay(long long new_time);
-protected long long valid_delivery(class delivery_item delivery, string person);
+protected void set_delivery_delay(int new_time);
+protected int valid_delivery(class delivery_item delivery, string person);
 protected void deliver_item(string who, object ob, string sent_by);
 protected void set_burdened_mess(string s);
 protected void set_delivery(mapping x);
 protected void set_delivery_mess(string s);
 protected void set_save_file(string str);
-public long long query_delivery_delay();
+public int query_delivery_delay();
 public string query_burdened_mess();
 public string query_delivery_mess();
 public string query_save_file();
 public varargs mixed query_delivery(string person);
-public void add_delivery(mixed who, mixed sender, object item, long long delay);
+public void add_delivery(mixed who, mixed sender, object item, int delay);
 public void check_delivery(mixed person, string type);
 public void clear_delivery();
 public void setup_delivery();
@@ -74,7 +74,7 @@ private nosave string _save_file;
 private nosave object _cont;
 private nosave string _delivery_mess;
 private nosave string _burdened_mess;
-private nosave long long _delivery_delay;
+private nosave int _delivery_delay;
 
 /** @ignore yes */
 void create() {   
@@ -93,7 +93,7 @@ void create() {
 } /* create() */        
 
 /** 
- * This method adds the object long longo the login handler's static login calls 
+ * This method adds the object into the login handler's static login calls 
  * list.  It only ever needs to be called _once_, and doesn't need to be 
  * called every time the object loads. 
  * <p>
@@ -165,7 +165,7 @@ protected void set_delivery(mapping x) {
  *      add_delivery(this_player(), "taffyd", frog, 360);
  * @see check_delivery()
  */
-void add_delivery(mixed who, mixed sender, object item, long long delay) {   
+void add_delivery(mixed who, mixed sender, object item, int delay) {   
     string name, from;
     class delivery_item parcel;
     
@@ -209,7 +209,7 @@ void add_delivery(mixed who, mixed sender, object item, long long delay) {
  * @return 1 if the delivery is not ready, 0 if it is. (yes, this is kind
  * of backwards.)
  */
-protected long long valid_delivery(class delivery_item delivery, string person) {
+protected int valid_delivery(class delivery_item delivery, string person) {
     
   if (delivery->submit_time + delivery->delay_time > time())
     return 1;
@@ -272,15 +272,15 @@ protected void deliver_item(string who, object ob, string sent_by) {
     /* Something has gone wrong... the player must have logged out before 
        they received their message. We'll just trash the item, since its
        already been removed from the delivery inheritable and placing it 
-       back in is messy. (and rather polong longless) */
+       back in is messy. (and rather pointless) */
        
     if (!player)
         ob->move("/room/rubbish");    
     
     if (ob->move(player) != MOVE_OK) {
 
-        /* If we can't move the item long longo the player, then we should move it 
-           long longo their environment... */
+        /* If we can't move the item into the player, then we should move it 
+           into their environment... */
            
         if (environment(player)) {
             new_mess = replace(_burdened_mess, ({ "$S", sent_by, "$N", 
@@ -311,7 +311,7 @@ protected void deliver_item(string who, object ob, string sent_by) {
 } /* deliver_item() */
 
 /** @ignore yes */
-long long query_theft_command() {
+int query_theft_command() {
     return -1;
 } /* query_theft_command() */
 
@@ -330,7 +330,7 @@ void clean_delivery_mapping() {
 
 
 /**
- * This method saves all of the delivery data long longo the save file, handling 
+ * This method saves all of the delivery data into the save file, handling 
  * saving of the auto loading as well.
  */
 public void save_file() {
@@ -365,7 +365,7 @@ public void save_file() {
  * autoloading of the items.
  */
 void load_file() {
-  long long i, j, size;
+  int i, j, size;
   mixed *tmp;
   string who;
   mixed *items;
@@ -394,7 +394,7 @@ void load_file() {
       
       tmp = load_auto_load_to_array(items, this_player());
       
-      /* This places the stored items back long longo the delivery
+      /* This places the stored items back into the delivery
          mapping... items are stored in tmp backwards,
          which is why we do the size-i-1 thing.  */
       
@@ -428,7 +428,7 @@ public string query_delivery_mess() {
  * @return the number of seconds unt    
  *
  */
-public long long query_delivery_delay() {
+public int query_delivery_delay() {
     return _delivery_delay;
 } /* query_delivery_time() */
 
@@ -443,7 +443,7 @@ public long long query_delivery_delay() {
  * <p>
  * @param new_time the time in seconds after log in to deliver the message.
  */
-protected void set_delivery_delay(long long new_time) {
+protected void set_delivery_delay(int new_time) {
     _delivery_delay = new_time;
 } /* set_delivery_time() */
 
@@ -457,11 +457,11 @@ protected void set_delivery_delay(long long new_time) {
  * @see /std/basic/desc->a_short()
  * @example
  *     set_delivery_mess("A small frog hops up to you, and thrusts $N "
- *         "long longo your arms.  He holds up a large sign that reads: \""
+ *         "into your arms.  He holds up a large sign that reads: \""
  *         "From $S\", and then runs away.\n");
  *
  * // Recipient sees:
- * A small frog hops up to you, and thrusts a large blue box long longo your
+ * A small frog hops up to you, and thrusts a large blue box into your
  * arms.  He holds up a large sign that reads: \"From Taffyd!\", and then
  * runs away.
  */

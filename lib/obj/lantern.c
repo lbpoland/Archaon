@@ -13,22 +13,22 @@ inherit "/std/object";
 /*
     Global variables.
 */
-long long  fuel_left;
-long long  is_lit;
+int  fuel_left;
+int  is_lit;
  
 void create(){
   ::create();
 
 }
 
-string short( long long i ) {
+string short( int i ) {
   if ( is_lit )
     return ::short( 0 ) + " (lit)";
  
   return ::short( 0 );
 }
  
-long long do_extinguish() {
+int do_extinguish() {
    if ( !is_lit ) {
       this_player()->add_failed_mess(this_object(), "$D is not lit.\n", ({ }));
       return 0;
@@ -39,11 +39,11 @@ long long do_extinguish() {
    return 1;
 } /* dest_me() */
 
-long long do_dowse() {
+int do_dowse() {
    return do_extinguish();
 } /* do_dowse() */
  
-long long do_light() {
+int do_light() {
    if ( is_lit ) {
       this_player()->add_failed_mess( this_object(), "$D is already lit.\n",
                                      ({ }) );
@@ -75,7 +75,7 @@ void out_of_fuel() {
    FUEL_HANDLER->remove_burner( this_object() );
    set_light( 0 );
 
-   if ( long longeractive( env ) ) {
+   if ( interactive( env ) ) {
       write( poss_short() +" burns out.\n" );
       tell_room( environment(env), poss_short() +" burns out.\n", env );
    } else 
@@ -130,11 +130,11 @@ void init_dynamic_arg( mapping arg ) {
    ::init_dynamic_arg( arg["::"] );
 } /* init_dynamic_arg() */
  
-long long query_fuel_left() { 
+int query_fuel_left() { 
     return fuel_left;
 } /* query_fuel_left() */
 
-void set_fuel_left( long long i ) {
+void set_fuel_left( int i ) {
     if ( i > MAX_FUEL ) {
         i = MAX_FUEL;
     }
@@ -145,6 +145,6 @@ void set_fuel_left( long long i ) {
 /**
  * This method returns the maximum amount of fuel for the object.
  */
-long long query_max_fuel() {
+int query_max_fuel() {
     return MAX_FUEL;
 } /* query_max_fuel() */

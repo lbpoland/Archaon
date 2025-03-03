@@ -54,13 +54,13 @@
 
 inherit "/std/object";
 
-private long long amount;
-private long long continuous;
-private long long collective;
+private int amount;
+private int continuous;
+private int collective;
 
 private nosave string my_filename;
-private long long *weight_unit;
-private nosave long long no_join;
+private int *weight_unit;
+private nosave int no_join;
 private float value_scale;
 private string medium_alias;
 private string pile_name;
@@ -69,10 +69,10 @@ private mapping amount_types;
 private mixed *pile_types;
 private nosave mixed _short_name;
 
-object make_medium_clone( long long number );
+object make_medium_clone( int number );
 
 void create() {
-  long long junk;
+  int junk;
 
   do_setup++;
   ::create();
@@ -101,13 +101,13 @@ void set_name( string word ) {
  * volume measurement.
  * @return the amount of stuff
  */
-long long query_amount() { return amount; }
+int query_amount() { return amount; }
 
 /**
  * This method sets the amount of the stuff there is.
  * @param number the amount to set it to
  */
-void set_amount( long long number ) {
+void set_amount( int number ) {
   if(environment() && continuous)
     environment()->add_volume(number - amount);
 
@@ -121,7 +121,7 @@ void set_amount( long long number ) {
  * This method changes the amount of stuff.
  * @param number the amount to change it by
  */
-void adjust_amount(long long number) {
+void adjust_amount(int number) {
   if(environment() && continuous)
     environment()->add_volume(number);
 
@@ -139,19 +139,19 @@ void adjust_amount(long long number) {
  * This method tests to see if this object is continuous or not.
  * @return 1 if it is continuous, 0 if not
  */
-long long query_continuous() { return continuous; }
+int query_continuous() { return continuous; }
 
 /**
  * This method tests to see if this object is a collective or not.
  * @return 1 if it is continuous, 0 if not.
  */
-long long query_collective() { return collective; }
+int query_collective() { return collective; }
 
 /**
  * This method returns 1 if the object is available for mergin.
  * @return 1 if we can merge
  */
-long long query_merger() { return 1; }
+int query_merger() { return 1; }
 
 /**
  * This method makes the object continuous.
@@ -205,7 +205,7 @@ void reset_collective() {
  * that b units of stuff have weight a.
  * @return the weight array
  */
-long long *query_weight_unit() { return weight_unit; }
+int *query_weight_unit() { return weight_unit; }
 
 /**
  * This method sets the weight units used for this type
@@ -213,7 +213,7 @@ long long *query_weight_unit() { return weight_unit; }
  * that b units of stuff have weight a.
  * @param numbers the new weight unit
  */
-void set_weight_unit( long long *numbers ) { weight_unit = numbers; }
+void set_weight_unit( int *numbers ) { weight_unit = numbers; }
 
 /**
  * This method checks to see if we are allowed to join with other
@@ -221,7 +221,7 @@ void set_weight_unit( long long *numbers ) { weight_unit = numbers; }
  * same environment and the medium aliases match.
  * @return 1 if they cannot join, 0 if they can
  */
-long long query_no_join() { return no_join; }
+int query_no_join() { return no_join; }
 
 /**
  * This method stops this object joining with other
@@ -325,10 +325,10 @@ void set_pile_types( mixed *args ) { pile_types = args; }
 
 /**
  * This method returns the maximum number of piles of the
- * object that can be seen.  Any more than this turns long longo 'many'.
+ * object that can be seen.  Any more than this turns into 'many'.
  * @return the maximum number of piles that can be seen
  */
-long long query_max_seen() { return 12; }
+int query_max_seen() { return 12; }
 
 /**
  * This method returns the value of the object.  If the object is
@@ -340,14 +340,14 @@ long long query_max_seen() { return 12; }
  * @see set_value_scale()
  * @see query_value_scale()
  */
-long long query_value() {
+int query_value() {
 
   if (!floatp(value_scale) || !continuous) {
     if(collective)
       return (amount * ::query_value() );
     return ::query_value();
   }
-  return to_long long(::query_value() * value_scale * amount);
+  return to_int(::query_value() * value_scale * amount);
 } /* query_value() */
 
 /**
@@ -369,13 +369,13 @@ void set_value_scale(float f) { value_scale = f; }
 float query_value_scale() { return value_scale; }
 
 /**
- * This returns as an long longeger 'how many' we have of a particular
+ * This returns as an integer 'how many' we have of a particular
  * type.
- * @return long long representing the amount of a particular pile.
+ * @return int representing the amount of a particular pile.
  */
-long long query_how_many() {
-  long long biggest_amount;
-  long long how_many;
+int query_how_many() {
+  int biggest_amount;
+  int how_many;
   string size;
   string biggest_size;
 
@@ -411,9 +411,9 @@ long long query_how_many() {
  * have.
  * @return string representing the amount of stuff we have
  */
-varargs string amount_size(long long exact) {
-   long long biggest_amount;
-   long long how_many;
+varargs string amount_size(int exact) {
+   int biggest_amount;
+   int how_many;
    string size;
    string biggest_size;
    string biggest_plural;
@@ -422,7 +422,7 @@ varargs string amount_size(long long exact) {
       return "none at all";
    }
    if ( !m_sizeof( amount_types ) ) {
-      return "minus one Cornish plong long";
+      return "minus one Cornish pint";
    }
    biggest_size = _sorted_amount_names[0];
    foreach (size in _sorted_amount_names) {
@@ -452,8 +452,8 @@ varargs string amount_size(long long exact) {
  * @return string representing the amount of stuff we have
  */
 string amount_size_short() {
-   long long biggest_amount;
-   long long how_many;
+   int biggest_amount;
+   int how_many;
    string size;
    string biggest_size;
    string ret;
@@ -501,7 +501,7 @@ string amount_size_short() {
  * @return the size of this pile of stuff
  */
 string pile_size() {
-   long long i;
+   int i;
 
    if ( !sizeof( pile_types ) ) {
       return "a surreal "+ pile_name;
@@ -534,7 +534,7 @@ varargs string pretty_plural( object thing ) {
 
 #ifdef 0
 /** @ignore yes */
-string short(long long dark) {
+string short(int dark) {
   string ret;
 
   ret = ::short( dark );
@@ -550,8 +550,8 @@ string short(long long dark) {
 #endif
 
 /** @ignore yes */
-string long(string words, long long dark ) {
-  long long i;
+string long(string words, int dark ) {
+  int i;
   string ret;
   string *bits;
 
@@ -649,11 +649,11 @@ string long(string words, long long dark ) {
 }
 
 /** @ignore yes */
-string query_long(string words, long long dark)  {
+string query_long(string words, int dark)  {
    return long(words, dark);
 }
 
-object new_collective(long long number) {
+object new_collective(int number) {
   object ob;
   object place;
 
@@ -675,7 +675,7 @@ object new_collective(long long number) {
  * This is a separate function so that things that inherit this can
  * redefine it to meet their requirements.
  */
-long long merge_criteria(object ob) {
+int merge_criteria(object ob) {
   return medium_alias == ob->query_medium_alias();
 }
 
@@ -695,8 +695,8 @@ void merge() {
 }
 
 /** @ignore yes */
-varargs long long move( mixed dest, string messin, string messout ) {
-  long long check;
+varargs int move( mixed dest, string messin, string messout ) {
+  int check;
 
   if((check = ::move(dest, messin, messout)) != MOVE_OK)
     return check;
@@ -713,7 +713,7 @@ varargs long long move( mixed dest, string messin, string messout ) {
  * @param number the new size of the object
  * @return the new object
  */
-object make_medium_clone( long long number ) {
+object make_medium_clone( int number ) {
    object medium;
    mapping map;
    
@@ -738,7 +738,7 @@ object make_medium_clone( long long number ) {
 
 /** @ignore yes */
 object cont_query_parse_id( mixed *args ) {
-   long long i;
+   int i;
    string *sizes;
    object medium, place;
 
@@ -836,12 +836,12 @@ object query_parse_id( mixed *args ) {
 /** @ignore yes */
 mixed* cont_parse_match_object(string* input, object player,
                                class obj_match_context context) {
-   long long result;
+   int result;
    string size;
    mixed* amt;
-   long long make_amt;
-   long long smallest;
-   long long num;
+   int make_amt;
+   int smallest;
+   int num;
    object medium;
    object place;
 
@@ -916,12 +916,12 @@ mixed* cont_parse_match_object(string* input, object player,
 /** @ignore yes */
 mixed* coll_parse_match_object(string* input, object viewer,
                                class obj_match_context context) {
-  long long ret;
-  long long num;
-  long long make_amt;
+  int ret;
+  int num;
+  int make_amt;
   string size;
   mixed *amt;
-  long long smallest;
+  int smallest;
 
   ret = ::is_matching_object(input, viewer, context);
   if (!ret) {
@@ -960,7 +960,7 @@ mixed* coll_parse_match_object(string* input, object viewer,
   if(!make_amt)
     make_amt = 1;
 
-  num = update_parse_match_context(context, to_long long(amount / make_amt), ret);
+  num = update_parse_match_context(context, to_int(amount / make_amt), ret);
 
   if (!num)
     return 0;
@@ -990,10 +990,10 @@ mixed *parse_match_object(string *input, object player,
 
 /**
  * This method is for dealing with the object when bits are shaved off.
- * If it is split up by someone referencing it we are moved long longo a
- * special environment so we do not long longerfer with the old pile.  The
+ * If it is split up by someone referencing it we are moved into a
+ * special environment so we do not interfer with the old pile.  The
  * property "medium dest" will be used as the place to go, otherwise
- * the environment will be used.  This method sticks it long longo a special
+ * the environment will be used.  This method sticks it into a special
  * on the fly created container.
  * @param dest the place to move too  (this will be the "medium dest" or
  * the environment()
@@ -1063,9 +1063,9 @@ void init_dynamic_arg( mapping map, object ) {
 }
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::": ::long long_query_static_auto_load(),
+      "::": ::int_query_static_auto_load(),
       "weight_unit": weight_unit,
       "medium_alias": medium_alias,
       "pile_name": pile_name,
@@ -1078,7 +1078,7 @@ mapping long long_query_static_auto_load() {
 /** @ignore yes */
 mapping query_static_auto_load() {
   if ( base_name(this_object()) + ".c" == __FILE__ )
-      return long long_query_static_auto_load();
+      return int_query_static_auto_load();
    return 0;
 } /* query_static_auto_load() */
 
@@ -1090,13 +1090,13 @@ void init_static_arg( mapping map ) {
       ::init_static_arg( map[ "::" ] );
    if ( !undefinedp( map[ "medium_alias" ] ) )
       medium_alias = map[ "medium_alias" ];
-   if ( polong longerp( map[ "weight_unit" ] ) )
+   if ( pointerp( map[ "weight_unit" ] ) )
       weight_unit = map[ "weight_unit" ];
    if ( stringp( map[ "pile_name" ] ) )
       pile_name = map[ "pile_name" ];
    if ( mapp( map[ "amount_types" ] ) )
       set_amount_types(map[ "amount_types" ]);
-   if ( polong longerp( map[ "pile_types" ] ) )
+   if ( pointerp( map[ "pile_types" ] ) )
       pile_types = map[ "pile_types" ];
    if ( floatp( map[ "value_scale" ] ) )
       value_scale = map[ "value_scale" ];

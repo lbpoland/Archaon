@@ -37,7 +37,7 @@ private string _too_poor_mess;
 private string _too_heavy_mess;
 private string _in_combat_mess;
 private string _busy_mess;
-private long long busy;
+private int busy;
 
 void create() {
 
@@ -97,13 +97,13 @@ void check_cont() {
  * @param buyer who is buying it
  * @return the cost of the item
  */
-long long query_cost( object thing, object buyer ) {
+int query_cost( object thing, object buyer ) {
 
    if( thing->query_property("cost here") ) {
-        return (long long)thing->query_property("cost here");
+        return (int)thing->query_property("cost here");
     }
     else {
-       return (long long)thing->query_value_at( this_object() );
+       return (int)thing->query_value_at( this_object() );
     }
 
 } /* query_cost() */
@@ -126,11 +126,11 @@ string cost_string( object thing, string place, object buyer ) {
  * The main entrace to the browse for things command.
  * @return 1 on success, 0 on failure
  */
-long long do_browse( mixed indirect_obs, string dir_match, string indir_match,
+int do_browse( mixed indirect_obs, string dir_match, string indir_match,
     string *words ) {
 
-    long long num_left;
-    long long i;
+    int num_left;
+    int i;
     string place;
     object *things;
     string custom_string;
@@ -193,7 +193,7 @@ long long do_browse( mixed indirect_obs, string dir_match, string indir_match,
     }
 
     this_player()->add_succeeded_mess( this_object(), "$N ask$s $D "
-        "about "+ query_multiple_short(things) +".\n", ({ }) );
+        "about "+ sprintf("%O", (things) +".\n", ({ }) );
     return 1;
 
 } /* do_browse() */
@@ -218,10 +218,10 @@ void show_it(string short, string long){
  * The main entrace to the buy things command.
  * @return 1 on success, 0 on failure
  */
-long long do_buy( mixed indirect_obs, string dir_match, string indir_match,
+int do_buy( mixed indirect_obs, string dir_match, string indir_match,
       string *words ) {
 
-    long long i, num_left;
+    int i, num_left;
     object *things;
     string custom_string;
 
@@ -248,14 +248,14 @@ long long do_buy( mixed indirect_obs, string dir_match, string indir_match,
            queue_command( "sayto " + file_name(this_player()) + " " +
                           _in_combat_mess, 2 );
            this_player()->add_succeeded_mess( this_object(), "$N ask$s $D "
-               "about buying "+ query_multiple_short(things) +".\n", ({ }) );
+               "about buying "+ sprintf("%O", (things) +".\n", ({ }) );
            busy = 0;
            return 1;
         }
 
         for ( i = 0; i < sizeof( things ); ++i ) {
-            num_left = (long long)things[ i ]->query_property( MAX_PROP ) -
-                (long long)things[ i ]->query_property( NUM_SOLD );
+            num_left = (int)things[ i ]->query_property( MAX_PROP ) -
+                (int)things[ i ]->query_property( NUM_SOLD );
             if ( num_left < 1 ) {
                 custom_string = replace( _all_out_mess, ({
                     "$item$", strip_colours((string)things[i]->query_plural())
@@ -271,7 +271,7 @@ long long do_buy( mixed indirect_obs, string dir_match, string indir_match,
     }
 
     this_player()->add_succeeded_mess( this_object(), "$N ask$s $D "
-        "about buying "+ query_multiple_short(things) +".\n", ({ }) );
+        "about buying "+ sprintf("%O", (things) +".\n", ({ }) );
     return 1;
 
 } /* do_buy() */
@@ -281,11 +281,11 @@ long long do_buy( mixed indirect_obs, string dir_match, string indir_match,
  * The main entrace to the list stuff command.
  * @return 1 on success, 0 on failure
  */
-long long do_list() {
-    long long num_left;
+int do_list() {
+    int num_left;
     string place;
     object thing;
-    long long first;
+    int first;
     object cont;
     string display;
     string custom_string;
@@ -310,8 +310,8 @@ long long do_list() {
     first = 1;
 
     while ( thing ) {
-        num_left = (long long)thing->query_property( MAX_PROP ) -
-            (long long)thing->query_property( NUM_SOLD );
+        num_left = (int)thing->query_property( MAX_PROP ) -
+            (int)thing->query_property( NUM_SOLD );
         if ( num_left < 1 ) {
             thing = next_inventory( thing );
             continue;
@@ -369,7 +369,7 @@ long long do_list() {
  * @return 1 on success, 0 on failure
  */
 void sell_thing( object player, object thing ) {
-    long long value;
+    int value;
     string item_name, place;
     object copy;
     string custom_string;
@@ -392,13 +392,13 @@ void sell_thing( object player, object thing ) {
         place = "default";
     }
 
-    value = (long long)player->query_value_in( place );
+    value = (int)player->query_value_in( place );
     if ( place != "default" ) {
-        value += (long long)player->query_value_in( "default" );
+        value += (int)player->query_value_in( "default" );
     }
 
     // Make sure we are making a cost based on the non-cloned object.
-    if ( (long long)this_object()->query_cost( thing, player ) > value ) {
+    if ( (int)this_object()->query_cost( thing, player ) > value ) {
         custom_string = replace( _too_poor_mess, ({
             "$item$", (string)thing->a_short()
         }) );
@@ -431,16 +431,16 @@ void sell_thing( object player, object thing ) {
         return;
     }
 
-    thing->add_property( NUM_SOLD, (long long)thing->query_property( NUM_SOLD ) +
+    thing->add_property( NUM_SOLD, (int)thing->query_property( NUM_SOLD ) +
         1 );
     player->pay_money( (mixed *)MONEY_HAND->create_money_array(
-        (long long)this_object()->query_cost( copy, player ), place ), place );
+        (int)this_object()->query_cost( copy, player ), place ), place );
     tell_object( player, "You pay "+ the_short() +" "+
         cost_string( copy, place, player ) +".\n" );
     tell_room( environment(), (string)player->one_short() +
         " gives "+ the_short() +" some money.\n", player );
 
-    if ( (long long)copy->move( player ) != MOVE_OK ) {
+    if ( (int)copy->move( player ) != MOVE_OK ) {
         custom_string = replace( _too_heavy_mess, ({
             "$item$", (string)copy->the_short()
         }) );

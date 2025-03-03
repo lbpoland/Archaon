@@ -72,7 +72,7 @@ void init() {
 } /* init() */
 
 /** @ignore yes */
-long long add_weight( long long n ) {
+int add_weight( int n ) {
   if ( !( ::add_weight( n ) ) ) return 0;
   if ( n >= 0 ) {
     remove_call_out( "check_breakages" );
@@ -92,7 +92,7 @@ void check_breakages() {
  *   the chance of breakage.
  */
   object *obs, carrier;
-  long long i, amt, wt;
+  int i, amt, wt;
 
   // See if it's being carried by a living object
   carrier = environment(this_object());
@@ -101,7 +101,7 @@ void check_breakages() {
   if (!carrier)
     return;
   obs = all_inventory();
-  wt = query_loc_weight() - (long long)query_property("padded");
+  wt = query_loc_weight() - (int)query_property("padded");
   for (i=0;i<sizeof(obs);i++)
     if ((amt = obs[i]->query_property("fragile"))) {
       if (wt <= amt || ((wt - amt)*100)/amt <= random(100))
@@ -113,15 +113,15 @@ void check_breakages() {
   if (sizeof(obs) && environment(carrier)) {
     tell_room(environment(carrier), carrier->the_short()+" breaks "+
           (sizeof(obs)>1?"some things":"one thing")+" in "+
-          query_multiple_short(({ this_object() }))+".\n", ({ carrier }));
-    tell_object(carrier, "You break "+query_multiple_short(obs)+" in "+
-          query_multiple_short(({ this_object() }))+".\n");
+          sprintf("%O", (({ this_object() }))+".\n", ({ carrier }));
+    tell_object(carrier, "You break "+sprintf("%O", (obs)+" in "+
+          sprintf("%O", (({ this_object() }))+".\n");
     obs->dest_me();
   }
 }
 
 /** @ignore yes */
-string long( string word, long long dark ) {
+string long( string word, int dark ) {
   string ret;
 
   ret = ::long( word, dark );
@@ -143,11 +143,11 @@ string long( string word, long long dark ) {
 } /* long() */
 
 /**
- * This method returns true if the object is open and prlong longs a message
+ * This method returns true if the object is open and prints a message
  * about the open status of the object.
  * @return 1 if it is open, 0 if not
  */
-long long ensure_open() {
+int ensure_open() {
   if ( query_locked() ) {
       write( "The "+ short( 0 ) +" is locked.\n" );
       return 0;
@@ -170,9 +170,9 @@ mixed stats() {
 } /* stats() */
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   return ([
-    "::" : container::long long_query_static_auto_load(),
+    "::" : container::int_query_static_auto_load(),
     "condition" : condition::query_static_auto_load(),
     "hold" : holdable::query_static_auto_load(),
     "trans" : query_transparent(),
@@ -183,7 +183,7 @@ mapping long long_query_static_auto_load() {
     "trap open ob" : query_open_trap_ob(),
     "trap lock ob" : query_lock_trap_ob(),
   ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 /** @ignore yes */
 mapping query_dynamic_auto_load() {
@@ -277,25 +277,25 @@ mixed query_static_auto_load() {
     return 0;
   }
   if ( explode( file_name( this_object() ), "#" )[ 0 ] == "/obj/baggage" ) {
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   }
   return ([ ]);
 } /* query_static_auto_load() */
 
 /** @ignore yes */
-long long can_find_match_recurse_long longo(object looker) {
+int can_find_match_recurse_into(object looker) {
    if (query_closed()) {
       return 0;
    }
-   return ::can_find_match_recurse_long longo(looker);
-} /* can_find_match_recurse_long longo() */
+   return ::can_find_match_recurse_into(looker);
+} /* can_find_match_recurse_into() */
 
 /**
  * @ignore yes
  * Thijs is added so that it acts like a living object and
  * things like non-movable signs cannot be added to it.
  */
-long long test_add(object ob, long long flag) {
+int test_add(object ob, int flag) {
   if(flag)
     return 0;
   return ::test_add(ob, flag);
@@ -305,9 +305,9 @@ long long test_add(object ob, long long flag) {
  * @ignore yes
  * Added here to make it expose its inventory upwards when moved.
  */
-varargs long long move(mixed dest, string mess1, string mess2) {
+varargs int move(mixed dest, string mess1, string mess2) {
    object from;
-   long long result;
+   int result;
 
    result = holdable::move(dest);
    if (result != MOVE_OK) {

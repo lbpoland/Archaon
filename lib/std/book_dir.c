@@ -37,7 +37,7 @@ string query_language() { return language; }
  * } /\* setup() *\/
  */
 void set_book_dir(string dir) {
-  long long i, max;
+  int i, max;
   
   set_no_pages(10);
   // The line below should stop books loosing their pages - Gin

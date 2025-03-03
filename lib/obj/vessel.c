@@ -29,18 +29,18 @@
 
 inherit "/obj/baggage";
 
-private long long leak_rate;
-private long long hb_count;
-private long long sub_query_contents;
-private long long volume;
-private long long max_volume;
-private long long cont_volume;
-private long long is_liquid;
-private nosave long long* _fraction;
+private int leak_rate;
+private int hb_count;
+private int sub_query_contents;
+private int volume;
+private int max_volume;
+private int cont_volume;
+private int is_liquid;
+private nosave int* _fraction;
 private nosave object* _liquids;
 
-long long drink_amount(long long drinking, object player);
-private long long query_fighting(object player);
+int drink_amount(int drinking, object player);
+private int query_fighting(object player);
 
 
 /**
@@ -48,14 +48,14 @@ private long long query_fighting(object player);
  * fast stuff leaks out of the container.
  * @param i the new leak rate of the container
  * @see query_leak_rate() */
-void set_leak_rate(long long i) { leak_rate = i; }
+void set_leak_rate(int i) { leak_rate = i; }
 
 
 /**
  * This method returns the leak rate of the container
  * @see set_leak_rate()
  * @return the current leak rate */
-long long query_leak_rate() { return leak_rate; }
+int query_leak_rate() { return leak_rate; }
 
 
 /**
@@ -63,14 +63,14 @@ long long query_leak_rate() { return leak_rate; }
  * @param v the new maximum volume
  * @see add_volume()
  * @see query_max_volume() */
-void set_max_volume(long long v) { max_volume = v; }
+void set_max_volume(int v) { max_volume = v; }
 
 
 /**
  * This method returns the current maxium volume associated with this
  * container.
  * @return the current maximum volume */
-long long query_max_volume() { return max_volume; }
+int query_max_volume() { return max_volume; }
 
 
 string *leak_verb = ({ " drips slowly",
@@ -98,12 +98,12 @@ string *apply_pat = ({ "[from] <direct:object> {on|to} <indirect:living>",
                        "<fraction> {of|from} <direct:object> {on|to} "
                        "<indirect:living>"
                    });                   
-string *pour_pat = ({ "<direct:object> {from|long longo} <indirect:object>",
-                      "<fraction> of <direct:object> {from|long longo} <indirect:object>"
+string *pour_pat = ({ "<direct:object> {from|into} <indirect:object>",
+                      "<fraction> of <direct:object> {from|into} <indirect:object>"
                   });                  
-string *fill_pat = ({ "<indirect:object> <fraction> full {from|long longo} <direct:object>",
-                      "<indirect:object> <fraction> up {from|long longo} <direct:object>",
-                      "<indirect:object> {from|long longo} <direct:object>"
+string *fill_pat = ({ "<indirect:object> <fraction> full {from|into} <direct:object>",
+                      "<indirect:object> <fraction> up {from|into} <direct:object>",
+                      "<indirect:object> {from|into} <direct:object>"
                   });
                   
                   
@@ -164,14 +164,14 @@ mixed stats() {
 } /* stats() */
 
 
-long long cmp_amount_r(object a, object b) {
-    return ((long long)b->query_amount() - (long long)a->query_amount());
+int cmp_amount_r(object a, object b) {
+    return ((int)b->query_amount() - (int)a->query_amount());
 } /* cmp_amount() */
 
 
-long long cmp_weight_r(object a, object b) {
+int cmp_weight_r(object a, object b) {
     if (a->query_weight() || b->query_weight())
-      return ((long long)b->query_weight() - (long long)a->query_weight());
+      return ((int)b->query_weight() - (int)a->query_weight());
     return cmp_amount_r(a, b);
 } /* cmp_weight() */
 
@@ -187,7 +187,7 @@ private void figure_out_liquids() {
  * @return the current liquids description */
 string query_liquid_desc() {
     object *contents, *solids = ({});
-    long long i;
+    int i;
     string desc, *shorts;
     mixed *others;
 
@@ -212,7 +212,7 @@ string query_liquid_desc() {
           if (sizeof(shorts) > 4) {
              desc += "other liquids";
           } else {
-             desc += query_multiple_short(shorts[1..]);
+             desc += sprintf("%O", (shorts[1..]);
           }
        }
     } else {
@@ -242,7 +242,7 @@ string query_liquid_desc() {
     if (sizeof(others) > 10) {
         desc += "various undissolved substances";
     } else {
-        desc += query_multiple_short(others);
+        desc += sprintf("%O", (others);
     }
     if (sizeof(_liquids)) {
        desc += " floating in it";
@@ -255,10 +255,10 @@ string query_liquid_desc() {
  * This method returns the fullness description of the vessel.
  * @return the fullness description of the vessel */
 string query_fullness_desc() {
-   long long full;
+   int full;
    
 /* Ok, here comes a terrible kludge, but it's all I can think of 
- * that will fix a buglet without long longroducing more serious Bugs.
+ * that will fix a buglet without introducing more serious Bugs.
  * It's a hack around continous objects and their volumes.   - Tilly */
    
    full = (100 * volume) / max_volume;
@@ -306,7 +306,7 @@ varargs string query_contents(string str, object *obs ) {
 } /* query_contents */
 
 /** @ignore yes */
-string short(long long dark) {
+string short(int dark) {
   object *inv;
 
   if(query_opaque())
@@ -317,12 +317,12 @@ string short(long long dark) {
     return ::short(dark);
 
   return ::short(dark) + " of " + 
-    "/global/events"->convert_message(query_multiple_short(map(inv, 
+    "/global/events"->convert_message(sprintf("%O", (map(inv, 
     (: $1->query_short() :))));
 }
 
 /** @ignore yes */
-string long(string str, long long dark) {
+string long(string str, int dark) {
     string ret;
 
     sub_query_contents = 1;
@@ -331,7 +331,7 @@ string long(string str, long long dark) {
     return ret;
 } /* long() */
 
-long long query_cont_volume() { return cont_volume; }
+int query_cont_volume() { return cont_volume; }
 
 
 /**
@@ -339,7 +339,7 @@ long long query_cont_volume() { return cont_volume; }
  * it has a liquid inside it.
  * @see calc_liquid()
  * @return 1 if it is a liquid, 0 if not */
-long long query_liquid() { return is_liquid; }
+int query_liquid() { return is_liquid; }
 
 
 /* This method determines if we have any liquids inside us at all. */
@@ -355,16 +355,16 @@ void calc_liquid() {
 /**
  * This method returns the current amount of liquid in the container.
  * @return the current amount of liquid in the container */
-long long query_volume() { return volume; }
+int query_volume() { return volume; }
 
 
 /**
  * This method returns the amount of volume left for liquids to be
- * added long longo.
+ * added into.
  * @return the amount of volume left
  * @see add_volume()
  * @see transfer_liquid_to() */
-long long query_volume_left() {
+int query_volume_left() {
   if (!query_max_weight()) {
     return max_volume - volume;
   }
@@ -374,11 +374,11 @@ long long query_volume_left() {
 
 /**
  * This method returns the amount of volume left for liquids to be
- * added long longo.
+ * added into.
  * @param vol the amount of volume added
  * @return 1 if the addition was successful, 0 if not
  * @see add_volume() */
-long long add_volume(long long vol) {
+int add_volume(int vol) {
    if ((vol <= 0) || !max_volume || (vol + volume <= max_volume)) {
       volume += vol;
       if (previous_object()->query_continuous()) {
@@ -392,8 +392,8 @@ long long add_volume(long long vol) {
 
 
 /** @ignore yes */
-long long add_weight(long long n) {
-    long long v;
+int add_weight(int n) {
+    int v;
 
     // Debugging.  Can be removed if I forget -- Jeremy
     if (this_player() && (this_player()->query_name() == "pinkfish")) {
@@ -408,7 +408,7 @@ long long add_weight(long long n) {
        return 0;
     }
     if (::add_weight(n)) {
-        //prlong longf("Increasing volume by %d (add_weight)\n", v);
+        //printf("Increasing volume by %d (add_weight)\n", v);
         volume += v;
         return 1;
     }
@@ -421,10 +421,10 @@ long long add_weight(long long n) {
  * @param vol_lost the amount of volume removed
  * @see add_volume()
  * @see query_volume() */
-long long remove_volume(long long vol_lost)
+int remove_volume(int vol_lost)
 {
     // Removes equal proportions of all continuous matter.
-    long long amt_lost, i, orig_cv;
+    int amt_lost, i, orig_cv;
     object *contents;
 
     if (!cont_volume) {
@@ -434,7 +434,7 @@ long long remove_volume(long long vol_lost)
     contents = all_inventory(this_object());
     for (i = 0; i < sizeof(contents); i++) {
         if (contents[i]->query_continuous()) {
-            amt_lost = -to_long long((long long)contents[i]->query_amount()
+            amt_lost = -to_int((int)contents[i]->query_amount()
                                * (to_float(vol_lost) / orig_cv));
             if (!amt_lost) {
                 // Always take at least one unit
@@ -451,16 +451,16 @@ long long remove_volume(long long vol_lost)
  * This method transfers a given amount of a liquid to a new container.
  * @param dest the destination of the liquid
  * @param vol_xferred the amount of volume transfered */
-long long xfer_volume(long long vol_xferred, object dest) {
+int xfer_volume(int vol_xferred, object dest) {
     // Transfers equal portions of all continuous matter to dest.
     // If successful, returns 0; if it failed for some reason, it returns
     // the volume not transferred (note that full checks should be done
     // by the caller).
-    long long vol_to_go;
-    long long i;
-    long long amt_xferred;
-    long long tmp;
-    long long orig_cv;
+    int vol_to_go;
+    int i;
+    int amt_xferred;
+    int tmp;
+    int orig_cv;
     object *contents;
     object copy;
     string file_path;
@@ -478,7 +478,7 @@ long long xfer_volume(long long vol_xferred, object dest) {
         if (i == sizeof(contents) - 1) {
             amt_xferred = vol_to_go;
         } else {
-            amt_xferred = to_long long((long long)contents[i]->query_amount()
+            amt_xferred = to_int((int)contents[i]->query_amount()
                                  * (to_float(vol_xferred) / orig_cv));
         }
         if (!amt_xferred) {
@@ -514,7 +514,7 @@ void heart_beat() {
     // Note that having a leak rate can be expensive, so it should only
     // be done if it's important to the application (such as using it
     // to impose a time restriction).
-    long long lost, off;
+    int lost, off;
 
     if (leak_rate == 0 || !is_liquid) {
         set_heart_beat(0);
@@ -532,12 +532,12 @@ void heart_beat() {
  //     capitalize(query_liquid_desc())+leak_verb[off]+" out of the "+
  //     short(1)+".\n");
  /* This is hacked because as far as I can tell there is no way to get a 'generic short'
-  * for a continuous liquid, ie: some water, instead of two plong longs of water. */
-    if ( long longeractive( environment() ) )
-        tell_object( environment(), "$C$Some " + query_multiple_short( map( all_inventory(),
+  * for a continuous liquid, ie: some water, instead of two pints of water. */
+    if ( interactive( environment() ) )
+        tell_object( environment(), "$C$Some " + sprintf("%O", ( map( all_inventory(),
         (: $1->query_short() :) ) ) + leak_verb[off] + " out of the "+ short(1) + ".\n" );
     else 
-      tell_room( environment(), "$C$Some " + query_multiple_short( map( all_inventory(),
+      tell_room( environment(), "$C$Some " + sprintf("%O", ( map( all_inventory(),
         (: $1->query_short() :) ) ) + leak_verb[off] + " out of the "+ short(1) + ".\n" );
   
   (void)remove_volume(lost);
@@ -548,8 +548,8 @@ void heart_beat() {
 
 
 /** @ignore yes */
-long long do_pour(object *to, mixed *args_b, mixed *args_a, mixed *args) {
-    long long m, n, volume_needed, their_volume, their_max, ovf, xfer_result;
+int do_pour(object *to, mixed *args_b, mixed *args_a, mixed *args) {
+    int m, n, volume_needed, their_volume, their_max, ovf, xfer_result;
 
     if (query_fighting(this_player())) {
        add_failed_mess("You cannot attempt to do this while in combat.\n");
@@ -592,12 +592,12 @@ long long do_pour(object *to, mixed *args_b, mixed *args_a, mixed *args) {
     }
 
     if (sizeof(to) > 1) {
-        add_failed_mess("You can only pour long longo one object at a time.\n");
+        add_failed_mess("You can only pour into one object at a time.\n");
         return 0;
     }
 
-    their_volume = (long long)to[0]->query_volume();
-    their_max = (long long)to[0]->query_max_volume();
+    their_volume = (int)to[0]->query_volume();
+    their_max = (int)to[0]->query_max_volume();
     if (their_max <= 0) {
         add_failed_mess("$C$" + to[0]->the_short(0) +
             " doesn't look like it can be filled!\n");
@@ -629,7 +629,7 @@ long long do_pour(object *to, mixed *args_b, mixed *args_a, mixed *args) {
     }
 
     if (volume_needed > cont_volume) {
-        add_failed_mess("You drain the " + short(0) + " long longo the "
+        add_failed_mess("You drain the " + short(0) + " into the "
               + to[0]->short(0) + " but it $V$0=is,are$V$ not enough.\n");
         volume_needed = cont_volume;
         this_player()->add_succeeded(to[0]);
@@ -642,30 +642,30 @@ long long do_pour(object *to, mixed *args_b, mixed *args_a, mixed *args) {
     //If the result is less then needed, then it worked.
     //If it is exactly the same, then 0 was transferred.
     if (xfer_result < volume_needed) {
-        this_player()->add_succeeded_mess(this_object(), "$N $V $D long longo $I.\n", ({to[0]}));
+        this_player()->add_succeeded_mess(this_object(), "$N $V $D into $I.\n", ({to[0]}));
     }
     else {
-        add_failed_mess( "You were unable to $V $D long longo $I.\n", ({to[0]}));
+        add_failed_mess( "You were unable to $V $D into $I.\n", ({to[0]}));
         return 0;
     }
     if (ovf) {
-        this_player()->add_succeeded_mess(this_object(), "$N $V $D long longo $I, " +
+        this_player()->add_succeeded_mess(this_object(), "$N $V $D into $I, " +
             "spilling some in the process.\n", ({to[0]}));
     }
     return 1;
 } /* do_pour() */
 
 /** @ignore yes */
-long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
-    long long m;
-    long long n;
-    long long i;
-    long long run_out;
-    long long volume_needed;
-    long long their_volume;
-    long long their_max;
-    long long amount_not_poured;
-    long long ok;
+int do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
+    int m;
+    int n;
+    int i;
+    int run_out;
+    int volume_needed;
+    int their_volume;
+    int their_max;
+    int amount_not_poured;
+    int ok;
 
     if (query_fighting(this_player())) {
        add_failed_mess("You cannot attempt to do this while in combat.\n");
@@ -719,8 +719,8 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
             continue;
         }
 
-        their_volume = (long long)to[i]->query_volume();
-        their_max = (long long)to[i]->query_max_volume();
+        their_volume = (int)to[i]->query_volume();
+        their_max = (int)to[i]->query_max_volume();
         if (their_max <= 0) {
             add_failed_mess("$I doesn't look like it can be filled!\n",
                             to[i..i]);
@@ -749,7 +749,7 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
         volume_needed -= their_volume;
 
         if (volume_needed > cont_volume) {
-            add_failed_mess("You drain " + the_short() + " long longo "
+            add_failed_mess("You drain " + the_short() + " into "
                   + to[i]->the_short() + " but it $V$0=is,are$V$ not enough.\n");
             volume_needed = cont_volume;
             run_out = 1;
@@ -777,7 +777,7 @@ long long do_fill(object *to, mixed *args_b, mixed *args_a, mixed *args) {
  * This method checks to see if they are fighting anyone and if anyone
  * (that can see them) is fighting them.
  * @param player the player to check */
-private long long query_fighting(object player) {
+private int query_fighting(object player) {
    object ob;
 
    if (!player || !environment(player)) {
@@ -817,15 +817,15 @@ private long long query_fighting(object player) {
  * @return 1 if the bottle is stopped, 0 if it is not
  * @param player the player doing the drinking
  * @param me the object being drunk */
-long long is_fighting_bottle_smashed(object player,
+int is_fighting_bottle_smashed(object player,
                                object me) {
    object* fighting;
    object ob;
    object weapon;
    string skill;
    string my_skill;
-   long long bonus;
-   long long stopped;
+   int bonus;
+   int stopped;
 
    stopped = 0;
 
@@ -904,11 +904,11 @@ long long is_fighting_bottle_smashed(object player,
             tell_room(environment(player),
                       player->the_short() + " avoids getting " +
                       me->poss_short() + " smashed by " +
-                      query_multiple_short(({ ob })) + ".\n",
+                      sprintf("%O", (({ ob })) + ".\n",
                                ({ player }));
             tell_object(player,
                         "You avoid getting " + me->poss_short() +
-                        " smashed by " + query_multiple_short(({ ob })) +
+                        " smashed by " + sprintf("%O", (({ ob })) +
                         ".\n");
 
          // Do less, but still damage it.
@@ -966,7 +966,7 @@ long long is_fighting_bottle_smashed(object player,
  * @ignore
  * This method returns a description of what and how much of the
  * contents of the vessel that was consumed. */
-private string consumed_desc( long long consumed_amount ) {
+private string consumed_desc( int consumed_amount ) {
    string amount_desc;
    object* contents;
    string* contents_descs = ({ });
@@ -998,13 +998,13 @@ private string consumed_desc( long long consumed_amount ) {
       amount_desc = "a couple of cups";
       break;
    case 2001..3500:
-      amount_desc = "a plong long";
+      amount_desc = "a pint";
       break;
    case 3501..7000:
-      amount_desc = "a couple of plong longs";
+      amount_desc = "a couple of pints";
       break;
    case 7001..15000:
-      amount_desc = "several plong longs";
+      amount_desc = "several pints";
       break;
    case 15001..25000:
       amount_desc = "about a gallon";
@@ -1026,7 +1026,7 @@ private string consumed_desc( long long consumed_amount ) {
       }
    }
 
-   contents_desc = query_multiple_short( contents_descs );
+   contents_desc = sprintf("%O", ( contents_descs );
 
    return amount_desc +" of "+ contents_desc;
 
@@ -1039,14 +1039,14 @@ private string consumed_desc( long long consumed_amount ) {
  * much, as well as dropping the bottle and so on.
  * @param drinking the amount to drink 
  */
-long long drink_amount(long long drinking,
+int drink_amount(int drinking,
                  object player) {
-   long long cap_amount;
-   long long amt_to_drink;
-   long long amount_can_be_drunk;
+   int cap_amount;
+   int amt_to_drink;
+   int amount_can_be_drunk;
    object* contents;
    object ob;
-   long long orig_cv;
+   int orig_cv;
 
    amt_to_drink = drinking;
 
@@ -1089,8 +1089,8 @@ long long drink_amount(long long drinking,
       amt_to_drink = cont_volume;
    }
 
-   amount_can_be_drunk = (8000 - (long long)this_player()->query_volume(2)) *
-     (long long)this_player()->query_con() / 12;
+   amount_can_be_drunk = (8000 - (int)this_player()->query_volume(2)) *
+     (int)this_player()->query_con() / 12;
    /* should do some fudging to add +/- 5 mls or something
     * possibly skill/stat dependent */
    if (amt_to_drink > amount_can_be_drunk) {
@@ -1174,13 +1174,13 @@ long long drink_amount(long long drinking,
 
 
 /** @ignore yes */
-long long do_drink(object *dest, mixed me, mixed him, mixed args, string pattern)
+int do_drink(object *dest, mixed me, mixed him, mixed args, string pattern)
 {
-    long long amt_to_drink;
-    long long m;
-    long long n;
+    int amt_to_drink;
+    int m;
+    int n;
 
-    //prlong longf("indirect_o=%O\nindir_s=%O\ndir_s=%O\nargs=%O\npattern=%O\n",
+    //printf("indirect_o=%O\nindir_s=%O\ndir_s=%O\nargs=%O\npattern=%O\n",
     //       dest, me, him, args, pattern);
     if (sizeof(dest)) {
         add_failed_mess("Drinking is a very simple operation "
@@ -1200,8 +1200,8 @@ long long do_drink(object *dest, mixed me, mixed him, mixed args, string pattern
     }
     // add_command() mucks around with the pattern strings...
     if (pattern == drink_pat[1]) {
-        m = to_long long(args[0]);
-        n = to_long long(args[1]);
+        m = to_int(args[0]);
+        n = to_int(args[1]);
         //sscanf(args[0] + " " + args[1], "%d %d", m, n);
         /** Yes, its a kludge. T. **/
         if ( n > 100 ) {
@@ -1271,12 +1271,12 @@ long long do_drink(object *dest, mixed me, mixed him, mixed args, string pattern
 } /* do_drink() */
 
 /** @ignore yes */
-long long do_quaff(object *dest, mixed me, mixed him, mixed args, string pattern) {
+int do_quaff(object *dest, mixed me, mixed him, mixed args, string pattern) {
    return do_drink(dest, me, him, args, pattern);
 }
 
 /** @ignore yes */
-long long do_empty(object *dest, string me, string him, string prep)
+int do_empty(object *dest, string me, string him, string prep)
 {
    if (environment(this_object()) != this_player()) {
        add_failed_mess("You are not carrying $D.\n");
@@ -1310,14 +1310,14 @@ long long do_empty(object *dest, string me, string him, string prep)
 
 
 /** @ignore yes */
-long long check_splashable(object ob, object splasher, object splashee){
+int check_splashable(object ob, object splasher, object splashee){
   return ob->query_splashable(splasher, splashee);
 }
 
 
 /** @ignore yes */
-long long do_splash(object *dest, mixed me, mixed him, mixed args, string pattern) {
-    long long amt_to_splash, i, m, n, orig_cv;
+int do_splash(object *dest, mixed me, mixed him, mixed args, string pattern) {
+    int amt_to_splash, i, m, n, orig_cv;
     object *contents;
 
     if (!sizeof(dest)) {
@@ -1340,8 +1340,8 @@ long long do_splash(object *dest, mixed me, mixed him, mixed args, string patter
 
  // add_command() mucks around with the pattern strings...
     if (pattern == splash_pat[1]) {
-        m = to_long long(args[0]);
-        n = to_long long(args[1]);
+        m = to_int(args[0]);
+        n = to_int(args[1]);
         if ((m > n) || (m < 0) || (n <= 0)) {
             notify_fail("Interesting fraction you have there!\n");
             return 0;
@@ -1374,12 +1374,12 @@ long long do_splash(object *dest, mixed me, mixed him, mixed args, string patter
     }
     if(this_player() == dest[0]){
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + query_multiple_short(contents) +
+                     "$N $V " + sprintf("%O", (contents) +
                      " from $D onto "+this_player()->query_objective() +
                      "self.\n", ({}));
     }else{
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + query_multiple_short(contents) +
+                     "$N $V " + sprintf("%O", (contents) +
                      " from $D onto $I.\n", dest);
     }
  // Call consume() on food objects, I guess ignore the others.
@@ -1390,7 +1390,7 @@ long long do_splash(object *dest, mixed me, mixed him, mixed args, string patter
         } else {
            // Consume proportionate amounts of all food.
            contents[i]->consume(dest[0],
-              (long long)contents[i]->query_amount()
+              (int)contents[i]->query_amount()
               * amt_to_splash / orig_cv, "splash");
         }
     }
@@ -1399,14 +1399,14 @@ long long do_splash(object *dest, mixed me, mixed him, mixed args, string patter
 
 
 /** @ignore yes */
-long long check_applicable(object ob, object applier, object appliee){
+int check_applicable(object ob, object applier, object appliee){
   return ob->query_applicable(applier, appliee);
 }
 
 
 /** @ignore yes */
-long long do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) {
-    long long amt_to_apply, i, m, n, orig_cv;
+int do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) {
+    int amt_to_apply, i, m, n, orig_cv;
     object *contents;
 
     if (!sizeof(dest)) {
@@ -1429,8 +1429,8 @@ long long do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) 
 
  // add_command() mucks around with the pattern strings...
     if (pattern == apply_pat[1]) {
-        m = to_long long(args[0]);
-        n = to_long long(args[1]);
+        m = to_int(args[0]);
+        n = to_int(args[1]);
         if ((m > n) || (m < 0) || (n <= 0)) {
             notify_fail("Interesting fraction you have there!\n");
             return 0;
@@ -1460,11 +1460,11 @@ long long do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) 
     }
     if (this_player() == dest[0]){
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + query_multiple_short(contents) +
+                     "$N $V " + sprintf("%O", (contents) +
                      " from $D onto "+this_player()->query_objective()+"self.\n", ({}));
     } else {
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + query_multiple_short(contents) +
+                     "$N $V " + sprintf("%O", (contents) +
                      " from $D onto $I.\n", dest);
     }
  // Call consume() on food objects, I guess ignore the others.
@@ -1475,7 +1475,7 @@ long long do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) 
         } else {
         // Consume proportionate amounts of all food.
            contents[i]->consume(dest[0],
-              (long long)contents[i]->query_amount()
+              (int)contents[i]->query_amount()
               * amt_to_apply / orig_cv, "apply");
         }
     }
@@ -1484,14 +1484,14 @@ long long do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) 
 
 
 /** @ignore yes */
-long long do_apply(object *dest, mixed me, mixed him, mixed args, string pattern){
+int do_apply(object *dest, mixed me, mixed him, mixed args, string pattern){
    return do_rub(dest, me, him, args, pattern);
 } /* do_apply() */
 
 
 /** @ignore yes */
-long long do_taste() {
-    long long amount_tasted;
+int do_taste() {
+    int amount_tasted;
     /* be kind to tasters! */
 
     if (environment(this_object()) != this_player()) {
@@ -1521,8 +1521,8 @@ long long do_taste() {
 
 
 /** @ignore yes */
-long long do_sip() {
-   long long amount_tasted;
+int do_sip() {
+   int amount_tasted;
 /* be kind to tasters! */
 
    if (environment(this_object()) != this_player()) {
@@ -1552,7 +1552,7 @@ long long do_sip() {
 
 
 /** @ignore yes */
-long long do_smell() {
+int do_smell() {
 /* be kind to smellers! */
 
    if (!ensure_open()) {
@@ -1568,15 +1568,15 @@ long long do_smell() {
 
 
 /** @ignore yes */
-protected long long handle_restore_inventory(object ob) {
-   long long ret;
+protected int handle_restore_inventory(object ob) {
+   int ret;
 
    ret = ::handle_restore_inventory(ob);
    if (ret == MOVE_OK) {
       return MOVE_OK;
    }
 
-// If it is a liquid or continuous object, we squeeze long longo the bottle.
+// If it is a liquid or continuous object, we squeeze into the bottle.
    if (ob->query_liquid()) {
       ob->set_amount( query_max_volume() - query_volume() );
       ret = ::handle_restore_inventory(ob);
@@ -1589,14 +1589,14 @@ protected long long handle_restore_inventory(object ob) {
 
 
 /** @ignore yes */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
   mapping tmp;
 
-  tmp = ::long long_query_static_auto_load();
+  tmp = ::int_query_static_auto_load();
   return ([ "::" : tmp, "leak rate" : leak_rate,
            "max volume" : max_volume,
           ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 
 /** @ignore yes */
@@ -1605,7 +1605,7 @@ mapping query_static_auto_load() {
     return 0;
   }
   if ( explode( file_name( this_object() ), "#" )[ 0 ] == "/obj/vessel" ) {
-    return long long_query_static_auto_load();
+    return int_query_static_auto_load();
   }
   return ([ ]);
 } /* query_static_auto_load() */
@@ -1623,8 +1623,8 @@ void init_static_arg(mapping args) {
 
 /* Added so you cant get things in or out of a close container. */
 /** @ignore yes */
-long long test_add(object ob, long long flag) {
-    long long new_vol;
+int test_add(object ob, int flag) {
+    int new_vol;
 
     if ( !::test_add( ob, flag ) ) {
         return 0;
@@ -1633,10 +1633,10 @@ long long test_add(object ob, long long flag) {
         new_vol = ob->query_amount();
     } else if (ob->query_property("density")) {
      // A hook for later use (maybe :)
-        new_vol = (long long)ob->query_weight()*(long long)ob->query_property("density");
+        new_vol = (int)ob->query_weight()*(int)ob->query_property("density");
     } else {
      // Density is nominally that of water
-     //new_vol = (long long)ob->query_weight()*200;
+     //new_vol = (int)ob->query_weight()*200;
      // The above is essentially correct.  However, through some odd
      // sequence of events, the weight (and hence, the calculated volume)
      // get added before this function.  So new_vol should be 0 here.
@@ -1653,7 +1653,7 @@ long long test_add(object ob, long long flag) {
 
 /** @ignore yes */
 void event_enter(object ob, string message, object from) {
-    long long ob_vol, ob_cont;
+    int ob_vol, ob_cont;
 
     if (environment(ob) == this_object()) {
      // Adjust volume
@@ -1662,11 +1662,11 @@ void event_enter(object ob, string message, object from) {
             ob_cont = 1;
         } else if (ob->query_property("density")) {
          // A hook for later use (maybe :)
-            ob_vol = (long long)ob->query_weight()*
-              (long long)ob->query_property("density");
+            ob_vol = (int)ob->query_weight()*
+              (int)ob->query_property("density");
         } else {
          // Density is nominally that of water
-         //ob_vol = (long long)ob->query_weight()*200;
+         //ob_vol = (int)ob->query_weight()*200;
          // The above is essentially correct.  However, through some odd
          // sequence of events, the weight (and hence the calculated volume)
          // get added before this function.  So ob_vol should be 0 here.
@@ -1677,7 +1677,7 @@ void event_enter(object ob, string message, object from) {
            _liquids = ({ });
         }
 #ifdef DEBUG        
-        debug_prlong longf("Increasing volume by " + ob_vol + ".\n");
+        debug_printf("Increasing volume by " + ob_vol + ".\n");
 #endif
         volume += ob_vol;
         if (ob_cont) cont_volume += ob_vol;
@@ -1692,7 +1692,7 @@ void event_enter(object ob, string message, object from) {
 
 /** @ignore yes */
 void event_exit(object ob, string mess, object to) {
-    long long ob_vol, ob_cont;
+    int ob_vol, ob_cont;
 
     if (environment(ob) == this_object()) {
      // Adjust volume
@@ -1701,18 +1701,18 @@ void event_exit(object ob, string mess, object to) {
             ob_cont = 1;
         } else if (ob->query_property("density")) {
          // A hook for later use (maybe :)
-            ob_vol = (long long)ob->query_weight()*
-              (long long)ob->query_property("density");
+            ob_vol = (int)ob->query_weight()*
+              (int)ob->query_property("density");
         } else {
          // Density is nominally that of water
-         //ob_vol = (long long)ob->query_weight()*200;
+         //ob_vol = (int)ob->query_weight()*200;
          // The above is essentially correct.  However, through some odd
          // sequence of events, the weight (and hence the calculated volume)
          // get added before this function.  So ob_vol should be 0 here.
             ob_vol = 0;
         }
 #ifdef DEBUG
-        debug_prlong longf("Decreasing volume by " + ob_vol + ".\n");
+        debug_printf("Decreasing volume by " + ob_vol + ".\n");
 #endif
         volume -= ob_vol;
         if (ob_cont) cont_volume -= ob_vol;
@@ -1729,7 +1729,7 @@ void break_me() {
    liquid = filter(all_inventory(), (: $1->query_liquid() :));
    if (sizeof(liquid)) {
       tell_room(environment(),
-         query_multiple_short(liquid) + " splashes all over the place "
+         sprintf("%O", (liquid) + " splashes all over the place "
          "as " + the_short() + " breaks.\n");
        liquid->move("/room/rubbish");
    }
@@ -1740,7 +1740,7 @@ void break_me() {
 /** @ignore yes */
 mixed* parse_match_object(string* input, object player,
                           class obj_match_context context) {
-   long long result;
+   int result;
 
    result = ::is_matching_object(input, player, context);
    if (result) {
@@ -1814,4 +1814,4 @@ string* parse_command_plural_id_list() {
 } /* parse_command_plural_id_list() */
 
 
-long long query_vessel() { return 1; }
+int query_vessel() { return 1; }

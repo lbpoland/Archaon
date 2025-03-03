@@ -56,12 +56,12 @@ inherit "/obj/food";
                                * environment 
                                */                            
 /* GLOBAL VARIABLES */
-private long long _cool_level;          /* this represents the amount left to cool.  
+private int _cool_level;          /* this represents the amount left to cool.  
                                      A value of 1 = stone cold. */
-private long long _cool_rate;           /* This determines how quickly the item cools
+private int _cool_rate;           /* This determines how quickly the item cools
                                     by controlling the frequency of the cooling 
                                     call.*/
-private long long _purchase_time;       /* The time the food was bought.  Used to
+private int _purchase_time;       /* The time the food was bought.  Used to
                                    * calculate how much it has cooled by. */
 private mixed _hot_eat_message;   /* The messeage returned when the food is 
                                    * eaten while still hot. */
@@ -76,10 +76,10 @@ private mixed _cold_eat_last_message;  /*                                */
  
 /* FUNCTION PROTOTYPES */
 void create();
-void set_cool_rate( long long rate );
-void set_cool_level(long long level);
-long long query_cool_rate();
-long long query_cool_level();
+void set_cool_rate( int rate );
+void set_cool_level(int level);
+int query_cool_rate();
+int query_cool_level();
 protected void do_cool();
 void set_hot_eat_mess(mixed messages);
 void set_cold_eat_mess(mixed messages);
@@ -117,7 +117,7 @@ void create() {
  * @see query_cool_rate()
  *
  */
-void set_cool_rate( long long rate ) {
+void set_cool_rate( int rate ) {
    _cool_rate = rate;
 } /* set_cool_rate */
 
@@ -129,7 +129,7 @@ void set_cool_rate( long long rate ) {
  * @see set_cool_rate()
  *
  */
-long long query_cool_rate() {
+int query_cool_rate() {
    return _cool_rate;
 } /* query_cool_rate */
 
@@ -140,7 +140,7 @@ long long query_cool_rate() {
  *
  * @return The current cool level of the food.
  */
-long long query_cool_level() {
+int query_cool_level() {
    return _cool_level;
 } /* query_cool_level */
 
@@ -197,7 +197,7 @@ string query_short_rotten_adjective() {
  */
 string query_long_decay_level() {
    string ret;
-   long long flag;   
+   int flag;   
    if(query_collective() && query_amount() > 1 ) flag = 1;  
    if (this_object()->query_cool_level() == 7){
        return ("It is stone cold. " + ::query_long_decay_level());
@@ -252,11 +252,11 @@ string query_long_decay_level() {
 /**
  * @ignore yes
  */
-varargs long long do_eat( long long no_mess ) {
-  long long current_warmth;
-  long long remaining_time;
-  long long new_warmth;
-  long long new_time;
+varargs int do_eat( int no_mess ) {
+  int current_warmth;
+  int remaining_time;
+  int new_warmth;
+  int new_time;
   
   if(this_object()->query_cool_level() >= 7 ){ 
     if (this_object()->query_weight_per_bite()){
@@ -390,12 +390,12 @@ mixed *stats(){
 /**
  * @ignore yes
  */
-mapping long long_query_static_auto_load(){
-   return ([ "::" : ::long long_query_static_auto_load(),
+mapping int_query_static_auto_load(){
+   return ([ "::" : ::int_query_static_auto_load(),
              "cool_level" : _cool_level,
              "cool rate" : _cool_rate,
              "purchase time" : _purchase_time ]);
-} /* long long_query_static_auto_load() */
+} /* int_query_static_auto_load() */
 
 /**
  * @ignore yes
@@ -405,7 +405,7 @@ mapping query_static_auto_load(){
        && !query_continuous() ) {
       return 0;
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /**
@@ -460,7 +460,7 @@ void do_decay() {
 /**
  * @ignore yes
  */
-long long query_decays() {
+int query_decays() {
    if (this_object()->query_cool_level()>1) return 0;
    return 1;
 } /* query_decays() */
@@ -468,7 +468,7 @@ long long query_decays() {
 /**
  * @ignore yes
  */
-long long query_decay_speed() {
+int query_decay_speed() {
    if (this_object()->query_cool_level()>1) return 0;
    return (::query_decay_speed());
 } /* query_decay_speed() */
@@ -476,7 +476,7 @@ long long query_decay_speed() {
 /**
  * @ignore yes
  */
-long long query_decay_level() { 
+int query_decay_level() { 
    if (this_object()->query_cool_level()>1) return 0;
    return (::query_decay_level());
 } /* query_decay_level() */
@@ -484,7 +484,7 @@ long long query_decay_level() {
 /**
  * @ignore yes
  */
-void set_decay_speed( long long decay ) {
+void set_decay_speed( int decay ) {
   if (this_object()->query_cool_level()>1) return( ::set_decay_speed( 0 ) );
   return( ::set_decay_speed( 7200 ) );
 } /* set_decay_speed() */
@@ -492,7 +492,7 @@ void set_decay_speed( long long decay ) {
 /* Mask set_main_plural() cos it breaks the short descriptions if its been 
  * set, so we leave it to the pluralizer to sort out.  If it turns out this 
  * messes things up too much for object names then it will need to be modified
- * to mask the values returned by query_multiple_short().  Yes it's a hack, 
+ * to mask the values returned by sprintf("%O", ().  Yes it's a hack, 
  * but the best I could do at the time.
  */
 

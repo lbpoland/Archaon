@@ -22,11 +22,11 @@ private mapping _ignore_bits;
 private mapping flatten(mixed *arr, string bit);
 mixed *add_skill_rec(mixed *skill, string *path);
 mixed *del_skill_rec(mixed *skill, string *path);
-long long query_skill_cost_long long(string str);
+int query_skill_cost_int(string str);
 
 void create() {
   string *languages, *lang_tree;
-  long long i;
+  int i;
   mixed *rabbit;
   string skill_written;
   string skill_spoken;
@@ -80,7 +80,7 @@ void create() {
   "covert.manipulation"             : ({ "DDISS" }),
   "covert.casing"                   : ({ "DIIWW" }),
   "covert.items"                    : ({ "DIIII" }),
-  "covert.polong longs"                   : ({ "DDIIC" }),
+  "covert.points"                   : ({ "DDIIC" }),
 
 "crafts"                            : ({ "DDIIW" }),
   "crafts.smithing"                 : ({ "DDIIS" }),
@@ -93,7 +93,7 @@ void create() {
   "crafts.culinary"                 : ({ "DDIII" }),
   "crafts.arts"                     : ({ "DIIII" }),
   "crafts.music"                    : ({ "DIIII" }),
-  "crafts.polong longs"                   : ({ "DDIIW" }),
+  "crafts.points"                   : ({ "DDIIW" }),
 
 "faith"                             : ({ "ISWWW" }),
   "faith.rituals.offensive"         : ({ "ISSWW" }),
@@ -101,7 +101,7 @@ void create() {
   "faith.rituals.curing"            : ({ "ICCWW" }),
   "faith.rituals.misc"              : ({ "IIWWW" }),
   "faith.items"                     : ({ "IIDWW" }),
-  "faith.polong longs"                    : ({ "IICWW" }),
+  "faith.points"                    : ({ "IICWW" }),
 
 "fighting"                          : ({ "DDSSI" }),
   "fighting.combat.melee"           : ({ "DSSSW" }),
@@ -115,7 +115,7 @@ void create() {
   "fighting.combat.special.weapon"  : ({ "SDIII" }),
   "fighting.combat.special.unarmed" : ({ "DDIII" }),
   "fighting.combat.special.tactics" : ({ "WWIII" }),
-  "fighting.polong longs"                 : ({ "DSSCC" }),
+  "fighting.points"                 : ({ "DSSCC" }),
 
 "magic"                             : ({ "IIIDW" }),
   "magic.spells"                    : ({ "IIDWW" }),
@@ -129,7 +129,7 @@ void create() {
   "magic.methods.physical"          : ({ "IIDDD" }),
   "magic.items"                     : ({ "IIDWW" }),
   "magic.items.held"                : ({ "IIDWW" }),
-  "magic.polong longs"                    : ({ "IISWW" }),
+  "magic.points"                    : ({ "IISWW" }),
 
 "other"                             : ({ "DDISS" }),
    "other.trading"                  : ({ "IIIIW" }),
@@ -139,7 +139,7 @@ void create() {
    "other.perception"               : ({ "IIWWW" }),
    "other.direction"                : ({ "DDIIW" }),
    "other.health"                   : ({ "CCCCS" }),
-   "other.polong longs"                   : ({ "CDISW" }),
+   "other.points"                   : ({ "CDISW" }),
    "other.language"                 : ({ "IIIWW" }),
    "other.culture"                  : ({ "IIIWW" }),
   ]);
@@ -202,7 +202,7 @@ string *query_skill_tree(string skill) {
  * @return the stats that effect the skill
  */
 string query_skill_stat(string skill) {
-   long long i;
+   int i;
    string *bit, s;
 
    bit = explode(skill, ".");
@@ -217,7 +217,7 @@ string query_skill_stat(string skill) {
    return "";
 } /* query_skill_stat() */
 
-private long long add_stat_bonus(string skill, string bonus) {
+private int add_stat_bonus(string skill, string bonus) {
    if (_stat_bonus[skill]) {
       return 0;
    }
@@ -225,7 +225,7 @@ private long long add_stat_bonus(string skill, string bonus) {
    return 1;
 } /* add_stat_bonus() */
 
-private long long remove_stat_bonus(string skill) {
+private int remove_stat_bonus(string skill) {
    if (!_stat_bonus[skill]) {
       return 0;
    }
@@ -235,8 +235,8 @@ private long long remove_stat_bonus(string skill) {
 
 /**
  * This method returns the children of the specified skill chunk.
- * You need to pass long longo this array a skill chunk as taken from the
- * skill array.  It is recursive and returns all the long longernal children
+ * You need to pass into this array a skill chunk as taken from the
+ * skill array.  It is recursive and returns all the internal children
  * as well.
  * @param arr the skill chunk
  * @param path the skill bit leading up to this section
@@ -244,7 +244,7 @@ private long long remove_stat_bonus(string skill) {
  */
 string *query_children(mixed *arr, string path) {
    string *ret;
-   long long i;
+   int i;
 
    ret = ({ });
    for (i = 0; i < sizeof(arr); i += SKILL_ARR_SIZE) {
@@ -266,7 +266,7 @@ string *query_immediate_children(string skill) {
 /**
  * This method returns all the children of the specified skill.
  * This does a deep children finding exercise, returing all the children
- * as it goes lower and lower long longo the array.
+ * as it goes lower and lower into the array.
  * @param skill the skill to get the children of
  * @return all the children
  * @see query_related_skills()
@@ -280,7 +280,7 @@ string *query_all_children(string skill) {
 
 private string *query_imm_children(mixed *arr, string path) {
    string *ret;
-   long long i;
+   int i;
 
    ret = ({ });
    for (i = 0; i < sizeof(arr); i+= SKILL_ARR_SIZE) {
@@ -291,7 +291,7 @@ private string *query_imm_children(mixed *arr, string path) {
 
 private string *create_skill_tree(string skill) {
    string *ret, *bits;
-   long long i;
+   int i;
 
    ret = ({ });
    bits = explode(skill, ".");
@@ -306,7 +306,7 @@ private string *create_skill_tree(string skill) {
 } /* create_skill_tree() */
 
 private mapping flatten(mixed *arr, string bit) {
-   long long i;
+   int i;
    mapping ret;
 
    if (!bit) {
@@ -320,7 +320,7 @@ private mapping flatten(mixed *arr, string bit) {
       } else {
          ret[bit + arr[i]] = ({ query_children(arr[i+SKILL_BIT], bit+arr[i]+".") +
                               ({ bit + arr[i] }),
-                              query_skill_cost_long long(bit+arr[i]) });
+                              query_skill_cost_int(bit+arr[i]) });
          ret += flatten(arr[i+SKILL_BIT], bit+arr[i]+".");
       }
       _skill_tree[(bit+arr[i])] = create_skill_tree(bit+arr[i]);
@@ -330,8 +330,8 @@ private mapping flatten(mixed *arr, string bit) {
 } /* flatten() */
 
 
-private long long query_skill_cost_rec(mixed *arr) {
-   long long i, tmp;
+private int query_skill_cost_rec(mixed *arr) {
+   int i, tmp;
 
    if (!sizeof(arr)) {
       return 1;
@@ -342,8 +342,8 @@ private long long query_skill_cost_rec(mixed *arr) {
    return tmp;
 } /* query_skill_cost_rec() */
 
-private long long query_skill_cost_long long(string str) {
-   long long i;
+private int query_skill_cost_int(string str) {
+   int i;
    mixed *arr;
    string *path;
 
@@ -359,7 +359,7 @@ private long long query_skill_cost_long long(string str) {
       }
    }
    return query_skill_cost_rec(arr);
-} /* query_skill_cost_long long() */
+} /* query_skill_cost_int() */
 
 /**
  * This method also returns all the children of a skill.  It preforms
@@ -380,7 +380,7 @@ string *query_related_skills(string skill) {
  * @param skill the skill to check the cost of
  * @return the costof the skill
  */
-long long query_skill_cost(string skill) {
+int query_skill_cost(string skill) {
    if (_reg_skills[skill]) {
       return _reg_skills[skill][1];
    }
@@ -395,7 +395,7 @@ long long query_skill_cost(string skill) {
  */
 string query_skill(string *bits) {
    mixed *arr;
-   long long i;
+   int i;
    string path, s1;
 
    if( !bits || !sizeof(bits) ) {
@@ -427,7 +427,7 @@ string query_skill(string *bits) {
  * @param str the skill tree to check
  * @return 1 if the tree is only leaf, 0 if not
  */
-long long query_only_leaf(string str) {
+int query_only_leaf(string str) {
    string *bits;
 
    bits = explode(str, ".");
@@ -440,7 +440,7 @@ long long query_only_leaf(string str) {
  * @param str the skill to check
  * @return 1 if they are not allowed to teach it, 0 if they are
  */
-long long query_allowed_to_teach(string str) {
+int query_allowed_to_teach(string str) {
    return !_not_allowed_to_teach[str];
 } /* query_allowed_to_teach() */
 
@@ -450,7 +450,7 @@ long long query_allowed_to_teach(string str) {
  * @param str the skill to check
  * @return 1 if should only show non-zero skills, 0 if show any skill
  */
-long long query_only_show_if_non_zero(string str) {
+int query_only_show_if_non_zero(string str) {
    return _only_show_if_non_zero[str];
 } /* query_only_show_if_non_zero() */
 
@@ -460,18 +460,18 @@ long long query_only_show_if_non_zero(string str) {
  * @param str the skill to check
  * @return 1 if there is no bonus, 0 if there is a bonus
  */
-long long query_no_bonus(string str) {
+int query_no_bonus(string str) {
    return _no_bonus[str] || _ignore_bits[str];
 } /* query_no_bonus() */
 
 /**
  * This method returns 1 if the skill being asked about should be ignored.
- * An ignored skill means that up to this polong long the fact it is this deep
+ * An ignored skill means that up to this point the fact it is this deep
  * is ignored.  For example,if 'crafts' is ignored then 'crafts.smithing'
  * would count as if it was a top level skill.
  * @param skill the skill to check
  */
-long long is_skill_ignored(string skill) {
+int is_skill_ignored(string skill) {
    return _ignore_bits[skill];
 }
 
@@ -480,9 +480,9 @@ long long is_skill_ignored(string skill) {
  * @param skill the skill to get the depth of
  * @return the skill depth
  */
-long long query_skill_depth(string* skill) {
-   long long depth;
-   long long i;
+int query_skill_depth(string* skill) {
+   int depth;
+   int i;
 
    depth = 0;
    for (i = 0; i < sizeof(skill) - 1; i++) {

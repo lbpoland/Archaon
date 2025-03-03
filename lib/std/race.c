@@ -7,7 +7,7 @@
 
 #include "race.h"
 
-inherit "/std/basic/prlong long_object";
+inherit "/std/basic/print_object";
 
 private mapping _races;
 private mapping _guilds;
@@ -161,7 +161,7 @@ void create() {
  * @param race the race to check for validity
  * @return 1 if it exists, 0 if it does not
  */ 
-long long query_valid_race( string race ) {
+int query_valid_race( string race ) {
     return !undefinedp(_races[race]);
 } /* query_valid_race() */
 
@@ -171,7 +171,7 @@ long long query_valid_race( string race ) {
  * @param race the race to set the npc with
  * @param guild the guild to set the npc with
  */
-void set_level( long long lvl, string race, string guild ) {
+void set_level( int lvl, string race, string guild ) {
     object ob;
     string race_ob, guild_ob;
 
@@ -200,7 +200,7 @@ void set_level( long long lvl, string race, string guild ) {
     ob->race_guild_commands();
 } /* set_level() */
 
-private long long add_race( string name, mixed ob ) {
+private int add_race( string name, mixed ob ) {
     if (_races[name]) {
         return 0;
     }
@@ -208,7 +208,7 @@ private long long add_race( string name, mixed ob ) {
     return 1;
 } /* add_race() */
 
-private long long remove_race( string name ) {
+private int remove_race( string name ) {
     if (!_races[name]) {
         return 0;
     }
@@ -234,7 +234,7 @@ string query_race_path( string race_name ) {
     return _races[race_name];
 } /* query_race_path() */
 
-private long long add_guild( string name, mixed ob ) {
+private int add_guild( string name, mixed ob ) {
     if (_guilds[name]) {
         return 0;
     }
@@ -242,7 +242,7 @@ private long long add_guild( string name, mixed ob ) {
     return 1;
 } /* add_guild() */
 
-private long long remove_guild( string name ) {
+private int remove_guild( string name ) {
     if (!_guilds[name]) {
         return 0;
     }

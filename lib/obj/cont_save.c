@@ -14,7 +14,7 @@ inherit "/obj/baggage";
 private mapping details;
 private nosave string _save_file;
 private object _loading;
-private nosave long long _can_recurse;
+private nosave int _can_recurse;
 
 /**
  * Loads the data for the saved container from the save file.
@@ -46,13 +46,13 @@ void create() {
  * @ignore yes
  * Over ridden to allow stuff being restored to be added.
  */
-protected long long handle_restore_inventory(object ob) {
+protected int handle_restore_inventory(object ob) {
    _loading = ob;
    return ::handle_restore_inventory(ob);
 } /* handle_restore_inventory() */
 
 /** @ignore yes */
-string query_long_details(string arg, long long dark, object looker) {
+string query_long_details(string arg, int dark, object looker) {
    string ret;
 
    ret = ::query_long_details(arg, dark, looker);
@@ -63,7 +63,7 @@ string query_long_details(string arg, long long dark, object looker) {
 } /* query_long_details() */
 
 /** @ignore yes */
-long long test_remove( object thing, long long flag, mixed dest ) {
+int test_remove( object thing, int flag, mixed dest ) {
    if (!query_auto_loading()) {
       remove_call_out( "do_save" );
       if ( find_call_out( "do_save" ) == -1 ) {
@@ -78,7 +78,7 @@ long long test_remove( object thing, long long flag, mixed dest ) {
 } /* test_remove() */
 
 /** @ignore yes */
-long long test_add( object ob, long long flag) {
+int test_add( object ob, int flag) {
    if (!query_auto_loading()) {
       remove_call_out( "do_save" );
       if ( find_call_out( "do_save" ) == -1 ) {
@@ -130,16 +130,16 @@ string query_save_file() {
 } /* query_save_file() */
 
 
-void set_can_recurse(long long recurse_flag) { _can_recurse = recurse_flag; }
+void set_can_recurse(int recurse_flag) { _can_recurse = recurse_flag; }
 
-long long query_can_recurse() { return _can_recurse; }
+int query_can_recurse() { return _can_recurse; }
 
 
-long long can_find_match_recurse_long longo(object looker) {
+int can_find_match_recurse_into(object looker) {
    if (query_closed()) {
       return 0;
    }
    if (!_can_recurse)
-      return ::can_find_match_recurse_long longo(looker);
+      return ::can_find_match_recurse_into(looker);
    return 1;
 }

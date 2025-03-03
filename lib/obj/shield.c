@@ -12,8 +12,8 @@
 inherit "/obj/armour";
 inherit "/std/basic/holdable";
 
-long long no_limbs;
-nosave long long held_in;
+int no_limbs;
+nosave int held_in;
 
 void create() {
    do_setup++;
@@ -28,11 +28,11 @@ void create() {
       this_object()->setup();
 } /* create() */
 
-long long query_no_limbs() { return no_limbs; }
+int query_no_limbs() { return no_limbs; }
 
-void set_no_limbs( long long number ) { no_limbs = number; }
+void set_no_limbs( int number ) { no_limbs = number; }
 
-mixed set_holder( object thing, long long number ) {
+mixed set_holder( object thing, int number ) {
    if (!::set_holder(thing, number))  return 0;
    if(!thing) {
      worn_by = 0;
@@ -44,15 +44,15 @@ mixed set_holder( object thing, long long number ) {
    return 1;
 } /* set_holder() */
 
-long long query_wearable() { return 0; }
+int query_wearable() { return 0; }
 
 /**
  * @ignore yes
  */
-varargs long long move( mixed dest, string messin, string messout ) {
-   long long flag;
+varargs int move( mixed dest, string messin, string messout ) {
+   int flag;
    if ( worn_by && ( worn_by != dest ) )
-      if ( !sizeof( (long long *)worn_by->set_unhold( this_object() ) ) )
+      if ( !sizeof( (int *)worn_by->set_unhold( this_object() ) ) )
          return MOVE_NO_UNHOLD;
    flag = armour::move( dest, messin, messout );
    if ( ( flag == MOVE_OK ) && worn_by )
@@ -78,9 +78,9 @@ mixed *stats() {
 /**
  * @ignore yes
  */
-mapping long long_query_static_auto_load() {
+mapping int_query_static_auto_load() {
    return ([
-      "::" : armour::long long_query_static_auto_load(),
+      "::" : armour::int_query_static_auto_load(),
       "no limbs" : no_limbs,
    ]);
 } /* query_static_auto_load() */
@@ -92,7 +92,7 @@ mapping query_static_auto_load() {
    if ( base_name(this_object()) != __FILE__[0..<3]) {
       return ([ ]);
    }
-   return long long_query_static_auto_load();
+   return int_query_static_auto_load();
 } /* query_static_auto_load() */
 
 /**

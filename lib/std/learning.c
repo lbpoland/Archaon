@@ -9,7 +9,7 @@
 class step {
   string *blurbs;
   string skill;
-  long long difficulty;
+  int difficulty;
   string *responses;
   string *params;
   string award_mess;
@@ -21,7 +21,7 @@ class lesson {
   mapping minimum_skills;
   mapping maximum_skills;
   string *materials;
-  long long cost;
+  int cost;
   string currency;
   string *lesson_ending;
   object teacher;
@@ -29,10 +29,10 @@ class lesson {
 }
 
 private nosave mapping _lessons;
-private nosave long long current_step;
-private nosave long long attempt;
+private nosave int current_step;
+private nosave int attempt;
 
-long long lesson_response(string, object, long long, string);
+int lesson_response(string, object, int, string);
 
 /**
  * Register a lesson with the learning system.
@@ -49,8 +49,8 @@ long long lesson_response(string, object, long long, string);
  * @param teacher an optional teacher object
  * 
  */
-long long register_lesson(string name, mapping minimum_skills,
-                    mapping maximum_skills, string *materials, long long cost, 
+int register_lesson(string name, mapping minimum_skills,
+                    mapping maximum_skills, string *materials, int cost, 
                     string currency, string *lesson_ending, object teacher ) {
   if(!_lessons)
     _lessons = ([ ]);
@@ -72,7 +72,7 @@ long long register_lesson(string name, mapping minimum_skills,
 
 
 /** 
- * Add a step to a lesson plan.  This is the long longeraction between student and 
+ * Add a step to a lesson plan.  This is the interaction between student and 
  * teacher. One step should be defined for each thing you want the student
  * to learn.
  *
@@ -94,7 +94,7 @@ long long register_lesson(string name, mapping minimum_skills,
  * @param fail_mess A string telling the player that they've failed.  It should not 
  * end in a newline \n.
  */
-long long add_step( string lesson_name, string *blurbs, string skill, long long diff,
+int add_step( string lesson_name, string *blurbs, string skill, int diff,
         string *responses, string *params, string award_mess, string succeed_mess, 
         string fail_mess) {
 
@@ -133,14 +133,14 @@ long long add_step( string lesson_name, string *blurbs, string skill, long long 
  */
 
  
-long long has_required_skills( string name, object player ) {
+int has_required_skills( string name, object player ) {
   string skill;
-  long long p_level;
+  int p_level;
 
  // make sure the player meets the minimum skill requirements 
   foreach( skill in (keys(_lessons[name]->minimum_skills)) ){
     p_level = player->query_skill(skill);
-    // debug_prlong longf( "Skill check: Player has %d in %s.  Must be a min of %d", 
+    // debug_printf( "Skill check: Player has %d in %s.  Must be a min of %d", 
     //      p_level, skill, _lessons[name]->minimum_skills[skill]);
     if( p_level < _lessons[name]->minimum_skills[skill] ){
       // player doesn't have enough skill to learn this
@@ -151,7 +151,7 @@ long long has_required_skills( string name, object player ) {
  // make sure the player is under the maximum skill requirements 
   foreach( skill in (keys(_lessons[name]->maximum_skills)) ){
     p_level = player->query_skill(skill);
-    //debug_prlong longf( "Skill check: Player must have a max of %d",
+    //debug_printf( "Skill check: Player must have a max of %d",
     //      _lessons[name]->maximum_skills[skill] );
     if( p_level > _lessons[name]->maximum_skills[skill] ){
       // player has too much skill to learn this
@@ -169,7 +169,7 @@ long long has_required_skills( string name, object player ) {
  * @param name name of the lesson they're trying to learn
  * @param player player object of the player trying to learn
  */
-long long has_required_materials( string name, object player ) {
+int has_required_materials( string name, object player ) {
   // if it's in their inventory they have it
   string mat;
   
@@ -188,8 +188,8 @@ long long has_required_materials( string name, object player ) {
  * @param player player object of the player trying to learn
  */
 
-long long has_required_cash( string name, object player ) {
-  //debug_prlong longf( "Cash check: Player has %d in %s needs to have %d", 
+int has_required_cash( string name, object player ) {
+  //debug_printf( "Cash check: Player has %d in %s needs to have %d", 
   //              player->query_value_in(_lessons[name]->currency), 
   //              _lessons[name]->currency, _lessons[name]->cost );
   if(player->query_value_in(_lessons[name]->currency) < _lessons[name]->cost) {
@@ -204,7 +204,7 @@ long long has_required_cash( string name, object player ) {
  * @param the lesson name
  * @param the player
  */
-long long start_lesson(string name, object player) {
+int start_lesson(string name, object player) {
   string *needed;
     
   if(!_lessons[name])
@@ -221,11 +221,11 @@ long long start_lesson(string name, object player) {
 
   
   if(sizeof(needed)) {
-    debug_prlong longf( "Player doesn't have the correct %s\n", 
-                  query_multiple_short(needed) );
+    debug_printf( "Player doesn't have the correct %s\n", 
+                  sprintf("%O", (needed) );
  
     return add_failed_mess("Sorry, You don't have the correct " +
-                  query_multiple_short(needed) + " to learn today.\n");
+                  sprintf("%O", (needed) + " to learn today.\n");
   }
   
   
@@ -240,11 +240,11 @@ long long start_lesson(string name, object player) {
  */
 string *query_lessons() { return keys(_lessons); }
 
-protected void lesson_step(string name, object student, long long lessonstep) {
+protected void lesson_step(string name, object student, int lessonstep) {
   string str;
   class step current;
   object teacher = _lessons[name]->teacher;
-  long long i;
+  int i;
   
   // The current step in the lesson plan.
   current = _lessons[name]->plan[lessonstep];
@@ -284,7 +284,7 @@ protected void lesson_step(string name, object student, long long lessonstep) {
 
 }
 
-long long lesson_response(string name, object student, long long lessonstep, string args) {
+int lesson_response(string name, object student, int lessonstep, string args) {
   class step current;
   
   // validate response
@@ -335,7 +335,7 @@ long long lesson_response(string name, object student, long long lessonstep, str
   return 1;
 }
 
-long long lesson_end ( string name, object student ) {
+int lesson_end ( string name, object student ) {
   string str;
   object teacher = _lessons[name]->teacher;
   
