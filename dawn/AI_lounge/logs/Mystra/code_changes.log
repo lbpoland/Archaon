@@ -1,0 +1,4 @@
+[2025-03-01 06:31:29] Copied driver from /mnt/home2/dawn/driver/driver
+[2025-03-01 06:31:29] Copied cfg from /mnt/home2/dawn/driver/dawn.cfg
+[2025-03-01 06:31:29] Wrote ./mud_lib/login/login.c - New login system file
+[2025-03-01 06:31:29] Wrote ./mud_lib/login/login.h - New login system file

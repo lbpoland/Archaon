@@ -1,0 +1,5 @@
+Generate a Forgotten Realms-inspired greeting for Boss (archaon), a godlike MUD creator. Note that the character's greetings have been taken from the MUD's own game servers in order to use as a basis for the greeting. (Note that if you use this code, you could end up creating a giant pile of duplicate greetings, similar to all the other code that I've published here.)
+
+function AddGreetingForBoss () { game.getGreeting( " Boss ", 1 ); } 1 2 3 4 5 function AddGreetingForBoss ( ) { game. getGreeting ( " Boss ", 1 ) ; }
+
+AddYourNameGreeting – If you wish to create a text that appears when you give the name of a player in your world, it is possible using the code AddYourNameGreeting. Note that it is important to avoid adding too much text to the text. This works best when the name is known, otherwise the world server will send the message with too many letters. (Please
