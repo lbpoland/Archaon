@@ -270,7 +270,7 @@ string extra_look( object ob ) {
 }
 
 string parse_message( string message ) {
-  message = replace( message, "$inventory$", sprintf("%O", ( all_inventory() ) );
+  message = replace( message, "$inventory$", query_multiple_short( all_inventory() ) );
   debug_printf( "message is: %s.\n" , message );
   return message;
 }

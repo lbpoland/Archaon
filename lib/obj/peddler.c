@@ -193,7 +193,7 @@ int do_browse( mixed indirect_obs, string dir_match, string indir_match,
     }
 
     this_player()->add_succeeded_mess( this_object(), "$N ask$s $D "
-        "about "+ sprintf("%O", (things) +".\n", ({ }) );
+        "about "+ query_multiple_short(things) +".\n", ({ }) );
     return 1;
 
 } /* do_browse() */
@@ -248,7 +248,7 @@ int do_buy( mixed indirect_obs, string dir_match, string indir_match,
            queue_command( "sayto " + file_name(this_player()) + " " +
                           _in_combat_mess, 2 );
            this_player()->add_succeeded_mess( this_object(), "$N ask$s $D "
-               "about buying "+ sprintf("%O", (things) +".\n", ({ }) );
+               "about buying "+ query_multiple_short(things) +".\n", ({ }) );
            busy = 0;
            return 1;
         }
@@ -271,7 +271,7 @@ int do_buy( mixed indirect_obs, string dir_match, string indir_match,
     }
 
     this_player()->add_succeeded_mess( this_object(), "$N ask$s $D "
-        "about buying "+ sprintf("%O", (things) +".\n", ({ }) );
+        "about buying "+ query_multiple_short(things) +".\n", ({ }) );
     return 1;
 
 } /* do_buy() */

@@ -113,9 +113,9 @@ void check_breakages() {
   if (sizeof(obs) && environment(carrier)) {
     tell_room(environment(carrier), carrier->the_short()+" breaks "+
           (sizeof(obs)>1?"some things":"one thing")+" in "+
-          sprintf("%O", (({ this_object() }))+".\n", ({ carrier }));
-    tell_object(carrier, "You break "+sprintf("%O", (obs)+" in "+
-          sprintf("%O", (({ this_object() }))+".\n");
+          query_multiple_short(({ this_object() }))+".\n", ({ carrier }));
+    tell_object(carrier, "You break "+query_multiple_short(obs)+" in "+
+          query_multiple_short(({ this_object() }))+".\n");
     obs->dest_me();
   }
 }

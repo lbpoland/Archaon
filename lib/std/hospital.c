@@ -657,10 +657,10 @@ private void parse_zone(string fname, mapping data) {
    
    bits = keys(data) - ({ "zone", "group", "npc", "name", "busy" });
    if (sizeof(bits)) {
-      debug_printf("Unknown keys %s in zone %s\n", sprintf("%O", (bits),
+      debug_printf("Unknown keys %s in zone %s\n", query_multiple_short(bits),
                    name);
       hospital_log_file("COMPILE_ERROR", "Unknown keys %s in %s\n",
-                         sprintf("%O", (bits), name);
+                         query_multiple_short(bits), name);
    }
    _zone_info[name] = info;
    save_file();
@@ -721,10 +721,10 @@ private void parse_npc(string fname, mapping data) {
 
    bits = keys(data) - ({ "unique", "path", "move_zone", "population", "name", "delay", "transient", "nocturnal" });
    if (sizeof(bits)) {
-      debug_printf("Unknown keys %s in npc %s\n", sprintf("%O", (bits),
+      debug_printf("Unknown keys %s in npc %s\n", query_multiple_short(bits),
                    name);
       hospital_log_file("COMPILE_ERROR", "Unknown keys %s in npc %s\n",
-                         sprintf("%O", (bits), name);
+                         query_multiple_short(bits), name);
    }
    if (_path_to_npc[info->path] && _path_to_npc[info->path] != name) {
       hospital_log_file("NPC_NAME_CLASH", "NPC path %s is used by %s and %s.\n",
@@ -792,10 +792,10 @@ private void parse_group(string fname, mapping data) {
    
    bits = keys(data) - ({ "npc", "name", "population", "move_zone", "protect", "defend", "transient", });
    if (sizeof(bits)) {
-      debug_printf("Unknown keys %s in group %s\n", sprintf("%O", (bits),
+      debug_printf("Unknown keys %s in group %s\n", query_multiple_short(bits),
                    name);
       hospital_log_file("COMPILE_ERROR", "Unknown keys %s in group %s\n",
-                         sprintf("%O", (bits), name);
+                         query_multiple_short(bits), name);
    }
    if (_group_info[name]) {
      info->storage = _group_info[name]->storage;
@@ -1412,10 +1412,10 @@ int do_report() {
     foreach( name, group in _group_info ) {
       if(group->transient)
         txt += sprintf( "$I$5=Name: %s. (%s) (Transient)\n", name,
-            sprintf("%O", (keys(group->npcs)));
+            query_multiple_short(keys(group->npcs)));
       else
         txt += sprintf( "$I$5=Name: %s. (%s) Population: (%d/%d)\n", name,
-            sprintf("%O", (keys(group->npcs)),
+            query_multiple_short(keys(group->npcs)),
             sizeof( group->storage ), group->max_population );
     }
 

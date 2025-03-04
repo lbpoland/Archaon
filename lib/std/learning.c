@@ -222,10 +222,10 @@ int start_lesson(string name, object player) {
   
   if(sizeof(needed)) {
     debug_printf( "Player doesn't have the correct %s\n", 
-                  sprintf("%O", (needed) );
+                  query_multiple_short(needed) );
  
     return add_failed_mess("Sorry, You don't have the correct " +
-                  sprintf("%O", (needed) + " to learn today.\n");
+                  query_multiple_short(needed) + " to learn today.\n");
   }
   
   

@@ -127,7 +127,7 @@ protected void eventRead(int fd, string str) {
     }
 
     timestamp = time();
-    token = sha512_sha512_crypt("" + timestamp, "" + random(12000));
+    token = crypt("" + timestamp, "" + random(12000));
     sess->token = token;
     sess->timestamp = timestamp;
     sess->user = name;

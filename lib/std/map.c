@@ -32,7 +32,7 @@ void create() {
 /** @ignore yes */
 string extra_look() {
   return "Marked on the map are " +
-    sprintf("%O", (_features->query_base_description() +
+    query_multiple_short(_features->query_base_description() +
                          keys(_locations)) + ".";
 }
 
@@ -169,7 +169,7 @@ int do_consult(string find) {
       return notify_fail("You cannot find anything on your map.\n");
   }
   write("You consult your map and estimate that " +
-        sprintf("%O", (res) + "\n");
+        query_multiple_short(res) + "\n");
   this_player()->add_succeeded_mess(this_object(), "");
   return 1;
 }

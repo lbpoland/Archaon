@@ -506,9 +506,9 @@ int add_weight( int n ) {
   if (sizeof(obs)) {
     say(this_player()->one_short()+" breaks "+
           (sizeof(obs)>1?"some things":"one thing")+" in "+
-          sprintf("%O", (({ this_object() }))+".\n");
-    write("You break "+sprintf("%O", (obs)+" in "+
-          sprintf("%O", (({ this_object() }))+".\n");
+          query_multiple_short(({ this_object() }))+".\n");
+    write("You break "+query_multiple_short(obs)+" in "+
+          query_multiple_short(({ this_object() }))+".\n");
     obs->dest_me();
   }
   return 1;
@@ -551,9 +551,9 @@ void check_breakages() {
   if (sizeof(obs) && environment(carrier)) {
     tell_room(environment(carrier), carrier->the_short()+" breaks "+
           (sizeof(obs)>1?"some things":"one thing")+" in "+
-          sprintf("%O", (({ this_object() }))+".\n", ({ carrier }));
-    tell_object(carrier, "You break "+sprintf("%O", (obs)+" in "+
-          sprintf("%O", (({ this_object() }))+".\n");
+          query_multiple_short(({ this_object() }))+".\n", ({ carrier }));
+    tell_object(carrier, "You break "+query_multiple_short(obs)+" in "+
+          query_multiple_short(({ this_object() }))+".\n");
     obs->dest_me();
   }
 } /* check_breakages() */
@@ -607,12 +607,12 @@ string liquid_name()
          lo += ({ colours[i++][0] });
       
       if (sizeof(med)) {
-         liq_name += " with swirls of " + sprintf("%O", (med);
+         liq_name += " with swirls of " + query_multiple_short(med);
       }
       
       if (sizeof(lo)) {
-         if (sizeof(med)) liq_name += " and faint streaks of " + sprintf("%O", (lo);
-         else liq_name += " with faint streaks of " + sprintf("%O", (lo);
+         if (sizeof(med)) liq_name += " and faint streaks of " + query_multiple_short(lo);
+         else liq_name += " with faint streaks of " + query_multiple_short(lo);
       }
    } else if (no_colours) {
       i = 0;
@@ -623,15 +623,15 @@ string liquid_name()
       while (i < sizeof(names) && names[i][1] >= VERY_SMALL_AMOUNT)
          lo += ({ names[i++][0] });
       
-      if (sizeof(med) > 1) liq_name = "a mixture of " + sprintf("%O", (med);
+      if (sizeof(med) > 1) liq_name = "a mixture of " + query_multiple_short(med);
       else if (sizeof(med) == 1) liq_name = med[0];
       
       if (!sizeof(med) && sizeof(lo) > 1) 
-         liq_name = "a diluted mixture of " + sprintf("%O", (lo);
+         liq_name = "a diluted mixture of " + query_multiple_short(lo);
       else if (!sizeof(med) && sizeof(lo) == 1)
          liq_name = "diluted " + lo[0];
       else if (sizeof(med) && sizeof(lo))
-         liq_name += "and small quantities of " + sprintf("%O", (lo);
+         liq_name += "and small quantities of " + query_multiple_short(lo);
    } else {
       if (names[0][1] > colours[0][1] / 2) 
       /* arbitrary relationship ... names are 'twice' as visible as colours */
@@ -652,15 +652,15 @@ string liquid_name()
          while (i < sizeof(names) && names[i][1] >= VERY_SMALL_AMOUNT)
             lo += ({ names[i++][0] });
       
-         if (sizeof(med) > 1) liq_name = "a mixture of " + sprintf("%O", (med);
+         if (sizeof(med) > 1) liq_name = "a mixture of " + query_multiple_short(med);
          else if (sizeof(med) == 1) liq_name = med[0];
       
          if (!sizeof(med) && sizeof(lo) > 1) 
-            liq_name = "a diluted mixture of " + sprintf("%O", (lo);
+            liq_name = "a diluted mixture of " + query_multiple_short(lo);
          else if (!sizeof(med) && sizeof(lo) == 1)
             liq_name = "diluted " + lo[0];
          else if (sizeof(med) && sizeof(lo))
-            liq_name += "and small quantities of " + sprintf("%O", (lo);
+            liq_name += "and small quantities of " + query_multiple_short(lo);
          
          /* this little fragment copied directly from 'no_names' above */
          
@@ -678,12 +678,12 @@ string liquid_name()
             lo += ({ colours[i++][0] });
          
          if (sizeof(med)) {
-            liq_name += " with swirls of " + sprintf("%O", (med);
+            liq_name += " with swirls of " + query_multiple_short(med);
          }
          
          if (sizeof(lo)) {
-            if (sizeof(med)) liq_name += " and faint streaks of " + sprintf("%O", (lo);
-            else liq_name += " with faint streaks of " + sprintf("%O", (lo);
+            if (sizeof(med)) liq_name += " and faint streaks of " + query_multiple_short(lo);
+            else liq_name += " with faint streaks of " + query_multiple_short(lo);
          }
          liq_name += ")";
       } else {   /* phew, coloured liquid containing names now */
@@ -698,7 +698,7 @@ string liquid_name()
          while (i < sizeof(names) && names[i][1] >= VERY_SMALL_AMOUNT)
             med += ({ names[i++][0] });
          
-         liq_name += " containing " + sprintf("%O", (med);
+         liq_name += " containing " + query_multiple_short(med);
          
          med = ({ });
          i = 1;
@@ -710,12 +710,12 @@ string liquid_name()
             lo += ({ colours[i++][0] });
          
          if (sizeof(med)) {
-            liq_name += " with swirls of " + sprintf("%O", (med);
+            liq_name += " with swirls of " + query_multiple_short(med);
          }
          
          if (sizeof(lo)) {
-            if (sizeof(med)) liq_name += " and faint streaks of " + sprintf("%O", (lo);
-            else liq_name += " with faint streaks of " + sprintf("%O", (lo);
+            if (sizeof(med)) liq_name += " and faint streaks of " + query_multiple_short(lo);
+            else liq_name += " with faint streaks of " + query_multiple_short(lo);
          }
       } /* yayayayaya.  done! */
    }
@@ -1489,7 +1489,7 @@ int do_taste() {
          group += all_attrs[POTION_FLAVOURS][i][0..0];
       
       if (sizeof(group)) {
-         desc += " tastes of " + sprintf("%O", (group);
+         desc += " tastes of " + query_multiple_short(group);
          if (i < sizeof(all_attrs[POTION_FLAVOURS]) && 
              all_attrs[POTION_FLAVOURS][i][1] >= VERY_SMALL_AMOUNT)
             desc += " with a faint hint of ";
@@ -1500,7 +1500,7 @@ int do_taste() {
            all_attrs[POTION_FLAVOURS][i][1] >= VERY_SMALL_AMOUNT; i++)
          group += all_attrs[POTION_FLAVOURS][i][0..0];
       
-      if (sizeof(group)) desc += sprintf("%O", (group);
+      if (sizeof(group)) desc += query_multiple_short(group);
    }
    write(desc + ".\n");
    say(this_player()->one_short() + " takes a small sip from the " +
@@ -1537,7 +1537,7 @@ int do_smell()
          group += all_attrs[POTION_SMELLS][i][0..0];
       
       if (sizeof(group)) {
-         desc += " smells of " + sprintf("%O", (group);
+         desc += " smells of " + query_multiple_short(group);
          if (i < sizeof(all_attrs[POTION_SMELLS]) && 
              all_attrs[POTION_SMELLS][i][1] >= VERY_SMALL_AMOUNT)
             desc += " with a faint hint of ";
@@ -1548,7 +1548,7 @@ int do_smell()
            all_attrs[POTION_SMELLS][i][1] >= VERY_SMALL_AMOUNT; i++)
          group += all_attrs[POTION_SMELLS][i][0..0];
       
-      if (sizeof(group)) desc += sprintf("%O", (group);
+      if (sizeof(group)) desc += query_multiple_short(group);
    }
    write(desc + ".\n");
    say(this_player()->one_short() + " takes a whiff of the " +

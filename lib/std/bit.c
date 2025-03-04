@@ -177,7 +177,7 @@ void setup_long() {
 
 string extra_look() {
   if(sizeof(bits_gone))
-    return "It appears to be missing the " + sprintf("%O", (bits_gone) + ".\n";
+    return "It appears to be missing the " + query_multiple_short(bits_gone) + ".\n";
   return "";
 }
 

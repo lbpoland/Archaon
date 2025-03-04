@@ -161,7 +161,7 @@ private string get_additional_info(string name, int no_colour,
         bing += ({ "Developer" });
       
       if(sizeof(bing))
-        retval += "Roles : " + sprintf("%O", (bing) + ".\n";
+        retval += "Roles : " + query_multiple_short(bing) + ".\n";
 
       if(tmp)
         retval += sprintf("Domains : %-=*s", width - 10, tmp);
@@ -178,7 +178,7 @@ private string get_additional_info(string name, int no_colour,
          retval += capitalize(name) + " is a Playtester.\n";
       }
       
-        retval += "Roles : " + sprintf("%O", (bing) + ".\n";
+        retval += "Roles : " + query_multiple_short(bing) + ".\n";
    }
    retval += "%^EBOLD%^";
    
@@ -346,10 +346,10 @@ string domain_finger(string name,
          }
          if(www) {
             ret +=
-               sprintf("%O", (map(deputies, (: link_name($1) :)));
+               query_multiple_short(map(deputies, (: link_name($1) :)));
          } else {
             ret +=
-               sprintf("%O", (map(deputies, (: capitalize($1) :)));
+               query_multiple_short(map(deputies, (: capitalize($1) :)));
          }
          ret += ".\n";
       }

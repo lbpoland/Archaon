@@ -1,7 +1,0 @@
-#/net/intermud3/intermud.c
-ChosenServer 0
-Password 0
-MudList (/-1,([]),/)
-ChannelList (/-1,([]),/)
-Banned ([])
-Tries 1

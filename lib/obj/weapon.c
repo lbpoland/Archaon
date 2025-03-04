@@ -116,13 +116,13 @@ int held_this_item(int held, object holder, mixed arg) {
     switch(weight) {
     case 76..10000:
       tell_object(holder, "You struggle to hold " +
-                  sprintf("%O", (holder->query_holding() +
+                  query_multiple_short(holder->query_holding() +
                                        ({ this_object() }) - ({ 0 })) +
                   ".\n");
       break;
     case 50..75:
       tell_object(holder, "You struggle slightly to hold " +
-                  sprintf("%O", (holder->query_holding() +
+                  query_multiple_short(holder->query_holding() +
                                        ({ this_object() }) - ({ 0 })) +
                   ".\n");
       break;

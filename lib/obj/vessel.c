@@ -212,7 +212,7 @@ string query_liquid_desc() {
           if (sizeof(shorts) > 4) {
              desc += "other liquids";
           } else {
-             desc += sprintf("%O", (shorts[1..]);
+             desc += query_multiple_short(shorts[1..]);
           }
        }
     } else {
@@ -242,7 +242,7 @@ string query_liquid_desc() {
     if (sizeof(others) > 10) {
         desc += "various undissolved substances";
     } else {
-        desc += sprintf("%O", (others);
+        desc += query_multiple_short(others);
     }
     if (sizeof(_liquids)) {
        desc += " floating in it";
@@ -317,7 +317,7 @@ string short(int dark) {
     return ::short(dark);
 
   return ::short(dark) + " of " + 
-    "/global/events"->convert_message(sprintf("%O", (map(inv, 
+    "/global/events"->convert_message(query_multiple_short(map(inv, 
     (: $1->query_short() :))));
 }
 
@@ -534,10 +534,10 @@ void heart_beat() {
  /* This is hacked because as far as I can tell there is no way to get a 'generic short'
   * for a continuous liquid, ie: some water, instead of two pints of water. */
     if ( interactive( environment() ) )
-        tell_object( environment(), "$C$Some " + sprintf("%O", ( map( all_inventory(),
+        tell_object( environment(), "$C$Some " + query_multiple_short( map( all_inventory(),
         (: $1->query_short() :) ) ) + leak_verb[off] + " out of the "+ short(1) + ".\n" );
     else 
-      tell_room( environment(), "$C$Some " + sprintf("%O", ( map( all_inventory(),
+      tell_room( environment(), "$C$Some " + query_multiple_short( map( all_inventory(),
         (: $1->query_short() :) ) ) + leak_verb[off] + " out of the "+ short(1) + ".\n" );
   
   (void)remove_volume(lost);
@@ -904,11 +904,11 @@ int is_fighting_bottle_smashed(object player,
             tell_room(environment(player),
                       player->the_short() + " avoids getting " +
                       me->poss_short() + " smashed by " +
-                      sprintf("%O", (({ ob })) + ".\n",
+                      query_multiple_short(({ ob })) + ".\n",
                                ({ player }));
             tell_object(player,
                         "You avoid getting " + me->poss_short() +
-                        " smashed by " + sprintf("%O", (({ ob })) +
+                        " smashed by " + query_multiple_short(({ ob })) +
                         ".\n");
 
          // Do less, but still damage it.
@@ -1026,7 +1026,7 @@ private string consumed_desc( int consumed_amount ) {
       }
    }
 
-   contents_desc = sprintf("%O", ( contents_descs );
+   contents_desc = query_multiple_short( contents_descs );
 
    return amount_desc +" of "+ contents_desc;
 
@@ -1374,12 +1374,12 @@ int do_splash(object *dest, mixed me, mixed him, mixed args, string pattern) {
     }
     if(this_player() == dest[0]){
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + sprintf("%O", (contents) +
+                     "$N $V " + query_multiple_short(contents) +
                      " from $D onto "+this_player()->query_objective() +
                      "self.\n", ({}));
     }else{
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + sprintf("%O", (contents) +
+                     "$N $V " + query_multiple_short(contents) +
                      " from $D onto $I.\n", dest);
     }
  // Call consume() on food objects, I guess ignore the others.
@@ -1460,11 +1460,11 @@ int do_rub(object *dest, mixed me, mixed him, mixed args, string pattern) {
     }
     if (this_player() == dest[0]){
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + sprintf("%O", (contents) +
+                     "$N $V " + query_multiple_short(contents) +
                      " from $D onto "+this_player()->query_objective()+"self.\n", ({}));
     } else {
        this_player()->add_succeeded_mess(this_object(),
-                     "$N $V " + sprintf("%O", (contents) +
+                     "$N $V " + query_multiple_short(contents) +
                      " from $D onto $I.\n", dest);
     }
  // Call consume() on food objects, I guess ignore the others.
@@ -1729,7 +1729,7 @@ void break_me() {
    liquid = filter(all_inventory(), (: $1->query_liquid() :));
    if (sizeof(liquid)) {
       tell_room(environment(),
-         sprintf("%O", (liquid) + " splashes all over the place "
+         query_multiple_short(liquid) + " splashes all over the place "
          "as " + the_short() + " breaks.\n");
        liquid->move("/room/rubbish");
    }

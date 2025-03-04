@@ -116,7 +116,7 @@ void setup() {
 /** @ignore yes */
 string extra_look() {
   if(sizeof(_removed))
-    return "It appears to be missing its " + sprintf("%O", (_removed) +
+    return "It appears to be missing its " + query_multiple_short(_removed) +
       ".\n";
   return "";
 }

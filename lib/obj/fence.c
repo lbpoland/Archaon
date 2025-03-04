@@ -306,7 +306,7 @@ int do_fence( object *in_dir, string direct, string indirect, mixed args,
   }    
 
   tell_room( environment( this_object() ), this_object()->query_short() +
-            " studies " + sprintf("%O", ( in_dir ) + ".\n" );
+            " studies " + query_multiple_short( in_dir ) + ".\n" );
   
   foreach( ob in in_dir ) {
     // Player doesn't have item.
@@ -430,12 +430,12 @@ int do_fence( object *in_dir, string direct, string indirect, mixed args,
 
   if( sizeof( not_speciality ) == 1 )
     whisper( this_player(), "Well, " +
-      strip_colours( sprintf("%O", ( not_speciality ) ) + " isn't really "
+      strip_colours( query_multiple_short( not_speciality ) ) + " isn't really "
       "my speciality." );
   else
     if( sizeof( not_speciality ) > 1 )
       whisper( this_player(), "Well, " +
-        strip_colours( sprintf("%O", ( not_speciality ) ) + " aren't "
+        strip_colours( query_multiple_short( not_speciality ) ) + " aren't "
         "really my speciality." );
   
   this_player()->add_succeeded_mess( this_object(), "", offered );
@@ -448,7 +448,7 @@ int do_fence( object *in_dir, string direct, string indirect, mixed args,
 
   // Tell em how much and wait for their response
   whisper( this_player(), "I'll give you " + cost_str( this_offer->amount ) +
-          " for " + strip_colours( sprintf("%O", ( this_offer->
+          " for " + strip_colours( query_multiple_short( this_offer->
           objects ) ) + ", what do you think?" );
   return 1;
 }
@@ -689,6 +689,6 @@ string query_current_offer() {
   str = "\nCustomer: " + ( this_offer->who )->short()  + "\n";
   str += "Amount: " + this_offer->amount + "\n";
   str += "Offer time: " + this_offer->offer_time + "\n";
-  str += "Objects: " + sprintf("%O", ( this_offer->objects );
+  str += "Objects: " + query_multiple_short( this_offer->objects );
   return str;
 }

@@ -492,7 +492,7 @@ void set_decay_speed( int decay ) {
 /* Mask set_main_plural() cos it breaks the short descriptions if its been 
  * set, so we leave it to the pluralizer to sort out.  If it turns out this 
  * messes things up too much for object names then it will need to be modified
- * to mask the values returned by sprintf("%O", ().  Yes it's a hack, 
+ * to mask the values returned by query_multiple_short().  Yes it's a hack, 
  * but the best I could do at the time.
  */
 

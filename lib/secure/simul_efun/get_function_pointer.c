@@ -12,3 +12,5 @@ function get_function_pointer(string lpc){
   };
   return bind(this_object()->unguarded((:evaluate($(tmp), $(lpc)):)), previous_object());
 }
+                   
+    

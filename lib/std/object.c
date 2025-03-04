@@ -1,4 +1,3 @@
-
 /**
  * The basic object.  This pulls together all the bits needed to create
  * a basic object.
@@ -22,7 +21,7 @@ inherit "/std/basic/effects";
 
 #define AUTO_LOAD_TAG "basic.object";
 
-nosave int do_setup = 0;
+nosave int do_setup;
 nosave string create_me;
 nosave string colour;
 private string* _materials;
@@ -37,7 +36,8 @@ void create() {
   read_desc::create();
   effects::create();
 
-  seteuid( (string)"/secure/master"->creator_file( file_name( this_object() ) ) );
+  seteuid( (string)"/secure/master"->
+      creator_file( file_name( this_object() ) ) );
   if ( this_player() ) {
     create_me = (string)this_player()->query_name();
   } else {
@@ -45,10 +45,8 @@ void create() {
   }
   if ( !do_setup ) {
     this_object()->setup();
-    do_setup = 1; // Set flag after setup
   }
-}
- /* create() */
+} /* create() */
 
 /**
  * Gives the object a name.  Sets the name to the word and makes it the
@@ -256,7 +254,7 @@ mixed *stats() {
     ({ "weight", (int)this_object()->query_weight(), }),
     ({ "enchantment", query_enchant(), }),
     ({ "colour", colour, }),
-    ({ "material", sprintf("%O", (_materials), }),
+    ({ "material", query_multiple_short(_materials), }),
     ({ "cloned by", create_me, }),
     ({ "length", (int)this_object()->query_length(), }),
     ({ "width", (int)this_object()->query_width(), }),
@@ -530,10 +528,10 @@ string query_read_short(object player, int ignore_labels) {
       }
       if (sizeof(labels)) {
          if (ret) {
-            ret += " and " + sprintf("%O", (labels, "the") +
+            ret += " and " + query_multiple_short(labels, "the") +
                    " stuck on $name$";
          } else {
-            ret = sprintf("%O", (labels, "the") +
+            ret = query_multiple_short(labels, "the") +
                    " stuck on $name$";
          }
       }

@@ -263,7 +263,7 @@ string short( int dark ) {
    if ( sizeof( retval ) == 1 ) {
       short_d = retval[ 0 ];
    } else {
-      short_d = sprintf("%O", ( retval );
+      short_d = query_multiple_short( retval );
    }
    return short_d;
 } /* short() */
@@ -666,5 +666,5 @@ int query_money( string type ){
 
 mixed *stats() {
   return ::stats() +
-    ({ ({ "value" , sprintf("%O", (half_short(1)) }) });
+    ({ ({ "value" , query_multiple_short(half_short(1)) }) });
 }

@@ -88,7 +88,7 @@ string long( string word, int dark ) {
          sizes[ i ] = query_num( types[ sizes[ i ] ] ) +" "+ sizes[ i ] +
                " pocket"+ ( types[ sizes[ i ] ] > 1 ? "s" : "" );
       }
-      ret += "$C$"+ the_short() +" has "+ sprintf("%O", ( sizes ) +".\n"+
+      ret += "$C$"+ the_short() +" has "+ query_multiple_short( sizes ) +".\n"+
             query_contents( "It contains: " );
       ret += close_lock::long_status();
    }
