@@ -1,364 +1,231 @@
-/*  -*- LPC -*-  */
-/*
- * $Locker:  $
- * $Id: master.c,v 1.22 2003/03/25 20:30:29 ceres Exp $
- */
+// -*- LPC -*-
+// /secure/master.c
+// Recoded for FluffOS v2019+, themed for Forgotten Realms, integrating live Discworld mechanics
+// Last updated: March 07, 2025
+
+#include <config.h>
+#include <log.h>
+#include <player_handler.h>
+
 inherit "/secure/master/directory_assignments";
 
 #define ROOT "Root"
 
-#include <log.h>
-#include <player_handler.h>
+// Deity-inspired hierarchy (Forgotten Realms-themed, mapping Discworld roles)
+#define OVERDEITY         1  // Top tier (Discworld TRUSTEE)
+#define HIGH_ARCHON       2  // Mid tier (Discworld DIRECTOR)
+#define ADEPT_OF_MYSTERIES 3  // Lower tier (Discworld SENIOR)
+#define CHOSEN_EMISSARY   4  // Special role (Discworld LIAISON)
 
-#define TRUSTEES ([ ROOT : 1, "archaon" : 1,])
+// Permission masks (from Discworld /helpdir/access)
+#define READ_MASK   1
+#define WRITE_MASK  2
+#define GRANT_MASK  4
+#define LOCK_MASK   8
 
-#define READ_MASK 1
-#define WRITE_MASK 2
-#define GRANT_MASK 4
-#define LOCK_MASK 8
+private mapping positions;      // Role assignments
+private mapping overdeities;   // Top-tier deity-like admins
+private mapping permissions;   // File permissions (mirrors /helpdir/permissions)
+private mapping checked_master; // Loaded domain masters
+private mapping snoop_list;    // Snooping list (from /helpdir/snoop)
+private object  unguarded_ob;  // Unguarded operation object
 
-#define SENIOR 4            /* Independents */
-#define DIRECTOR 1            /* Lords */
-#define TRUSTEE 2     /* High Lords */
-
-private mapping positions, permissions;
-private nosave  mapping trustees, checked_master, snoop_list;
-private nosave  object unguarded_ob;
+private mapping save_data;     // Persistent data (replaces .o files)
 
 protected void create() {
-  set_eval_limit(2000000);
-  permissions = ([ ]);
-  positions   = ([ ]);
-  checked_master = ([ ]);
-  snoop_list = ([ ]);
-  unguarded_ob = 0;
-  trustees = TRUSTEES;
-  if (!unguarded((: restore_object, "/secure/master" :)))
-    if (!unguarded((: restore_object, "/secure/config/master_fallback" :)))
-      error("The master object couldn't restore its save file.");
-} /* create() */
+    set_eval_limit(2000000); // Standard Discworld limit
+    permissions = ([ ]);
+    positions   = ([ ]);
+    checked_master = ([ ]);
+    snoop_list = ([ ]);
+    unguarded_ob = 0;
+    overdeities = ([ ROOT: 1, "archaon": 1 ]); // Initial Overdeities
+    save_data = ([ ]);
 
-/** @ignore yes */
+    // Load persistent data (replaces restore_object, fixes permission errors)
+    string save_file = "/secure/save/master.json";
+    if (file_size(save_file) > 0) {
+        mixed data = json_decode(read_file(save_file));
+        if (mappingp(data)) {
+            positions = data["positions"] || ([ ]);
+            overdeities = data["overdeities"] || overdeities;
+            permissions = data["permissions"] || ([ ]);
+        } else {
+            LOG_HANDLER->log("ERROR", "Failed to load master save file at " + ctime(time()) + "\n");
+        }
+    }
+}
+
 string query_name() { return "Root"; }
 
-/**
- * This function is called every time a player connects.
- * input_to() cannot be called from here.
- */
 object connect(int port) {
-  object ob;
+    object ob;
 
-  if (!find_object("/secure/login")) {
-    log_file("REBOOT", "Mud rebooted at "+ctime(time())+"["+time()+"]"+"\n");
-  }
- 
-#ifdef __VERSION__
-#  define VERSION __VERSION__
-#endif
+    if (!find_object("/secure/login")) {
+        LOG_HANDLER->log("REBOOT", "The Realms of Toril reawakened at " + ctime(time()) + "[" + time() + "]\n");
+    }
 
-  printf("LPmud version : %s on port %d.", VERSION, port);
-  switch (port) {
-    case 4243 :
-      ob = clone_object("/secure/nlogin");
-      if(!ob)
-        destruct(this_object());
-      break;
-    default :
-      ob = clone_object("/secure/login");
-      break;
-  }
-  ob->set_login_port(port);
-  printf("\n");
-  return ob;
-} /* connet() */
-
-/**
- * This method checks to see if the person is a trustee or not.
- * @param str the person to check for being a trustee
- * @return 1 if they are, 0 if they are not
- */
-int query_trustee(mixed str) {
-  if (pointerp(str)) {
-    str = filter(str, (: interactive($1) :));
-
-    return sizeof(filter((object *)str,
-                         (: geteuid($1) == ROOT ||
-                          positions[geteuid($1)] == TRUSTEE ||
-                          trustees[geteuid($1)] :))) == sizeof(str);
-  }
-  return ((str == ROOT) || (positions[str] == TRUSTEE) ||
-          (trustees[str]));
+    printf("LPmud version: %s on port %d.\n", mud_info()->query_driver_version(), port);
+    switch (port) {
+        case 4242: // Matches live Discworld port
+            ob = clone_object("/secure/nlogin");
+            if (!ob) destruct(this_object());
+            break;
+        default:
+            ob = clone_object("/secure/login");
+            break;
+    }
+    ob->set_login_port(port);
+    return ob;
 }
 
-/** @ignore yes */
-int query_administrator(mixed str) {
-  return query_trustee(str);
+// Overdeity (God/Goddess) check
+int query_overdeity(mixed str) {
+    if (pointerp(str)) {
+        str = filter(str, (: interactive($1) :));
+        return sizeof(filter((object *)str,
+                             (: geteuid($1) == ROOT ||
+                                positions[geteuid($1)] == OVERDEITY ||
+                                overdeities[geteuid($1)] :))) == sizeof(str);
+    }
+    return (str == ROOT) || (positions[str] == OVERDEITY) || (overdeities[str]);
 }
 
-/** @ignore yes */
-int high_programmer(mixed str) {
-  return query_trustee(str);
+string query_divine_title(string name) {
+    object player = find_player(name);
+    if (!player || !query_overdeity(name)) return "Mortal";
+    // Placeholder: Needs Discworld gender check (e.g., from /global/player.c)
+    return random(2) ? "God of the Realms" : "Goddess of the Realms";
 }
 
-/**
- * This method checks to seee if the person is a director or not.
- * @param arg the person to check
- * @return 1 if they are, 0 if they are not
- */
-int query_director( mixed arg ) {
-  if ( pointerp( arg ) ) {
-    arg = filter(arg, (: interactive($1) :));
+int query_administrator(mixed str) { return query_overdeity(str); }
+int query_high_priest(mixed str) { return query_overdeity(str); } // Aligns with /concepts/religion
 
-    return sizeof( filter( (object *)arg,
-                           (: ( positions[ geteuid( $1 ) ] == DIRECTOR ) ||
-            query_trustee( geteuid( $1 ) ) :) ) ) == sizeof( arg );
-  }
-  return ( ( positions[ arg ] == DIRECTOR ) || query_trustee( arg ) );
+// High Archon (Greater Deity)
+int query_high_archon(mixed arg) {
+    if (pointerp(arg)) {
+        arg = filter(arg, (: interactive($1) :));
+        return sizeof(filter((object *)arg,
+                             (: (positions[geteuid($1)] == HIGH_ARCHON) ||
+                                query_overdeity(geteuid($1)) :))) == sizeof(arg);
+    }
+    return (positions[arg] == HIGH_ARCHON) || query_overdeity(arg);
 }
 
-/** @ignore */
-int query_leader( mixed arg ) { return query_director( arg ); }
-/** @ignore */
-int query_lord( mixed arg ) { return query_director( arg ); }
+int query_director(mixed arg) { return query_high_archon(arg); }
+int query_lord(mixed arg) { return query_high_archon(arg); }
 
-/**
- * This method checks to see if they are only a director.  The
- * query_director method also returns true if they are a trustee.
- * @return 1 if they are only a director
- */
-int query_only_director( string word ) {
-   return positions[ word ] == DIRECTOR;
-} /* query_only_leader() */
-
-/** @ignore yes */
-int query_only_leader( string word ) { return query_only_director( word ); }
-/** @ignore yes */
-int query_only_lord( string word ) { return query_only_director( word ); }
-
-/**
- * This method returns the array of directors for the mud.
- * @return the array of directors
- */
-string *query_directors() {
-  return filter_array(keys(positions),
-                      "query_only_director", this_object());
-} /* query_leaders() */
-
-/** @ignore yes */
-string *query_leaders() { return query_directors(); }
-/** @ignore yes */
-string *query_lords() { return query_directors(); }
-
-/** @ignore yes */
-int query_player_trustee(string str) {
-  return query_trustee(str) && PLAYER_HANDLER->test_user(str);
+int query_only_high_archon(string word) {
+    return positions[word] == HIGH_ARCHON;
 }
 
-/** @ignore yes */
-int query_player_administrator(string str) {
-  return query_player_trustee(str);
-}
-/** @ignore yes */
-int query_player_high_lord(string str) {
-  return query_player_trustee(str);
+string *query_high_archons() {
+    return filter_array(keys(positions), (: query_only_high_archon($1) :), this_object());
 }
 
-/** @ignore yes */
-string *high_programmers() { return keys( trustees ); }
-/** @ignore yes */
-string *query_administrators() { return keys( trustees ); }
-
-/**
- * This method returns the current trustees of the mud.
- */
-string *query_trustees() { return keys( trustees ); }
-
-/**
- * This method returns all the directors of the mud.
- * @return all the directors
- */
-string *query_all_directors() {
-  return filter_array(keys(positions), "query_director", this_object() );
+// Adept of the Mysteries (Intermediate Deity)
+int query_adept_of_mysteries(mixed arg) {
+    if (pointerp(arg)) {
+        return sizeof(filter((object *)arg,
+                             (: (positions[geteuid($1)] == ADEPT_OF_MYSTERIES) ||
+                                query_high_archon(geteuid($1)) :))) == sizeof(arg);
+    }
+    return (positions[arg] == ADEPT_OF_MYSTERIES) || query_high_archon(arg);
 }
 
-/** @ignore yes */
-string *query_all_leaders() { return query_all_directors(); }
-/** @ignore yes */
-string *query_all_lords() { return query_all_directors(); }
+int query_senior(mixed arg) { return query_adept_of_mysteries(arg); }
 
-/**
- * This method checks to see if the specified person is the leader of the
- * given domain or not.
- * @param person the person to check
- * @param domain the domain to check
- * @return 1 if they are the leader, 0 if not
- */
-int is_leader_of(string person, string domain) {
-  return ("/d/" + domain + "/master")->query_lord() == person;
+string *query_all_adepts_of_mysteries() {
+    return filter_array(keys(positions), (: query_adept_of_mysteries($1) :), this_object());
 }
 
-/**
- * This method checks to see if the specified person is a deputy of the
- * given domain or not.
- * @param person the person to check
- * @param domain the domain to check
- * @return 1 if they are a deputy, 0 if not
- */
-int is_deputy_of(string person, string domain) {
-   return ("/d/" + domain + "/master")->query_deputy(person);
-} /* is_deputy_of() */
-
-/**
- * This method checks to see if the person is a liason deputy or not.
- * @param person the person to check
- * @return 1 if they a deputy, 0 if not
- */
-int is_liaison_deputy(string person) {
-   return "/d/liaison/master"->query_deputy(person);
-} /* is_liaison_deputy() */
-
-/**
- * This checks to see if all the objects are either liaison deputies or
- * directors and above.
- * @param arg a person or an array of objects
- * @return 1 if true
- */
-int query_liaison_deputy_or_director(mixed arg) {
-  if ( pointerp( arg ) ) {
-    arg = filter(arg, (: interactive($1) :));
-
-    return sizeof( filter( (object *)arg,
-                           (: query_director(geteuid( $1 )) ||
-            is_liaison_deputy( geteuid( $1 ) ) :) ) ) == sizeof( arg );
-  }
-  return ( is_liaison_deputy(arg) || query_director( arg ) );
+// Chosen Emissary (Lesser Deity)
+int query_chosen_emissary(mixed arg) {
+    if (pointerp(arg)) {
+        arg = filter(arg, (: interactive($1) :));
+        return sizeof(filter((object *)arg,
+                             (: (positions[geteuid($1)] == CHOSEN_EMISSARY) ||
+                                query_high_archon(geteuid($1)) :))) == sizeof(arg);
+    }
+    return (positions[arg] == CHOSEN_EMISSARY) || query_high_archon(arg);
 }
 
-/** @ignore yes */
-int query_liaison_deputy_or_lord(mixed arg) {
-  return query_liaison_deputy_or_director(arg);
+int query_liaison_deputy_or_high_archon(mixed arg) {
+    if (pointerp(arg)) {
+        arg = filter(arg, (: interactive($1) :));
+        return sizeof(filter((object *)arg,
+                             (: query_high_archon(geteuid($1)) ||
+                                (positions[geteuid($1)] == CHOSEN_EMISSARY) :))) == sizeof(arg);
+    }
+    return (positions[arg] == CHOSEN_EMISSARY) || query_high_archon(arg);
 }
 
-/**
- * This method checks to see if the specified person is a senior or not.
- * This returns true if they are also a director as well.
- * @return 1 if they are a senior or higher
- */
-int query_senior( mixed arg ) {
-   if ( pointerp( arg ) )
-      return sizeof(filter( (object *)arg,
-            (: ( positions[ geteuid( $1 ) ] == SENIOR ) ||
-            query_leader( geteuid( $1 ) ) :) ) ) == sizeof( arg );
-   return ( ( positions[ arg ] == SENIOR ) || query_leader( arg ) );
+int is_chosen_emissary_of(string person, string domain) {
+    return ("/d/" + domain + "/master")->query_deputy(person);
 }
 
-/**
- * This method returns a list of all the seniors.
- * @return all of the seniors
- */
-string *query_all_seniors() {
-   return filter_array( keys( positions ), "query_senior", this_object() );
-} /* query_all_seniors() */
+int query_player_overdeity(string str) {
+    return query_overdeity(str) && PLAYER_HANDLER->test_user(str);
+}
 
-/**
- * Return a list of the creator domains.
- *
- * @return a string array of domain names.
- */
+string *overdeities_list() { return keys(overdeities); }
 string *query_domains() {
-  string *domains;
-  domains = (get_dir("/d/") - ({ "lost+found", "core" }));
-  return filter(domains, (: $1[<4..] != "_dev" :));
+    string *domains = get_dir("/d/") - ({ "lost+found", "core" });
+    return filter(domains, (: $1[<4..] != "_dev" :));
 }
 
-/**
- * This method checks to see if the specified object is allowed to be
- * loaded.
- * @return 1 if it is
- */
 int valid_load(string path, mixed euid, string func) { return 1; }
 
-
-/**
- * This returns the uid to be used as root.
- * @return the root uid
- */
 string get_root_uid() { return ROOT; }
-/**
- * This method returns the other defatul uid.
- * @return the bb uid
- */
 string get_bb_uid() { return "Room"; }
 
-/**
- * This method returns the include directories to be used in the mud.
- * @return the list of include directories
- */
 string *define_include_dirs() {
-  return ({ "/include/%s" });
-} /* define_include_dirs() */
-
-/**
- * This method returns the status of allowing the trace function to work.
- * @return 1 if it is allowed, 0 if not
- */
-int valid_trace() { return 1; }
-
-/**
- * This method shuts down the mud in a specified number of minutes.
- * @param min the number of minutes for the shutdown
- */
-void shut(int min) {
-  "/obj/shut"->shut(min);
-} /* shut() */
-
-/**
- * This removes the master object from the list of checked masters.  This
- * stops the system for going crazy with runtimes if one of the domain masters
- * fails to load.
- * @param name the name to remove
- */
-void remove_checked_master(string name) {
-  map_delete(checked_master, name);
-} /* remove_checked_master() */
-
-/**
- * This method returns the current mapping of checked master objects.
- * @return the mapping of checked master objects
- */
-mapping query_checked_master() { return checked_master; }
-
-/* This function comes from the Nightmare master object. */
-
-/**
- * This is used by the unguarded() simul efun to make an unguarded security
- * call.
- * @param f the function to call
- * @param local local to the master or not
- * @return the return value
- */
-varargs mixed apply_unguarded(function f, int local) {
-  object previous_unguarded;
-  string err;
-  mixed val;
-
-  if (base_name(previous_object(0)) != "/secure/simul_efun") {
-    error("Illegal unguarded apply.");
-    return 0;
-  }
-  previous_unguarded = unguarded_ob;
-  if (local)
-    unguarded_ob = master();
-  else
-    unguarded_ob = previous_object(1);
-  err = catch(val = (mixed)(*f)());
-  unguarded_ob = previous_unguarded;
-  if (err) {
-    error(err);
-  }
-  return val;
+    return ({ "/include/%s" });
 }
 
+int valid_trace() { return 1; }
+
+void shut(int min) {
+    "/obj/shut"->shut(min);
+}
+
+void remove_checked_master(string name) {
+    map_delete(checked_master, name);
+}
+
+mapping query_checked_master() { return copy(checked_master); }
+
+varargs mixed apply_unguarded(function f, int local) {
+    object previous_unguarded;
+    string err;
+    mixed val;
+
+    if (base_name(previous_object(0)) != "/secure/simul_efun") {
+        error("Illegal unguarded apply.");
+        return 0;
+    }
+    previous_ungarded = unguarded_ob;
+    if (local)
+        unguarded_ob = master();
+    else
+        unguarded_ob = previous_object(1);
+    err = catch(val = evaluate(f));
+    unguarded_ob = previous_unguarded;
+    if (err) error(err);
+    return val;
+}
+
+// Save method (modernized, aligns with /helpdir/save)
+private void save_master_data() {
+    string save_file = "/secure/save/master.json";
+    save_data["positions"] = positions;
+    save_data["overdeities"] = overdeities;
+    save_data["permissions"] = permissions;
+    write_file(save_file, json_encode(save_data), 1);
+    LOG_HANDLER->log("SAVE", "Master data saved at " + ctime(time()) + "\n");
+}
+
+// Include other master functionalities (to be recoded)
 #include "/secure/master/permission.c"
 #include "/secure/master/crash.c"
 #include "/secure/master/create_dom_creator.c"
