@@ -1,35 +1,73 @@
-/*  -*- LPC -*-  */
-/*
- * $Locker:  $
- * $Id: crash.c,v 1.3 2003/03/25 20:02:49 wodan Exp $
- */
-void crash(string crash_mess, object command_giver, object current_object) {
-  object thing, *things;
-  string crashtxt;
+// -*- LPC -*-
+// /secure/master/crash.c
+// Recoded for FluffOS v2019+, themed for Forgotten Realms, integrating Discworld crash mechanics
+// Last updated: March 07, 2025
 
-  reset_eval_cost();
-  log_file("CRASH", "\n"+ ctime(time()) +":\n");
-  if (current_object)
-    log_file("CRASH", "current object: "+ file_name(current_object) +
-             " ("+ current_object->query_name() +")\n");
-  if (command_giver)
-    log_file("CRASH", "command giver: "+ file_name(command_giver) +
-             " ("+ (string)command_giver->query_name() +")\n");
-  if (query_verb())
-    log_file("CRASH", "command given: "+ query_verb() +"\n");
-  log_file("CRASH", "crash reason: "+ crash_mess +"\n");
-  things = users();
-  log_file("CRASH", "["+ implode((string *)things->query_name(), ", ") +
-           "]\n");
-  flush_log_files();
-  crashtxt = "Wodan "+({"says: I wonder what this button does...",
-                        "says: Ceres, look out for that wire....",
-                        "says: Wow, look at the uptime.",
-                        "whispers: I don't think we should be doing this on my desk..",
-                        "shouts: Look at all that xp!"})[random(5)];
-  foreach (thing in things) {
-    reset_eval_cost();
-    efun::tell_object(thing, crashtxt + "\n("+ crash_mess +")\n");
-    catch(thing->quit());
-  }
-} /* crash() */
+#include <config.h>
+#include <log.h>
+#include <player_handler.h>
+
+void crash(string file) {
+    object ob;
+    string err;
+
+    if (!file || file == "") {
+        LOG_HANDLER->log("CRASH", "Divine disturbance detected at " + ctime(time()) + " - No file specified.\n");
+        return;
+    }
+
+    ob = find_object(file);
+    if (ob) {
+        err = catch(destruct(ob));
+        if (err) {
+            LOG_HANDLER->log("CRASH", "Failed to purge " + file + " due to: " + err + " at " + ctime(time()) + "\n");
+        } else {
+            LOG_HANDLER->log("CRASH", "Purged " + file + " after divine intervention at " + ctime(time()) + "\n");
+        }
+    } else {
+        LOG_HANDLER->log("CRASH", "No object found at " + file + " for divine cleansing at " + ctime(time()) + "\n");
+    }
+}
+
+void restore_crash(string file) {
+    mixed data;
+    string save_file = "/save/crash/" + file + ".json";
+
+    if (file_size(save_file) <= 0) {
+        LOG_HANDLER->log("CRASH", "No saved state for " + file + " to restore from divine archives at " + ctime(time()) + "\n");
+        return;
+    }
+
+    data = json_decode(read_file(save_file));
+    if (mappingp(data)) {
+        object ob = clone_object(file);
+        if (ob) {
+            ob->restore_from_data(data); // Assume a restore_from_data method exists
+            LOG_HANDLER->log("CRASH", "Restored " + file + " from divine archives at " + ctime(time()) + "\n");
+        } else {
+            LOG_HANDLER->log("CRASH", "Failed to resurrect " + file + " at " + ctime(time()) + "\n");
+        }
+    } else {
+        LOG_HANDLER->log("CRASH", "Corrupted divine record for " + file + " at " + ctime(time()) + "\n");
+    }
+}
+
+void save_crash(string file) {
+    object ob;
+    mapping data;
+
+    ob = find_object(file);
+    if (!ob) {
+        LOG_HANDLER->log("CRASH", "No object " + file + " to save from divine wrath at " + ctime(time()) + "\n");
+        return;
+    }
+
+    data = ob->save_data(); // Assume a save_data method exists
+    if (mappingp(data)) {
+        mkdir("/save/crash");
+        write_file("/save/crash/" + file + ".json", json_encode(data), 1);
+        LOG_HANDLER->log("CRASH", "Saved " + file + " to divine archives at " + ctime(time()) + "\n");
+    } else {
+        LOG_HANDLER->log("CRASH", "Failed to archive " + file + " at " + ctime(time()) + "\n");
+    }
+}
