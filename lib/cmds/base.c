@@ -1,47 +1,52 @@
-/*  -*- LPC -*-  */
-/*
- * $Locker:  $
- * $Id: base.c,v 1.4 2001/04/24 23:16:49 ceres Exp $
- * $Log: base.c,v $
- * Revision 1.4  2001/04/24 23:16:49  ceres
- * Trying to fix a runtime
- *
- * Revision 1.3  1999/12/17 02:15:05  pinkfish
- * Remove the is in stuff from here and makeit a simul_efun.
- *
- * Revision 1.2  1999/12/16 23:04:57  pinkfish
- * Add in some code to check for being in the player or the environment.
- *
- * Revision 1.1  1998/01/06 05:24:54  ceres
- * Initial revision
- * 
-*/
-/**
- * This is basic inherit module for inheriting into commands.
- * Please inherit this into all command objects.
- * <p>
- * It sets up all the functions needed to do useful stuff with a 
- * command object.
- * @author Pinkfish
- */
+// -*- LPC -*-
+// /lib/cmds/base.c - Base command handler for Archaon MUD
+// Purpose: Foundation for all command objects
+// Last updated: March 07, 2025, 04:45 AM AEST
+
+#include <config.h>
+#include <log.h>
+#include <command.h>
+
+inherit "/std/object";
+
+private string command_name;
+private object user;
+private string fail_message;
 
 void create() {
-  seteuid(getuid(this_object()));
-} /* create() */
+    ::create();
+}
 
-/** @ignore yes */
-void dest_me() {
-  if(this_object())
-    destruct(this_object());
-} /* dest_me() */
+void setup_cmd(string cmd, object who) {
+    command_name = cmd;
+    user = who;
+}
 
-/** @ignore yes */
-int clean_up() {
-  dest_me();
-  return 1;
-} /* clean_up() */
+void set_fail_message(string msg) {
+    fail_message = msg;
+}
 
-/** @ignore yes */
-void reset() {
-  dest_me();
-} /* reset() */
+object query_user() {
+    return user;
+}
+
+string query_command_name() {
+    return command_name;
+}
+
+void fail_msg() {
+    if (fail_message) {
+        tell_object(user, fail_message);
+    } else {
+        notify_fail("You fail to " + command_name + " in Faerûn.\n");
+    }
+}
+
+int do_cmd(string str) {
+    fail_msg();
+    return 0;
+}
+
+void notify_usage() {
+    tell_object(user, "Usage: " + command_name + " <arguments>\n");
+}
