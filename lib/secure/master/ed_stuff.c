@@ -1,42 +1,64 @@
-/*  -*- LPC -*-  */
-/*
- * $Locker:  $
- * $Id: ed_stuff.c,v 1.1 1998/01/06 05:12:03 ceres Exp $
- * $Log: ed_stuff.c,v $
- * Revision 1.1  1998/01/06 05:12:03  ceres
- * Initial revision
- * 
-*/
-int save_ed_setup(object wiz, int setup) {
-  wiz->set_ed_setup(setup);
-  return 1;
-} /* save_ed_setup() */
+// -*- LPC -*-
+// /secure/master/ed_stuff.c
+// Recoded for FluffOS v2019+, themed for Forgotten Realms, integrating Discworld editor mechanics
+// Last updated: March 07, 2025
 
-int retrieve_ed_setup(object wiz) {
-  return (int)wiz->query_ed_setup();
-} /* retrieve_ed_setup() */
+#include <config.h>
+#include <log.h>
 
-/*
- * make_path_absolute:
- *   Used by ed.c to expand relative path names on read and write.
- */
-string make_path_absolute(string str) {
-  if (this_player()) {
-    return (string)this_player()->get_path(str);
-  }
-} /* make_path_absolute() */
+private mapping edit_sessions = ([ ]);
 
-/*
- * Give a file name for edit preferences to be saved in.
- */
-string get_save_file_name(string file, object who) {
-  string *file_ar;
+void ed_start(string file, object user) {
+    if (!master()->query_adept_of_mysteries(geteuid(user)) && !master()->query_overdeity(geteuid(user))) {
+        tell_object(user, "Only Adepts of the Mysteries or Overdeities may weave the Weave!\n");
+        return;
+    }
+    if (edit_sessions[user]) {
+        tell_object(user, "You are already weaving a tome. Finish or abandon it first.\n");
+        return;
+    }
+    edit_sessions[user] = ([ "file": file, "buffer": allocate(0), "line": 0 ]);
+    tell_object(user, "You begin weaving the scroll of " + file + ". Type lines, 'w' to save, 'q' to quit.\n");
+}
 
-  if (!objectp(who))
-    return 0;
-  file_ar = explode(file,"/") - ({ "" });
-  file = file_ar[<1];
-  write("File saved in \"/w/.dead_ed_files/" +
-        who->query_name() + "-" + file + "\"\n");
-  return "/w/.dead_ed_files/" + who->query_name() + "-" + file;
-} /* get_ed_buffer_save_file_name() */
+void ed_cmd(string cmd, object user) {
+    string *session = edit_sessions[user];
+    string err;
+
+    if (!session) {
+        tell_object(user, "No tome is being woven. Use 'ed <file>' to begin.\n");
+        return;
+    }
+
+    switch (cmd) {
+        case "w":
+            string content = implode(session["buffer"], "\n");
+            mkdir("/w/" + geteuid(user));
+            err = catch(write_file("/w/" + geteuid(user) + "/" + session["file"], content, 1));
+            if (err) {
+                LOG_HANDLER->log("ERROR", "Failed to save " + session["file"] + " for " + geteuid(user) + ": " + err + " at " + ctime(time()) + "\n");
+                tell_object(user, "The Weave rejected your scroll! Error: " + err + "\n");
+            } else {
+                LOG_HANDLER->log("EVENT", "Scroll " + session["file"] + " woven by " + geteuid(user) + " at " + ctime(time()) + "\n");
+                tell_object(user, "The scroll of " + session["file"] + " has been saved to the Weave.\n");
+            }
+            map_delete(edit_sessions, user);
+            break;
+        case "q":
+            tell_object(user, "You abandon the weaving of " + session["file"] + ".\n");
+            map_delete(edit_sessions, user);
+            break;
+        default:
+            session["buffer"] += ({ cmd });
+            session["line"]++;
+            tell_object(user, "Line " + session["line"] + " added to the scroll.\n");
+            break;
+    }
+}
+
+void ed_end(object user) {
+    if (edit_sessions[user]) {
+        map_delete(edit_sessions, user);
+        tell_object(user, "Your weaving session has been forcibly ended by divine will.\n");
+    }
+}
