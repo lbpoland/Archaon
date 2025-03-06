@@ -539,7 +539,7 @@ Locals were: none.
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /:0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Mar 26 04:18:36 2018:  *Denied read permission in restore_object().
+Thu Mar  6 08:31:15 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -549,12 +549,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Mar 26 04:32:01 2018:  *Denied read permission in restore_object().
+Thu Mar  6 08:42:32 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -564,12 +564,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Mar 26 04:53:34 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:04:05 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -579,12 +579,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Mar 26 04:59:41 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:08:17 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -594,12 +594,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Mar 26 06:17:53 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:09:55 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -609,12 +609,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Mar 26 07:00:36 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:14:26 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -624,12 +624,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Tue Mar 27 23:54:23 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:20:53 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -639,12 +639,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Wed Apr 25 11:56:31 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:24:48 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -654,12 +654,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Wed May  2 21:13:55 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:27:55 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -669,12 +669,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Sun May 20 04:22:22 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:43:11 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -684,12 +684,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon May 21 01:56:12 2018:  *Denied read permission in restore_object().
+Thu Mar  6 09:46:42 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -699,12 +699,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon May 21 13:26:24 2018:  *Denied read permission in restore_object().
+Thu Mar  6 10:13:19 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -714,12 +714,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Tue Jun  5 21:19:40 2018:  *Denied read permission in restore_object().
+Thu Mar  6 10:23:04 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -729,12 +729,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Tue Jun 19 20:32:25 2018:  *Denied read permission in restore_object().
+Thu Mar  6 10:30:35 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -744,12 +744,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Sun Jul 15 22:14:50 2018:  *Denied read permission in restore_object().
+Thu Mar  6 10:34:06 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -759,12 +759,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Wed Jul 18 18:31:37 2018:  *Denied read permission in restore_object().
+Thu Mar  6 10:40:59 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -774,12 +774,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Wed Aug  1 12:50:07 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:02:35 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -789,12 +789,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Mon Aug 13 12:28:02 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:10:59 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -804,12 +804,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Fri Aug 17 18:19:11 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:30:31 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -819,12 +819,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Sat Aug 18 11:05:01 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:38:19 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -834,12 +834,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Sat Aug 18 11:28:13 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:42:22 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -849,12 +849,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Sat Aug 18 12:11:57 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:48:31 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -864,12 +864,12 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 361
+(6) 'CATCH' in /secure/master at line 361
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
 --------------------
-Sat Aug 18 12:22:15 2018:  *Denied read permission in restore_object().
+Thu Mar  6 11:52:19 2025:  *restore_object: read permission denied: /save/inv_check.o.
 Object: /d/admin/obj/inv_check at line 30
 Arguments were: (void)
 Locals were: none.
@@ -879,262 +879,7 @@ Locals were: none.
 (2) 'CATCH' in /secure/master in /secure/master/preload.c:28
 (3) 'create' in /d/admin/obj/inv_check at line 30
 (4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Mon Aug 27 14:07:44 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Tue Sep 25 06:30:52 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Wed Nov  7 00:19:54 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Nov 15 16:08:11 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Dec  6 19:08:17 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Sat Dec  8 04:38:27 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Sat Dec  8 04:49:17 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Tue Dec 11 23:26:11 2018:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Wed Jan  9 06:20:44 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Sat Jan 12 05:54:32 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Sun Jan 13 00:40:53 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Jan 17 04:04:59 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Jan 17 04:21:23 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Jan 17 04:47:17 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Jan 17 05:22:00 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Jan 17 05:47:59 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
-(7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
-(8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30
---------------------
-Thu Jan 17 13:53:23 2019:  *Denied read permission in restore_object().
-Object: /d/admin/obj/inv_check at line 30
-Arguments were: (void)
-Locals were: none.
-
-
-(1) 'preload' in /secure/master in /secure/master/preload.c:28
-(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
-(3) 'create' in /d/admin/obj/inv_check at line 30
-(4) 'unguarded' in /secure/simul_efun (/secure/simul_efun/unguarded.c) at line 43
-(5) 'apply_unguarded' in /secure/master at line 362
-(6) 'CATCH' in /secure/master at line 362
+(5) 'apply_unguarded' in /secure/master at line 354
+(6) 'CATCH' in /secure/master at line 354
 (7) '<fake>' in /d/admin/obj/inv_check (/<driver>) in /(fake):0
 (8) '(: <code>() :)' in /d/admin/obj/inv_check at line 30

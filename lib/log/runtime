@@ -1,0 +1,50 @@
+--------------------
+Thu Mar  6 13:10:40 2025:  *Error in loading object '/obj/handlers/map'
+Object: /obj/handlers/wander_handler at line 400
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/wander_handler (/<driver>) in /(fake):0
+(2) 'do_move_after' in /obj/handlers/wander_handler at line 477
+(3) 'do_wander' in /obj/handlers/wander_handler at line 400
+--------------------
+Thu Mar  6 13:11:21 2025:  *Error in loading object '/obj/handlers/map'
+Object: /obj/handlers/wander_handler at line 400
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/wander_handler (/<driver>) in /(fake):0
+(2) 'do_move_after' in /obj/handlers/wander_handler at line 477
+(3) 'do_wander' in /obj/handlers/wander_handler at line 400
+--------------------
+Thu Mar  6 13:11:53 2025:  *Error in loading object '/obj/handlers/map'
+Object: /obj/handlers/wander_handler at line 400
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/wander_handler (/<driver>) in /(fake):0
+(2) 'do_move_after' in /obj/handlers/wander_handler at line 477
+(3) 'do_wander' in /obj/handlers/wander_handler at line 400
+--------------------
+Thu Mar  6 13:12:49 2025:  *Error in loading object '/obj/handlers/map'
+Object: /obj/handlers/wander_handler at line 400
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/wander_handler (/<driver>) in /(fake):0
+(2) 'do_move_after' in /obj/handlers/wander_handler at line 477
+(3) 'do_wander' in /obj/handlers/wander_handler at line 400
+--------------------
+Thu Mar  6 13:13:37 2025:  *Error in loading object '/obj/handlers/map'
+Object: /obj/handlers/wander_handler at line 400
+Arguments were: (void)
+Locals were: none.
+
+
+(1) '<fake>' in /obj/handlers/wander_handler (/<driver>) in /(fake):0
+(2) 'do_move_after' in /obj/handlers/wander_handler at line 477
+(3) 'do_wander' in /obj/handlers/wander_handler at line 400

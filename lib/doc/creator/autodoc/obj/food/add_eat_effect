@@ -1,6 +1,6 @@
 .DT
 add_eat_effect
-Disk World creator help
+DW_wibble creator help
 add_eat_effect
 
 .SH Name
@@ -11,7 +11,7 @@ add_eat_effect -  This adds an eat effect to the food.
 .SH Syntax
 .SI 5
 int add_eat_effect(mixed word,
-int number)
+                   int number)
 .EI
 
 .SH Parameters

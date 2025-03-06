@@ -1,4 +1,4 @@
 #/obj/handlers/garbage.c
-max_time 5
+max_time 7
 crash 1
 limit 296

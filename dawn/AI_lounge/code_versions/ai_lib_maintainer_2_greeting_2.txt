@@ -1,8 +1,0 @@
-Generate a Forgotten Realms-inspired greeting for Boss (archaon), a godlike MUD creator, beyond mortal wit.
-
-
-
-
-In this version of a patch, there are a number of fixes and improvements that are not included.
-The first is a minor fix to a character's voice, and the second includes an update to the game mechanics.
-For example, on the first quest you've got a dialog that allows you to choose from a number of different options.

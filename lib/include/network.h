@@ -31,28 +31,28 @@
 /**
  * This is the port the mud is on.
  */
-#define PORT_MUD (mud_name() == "Discworld") ? 23 : 4400
+#define PORT_MUD (mud_name() == "Discworld") ? 23 : 6677
 /**
  * This is the port the ftp server runs on.
  */
-#define PORT_FTP (mud_name() == "Discworld") ? 21 : 4440
+#define PORT_FTP (mud_name() == "Discworld") ? 21 : 4444
 
 /**
  * This is the port the http server runs on.
  */
-#define PORT_HTTP                 4480
+#define PORT_HTTP                 80
 /** 
  * This is the port the MUD's internal LPC web server runs on
  */
-#define PORT_INTERNAL_HTTP                  4488
+#define PORT_INTERNAL_HTTP                  5678
 /**
  * This is the port the out of band data for the intermud services runs on.
  */
-#define PORT_OOB                  4404
+#define PORT_OOB                  8765
 /**
  * This is the port the authorisation stuff for the ftp server runs on.
  */
-#define PORT_FTPAUTH              4448
+#define PORT_FTPAUTH              2227
 #undef  PORT_RCP
 #undef  PORT_UDP
 

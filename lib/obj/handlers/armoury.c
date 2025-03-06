@@ -1,3 +1,4 @@
+
 /*  -*- LPC -*-  */
 /*
  * $Locker:  $
@@ -146,29 +147,29 @@ void init() {
 // extensions is the file extensions to look for.  The base_dir will be
 // recursed to find all files in sub-dirs as well.
 /** @ignore yes */
+/** @ignore yes */
 mapping make_list(string base_dir, string *extensions) {
   string *dirs, dir, extension, file_name;
-//   mixed *tmp, *file;
   mapping list;
+  mixed *files;
 
-  dirs = walk_directory (base_dir);
-
-  // make a mapping of names to filenames
+  dirs = walk_directory(base_dir);
+  if (!arrayp(dirs)) dirs = ({ }); // Ensure array
   list = ([ ]);
-  foreach(dir in dirs) {
-    foreach(extension in extensions) {
-      foreach(file_name in unguarded((: get_dir, dir+"*"+extension :))) {
-        if (file_name[0] != '.') {
-          list[ replace_string(explode(file_name, ".")[0], "_", " ") ] =
-                    dir + "" + file_name;
+  foreach (dir in dirs) {
+    foreach (extension in extensions) {
+      files = get_dir(dir + "*" + extension);
+      if (arrayp(files)) { // Ensure array
+        foreach (file_name in files) {
+          if (file_name[0] != '.') {
+            list[replace_string(explode(file_name, ".")[0], "_", " ")] = dir + file_name;
+          }
         }
       }
     }
   }
-
   return list;
-} /* make_list() */
-
+}
 
 /** @ignore yes */
 int clean_up(int i) { return 0; }
@@ -529,19 +530,20 @@ mixed stats() {
 } /* stats() */
 
 /** @ignore yes */
-string* walk_directory (string dir) {
+string* walk_directory(string dir) {
   string *tmp, *dirs = ({ }), *tmp2;
   mixed *file;
 
   tmp = get_dir(dir, -1);
+  if (!arrayp(tmp)) tmp = ({ }); // Ensure array
 
-  if (sizeof (tmp))
-    dirs += ({dir});
+  if (sizeof(tmp))
+    dirs += ({ dir });
 
-  foreach(file in tmp) {
-    if(file[1] == -2) {
-      tmp2 = walk_directory (dir + file [0] + "/");
-      if (sizeof (tmp2))
+  foreach (file in tmp) {
+    if (file[1] == -2) {
+      tmp2 = walk_directory(dir + file[0] + "/");
+      if (sizeof(tmp2))
         dirs += tmp2;
     }
   }

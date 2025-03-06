@@ -1,6 +1,6 @@
 .DT
 lantern.c
-Disk World autodoc help
+DW_wibble autodoc help
 lantern.c
 
 .SH Description

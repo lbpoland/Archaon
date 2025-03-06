@@ -1,0 +1,10 @@
+--------------------
+Thu Mar  6 13:09:30 2025:  *Error in loading object '/std/races/dog'
+Object: /std/race at line 151
+Arguments were: (void)
+Locals were: none.
+
+
+(1) 'preload' in /secure/master in /secure/master/preload.c:28
+(2) 'CATCH' in /secure/master in /secure/master/preload.c:28
+(3) 'create' in /std/race at line 151

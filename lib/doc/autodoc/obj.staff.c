@@ -1,11 +1,11 @@
 .DT
 staff.c
-Disk World autodoc help
+Dead DW2 autodoc help
 staff.c
 
 .SH Inherits
 .SP 5 5
-This class inherits the following classes /std/basic/artifact and /obj/weapon.
+This class inherits the following classes /obj/weapon and /std/basic/artifact.
 .EP
 
 .SH Includes

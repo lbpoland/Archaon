@@ -1,0 +1,18 @@
+/std/races/dog.c line 46: End of array not found
+  thing->add_attack( "claws", 100, ({ ( 3 * number ) / 2, 5, number } )
+                                                                          ^
+/obj/handlers/map.c line 527: End of array not found
+  dir += ({ qddir[ i ]} )
+                              ^
+/obj/handlers/map.c line 527: End of array not found
+  dir += ({ qddir[ i ]} )
+                              ^
+/obj/handlers/map.c line 527: End of array not found
+  dir += ({ qddir[ i ]} )
+                              ^
+/obj/handlers/map.c line 527: End of array not found
+  dir += ({ qddir[ i ]} )
+                              ^
+/obj/handlers/map.c line 527: End of array not found
+  dir += ({ qddir[ i ]} )
+                              ^

@@ -2,8 +2,8 @@
 public_functions ([])
 protected_functions ([])
 inherits ([])
-define_docs (["FIGHT":([]),"STAND":([]),"RUN":([]),])
+define_docs (["STAND":([]),"FIGHT":([]),"RUN":([]),])
 includes ([])
 class_docs ([])
 file_name "/include/ranged_response.h"
-last_changed 1522061544
+last_changed 1059516249

@@ -2,8 +2,8 @@
 public_functions ([])
 protected_functions ([])
 inherits ([])
-define_docs (["MAX_INVENTORY":([]),"MAX_AMOUNT":([]),"MAX_OBS":([]),"PAY_RATES":([]),])
+define_docs (["MAX_OBS":([]),"PAY_RATES":([]),"MAX_AMOUNT":([]),"MAX_INVENTORY":([]),])
 includes ([])
 class_docs ([])
 file_name "/include/shop.h"
-last_changed 1522061544
+last_changed 1059516249

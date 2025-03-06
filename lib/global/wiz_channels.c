@@ -1,3 +1,4 @@
+
 /*  -*- LPC -*-  */
 /*
  * $Locker:  $
@@ -144,12 +145,13 @@ protected int handle_command_line(string channel, string mess) {
         
         if (ob->query_invis()) {
           if (ob->query_invis() == 2) {
-            str = "({" + $1->query_cap_name() + "})";
+// Line 147: Original: str = "({" + $1->query_cap_name() + "})"
+str = "({" + map(ob, (: ($1)->query_cap_name() :))[0] + "})";
           } else {
-            str = "(" + $1->query_cap_name() + ")";
+str = "(" + map(ob, (: ($1)->query_cap_name() :))[0] + ")";
           }
+str = map(ob, (: ($1)->query_cap_name() :))[0];
         } else {
-          str = $1->query_cap_name();
         }
         if (query_idle(ob) > 120) {
           int hours, mins, secs;
@@ -249,7 +251,7 @@ private int channel_cmd(string mess) {
   }
   
   if(INTERMUD_MAP[channel]) {
-    //user_event(this_object(), "intermud_tell", start, mess, channel);
+    user_event(this_object(), "intermud_tell", start, mess, channel);
     
     if(channel == "dwchat") {
       things = children(TALKER);

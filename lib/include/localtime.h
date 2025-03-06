@@ -12,4 +12,3 @@
 #define LT_YDAY         7
 #define LT_GMTOFF       8
 #define LT_ZONE         9
-#define LT_ISDST        10

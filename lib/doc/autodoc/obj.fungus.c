@@ -1,6 +1,6 @@
 .DT
 fungus.c
-Disk World autodoc help
+DW_wibble autodoc help
 fungus.c
 
 .SH Inherits

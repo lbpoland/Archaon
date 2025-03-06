@@ -1,6 +1,6 @@
 .DT
 key.c
-Disk World autodoc help
+DW_wibble autodoc help
 key.c
 
 .SH Inherits

@@ -40,18 +40,23 @@ void create() {
  * @param limit the time after which to find the changes
  * @return the mapping of pages to who changed them
  */
-mapping find_changed_pages(int limit, string database) {
-   string* lines;
-   int i;
-   int tim;
-   string page;
-   string author;
-   mixed* bits;
-   mapping changes_pages;
 
-   lines = explode(read_file(TWIKI_DATA_DIRECTORY + database + TWIKI_CHANGE_FILE), "\n");
-   changes_pages = ([ ]);
-   for (i = 1; i < sizeof(lines); i++) {
+mapping find_changed_pages(int limit, string database) {
+  string content;
+  string* lines;
+  int i;
+  int tim;
+  string page;
+  string author;
+  mixed* bits;
+  mapping changes_pages;
+
+  content = read_file(TWIKI_DATA_DIRECTORY + database + TWIKI_CHANGE_FILE);
+  if (!stringp(content)) content = ""; // Handle missing file
+  lines = explode(content, "\n"); // Convert to array
+  changes_pages = ([ ]);
+  for (i = 1; i < sizeof(lines); i++) {
+    bits = reg_assoc(lines[<i], ({ "([a-zA-Z][a-zA-Z0-9]+)", "[0-9]+" }), ({ 1, 2 }));
       bits = reg_assoc(lines[<i], ({ "([a-zA-Z][a-zA-Z0-9]+)", "[0-9]+" }), ({ 1, 2 }) );
       if (sizeof(bits[0]) == 9 || sizeof(bits[0]) == 7) {
          page = bits[0][1];

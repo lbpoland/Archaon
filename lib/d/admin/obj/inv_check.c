@@ -27,7 +27,7 @@ void dest_me() {
 
 void create() {
   seteuid( "Admin" );
-  unguarded ((: restore_object (FILENAME) :));
+//  unguarded ((: restore_object (FILENAME) :));
   do_seek();
 } /* create() */
 

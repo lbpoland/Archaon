@@ -1,6 +1,6 @@
 .DT
 shovel.c
-Disk World autodoc help
+DW_wibble autodoc help
 shovel.c
 
 .SH Description
