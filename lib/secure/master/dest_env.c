@@ -1,28 +1,33 @@
-/*  -*- LPC -*-  */
-/*
- * $Locker:  $
- * $Id: dest_env.c,v 1.2 2003/02/12 16:26:52 wodan Exp $
- * $Log: dest_env.c,v $
- * Revision 1.2  2003/02/12 16:26:52  wodan
- * removed <TAB>
- *
- * Revision 1.1  1998/01/06 05:12:03  ceres
- * Initial revision
- * 
-*/
-/*
- * Called if the environment is dested and there is no where else
- * to go...
- */
-void destruct_environment_of(object ob) {
-  object env;
+// -*- LPC -*-
+// /secure/master/dest_env.c
+// Recoded for FluffOS v2019+, themed for Forgotten Realms, integrating Discworld mechanics
+// Last updated: March 07, 2025
 
-  env = environment(ob);
-  if (env) {
-      string *a;
-      a = (string *)env->query_dest_dir();
-      if (catch(ob->move_player(a[0], a[1], "stumbles"))) {
-          ob->move_player("void", "/room/void", "is sucked into the");
-      }
-  }
-} /* destruct_environment_of() */
+#include <config.h>
+#include <log.h>
+
+void dest_env(object env) {
+    string err;
+    object *contents;
+
+    if (!env || !objectp(env)) {
+        LOG_HANDLER->log("ERROR", "Attempted divine purging of invalid environment at " + ctime(time()) + "\n");
+        return;
+    }
+
+    contents = all_inventory(env);
+    foreach (object ob in contents) {
+        err = catch(destruct(ob));
+        if (err) {
+            LOG_HANDLER->log("ERROR", "Failed to purge " + file_name(ob) + " from " + file_name(env) + ": " + err + " at " + ctime(time()) + "\n");
+        }
+    }
+
+    err = catch(destruct(env));
+    if (err) {
+        LOG_HANDLER->log("ERROR", "Divine purging of " + file_name(env) + " failed: " + err + " at " + ctime(time()) + "\n");
+        notify_fail("The realm resists Talos’s wrath!\n");
+    } else {
+        LOG_HANDLER->log("EVENT", "Realm " + file_name(env) + " purged by divine storm at " + ctime(time()) + "\n");
+    }
+}
